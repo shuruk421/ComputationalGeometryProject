@@ -57,7 +57,7 @@ def test_incremental_distance_based_helper(test_sphere_points):
     query_radius_sq = query_radius**2
     for tup in test_sphere_points:
         point, ground_truth = tup[0], tup[1]
-        if tup[1]:
+        if ground_truth:
             # assert is_point_in_sphere(point, query_center, query_radius_sq), point
             if not is_point_in_sphere(point, query_center, query_radius_sq):
                 print(query_center, query_radius)
@@ -218,7 +218,7 @@ def do_tests(repetitions=10):
     print("TESTING")
 
     for i in range(10):
-        n_dim = 4
+        n_dim = 3
         num_samples = 50
         gen_radius = half_width = 10
 
@@ -254,16 +254,16 @@ def do_tests(repetitions=10):
 
 
 def main():
-    # do_tests()
+    do_tests()
 
     # print("Plotting Graph 1")
     # plot_graph_1()
 
-    # print("Plotting Graph 2")
-    # plot_graph_2()
+    print("Plotting Graph 2")
+    plot_graph_2()
 
-    # print("Plotting Graph 3")
-    # plot_graph_3()
+    print("Plotting Graph 3")
+    plot_graph_3()
 
     print("Plotting Graph 4")
     plot_graph_4()
