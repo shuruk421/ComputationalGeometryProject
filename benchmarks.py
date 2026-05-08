@@ -18,7 +18,7 @@ RESULTS_DIR = "results"
 os.makedirs(RESULTS_DIR, exist_ok=True)
 
 
-def plot_oracle_calls_vs_points(
+def plot_oracle_calls_vs_points_box(
     n_dim, consent_probability, num_points_list, low=-10, high=10
 ):
     """
@@ -72,9 +72,18 @@ def plot_oracle_calls_vs_points(
             d_log_n = 0
         d_log_n_values.append(d_log_n)
 
-    ratios = [inc / d for inc, d in zip(incremental_calls, d_log_n_values) if d > 0]
-    scaling_constant = np.mean(ratios) if ratios else 1.0
-    scaled_d_log_n_values = [scaling_constant * val for val in d_log_n_values]
+    # Calculate scaling constant and additive constant using linear regression
+    # y = C * x + B where x is d_log_n_values and y is incremental_calls
+    x = np.array(d_log_n_values)
+    y = np.array(incremental_calls)
+
+    if len(x) > 1 and np.any(x != x[0]):
+        C, B = np.polyfit(x, y, 1)
+    else:
+        C, B = 1.0, 0.0
+
+    # Scale d*log(n) values
+    scaled_d_log_n_values = [C * val + B for val in d_log_n_values]
 
     plt.figure(figsize=(12, 8))
     plt.plot(num_points_list, incremental_calls, label="Incremental box algorithm")
@@ -83,7 +92,7 @@ def plot_oracle_calls_vs_points(
     plt.plot(
         num_points_list,
         scaled_d_log_n_values,
-        label=f"d*log(n) scaled (C={scaling_constant:.2f})",
+        label=f"d*log(n) scaled (y = {C:.2f}x + {B:.2f})",
     )
 
     plt.xlabel("Number of Points")
@@ -94,7 +103,6 @@ def plot_oracle_calls_vs_points(
     plt.legend()
     plt.grid(True, alpha=0.3)
     plt.savefig(os.path.join(RESULTS_DIR, "oracle_calls_vs_points_box.png"), dpi=150)
-    plt.show()
 
 
 def plot_oracle_calls_vs_points_sphere(
@@ -148,19 +156,25 @@ def plot_oracle_calls_vs_points_sphere(
             else float("inf")
         )
 
-    fact_ratios = [
-        inc / f for inc, f in zip(incremental_calls, factorial_bound_values) if f > 0
-    ]
-    fact_scaling = np.mean(fact_ratios) if fact_ratios else 1.0
-    scaled_fact = [fact_scaling * v for v in factorial_bound_values]
+    # Linear regression for factorial bound (Incremental)
+    xf = np.array(factorial_bound_values)
+    yf = np.array(incremental_calls)
+    if len(xf) > 1 and np.any(xf != xf[0]):
+        Cf, Bf = np.polyfit(xf, yf, 1)
+    else:
+        Cf, Bf = 1.0, 0.0
+    scaled_fact = [Cf * v + Bf for v in factorial_bound_values]
 
-    p_ratios = [
-        dec / p
-        for dec, p in zip(decremental_calls, p_bound_values)
-        if p > 0 and not np.isinf(p)
-    ]
-    p_scaling = np.mean(p_ratios) if p_ratios else 1.0
-    scaled_p = [p_scaling * v for v in p_bound_values]
+    # Linear regression for p-bound (Decremental)
+    xp = np.array(p_bound_values)
+    yp = np.array(decremental_calls)
+    # Filter out infs for regression
+    valid = ~np.isinf(xp)
+    if np.sum(valid) > 1 and np.any(xp[valid] != xp[valid][0]):
+        Cp, Bp = np.polyfit(xp[valid], yp[valid], 1)
+    else:
+        Cp, Bp = 1.0, 0.0
+    scaled_p = [Cp * v + Bp for v in p_bound_values]
 
     plt.figure(figsize=(12, 8))
     plt.plot(num_points_list, incremental_calls, label="Incremental sphere algorithm")
@@ -171,10 +185,12 @@ def plot_oracle_calls_vs_points_sphere(
     plt.plot(
         num_points_list,
         scaled_fact,
-        label=f"(d+1)! * ln^(d+1)(n) scaled (C={fact_scaling:.2f})",
+        label=f"(d+1)! * ln^(d+1)(n) scaled (y = {Cf:.2f}x + {Bf:.2f})",
     )
     plt.plot(
-        num_points_list, scaled_p, label=f"(d+1)/(p^(d+1)) scaled (C={p_scaling:.2f})"
+        num_points_list,
+        scaled_p,
+        label=f"(d+1)/(p^(d+1)) scaled (y = {Cp:.2f}x + {Bp:.2f})",
     )
 
     plt.xlabel("Number of Points")
@@ -185,7 +201,6 @@ def plot_oracle_calls_vs_points_sphere(
     plt.legend()
     plt.grid(True, alpha=0.3)
     plt.savefig(os.path.join(RESULTS_DIR, "oracle_calls_vs_points_sphere.png"), dpi=150)
-    plt.show()
 
 
 def plot_running_time_box_algorithms(
@@ -226,7 +241,6 @@ def plot_running_time_box_algorithms(
     plt.legend()
     plt.grid(True, alpha=0.3)
     plt.savefig(os.path.join(RESULTS_DIR, "running_time_box_algorithms.png"), dpi=150)
-    plt.show()
 
 
 def plot_running_time_sphere_algorithms(
@@ -269,16 +283,15 @@ def plot_running_time_sphere_algorithms(
     plt.savefig(
         os.path.join(RESULTS_DIR, "running_time_sphere_algorithms.png"), dpi=150
     )
-    plt.show()
 
 
 def main():
     n_dim = 3
-    consent_probability = 0.3
+    consent_probability = 0.7
     num_points_list = range(100, 2000, 10)
 
     logger.info("Running Box Oracle Calls Benchmark...")
-    plot_oracle_calls_vs_points(n_dim, consent_probability, num_points_list)
+    plot_oracle_calls_vs_points_box(n_dim, consent_probability, num_points_list)
 
     logger.info("Running Sphere Oracle Calls Benchmark...")
     plot_oracle_calls_vs_points_sphere(n_dim, consent_probability, num_points_list)
