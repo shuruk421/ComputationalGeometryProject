@@ -30,11 +30,15 @@ def plot_oracle_calls_vs_points_box(
     lower_bounds = []
     d_log_n_values = []
 
-    for num_points in tqdm(num_points_list, desc="Processing box algorithms"):
+    pbar = tqdm(num_points_list, desc="Processing box algorithms")
+    for num_points in pbar:
         inc_runs = []
         dec_runs = []
         lb_runs = []
-        for _ in tqdm(range(n_runs), desc="Runs", leave=False):
+        for run_idx in range(n_runs):
+            pbar.set_description(
+                f"Processing box algorithms (N={num_points}, run {run_idx+1}/{n_runs})"
+            )
             # Generate random points in a box
             points = generate_in_box(n_dim, low=low, high=high, count=num_points)
             # Add consent values
@@ -126,11 +130,15 @@ def plot_oracle_calls_vs_points_sphere(
     factorial_bound_values = []
     p_bound_values = []
 
-    for num_points in tqdm(num_points_list, desc="Processing sphere algorithms"):
+    pbar = tqdm(num_points_list, desc="Processing sphere algorithms")
+    for num_points in pbar:
         inc_runs = []
         dec_runs = []
         lb_runs = []
-        for _ in tqdm(range(n_runs), desc="Runs", leave=False):
+        for run_idx in range(n_runs):
+            pbar.set_description(
+                f"Processing sphere algorithms (N={num_points}, run {run_idx+1}/{n_runs})"
+            )
             points = generate_in_sphere(n_dim, radius, num_points)
             points_with_consent = [
                 (p, random.random() < consent_probability) for p in points
@@ -230,12 +238,14 @@ def plot_running_time_box_algorithms(
     incremental_times = []
     decremental_times = []
 
-    for num_points in tqdm(
-        num_points_list, desc="Measuring box algorithm running times"
-    ):
+    pbar = tqdm(num_points_list, desc="Measuring box algorithm running times")
+    for num_points in pbar:
         inc_runs = []
         dec_runs = []
-        for _ in tqdm(range(n_runs), desc="Runs", leave=False):
+        for run_idx in range(n_runs):
+            pbar.set_description(
+                f"Measuring box algorithm running times (N={num_points}, run {run_idx+1}/{n_runs})"
+            )
             points = generate_in_box(n_dim, low=low, high=high, count=num_points)
             points_with_consent = [
                 (p, random.random() < consent_probability) for p in points
@@ -276,12 +286,14 @@ def plot_running_time_sphere_algorithms(
     incremental_times = []
     decremental_times = []
 
-    for num_points in tqdm(
-        num_points_list, desc="Measuring sphere algorithm running times"
-    ):
+    pbar = tqdm(num_points_list, desc="Measuring sphere algorithm running times")
+    for num_points in pbar:
         inc_runs = []
         dec_runs = []
-        for _ in tqdm(range(n_runs), desc="Runs", leave=False):
+        for run_idx in range(n_runs):
+            pbar.set_description(
+                f"Measuring sphere algorithm running times (N={num_points}, run {run_idx+1}/{n_runs})"
+            )
             points = generate_in_sphere(n_dim, radius, num_points)
             points_with_consent = [
                 (p, random.random() < consent_probability) for p in points
