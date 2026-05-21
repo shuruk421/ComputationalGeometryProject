@@ -26,7 +26,7 @@ def test_decremental_vs_incremental(box_points, sphere_points, noisy_disc_points
     decremental_sphere = decremental_distance_based(sphere_points, oracle3)
 
     oracle4 = Oracle()
-    incremental_sphere = incremental_distance_based(sphere_points, oracle4)
+    incremental_sphere = incremental_distance_based(sphere_points, oracle4, debug=True)
     assert np.allclose(decremental_sphere[0], incremental_sphere[0]) and np.allclose(
         decremental_sphere[1], incremental_sphere[1]
     )
@@ -35,7 +35,7 @@ def test_decremental_vs_incremental(box_points, sphere_points, noisy_disc_points
     decremental_disc = decremental_distance_based(noisy_disc_points, oracle5)
 
     oracle6 = Oracle()
-    incremental_disc = incremental_distance_based(noisy_disc_points, oracle6)
+    incremental_disc = incremental_distance_based(noisy_disc_points, oracle6, debug=True)
     assert np.allclose(decremental_disc[0], incremental_disc[0]) and np.allclose(
         decremental_disc[1], incremental_disc[1]
     )
@@ -43,7 +43,7 @@ def test_decremental_vs_incremental(box_points, sphere_points, noisy_disc_points
 
 def test_incremental_distance_based_helper(test_sphere_points):
     oracle = Oracle()
-    query_center, query_radius = incremental_distance_based(test_sphere_points, oracle)
+    query_center, query_radius = incremental_distance_based(test_sphere_points, oracle, debug=True)
     query_radius_sq = query_radius**2
     for tup in test_sphere_points:
         point, ground_truth = tup[0], tup[1]

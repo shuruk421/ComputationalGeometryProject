@@ -270,6 +270,7 @@ def welzl(
     oracle: Oracle,
     d: int,
     n: int,
+    debug: bool = False,
 ) -> Tuple[Optional[np.ndarray], float]:
     """
     Welzl's algorithm for finding the smallest enclosing ball.
@@ -280,18 +281,19 @@ def welzl(
             return None, -1.0
         center, radius_sq = get_circum_ball(R)
         # Debug assert: all points in R should be on the boundary
-        center_arr = np.array(center)
-        for p in R:
-            p_arr = np.array(p)
-            dist_sq = np.sum((p_arr - center_arr) ** 2)
-            assert np.isclose(dist_sq, radius_sq, atol=1e-7), (
-                f"Point {p} not on boundary. Dist_sq: {dist_sq}, Radius_sq: {radius_sq}"
-            )
+        if debug:
+            center_arr = np.array(center)
+            for p in R:
+                p_arr = np.array(p)
+                dist_sq = np.sum((p_arr - center_arr) ** 2)
+                assert np.isclose(dist_sq, radius_sq, atol=1e-7), (
+                    f"Point {p} not on boundary. Dist_sq: {dist_sq}, Radius_sq: {radius_sq}"
+                )
         return center, radius_sq
 
     p_tup = P[n - 1]
 
-    center, radius_sq = welzl(P, R, oracle, d, n - 1)
+    center, radius_sq = welzl(P, R, oracle, d, n - 1, debug=debug)
 
     if center is not None and is_point_in_sphere(p_tup[0], center, radius_sq):
         return center, radius_sq
@@ -299,12 +301,12 @@ def welzl(
     if oracle.get_ground_truth(p_tup):
         R_union_p = R.copy()
         R_union_p.append(p_tup[0])
-        return welzl(P, R_union_p, oracle, d, n - 1)
+        return welzl(P, R_union_p, oracle, d, n - 1, debug=debug)
     else:
         return center, radius_sq
 
 
-def incremental_distance_based(relation, oracle):
+def incremental_distance_based(relation, oracle, debug: bool = False):
     """
     Runs the incremental algorithm for finding a minimum distance-based bounding range query for a relation.
     Returns a tuple representing the center point of the sphere, and a radius.
@@ -312,6 +314,7 @@ def incremental_distance_based(relation, oracle):
     Args:
         relation: The relation (list of tuples)
         oracle: Oracle instance for tracking consent checks
+        debug (bool): Run slow debug assertions within Welzl's algorithm
     """
     if not relation:
         return 0, 0.0
@@ -327,7 +330,7 @@ def incremental_distance_based(relation, oracle):
         sys.setrecursionlimit(len(relation_list) + 100)
 
     try:
-        center, radius_sq = welzl(relation_list, [], oracle, d, len(relation_list))
+        center, radius_sq = welzl(relation_list, [], oracle, d, len(relation_list), debug=debug)
     finally:
         sys.setrecursionlimit(old_limit)
 

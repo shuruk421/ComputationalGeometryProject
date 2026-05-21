@@ -1,3 +1,4 @@
+import argparse
 import logging
 import os
 import random
@@ -19,7 +20,7 @@ os.makedirs(RESULTS_DIR, exist_ok=True)
 
 
 def plot_oracle_calls_vs_points_box(
-    n_dim, consent_probability, num_points_list, low=-10, high=10
+    n_dim, consent_probability, num_points_list, low=-10, high=10, n_runs=10
 ):
     """
     Draws a graph with Number of points on X-axis and Number of consent requests on Y-axis.
@@ -30,41 +31,49 @@ def plot_oracle_calls_vs_points_box(
     d_log_n_values = []
 
     for num_points in tqdm(num_points_list, desc="Processing box algorithms"):
-        # Generate random points in a box
-        points = generate_in_box(n_dim, low=low, high=high, count=num_points)
-        # Add consent values
-        points_with_consent = [
-            (point, random.random() < consent_probability) for point in points
-        ]
+        inc_runs = []
+        dec_runs = []
+        lb_runs = []
+        for _ in tqdm(range(n_runs), desc="Runs", leave=False):
+            # Generate random points in a box
+            points = generate_in_box(n_dim, low=low, high=high, count=num_points)
+            # Add consent values
+            points_with_consent = [
+                (point, random.random() < consent_probability) for point in points
+            ]
 
-        # Run incremental algorithm
-        oracle_inc = Oracle()
-        min_bounds_inc, max_bounds_inc = incremental_orthogonal(
-            points_with_consent, oracle_inc
-        )
-        incremental_calls.append(oracle_inc.get_call_count())
+            # Run incremental algorithm
+            oracle_inc = Oracle()
+            min_bounds_inc, max_bounds_inc = incremental_orthogonal(
+                points_with_consent, oracle_inc
+            )
+            inc_runs.append(oracle_inc.get_call_count())
 
-        # Run decremental algorithm
-        oracle_dec = Oracle()
-        min_bounds_dec, max_bounds_dec = decremental_orthogonal(
-            points_with_consent, oracle_dec
-        )
-        decremental_calls.append(oracle_dec.get_call_count())
+            # Run decremental algorithm
+            oracle_dec = Oracle()
+            min_bounds_dec, max_bounds_dec = decremental_orthogonal(
+                points_with_consent, oracle_dec
+            )
+            dec_runs.append(oracle_dec.get_call_count())
 
-        # Calculate lower bound
-        min_bounds = min_bounds_inc if len(min_bounds_inc) > 0 else np.array([])
-        max_bounds = max_bounds_inc if len(max_bounds_inc) > 0 else np.array([])
+            # Calculate lower bound
+            min_bounds = min_bounds_inc if len(min_bounds_inc) > 0 else np.array([])
+            max_bounds = max_bounds_inc if len(max_bounds_inc) > 0 else np.array([])
 
-        points_outside = 0
-        if len(min_bounds) > 0 and len(max_bounds) > 0:
-            for point, _ in points_with_consent:
-                if not is_point_in_box(point, min_bounds, max_bounds):
-                    points_outside += 1
-        else:
-            points_outside = num_points
+            points_outside = 0
+            if len(min_bounds) > 0 and len(max_bounds) > 0:
+                for point, _ in points_with_consent:
+                    if not is_point_in_box(point, min_bounds, max_bounds):
+                        points_outside += 1
+            else:
+                points_outside = num_points
 
-        lower_bound = points_outside + 2 * n_dim
-        lower_bounds.append(lower_bound)
+            lower_bound = points_outside + 2 * n_dim
+            lb_runs.append(lower_bound)
+
+        incremental_calls.append(np.median(inc_runs))
+        decremental_calls.append(np.median(dec_runs))
+        lower_bounds.append(np.median(lb_runs))
 
         if num_points > 0:
             d_log_n = n_dim * np.log(num_points)
@@ -106,7 +115,7 @@ def plot_oracle_calls_vs_points_box(
 
 
 def plot_oracle_calls_vs_points_sphere(
-    n_dim, consent_probability, num_points_list, radius=10, center_bounds=(-10, 10)
+    n_dim, consent_probability, num_points_list, radius=10, center_bounds=(-10, 10), n_runs=10
 ):
     """
     Draws a graph for sphere algorithms.
@@ -118,35 +127,44 @@ def plot_oracle_calls_vs_points_sphere(
     p_bound_values = []
 
     for num_points in tqdm(num_points_list, desc="Processing sphere algorithms"):
-        points = generate_in_sphere(n_dim, radius, num_points)
-        points_with_consent = [
-            (p, random.random() < consent_probability) for p in points
-        ]
+        inc_runs = []
+        dec_runs = []
+        lb_runs = []
+        for _ in tqdm(range(n_runs), desc="Runs", leave=False):
+            points = generate_in_sphere(n_dim, radius, num_points)
+            points_with_consent = [
+                (p, random.random() < consent_probability) for p in points
+            ]
 
-        oracle_inc = Oracle()
-        center_inc, radius_inc = incremental_distance_based(
-            points_with_consent, oracle_inc
-        )
-        incremental_calls.append(oracle_inc.get_call_count())
-
-        oracle_dec = Oracle()
-        center_dec, radius_dec = decremental_distance_based(
-            points_with_consent, oracle_dec
-        )
-        decremental_calls.append(oracle_dec.get_call_count())
-
-        if center_inc is not None and radius_inc is not None and radius_inc > 0:
-            center = np.array(center_inc)
-            radius_sq = radius_inc**2
-            points_outside = sum(
-                1
-                for p, _ in points_with_consent
-                if not is_point_in_sphere(p, center, radius_sq)
+            oracle_inc = Oracle()
+            center_inc, radius_inc = incremental_distance_based(
+                points_with_consent, oracle_inc
             )
-        else:
-            points_outside = num_points
+            inc_runs.append(oracle_inc.get_call_count())
 
-        lower_bounds.append(points_outside + n_dim + 1)
+            oracle_dec = Oracle()
+            center_dec, radius_dec = decremental_distance_based(
+                points_with_consent, oracle_dec
+            )
+            dec_runs.append(oracle_dec.get_call_count())
+
+            if center_inc is not None and radius_inc is not None and radius_inc > 0:
+                center = np.array(center_inc)
+                radius_sq = radius_inc**2
+                points_outside = sum(
+                    1
+                    for p, _ in points_with_consent
+                    if not is_point_in_sphere(p, center, radius_sq)
+                )
+            else:
+                points_outside = num_points
+
+            lb_runs.append(points_outside + n_dim + 1)
+
+        incremental_calls.append(np.median(inc_runs))
+        decremental_calls.append(np.median(dec_runs))
+        lower_bounds.append(np.median(lb_runs))
+
         factorial_bound_values.append(
             np.log(num_points) ** (n_dim + 1) if num_points > 1 else 0
         )
@@ -204,7 +222,7 @@ def plot_oracle_calls_vs_points_sphere(
 
 
 def plot_running_time_box_algorithms(
-    n_dim, consent_probability, num_points_list, low=-10, high=10
+    n_dim, consent_probability, num_points_list, low=-10, high=10, n_runs=10
 ):
     """
     Draws a graph for running time of box algorithms.
@@ -215,20 +233,26 @@ def plot_running_time_box_algorithms(
     for num_points in tqdm(
         num_points_list, desc="Measuring box algorithm running times"
     ):
-        points = generate_in_box(n_dim, low=low, high=high, count=num_points)
-        points_with_consent = [
-            (p, random.random() < consent_probability) for p in points
-        ]
+        inc_runs = []
+        dec_runs = []
+        for _ in tqdm(range(n_runs), desc="Runs", leave=False):
+            points = generate_in_box(n_dim, low=low, high=high, count=num_points)
+            points_with_consent = [
+                (p, random.random() < consent_probability) for p in points
+            ]
 
-        oracle_inc = Oracle()
-        start = time.perf_counter()
-        incremental_orthogonal(points_with_consent, oracle_inc)
-        incremental_times.append(time.perf_counter() - start)
+            oracle_inc = Oracle()
+            start = time.perf_counter()
+            incremental_orthogonal(points_with_consent, oracle_inc)
+            inc_runs.append(time.perf_counter() - start)
 
-        oracle_dec = Oracle()
-        start = time.perf_counter()
-        decremental_orthogonal(points_with_consent, oracle_dec)
-        decremental_times.append(time.perf_counter() - start)
+            oracle_dec = Oracle()
+            start = time.perf_counter()
+            decremental_orthogonal(points_with_consent, oracle_dec)
+            dec_runs.append(time.perf_counter() - start)
+
+        incremental_times.append(np.median(inc_runs))
+        decremental_times.append(np.median(dec_runs))
 
     plt.figure(figsize=(12, 8))
     plt.plot(num_points_list, incremental_times, label="Incremental box algorithm")
@@ -244,7 +268,7 @@ def plot_running_time_box_algorithms(
 
 
 def plot_running_time_sphere_algorithms(
-    n_dim, consent_probability, num_points_list, radius=10
+    n_dim, consent_probability, num_points_list, radius=10, n_runs=10
 ):
     """
     Draws a graph for running time of sphere algorithms.
@@ -255,20 +279,26 @@ def plot_running_time_sphere_algorithms(
     for num_points in tqdm(
         num_points_list, desc="Measuring sphere algorithm running times"
     ):
-        points = generate_in_sphere(n_dim, radius, num_points)
-        points_with_consent = [
-            (p, random.random() < consent_probability) for p in points
-        ]
+        inc_runs = []
+        dec_runs = []
+        for _ in tqdm(range(n_runs), desc="Runs", leave=False):
+            points = generate_in_sphere(n_dim, radius, num_points)
+            points_with_consent = [
+                (p, random.random() < consent_probability) for p in points
+            ]
 
-        oracle_inc = Oracle()
-        start = time.perf_counter()
-        incremental_distance_based(points_with_consent, oracle_inc)
-        incremental_times.append(time.perf_counter() - start)
+            oracle_inc = Oracle()
+            start = time.perf_counter()
+            incremental_distance_based(points_with_consent, oracle_inc)
+            inc_runs.append(time.perf_counter() - start)
 
-        oracle_dec = Oracle()
-        start = time.perf_counter()
-        decremental_distance_based(points_with_consent, oracle_dec)
-        decremental_times.append(time.perf_counter() - start)
+            oracle_dec = Oracle()
+            start = time.perf_counter()
+            decremental_distance_based(points_with_consent, oracle_dec)
+            dec_runs.append(time.perf_counter() - start)
+
+        incremental_times.append(np.median(inc_runs))
+        decremental_times.append(np.median(dec_runs))
 
     plt.figure(figsize=(12, 8))
     plt.plot(num_points_list, incremental_times, label="Incremental sphere algorithm")
@@ -286,21 +316,42 @@ def plot_running_time_sphere_algorithms(
 
 
 def main():
+    parser = argparse.ArgumentParser(
+        description="Run benchmarks for db_consents orthogonal and distance-based algorithms."
+    )
+    parser.add_argument(
+        "-n",
+        "--runs",
+        type=int,
+        default=10,
+        help="Number of repetitions to run each experiment and compute the median (default: 10)",
+    )
+    args = parser.parse_args()
+
+    n_runs = args.runs
     n_dim = 3
     consent_probability = 0.7
     num_points_list = range(100, 2000, 10)
 
-    logger.info("Running Box Oracle Calls Benchmark...")
-    plot_oracle_calls_vs_points_box(n_dim, consent_probability, num_points_list)
+    logger.info(f"Running Box Oracle Calls Benchmark (n_runs={n_runs})...")
+    plot_oracle_calls_vs_points_box(
+        n_dim, consent_probability, num_points_list, n_runs=n_runs
+    )
 
-    logger.info("Running Sphere Oracle Calls Benchmark...")
-    plot_oracle_calls_vs_points_sphere(n_dim, consent_probability, num_points_list)
+    logger.info(f"Running Sphere Oracle Calls Benchmark (n_runs={n_runs})...")
+    plot_oracle_calls_vs_points_sphere(
+        n_dim, consent_probability, num_points_list, n_runs=n_runs
+    )
 
-    logger.info("Running Box Running Time Benchmark...")
-    plot_running_time_box_algorithms(n_dim, consent_probability, num_points_list)
+    logger.info(f"Running Box Running Time Benchmark (n_runs={n_runs})...")
+    plot_running_time_box_algorithms(
+        n_dim, consent_probability, num_points_list, n_runs=n_runs
+    )
 
-    logger.info("Running Sphere Running Time Benchmark...")
-    plot_running_time_sphere_algorithms(n_dim, consent_probability, num_points_list)
+    logger.info(f"Running Sphere Running Time Benchmark (n_runs={n_runs})...")
+    plot_running_time_sphere_algorithms(
+        n_dim, consent_probability, num_points_list, n_runs=n_runs
+    )
 
 
 if __name__ == "__main__":
