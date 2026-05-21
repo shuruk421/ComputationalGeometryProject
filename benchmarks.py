@@ -686,8 +686,8 @@ def main():
         "--dim-range",
         type=int,
         nargs=3,
-        default=[1, 6, 1],
-        help="Range of dimensions to vary (start, stop, step) (default: 1 6 1)",
+        default=[1, 20, 1],
+        help="Range of dimensions to vary (start, stop, step) (default: 1 20 1)",
     )
     parser.add_argument(
         "-c",
