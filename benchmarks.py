@@ -37,7 +37,7 @@ def plot_oracle_calls_vs_points_box(
         lb_runs = []
         for run_idx in range(n_runs):
             pbar.set_description(
-                f"Processing box algorithms (N={num_points}, run {run_idx+1}/{n_runs})"
+                f"Processing box algorithms (N={num_points}, run {run_idx + 1}/{n_runs})"
             )
             # Generate random points in a box
             points = generate_in_box(n_dim, low=low, high=high, count=num_points)
@@ -119,7 +119,12 @@ def plot_oracle_calls_vs_points_box(
 
 
 def plot_oracle_calls_vs_points_sphere(
-    n_dim, consent_probability, num_points_list, radius=10, center_bounds=(-10, 10), n_runs=10
+    n_dim,
+    consent_probability,
+    num_points_list,
+    radius=10,
+    center_bounds=(-10, 10),
+    n_runs=10,
 ):
     """
     Draws a graph for sphere algorithms.
@@ -137,7 +142,7 @@ def plot_oracle_calls_vs_points_sphere(
         lb_runs = []
         for run_idx in range(n_runs):
             pbar.set_description(
-                f"Processing sphere algorithms (N={num_points}, run {run_idx+1}/{n_runs})"
+                f"Processing sphere algorithms (N={num_points}, run {run_idx + 1}/{n_runs})"
             )
             points = generate_in_sphere(n_dim, radius, num_points)
             points_with_consent = [
@@ -191,17 +196,6 @@ def plot_oracle_calls_vs_points_sphere(
         Cf, Bf = 1.0, 0.0
     scaled_fact = [Cf * v + Bf for v in factorial_bound_values]
 
-    # Linear regression for p-bound (Decremental)
-    xp = np.array(p_bound_values)
-    yp = np.array(decremental_calls)
-    # Filter out infs for regression
-    valid = ~np.isinf(xp)
-    if np.sum(valid) > 1 and np.any(xp[valid] != xp[valid][0]):
-        Cp, Bp = np.polyfit(xp[valid], yp[valid], 1)
-    else:
-        Cp, Bp = 1.0, 0.0
-    scaled_p = [Cp * v + Bp for v in p_bound_values]
-
     plt.figure(figsize=(12, 8))
     plt.plot(num_points_list, incremental_calls, label="Incremental sphere algorithm")
     plt.plot(num_points_list, decremental_calls, label="Decremental sphere algorithm")
@@ -212,11 +206,6 @@ def plot_oracle_calls_vs_points_sphere(
         num_points_list,
         scaled_fact,
         label=f"(d+1)! * ln^(d+1)(n) scaled (y = {Cf:.2f}x + {Bf:.2f})",
-    )
-    plt.plot(
-        num_points_list,
-        scaled_p,
-        label=f"(d+1)/(p^(d+1)) scaled (y = {Cp:.2f}x + {Bp:.2f})",
     )
 
     plt.xlabel("Number of Points")
@@ -244,7 +233,7 @@ def plot_running_time_box_algorithms(
         dec_runs = []
         for run_idx in range(n_runs):
             pbar.set_description(
-                f"Measuring box algorithm running times (N={num_points}, run {run_idx+1}/{n_runs})"
+                f"Measuring box algorithm running times (N={num_points}, run {run_idx + 1}/{n_runs})"
             )
             points = generate_in_box(n_dim, low=low, high=high, count=num_points)
             points_with_consent = [
@@ -292,7 +281,7 @@ def plot_running_time_sphere_algorithms(
         dec_runs = []
         for run_idx in range(n_runs):
             pbar.set_description(
-                f"Measuring sphere algorithm running times (N={num_points}, run {run_idx+1}/{n_runs})"
+                f"Measuring sphere algorithm running times (N={num_points}, run {run_idx + 1}/{n_runs})"
             )
             points = generate_in_sphere(n_dim, radius, num_points)
             points_with_consent = [
@@ -344,7 +333,7 @@ def plot_oracle_calls_vs_consent_box(
         lb_runs = []
         for run_idx in range(n_runs):
             pbar.set_description(
-                f"Processing box algorithms (p={consent_probability:.2f}, run {run_idx+1}/{n_runs})"
+                f"Processing box algorithms (p={consent_probability:.2f}, run {run_idx + 1}/{n_runs})"
             )
             points = generate_in_box(n_dim, low=low, high=high, count=num_points)
             points_with_consent = [
@@ -384,13 +373,13 @@ def plot_oracle_calls_vs_consent_box(
     plt.figure(figsize=(12, 8))
     plt.plot(consent_prob_list, incremental_calls, label="Incremental box algorithm")
     plt.plot(consent_prob_list, decremental_calls, label="Decremental box algorithm")
-    plt.plot(consent_prob_list, lower_bounds, label="Lower bound (points outside + 2*d)")
+    plt.plot(
+        consent_prob_list, lower_bounds, label="Lower bound (points outside + 2*d)"
+    )
 
     plt.xlabel("Consent Probability")
     plt.ylabel("Number of Consent Requests")
-    plt.title(
-        f"Oracle Calls vs Consent Probability (Box)\n(d={n_dim}, n={num_points})"
-    )
+    plt.title(f"Oracle Calls vs Consent Probability (Box)\n(d={n_dim}, n={num_points})")
     plt.legend()
     plt.grid(True, alpha=0.3)
     plt.savefig(os.path.join(RESULTS_DIR, "oracle_calls_vs_consent_box.png"), dpi=150)
@@ -406,14 +395,16 @@ def plot_oracle_calls_vs_consent_sphere(
     decremental_calls = []
     lower_bounds = []
 
-    pbar = tqdm(consent_prob_list, desc="Processing sphere algorithms (vs consent prob)")
+    pbar = tqdm(
+        consent_prob_list, desc="Processing sphere algorithms (vs consent prob)"
+    )
     for consent_probability in pbar:
         inc_runs = []
         dec_runs = []
         lb_runs = []
         for run_idx in range(n_runs):
             pbar.set_description(
-                f"Processing sphere algorithms (p={consent_probability:.2f}, run {run_idx+1}/{n_runs})"
+                f"Processing sphere algorithms (p={consent_probability:.2f}, run {run_idx + 1}/{n_runs})"
             )
             points = generate_in_sphere(n_dim, radius, num_points)
             points_with_consent = [
@@ -463,7 +454,9 @@ def plot_oracle_calls_vs_consent_sphere(
     )
     plt.legend()
     plt.grid(True, alpha=0.3)
-    plt.savefig(os.path.join(RESULTS_DIR, "oracle_calls_vs_consent_sphere.png"), dpi=150)
+    plt.savefig(
+        os.path.join(RESULTS_DIR, "oracle_calls_vs_consent_sphere.png"), dpi=150
+    )
 
 
 def plot_running_time_vs_consent_box(
@@ -481,7 +474,7 @@ def plot_running_time_vs_consent_box(
         dec_runs = []
         for run_idx in range(n_runs):
             pbar.set_description(
-                f"Measuring box running times (p={consent_probability:.2f}, run {run_idx+1}/{n_runs})"
+                f"Measuring box running times (p={consent_probability:.2f}, run {run_idx + 1}/{n_runs})"
             )
             points = generate_in_box(n_dim, low=low, high=high, count=num_points)
             points_with_consent = [
@@ -506,9 +499,7 @@ def plot_running_time_vs_consent_box(
     plt.plot(consent_prob_list, decremental_times, label="Decremental box algorithm")
     plt.xlabel("Consent Probability")
     plt.ylabel("Running Time (seconds)")
-    plt.title(
-        f"Running Time vs Consent Probability (Box)\n(d={n_dim}, n={num_points})"
-    )
+    plt.title(f"Running Time vs Consent Probability (Box)\n(d={n_dim}, n={num_points})")
     plt.legend()
     plt.grid(True, alpha=0.3)
     plt.savefig(os.path.join(RESULTS_DIR, "running_time_vs_consent_box.png"), dpi=150)
@@ -523,13 +514,15 @@ def plot_running_time_vs_consent_sphere(
     incremental_times = []
     decremental_times = []
 
-    pbar = tqdm(consent_prob_list, desc="Measuring sphere running times (vs consent prob)")
+    pbar = tqdm(
+        consent_prob_list, desc="Measuring sphere running times (vs consent prob)"
+    )
     for consent_probability in pbar:
         inc_runs = []
         dec_runs = []
         for run_idx in range(n_runs):
             pbar.set_description(
-                f"Measuring sphere running times (p={consent_probability:.2f}, run {run_idx+1}/{n_runs})"
+                f"Measuring sphere running times (p={consent_probability:.2f}, run {run_idx + 1}/{n_runs})"
             )
             points = generate_in_sphere(n_dim, radius, num_points)
             points_with_consent = [
@@ -580,7 +573,7 @@ def main():
     n_runs = args.runs
     n_dim = 3
     consent_probability = 0.7
-    num_points_list = range(100, 2000, 10)
+    num_points_list = range(100, 1000, 10)
 
     logger.info(f"Running Box Oracle Calls Benchmark (n_runs={n_runs})...")
     plot_oracle_calls_vs_points_box(
@@ -606,22 +599,30 @@ def main():
     num_points_fixed = 500
     consent_prob_list = [p / 100 for p in range(5, 100, 5)]
 
-    logger.info(f"Running Box Oracle Calls vs Consent Prob Benchmark (n_runs={n_runs})...")
+    logger.info(
+        f"Running Box Oracle Calls vs Consent Prob Benchmark (n_runs={n_runs})..."
+    )
     plot_oracle_calls_vs_consent_box(
         n_dim, num_points_fixed, consent_prob_list, n_runs=n_runs
     )
 
-    logger.info(f"Running Sphere Oracle Calls vs Consent Prob Benchmark (n_runs={n_runs})...")
+    logger.info(
+        f"Running Sphere Oracle Calls vs Consent Prob Benchmark (n_runs={n_runs})..."
+    )
     plot_oracle_calls_vs_consent_sphere(
         n_dim, num_points_fixed, consent_prob_list, n_runs=n_runs
     )
 
-    logger.info(f"Running Box Running Time vs Consent Prob Benchmark (n_runs={n_runs})...")
+    logger.info(
+        f"Running Box Running Time vs Consent Prob Benchmark (n_runs={n_runs})..."
+    )
     plot_running_time_vs_consent_box(
         n_dim, num_points_fixed, consent_prob_list, n_runs=n_runs
     )
 
-    logger.info(f"Running Sphere Running Time vs Consent Prob Benchmark (n_runs={n_runs})...")
+    logger.info(
+        f"Running Sphere Running Time vs Consent Prob Benchmark (n_runs={n_runs})..."
+    )
     plot_running_time_vs_consent_sphere(
         n_dim, num_points_fixed, consent_prob_list, n_runs=n_runs
     )
