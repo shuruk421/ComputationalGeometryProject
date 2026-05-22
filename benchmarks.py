@@ -111,7 +111,7 @@ def plot_oracle_calls_vs_points_box(
     plt.xlabel("Number of Points")
     plt.ylabel("Number of Consent Requests")
     plt.title(
-        f"Oracle Calls vs Number of Points (Box)\n(d={n_dim}, p={consent_probability})"
+        f"Oracle Calls vs Number of Points (Box)\n(d={n_dim}, p={consent_probability}, runs={n_runs})"
     )
     plt.legend()
     plt.grid(True, alpha=0.3)
@@ -211,7 +211,7 @@ def plot_oracle_calls_vs_points_sphere(
     plt.xlabel("Number of Points")
     plt.ylabel("Number of Consent Requests")
     plt.title(
-        f"Oracle Calls vs Number of Points (Sphere)\n(d={n_dim}, p={consent_probability})"
+        f"Oracle Calls vs Number of Points (Sphere)\n(d={n_dim}, p={consent_probability}, runs={n_runs})"
     )
     plt.legend()
     plt.grid(True, alpha=0.3)
@@ -259,7 +259,7 @@ def plot_running_time_box_algorithms(
     plt.xlabel("Number of Points")
     plt.ylabel("Running Time (seconds)")
     plt.title(
-        f"Running Time vs Number of Points (Box)\n(d={n_dim}, p={consent_probability})"
+        f"Running Time vs Number of Points (Box)\n(d={n_dim}, p={consent_probability}, runs={n_runs})"
     )
     plt.legend()
     plt.grid(True, alpha=0.3)
@@ -307,7 +307,7 @@ def plot_running_time_sphere_algorithms(
     plt.xlabel("Number of Points")
     plt.ylabel("Running Time (seconds)")
     plt.title(
-        f"Running Time vs Number of Points (Sphere)\n(d={n_dim}, p={consent_probability})"
+        f"Running Time vs Number of Points (Sphere)\n(d={n_dim}, p={consent_probability}, runs={n_runs})"
     )
     plt.legend()
     plt.grid(True, alpha=0.3)
@@ -379,7 +379,9 @@ def plot_oracle_calls_vs_consent_box(
 
     plt.xlabel("Consent Probability")
     plt.ylabel("Number of Consent Requests")
-    plt.title(f"Oracle Calls vs Consent Probability (Box)\n(d={n_dim}, n={num_points})")
+    plt.title(
+        f"Oracle Calls vs Consent Probability (Box)\n(d={n_dim}, n={num_points}, runs={n_runs})"
+    )
     plt.legend()
     plt.grid(True, alpha=0.3)
     plt.savefig(os.path.join(RESULTS_DIR, "oracle_calls_vs_consent_box.png"), dpi=150)
@@ -450,7 +452,7 @@ def plot_oracle_calls_vs_consent_sphere(
     plt.xlabel("Consent Probability")
     plt.ylabel("Number of Consent Requests")
     plt.title(
-        f"Oracle Calls vs Consent Probability (Sphere)\n(d={n_dim}, n={num_points})"
+        f"Oracle Calls vs Consent Probability (Sphere)\n(d={n_dim}, n={num_points}, runs={n_runs})"
     )
     plt.legend()
     plt.grid(True, alpha=0.3)
@@ -499,7 +501,9 @@ def plot_running_time_vs_consent_box(
     plt.plot(consent_prob_list, decremental_times, label="Decremental box algorithm")
     plt.xlabel("Consent Probability")
     plt.ylabel("Running Time (seconds)")
-    plt.title(f"Running Time vs Consent Probability (Box)\n(d={n_dim}, n={num_points})")
+    plt.title(
+        f"Running Time vs Consent Probability (Box)\n(d={n_dim}, n={num_points}, runs={n_runs})"
+    )
     plt.legend()
     plt.grid(True, alpha=0.3)
     plt.savefig(os.path.join(RESULTS_DIR, "running_time_vs_consent_box.png"), dpi=150)
@@ -548,7 +552,7 @@ def plot_running_time_vs_consent_sphere(
     plt.xlabel("Consent Probability")
     plt.ylabel("Running Time (seconds)")
     plt.title(
-        f"Running Time vs Consent Probability (Sphere)\n(d={n_dim}, n={num_points})"
+        f"Running Time vs Consent Probability (Sphere)\n(d={n_dim}, n={num_points}, runs={n_runs})"
     )
     plt.legend()
     plt.grid(True, alpha=0.3)
