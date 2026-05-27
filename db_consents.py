@@ -195,8 +195,27 @@ def is_point_in_sphere(
     Returns:
         bool: True if inside or on boundary, False otherwise.
     """
-    # Calculate Euclidean distance squared: (x-cx)^2 + (y-cy)^2 + ...
-    distance_squared = np.sum((point - center) ** 2)
+    # Optimized check: avoid numpy function call overhead for small dimensions
+    d = len(point)
+    if d == 3:
+        dx = point[0] - center[0]
+        dy = point[1] - center[1]
+        dz = point[2] - center[2]
+        distance_squared = dx * dx + dy * dy + dz * dz
+    elif d == 2:
+        dx = point[0] - center[0]
+        dy = point[1] - center[1]
+        distance_squared = dx * dx + dy * dy
+    elif d == 4:
+        dx = point[0] - center[0]
+        dy = point[1] - center[1]
+        dz = point[2] - center[2]
+        dw = point[3] - center[3]
+        distance_squared = dx * dx + dy * dy + dz * dz + dw * dw
+    else:
+        # For d > 4, np.dot is faster than a Python loop or np.sum
+        diff = point - center
+        distance_squared = np.dot(diff, diff)
 
     # Compare with tolerance
     return distance_squared <= radius_sq + tolerance
