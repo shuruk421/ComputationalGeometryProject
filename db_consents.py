@@ -436,9 +436,12 @@ def decremental_distance_based(points, oracle):
         if active_coords.size == 0:
             return None, 0.0
 
-        # 1. Calculate Minimum Enclosing Ball for active points
-        # Returns center and radius_squared
-        center, radius_sq = miniball.get_bounding_ball(active_coords)
+        # 1. Calculate Minimum Enclosing Ball for active points using our iterative Welzl implementation
+        active_P = [(p, True) for p in active_coords]
+        random.shuffle(active_P)
+        center, radius_sq = welzl(
+            active_P, [], Oracle(), active_coords.shape[1], len(active_P)
+        )
         center = np.array(center)  # Ensure center is numpy array for broadcasting
 
         # 2. Identify points on the boundary (Edge)
