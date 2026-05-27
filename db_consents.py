@@ -219,6 +219,48 @@ def is_row_in_matrix(target_array, list_of_arrays):
     return np.any(np.all(matrix == target_array, axis=1))
 
 
+def get_bounding_ball(coords: np.ndarray, epsilon: float = 1e-7) -> Tuple[np.ndarray, float]:
+    """
+    Computes the smallest enclosing ball of a set of points (coords)
+    using an active-set heuristic that calls miniball on a tiny subset of points.
+    """
+    n_points = coords.shape[0]
+    if n_points == 0:
+        return np.zeros(coords.shape[1]), 0.0
+    d = coords.shape[1]
+    if n_points <= d + 1:
+        return miniball.get_bounding_ball(coords)
+
+    # Initialize active set S with the extreme points along each axis
+    extreme_indices = set()
+    for col in range(d):
+        extreme_indices.add(np.argmin(coords[:, col]))
+        extreme_indices.add(np.argmax(coords[:, col]))
+    
+    S_indices = list(extreme_indices)
+    
+    while True:
+        # Compute bounding ball of the active set
+        center, radius_sq = miniball.get_bounding_ball(coords[S_indices])
+        center = np.array(center)
+
+        # Find the point farthest from the center
+        dists_sq = np.sum((coords - center) ** 2, axis=1)
+        farthest_idx = np.argmax(dists_sq)
+        farthest_dist_sq = dists_sq[farthest_idx]
+
+        # If the farthest point is inside (or on the boundary within tolerance), we are done
+        if farthest_dist_sq <= radius_sq + epsilon:
+            return center, radius_sq
+
+        # Otherwise, add it to the active set and repeat
+        if farthest_idx not in S_indices:
+            S_indices.append(farthest_idx)
+        else:
+            # Numerical fallback: if it's already in the active set but still outside due to precision, stop
+            return center, radius_sq
+
+
 def get_circum_ball(R: List[np.ndarray]) -> Tuple[np.ndarray, float]:
     """
     Computes the circumsphere of a set of points R.
@@ -252,8 +294,8 @@ def get_circum_ball(R: List[np.ndarray]) -> Tuple[np.ndarray, float]:
     try:
         lambdas = np.linalg.solve(M, B)
     except np.linalg.LinAlgError:
-        # Fallback for degenerate cases: use miniball
-        return miniball.get_bounding_ball(np.array(R))
+        # Fallback for degenerate cases: use our bounding ball solver
+        return get_bounding_ball(np.array(R))
 
     delta_c = np.sum([lambdas[j] * vs[j] for j in range(n)], axis=0)
 
@@ -437,8 +479,8 @@ def decremental_distance_based(points, oracle):
             return None, 0.0
 
         # 1. Calculate Minimum Enclosing Ball for active points
-        # Returns center and radius_squared
-        center, radius_sq = miniball.get_bounding_ball(active_coords)
+        # Returns center and radius_squared using the optimized active-set helper
+        center, radius_sq = get_bounding_ball(active_coords)
         center = np.array(center)  # Ensure center is numpy array for broadcasting
 
         # 2. Identify points on the boundary (Edge)
