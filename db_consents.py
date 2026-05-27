@@ -1,7 +1,6 @@
 import random
 from typing import Any, List, Optional, Tuple
 
-import miniball
 import numpy as np
 
 
@@ -252,8 +251,9 @@ def get_circum_ball(R: List[np.ndarray]) -> Tuple[np.ndarray, float]:
     try:
         lambdas = np.linalg.solve(M, B)
     except np.linalg.LinAlgError:
-        # Fallback for degenerate cases: use miniball
-        return miniball.get_bounding_ball(np.array(R))
+        # Fallback for degenerate cases: use our iterative Welzl
+        R_P = [(p, True) for p in R_arr]
+        return welzl(R_P, [], Oracle(), len(R_arr[0]), len(R_P))
 
     delta_c = np.sum([lambdas[j] * vs[j] for j in range(n)], axis=0)
 
