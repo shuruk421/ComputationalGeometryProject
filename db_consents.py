@@ -437,6 +437,7 @@ def decremental_distance_based(points, oracle):
             return None, 0.0
 
         # 1. Calculate Minimum Enclosing Ball for active points using our iterative Welzl implementation
+        # Do this by setting the consent of all dummy points to True
         active_P = [(p, True) for p in active_coords]
         random.shuffle(active_P)
         center, radius_sq = welzl(
