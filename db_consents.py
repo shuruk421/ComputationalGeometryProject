@@ -182,7 +182,9 @@ def incremental_orthogonal(relation, oracle):
     return query_min, query_max
 
 
-def is_point_in_sphere(point, center, radius_sq, tolerance=1e-10):
+def is_point_in_sphere(
+    point: np.ndarray, center: np.ndarray, radius_sq: float, tolerance=1e-10
+):
     """
     Checks if a point is inside a sphere (inclusive).
 
@@ -194,11 +196,8 @@ def is_point_in_sphere(point, center, radius_sq, tolerance=1e-10):
     Returns:
         bool: True if inside or on boundary, False otherwise.
     """
-    p = np.array(point)
-    c = np.array(center)
-
     # Calculate Euclidean distance squared: (x-cx)^2 + (y-cy)^2 + ...
-    distance_squared = np.sum((p - c) ** 2)
+    distance_squared = np.sum((point - center) ** 2)
 
     # Compare with tolerance
     return distance_squared <= radius_sq + tolerance
@@ -329,7 +328,9 @@ def incremental_distance_based(relation, oracle, debug: bool = False):
 
     d = len(relation_list[0][0])
 
-    center, radius_sq = welzl(relation_list, [], oracle, d, len(relation_list), debug=debug)
+    center, radius_sq = welzl(
+        relation_list, [], oracle, d, len(relation_list), debug=debug
+    )
 
     if center is None:
         return 0, 0.0
