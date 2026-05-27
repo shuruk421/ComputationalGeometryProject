@@ -195,11 +195,23 @@ def is_point_in_sphere(
     Returns:
         bool: True if inside or on boundary, False otherwise.
     """
-    # Calculate Euclidean distance squared: (x-cx)^2 + (y-cy)^2 + ...
-    distance_squared = np.sum((point - center) ** 2)
-
-    # Compare with tolerance
-    return distance_squared <= radius_sq + tolerance
+    d = len(point)
+    if d == 3:
+        dx = point[0] - center[0]
+        dy = point[1] - center[1]
+        dz = point[2] - center[2]
+        dist_sq = dx*dx + dy*dy + dz*dz
+    elif d == 2:
+        dx = point[0] - center[0]
+        dy = point[1] - center[1]
+        dist_sq = dx*dx + dy*dy
+    else:
+        dist_sq = 0.0
+        for i in range(d):
+            diff = point[i] - center[i]
+            dist_sq += diff * diff
+            
+    return dist_sq <= radius_sq + tolerance
 
 
 def is_row_in_matrix(target_array, list_of_arrays):
@@ -272,42 +284,55 @@ def welzl(
 ) -> Tuple[Optional[np.ndarray], float]:
     """
     Welzl's algorithm for finding the smallest enclosing ball.
-    Modified to account for point consent, implemented iteratively.
+    Modified to account for point consent, implemented using a recursive loop
+    where the recursion depth is strictly bounded by d + 1.
     """
-    stack = [(n, R, 0)]
-    result = (None, -1.0)
+    if len(R) == d + 1:
+        if debug:
+            center, radius_sq = get_circum_ball(R)
+            center_arr = np.array(center)
+            for p in R:
+                p_arr = np.array(p)
+                dist_sq = np.sum((p_arr - center_arr) ** 2)
+                assert np.isclose(dist_sq, radius_sq, atol=1e-7), (
+                    f"Point {p} not on boundary. Dist_sq: {dist_sq}, Radius_sq: {radius_sq}"
+                )
+            return center, radius_sq
+        return get_circum_ball(R)
 
-    while stack:
-        curr_n, curr_R, state = stack.pop()
+    if len(R) == 0:
+        center, radius_sq = None, -1.0
+    else:
+        center, radius_sq = get_circum_ball(R)
 
-        if curr_n == 0 or len(curr_R) == d + 1:
-            if len(curr_R) == 0:
-                result = (None, -1.0)
-            else:
-                center, radius_sq = get_circum_ball(curr_R)
-                if debug:
-                    center_arr = np.array(center)
-                    for p in curr_R:
-                        p_arr = np.array(p)
-                        dist_sq = np.sum((p_arr - center_arr) ** 2)
-                        assert np.isclose(dist_sq, radius_sq, atol=1e-7), (
-                            f"Point {p} not on boundary. Dist_sq: {dist_sq}, Radius_sq: {radius_sq}"
-                        )
-                result = (center, radius_sq)
-        elif state == 0:
-            stack.append((curr_n, curr_R, 1))
-            stack.append((curr_n - 1, curr_R, 0))
+    for i in range(n):
+        p_tup = P[i]
+        if center is None:
+            is_in = False
         else:
-            p_tup = P[curr_n - 1]
-            center, radius_sq = result
-            if center is not None and is_point_in_sphere(p_tup[0], center, radius_sq):
-                pass
-            elif oracle.get_ground_truth(p_tup):
-                stack.append((curr_n - 1, curr_R + [p_tup[0]], 0))
+            point = p_tup[0]
+            d_len = len(point)
+            if d_len == 3:
+                dx = point[0] - center[0]
+                dy = point[1] - center[1]
+                dz = point[2] - center[2]
+                is_in = (dx*dx + dy*dy + dz*dz) <= radius_sq + 1e-10
+            elif d_len == 2:
+                dx = point[0] - center[0]
+                dy = point[1] - center[1]
+                is_in = (dx*dx + dy*dy) <= radius_sq + 1e-10
             else:
-                pass
+                dist_sq = 0.0
+                for idx in range(d_len):
+                    diff = point[idx] - center[idx]
+                    dist_sq += diff * diff
+                is_in = dist_sq <= radius_sq + 1e-10
 
-    return result
+        if not is_in:
+            if oracle.get_ground_truth(p_tup):
+                center, radius_sq = welzl(P, R + [p_tup[0]], oracle, d, i, debug=debug)
+
+    return center, radius_sq
 
 
 def incremental_distance_based(relation, oracle, debug: bool = False):
@@ -323,7 +348,7 @@ def incremental_distance_based(relation, oracle, debug: bool = False):
     if not relation:
         return 0, 0.0
 
-    relation_list = list(relation)
+    relation_list = [(list(point), consent) for point, consent in relation]
     random.shuffle(relation_list)
 
     d = len(relation_list[0][0])
@@ -438,7 +463,7 @@ def decremental_distance_based(points, oracle):
 
         # 1. Calculate Minimum Enclosing Ball for active points using our iterative Welzl implementation
         # Do this by setting the consent of all dummy points to True
-        active_P = [(p, True) for p in active_coords]
+        active_P = [(list(p), True) for p in active_coords]
         random.shuffle(active_P)
         center, radius_sq = welzl(
             active_P, [], Oracle(), active_coords.shape[1], len(active_P)
