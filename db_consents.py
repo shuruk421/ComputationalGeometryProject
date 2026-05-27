@@ -1,5 +1,4 @@
 import random
-import sys
 from typing import Any, List, Optional, Tuple
 
 import miniball
@@ -183,7 +182,9 @@ def incremental_orthogonal(relation, oracle):
     return query_min, query_max
 
 
-def is_point_in_sphere(point, center, radius_sq, tolerance=1e-10):
+def is_point_in_sphere(
+    point: np.ndarray, center: np.ndarray, radius_sq: float, tolerance=1e-10
+):
     """
     Checks if a point is inside a sphere (inclusive).
 
@@ -195,11 +196,8 @@ def is_point_in_sphere(point, center, radius_sq, tolerance=1e-10):
     Returns:
         bool: True if inside or on boundary, False otherwise.
     """
-    p = np.array(point)
-    c = np.array(center)
-
     # Calculate Euclidean distance squared: (x-cx)^2 + (y-cy)^2 + ...
-    distance_squared = np.sum((p - c) ** 2)
+    distance_squared = np.sum((point - center) ** 2)
 
     # Compare with tolerance
     return distance_squared <= radius_sq + tolerance
@@ -274,36 +272,42 @@ def welzl(
 ) -> Tuple[Optional[np.ndarray], float]:
     """
     Welzl's algorithm for finding the smallest enclosing ball.
-    Modified to account for point consent.
+    Modified to account for point consent, implemented iteratively.
     """
-    if n == 0 or len(R) == d + 1:
-        if len(R) == 0:
-            return None, -1.0
-        center, radius_sq = get_circum_ball(R)
-        # Debug assert: all points in R should be on the boundary
-        if debug:
-            center_arr = np.array(center)
-            for p in R:
-                p_arr = np.array(p)
-                dist_sq = np.sum((p_arr - center_arr) ** 2)
-                assert np.isclose(dist_sq, radius_sq, atol=1e-7), (
-                    f"Point {p} not on boundary. Dist_sq: {dist_sq}, Radius_sq: {radius_sq}"
-                )
-        return center, radius_sq
+    stack = [(n, R, 0)]
+    result = (None, -1.0)
 
-    p_tup = P[n - 1]
+    while stack:
+        curr_n, curr_R, state = stack.pop()
 
-    center, radius_sq = welzl(P, R, oracle, d, n - 1, debug=debug)
+        if curr_n == 0 or len(curr_R) == d + 1:
+            if len(curr_R) == 0:
+                result = (None, -1.0)
+            else:
+                center, radius_sq = get_circum_ball(curr_R)
+                if debug:
+                    center_arr = np.array(center)
+                    for p in curr_R:
+                        p_arr = np.array(p)
+                        dist_sq = np.sum((p_arr - center_arr) ** 2)
+                        assert np.isclose(dist_sq, radius_sq, atol=1e-7), (
+                            f"Point {p} not on boundary. Dist_sq: {dist_sq}, Radius_sq: {radius_sq}"
+                        )
+                result = (center, radius_sq)
+        elif state == 0:
+            stack.append((curr_n, curr_R, 1))
+            stack.append((curr_n - 1, curr_R, 0))
+        else:
+            p_tup = P[curr_n - 1]
+            center, radius_sq = result
+            if center is not None and is_point_in_sphere(p_tup[0], center, radius_sq):
+                pass
+            elif oracle.get_ground_truth(p_tup):
+                stack.append((curr_n - 1, curr_R + [p_tup[0]], 0))
+            else:
+                pass
 
-    if center is not None and is_point_in_sphere(p_tup[0], center, radius_sq):
-        return center, radius_sq
-
-    if oracle.get_ground_truth(p_tup):
-        R_union_p = R.copy()
-        R_union_p.append(p_tup[0])
-        return welzl(P, R_union_p, oracle, d, n - 1, debug=debug)
-    else:
-        return center, radius_sq
+    return result
 
 
 def incremental_distance_based(relation, oracle, debug: bool = False):
@@ -324,15 +328,9 @@ def incremental_distance_based(relation, oracle, debug: bool = False):
 
     d = len(relation_list[0][0])
 
-    # Welzl is recursive, so we might need to increase the recursion limit for large datasets
-    old_limit = sys.getrecursionlimit()
-    if len(relation_list) + 100 > old_limit:
-        sys.setrecursionlimit(len(relation_list) + 100)
-
-    try:
-        center, radius_sq = welzl(relation_list, [], oracle, d, len(relation_list), debug=debug)
-    finally:
-        sys.setrecursionlimit(old_limit)
+    center, radius_sq = welzl(
+        relation_list, [], oracle, d, len(relation_list), debug=debug
+    )
 
     if center is None:
         return 0, 0.0
