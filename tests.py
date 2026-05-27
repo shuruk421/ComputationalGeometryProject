@@ -66,8 +66,34 @@ def test_incremental_distance_based(sphere_points):
         test_incremental_distance_based_helper(sphere_points)
 
 
+def test_welzl_vs_miniball():
+    logger.info("Running Welzl vs Miniball sanity checks...")
+    import miniball
+    for _ in range(50):
+        n_dim = random.randint(2, 4)
+        num_samples = random.randint(10, 100)
+        points = generate_in_sphere(n_dim, 10.0, num_samples)
+        
+        # Test: all points consenting
+        points_all_consenting = [(p, True) for p in points]
+        
+        center_welzl, radius_sq_welzl = welzl(
+            points_all_consenting, [], Oracle(), n_dim, len(points_all_consenting), debug=True
+        )
+        
+        center_miniball, radius_sq_miniball = miniball.get_bounding_ball(points)
+        
+        assert np.allclose(center_welzl, center_miniball, atol=1e-5), (
+            f"Center mismatch. Welzl: {center_welzl}, Miniball: {center_miniball}"
+        )
+        assert np.isclose(radius_sq_welzl, radius_sq_miniball, atol=1e-5), (
+            f"Radius squared mismatch. Welzl: {radius_sq_welzl}, Miniball: {radius_sq_miniball}"
+        )
+
+
 def do_tests(repetitions=10):
     logger.info("TESTING")
+    test_welzl_vs_miniball()
 
     for i in range(repetitions):
         n_dim = 3
