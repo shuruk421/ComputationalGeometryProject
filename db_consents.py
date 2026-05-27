@@ -291,42 +291,34 @@ def welzl(
 ) -> Tuple[Optional[np.ndarray], float]:
     """
     Welzl's algorithm for finding the smallest enclosing ball.
-    Modified to account for point consent, implemented iteratively.
+    Modified to account for point consent.
+    Traverses points iteratively, only recursing for boundary updates (depth <= d+1).
     """
-    stack = [(n, R, 0)]
-    result = (None, -1.0)
+    if len(R) == d + 1:
+        if debug:
+            center, radius_sq = get_circum_ball(R)
+            center_arr = np.array(center)
+            for p in R:
+                p_arr = np.array(p)
+                dist_sq = np.sum((p_arr - center_arr) ** 2)
+                assert np.isclose(dist_sq, radius_sq, atol=1e-7), (
+                    f"Point {p} not on boundary. Dist_sq: {dist_sq}, Radius_sq: {radius_sq}"
+                )
+            return center, radius_sq
+        return get_circum_ball(R)
 
-    while stack:
-        curr_n, curr_R, state = stack.pop()
+    if len(R) == 0:
+        center, radius_sq = None, -1.0
+    else:
+        center, radius_sq = get_circum_ball(R)
 
-        if curr_n == 0 or len(curr_R) == d + 1:
-            if len(curr_R) == 0:
-                result = (None, -1.0)
-            else:
-                center, radius_sq = get_circum_ball(curr_R)
-                if debug:
-                    center_arr = np.array(center)
-                    for p in curr_R:
-                        p_arr = np.array(p)
-                        dist_sq = np.sum((p_arr - center_arr) ** 2)
-                        assert np.isclose(dist_sq, radius_sq, atol=1e-7), (
-                            f"Point {p} not on boundary. Dist_sq: {dist_sq}, Radius_sq: {radius_sq}"
-                        )
-                result = (center, radius_sq)
-        elif state == 0:
-            stack.append((curr_n, curr_R, 1))
-            stack.append((curr_n - 1, curr_R, 0))
-        else:
-            p_tup = P[curr_n - 1]
-            center, radius_sq = result
-            if center is not None and is_point_in_sphere(p_tup[0], center, radius_sq):
-                pass
-            elif oracle.get_ground_truth(p_tup):
-                stack.append((curr_n - 1, curr_R + [p_tup[0]], 0))
-            else:
-                pass
+    for i in range(n):
+        p_tup = P[i]
+        if center is None or not is_point_in_sphere(p_tup[0], center, radius_sq):
+            if oracle.get_ground_truth(p_tup):
+                center, radius_sq = welzl(P, R + [p_tup[0]], oracle, d, i, debug=debug)
 
-    return result
+    return center, radius_sq
 
 
 def incremental_distance_based(relation, oracle, debug: bool = False):
