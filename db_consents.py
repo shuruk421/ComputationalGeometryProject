@@ -213,9 +213,9 @@ def is_point_in_sphere(
         dw = point[3] - center[3]
         distance_squared = dx * dx + dy * dy + dz * dz + dw * dw
     else:
-        # For d > 4, np.dot is faster than a Python loop or np.sum
+        # For d > 4, diff.dot(diff) is the fastest NumPy way
         diff = point - center
-        distance_squared = np.dot(diff, diff)
+        distance_squared = diff.dot(diff)
 
     # Compare with tolerance
     return distance_squared <= radius_sq + tolerance
