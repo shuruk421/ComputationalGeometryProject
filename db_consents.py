@@ -1,6 +1,8 @@
 import math
 import random
 from typing import Any, List, Optional, Tuple
+import ctypes
+import os
 
 import numpy as np
 
@@ -8,6 +10,34 @@ import numpy as np
 # Tolerance constants for geometric checks
 GEOMETRY_TOLERANCE = 1e-10
 DEBUG_BOUNDARY_TOLERANCE = 1e-7
+
+USE_CPP_BACKEND = False
+_libwelzl = None
+
+def get_libwelzl():
+    global _libwelzl
+    if _libwelzl is None:
+        try:
+            dir_path = os.path.dirname(os.path.abspath(__file__))
+            lib_path = os.path.join(dir_path, "cpp_welzl", "libwelzl.so")
+            _libwelzl = ctypes.CDLL(lib_path)
+            
+            CALLBACK_TYPE = ctypes.CFUNCTYPE(ctypes.c_bool, ctypes.c_int)
+            _libwelzl.welzl_consent.argtypes = [
+                ctypes.POINTER(ctypes.c_double),
+                ctypes.POINTER(ctypes.c_int),
+                ctypes.c_int,
+                ctypes.c_int,
+                CALLBACK_TYPE,
+                ctypes.POINTER(ctypes.c_double),
+                ctypes.POINTER(ctypes.c_double)
+            ]
+            _libwelzl.welzl_consent.restype = ctypes.c_bool
+        except Exception as e:
+            # Fall back to False if loading fails
+            _libwelzl = False
+    return _libwelzl
+
 
 
 def generate_in_box(n, low=0, high=1, count=1):
@@ -271,7 +301,56 @@ def get_circum_ball(R: List[List[float]]) -> Tuple[List[float], float]:
     return center.tolist(), radius_sq
 
 
-def welzl(
+def welzl_cpp(
+    P: List[Tuple[List[float], bool]],
+    oracle: Oracle,
+    d: int,
+    n: int,
+) -> Tuple[Optional[List[float]], float]:
+    lib = get_libwelzl()
+    if not lib:
+        # Fall back to Python if library is not available
+        return welzl_py(P, [], oracle, d, n)
+    
+    flat_pts = []
+    original_indices = []
+    for i in range(n):
+        flat_pts.extend(P[i][0])
+        original_indices.append(i)
+        
+    c_points = (ctypes.c_double * len(flat_pts))(*flat_pts)
+    c_indices = (ctypes.c_int * len(original_indices))(*original_indices)
+    
+    # Callback to query Python oracle from C++
+    def consent_callback(idx):
+        return oracle.get_ground_truth(P[idx])
+        
+    CALLBACK_TYPE = ctypes.CFUNCTYPE(ctypes.c_bool, ctypes.c_int)
+    c_callback = CALLBACK_TYPE(consent_callback)
+    
+    out_center = (ctypes.c_double * d)()
+    out_radius_sq = ctypes.c_double(0.0)
+    
+    success = lib.welzl_consent(
+        c_points,
+        c_indices,
+        n,
+        d,
+        c_callback,
+        out_center,
+        ctypes.byref(out_radius_sq)
+    )
+    
+    # Python ctypes requires us to keep a reference to c_callback active 
+    # during the call to prevent garbage collection.
+    
+    if success:
+        return list(out_center), out_radius_sq.value
+    else:
+        return None, -1.0
+
+
+def welzl_py(
     P: List[Tuple[List[float], bool]],
     R: List[List[float]],
     oracle: Oracle,
@@ -281,11 +360,7 @@ def welzl(
     P_coords: Optional[List[List[float]]] = None,
 ) -> Tuple[Optional[List[float]], float]:
     """
-    Welzl's algorithm for finding the smallest enclosing ball.
-    Modified to account for point consent.
-    This is written as a hybrid recursive-loop function: it loops over the points P[:n],
-    recursing only when the boundary set R expands (which happens at most d+1 times).
-    This avoids stack overhead and deep recursion limits.
+    Welzl's algorithm for finding the smallest enclosing ball in Python.
     """
     if n == 0 or len(R) == d + 1:
         if len(R) == 0:
@@ -316,6 +391,20 @@ def welzl(
             )
 
     return center, radius_sq
+
+
+def welzl(
+    P: List[Tuple[List[float], bool]],
+    R: List[List[float]],
+    oracle: Oracle,
+    d: int,
+    n: int,
+    debug: bool = False,
+    P_coords: Optional[List[List[float]]] = None,
+) -> Tuple[Optional[List[float]], float]:
+    if USE_CPP_BACKEND and len(R) == 0:
+        return welzl_cpp(P, oracle, d, n)
+    return welzl_py(P, R, oracle, d, n, debug=debug, P_coords=P_coords)
 
 
 def incremental_distance_based(relation, oracle, debug: bool = False):

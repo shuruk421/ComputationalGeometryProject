@@ -91,9 +91,51 @@ def test_welzl_vs_miniball():
         )
 
 
+def test_cpp_vs_python_welzl():
+    logger.info("Running Python vs C++ Welzl comparison tests...")
+    import db_consents
+    original_backend = db_consents.USE_CPP_BACKEND
+    try:
+        for _ in range(50):
+            n_dim = random.randint(2, 6)
+            num_samples = random.randint(10, 100)
+            points = generate_in_sphere(n_dim, 10.0, num_samples)
+            consent_probability = 0.7
+            points_with_consent = [
+                (p, random.random() < consent_probability) for p in points
+            ]
+            
+            # Run with Python backend
+            db_consents.USE_CPP_BACKEND = False
+            oracle_py = Oracle()
+            res_py = welzl(points_with_consent, [], oracle_py, n_dim, len(points_with_consent))
+            
+            # Run with C++ backend
+            db_consents.USE_CPP_BACKEND = True
+            oracle_cpp = Oracle()
+            res_cpp = welzl(points_with_consent, [], oracle_cpp, n_dim, len(points_with_consent))
+            
+            # Compare results
+            if res_py[0] is None:
+                assert res_cpp[0] is None
+            else:
+                assert res_cpp[0] is not None
+                assert np.allclose(res_py[0], res_cpp[0], atol=1e-5)
+                assert np.isclose(res_py[1], res_cpp[1], atol=1e-5)
+                
+            # Verify oracle call counts match
+            assert oracle_py.get_call_count() == oracle_cpp.get_call_count(), (
+                f"Oracle call count mismatch! Python: {oracle_py.get_call_count()}, C++: {oracle_cpp.get_call_count()}"
+            )
+    finally:
+        db_consents.USE_CPP_BACKEND = original_backend
+    logger.info("Python vs C++ Welzl comparison tests passed successfully!")
+
+
 def do_tests(repetitions=10):
     logger.info("TESTING")
     test_welzl_vs_miniball()
+    test_cpp_vs_python_welzl()
 
     for i in range(repetitions):
         n_dim = 3
