@@ -1,10 +1,7 @@
 CXX = g++
 CXXFLAGS = -O3 -Wall -Wextra -std=c++17
 
-all: libwelzl.so test_welzl welzl_cpp_module.so
-
-libwelzl.so: welzl.cpp welzl.hpp
-	$(CXX) $(CXXFLAGS) -fPIC -shared -o libwelzl.so welzl.cpp
+all: test_welzl welzl_cpp_module.so
 
 test_welzl: test_welzl.cpp welzl.cpp welzl.hpp
 	$(CXX) $(CXXFLAGS) -o test_welzl test_welzl.cpp welzl.cpp
@@ -16,6 +13,6 @@ run_tests: test_welzl
 	./test_welzl
 
 clean:
-	rm -f libwelzl.so test_welzl welzl_cpp_module.so
+	rm -f test_welzl welzl_cpp_module.so
 
 .PHONY: all run_tests clean
