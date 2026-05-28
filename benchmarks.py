@@ -513,8 +513,12 @@ def plot_box_vs_dimension(
 
     # Plot 1: Oracle Calls vs Dimension (Box)
     plt.figure(figsize=(12, 8))
-    plt.plot(dimensions, incremental_calls, marker='o', label="Incremental box algorithm")
-    plt.plot(dimensions, decremental_calls, marker='s', label="Decremental box algorithm")
+    plt.plot(
+        dimensions, incremental_calls, marker="o", label="Incremental box algorithm"
+    )
+    plt.plot(
+        dimensions, decremental_calls, marker="s", label="Decremental box algorithm"
+    )
     plt.xlabel("Dimension (d)")
     plt.ylabel("Number of Consent Requests")
     plt.title(
@@ -527,8 +531,12 @@ def plot_box_vs_dimension(
 
     # Plot 2: Running Time vs Dimension (Box)
     plt.figure(figsize=(12, 8))
-    plt.plot(dimensions, incremental_times, marker='o', label="Incremental box algorithm")
-    plt.plot(dimensions, decremental_times, marker='s', label="Decremental box algorithm")
+    plt.plot(
+        dimensions, incremental_times, marker="o", label="Incremental box algorithm"
+    )
+    plt.plot(
+        dimensions, decremental_times, marker="s", label="Decremental box algorithm"
+    )
     plt.xlabel("Dimension (d)")
     plt.ylabel("Running Time (seconds)")
     plt.title(
@@ -589,8 +597,12 @@ def plot_sphere_vs_dimension(
 
     # Plot 1: Oracle Calls vs Dimension (Sphere)
     plt.figure(figsize=(12, 8))
-    plt.plot(dimensions, incremental_calls, marker='o', label="Incremental sphere algorithm")
-    plt.plot(dimensions, decremental_calls, marker='s', label="Decremental sphere algorithm")
+    plt.plot(
+        dimensions, incremental_calls, marker="o", label="Incremental sphere algorithm"
+    )
+    plt.plot(
+        dimensions, decremental_calls, marker="s", label="Decremental sphere algorithm"
+    )
     plt.xlabel("Dimension (d)")
     plt.ylabel("Number of Consent Requests")
     plt.title(
@@ -598,13 +610,19 @@ def plot_sphere_vs_dimension(
     )
     plt.legend()
     plt.grid(True, alpha=0.3)
-    plt.savefig(os.path.join(RESULTS_DIR, "oracle_calls_vs_dimension_sphere.png"), dpi=150)
+    plt.savefig(
+        os.path.join(RESULTS_DIR, "oracle_calls_vs_dimension_sphere.png"), dpi=150
+    )
     plt.close()
 
     # Plot 2: Running Time vs Dimension (Sphere)
     plt.figure(figsize=(12, 8))
-    plt.plot(dimensions, incremental_times, marker='o', label="Incremental sphere algorithm")
-    plt.plot(dimensions, decremental_times, marker='s', label="Decremental sphere algorithm")
+    plt.plot(
+        dimensions, incremental_times, marker="o", label="Incremental sphere algorithm"
+    )
+    plt.plot(
+        dimensions, decremental_times, marker="s", label="Decremental sphere algorithm"
+    )
     plt.xlabel("Dimension (d)")
     plt.ylabel("Running Time (seconds)")
     plt.title(
@@ -612,7 +630,9 @@ def plot_sphere_vs_dimension(
     )
     plt.legend()
     plt.grid(True, alpha=0.3)
-    plt.savefig(os.path.join(RESULTS_DIR, "running_time_vs_dimension_sphere.png"), dpi=150)
+    plt.savefig(
+        os.path.join(RESULTS_DIR, "running_time_vs_dimension_sphere.png"), dpi=150
+    )
     plt.close()
 
 
@@ -727,7 +747,9 @@ def plot_noisy_sphere_vs_points(
     )
     plt.legend()
     plt.grid(True, alpha=0.3)
-    plt.savefig(os.path.join(RESULTS_DIR, "oracle_calls_vs_points_noisy_sphere.png"), dpi=150)
+    plt.savefig(
+        os.path.join(RESULTS_DIR, "oracle_calls_vs_points_noisy_sphere.png"), dpi=150
+    )
     plt.close()
 
     # Plot 2: Running Time vs Number of Points
@@ -766,7 +788,9 @@ def plot_noisy_sphere_vs_consent(
     incremental_times = []
     decremental_times = []
 
-    pbar = tqdm(consent_prob_list, desc="Running noisy sphere benchmarks vs consent prob")
+    pbar = tqdm(
+        consent_prob_list, desc="Running noisy sphere benchmarks vs consent prob"
+    )
     for consent_probability in pbar:
         inc_calls_runs = []
         dec_calls_runs = []
@@ -913,8 +937,12 @@ def plot_noisy_sphere_vs_dimension(
 
     # Plot 1: Oracle Calls vs Dimension (Noisy Sphere)
     plt.figure(figsize=(12, 8))
-    plt.plot(dimensions, incremental_calls, marker='o', label="Incremental sphere algorithm")
-    plt.plot(dimensions, decremental_calls, marker='s', label="Decremental sphere algorithm")
+    plt.plot(
+        dimensions, incremental_calls, marker="o", label="Incremental sphere algorithm"
+    )
+    plt.plot(
+        dimensions, decremental_calls, marker="s", label="Decremental sphere algorithm"
+    )
     plt.xlabel("Dimension (d)")
     plt.ylabel("Number of Consent Requests")
     plt.title(
@@ -922,13 +950,19 @@ def plot_noisy_sphere_vs_dimension(
     )
     plt.legend()
     plt.grid(True, alpha=0.3)
-    plt.savefig(os.path.join(RESULTS_DIR, "oracle_calls_vs_dimension_noisy_sphere.png"), dpi=150)
+    plt.savefig(
+        os.path.join(RESULTS_DIR, "oracle_calls_vs_dimension_noisy_sphere.png"), dpi=150
+    )
     plt.close()
 
     # Plot 2: Running Time vs Dimension (Noisy Sphere)
     plt.figure(figsize=(12, 8))
-    plt.plot(dimensions, incremental_times, marker='o', label="Incremental sphere algorithm")
-    plt.plot(dimensions, decremental_times, marker='s', label="Decremental sphere algorithm")
+    plt.plot(
+        dimensions, incremental_times, marker="o", label="Incremental sphere algorithm"
+    )
+    plt.plot(
+        dimensions, decremental_times, marker="s", label="Decremental sphere algorithm"
+    )
     plt.xlabel("Dimension (d)")
     plt.ylabel("Running Time (seconds)")
     plt.title(
@@ -936,7 +970,9 @@ def plot_noisy_sphere_vs_dimension(
     )
     plt.legend()
     plt.grid(True, alpha=0.3)
-    plt.savefig(os.path.join(RESULTS_DIR, "running_time_vs_dimension_noisy_sphere.png"), dpi=150)
+    plt.savefig(
+        os.path.join(RESULTS_DIR, "running_time_vs_dimension_noisy_sphere.png"), dpi=150
+    )
     plt.close()
 
 
@@ -952,87 +988,70 @@ def main():
         help="Number of repetitions to run each experiment and compute the median (default: 10)",
     )
     # Shape flags
+    parser.add_argument("--box", action="store_true", help="Run box shape benchmarks")
     parser.add_argument(
-        "--box",
-        action="store_true",
-        help="Run box shape benchmarks"
+        "--sphere", action="store_true", help="Run sphere shape benchmarks"
     )
     parser.add_argument(
-        "--sphere",
-        action="store_true",
-        help="Run sphere shape benchmarks"
-    )
-    parser.add_argument(
-        "--noisy-sphere",
-        action="store_true",
-        help="Run noisy sphere shape benchmarks"
+        "--noisy-sphere", action="store_true", help="Run noisy sphere shape benchmarks"
     )
     # Plot type flags
     parser.add_argument(
-        "--vs-points",
-        action="store_true",
-        help="Run plots vs number of points"
+        "--vs-points", action="store_true", help="Run plots vs number of points"
     )
     parser.add_argument(
-        "--vs-consent",
-        action="store_true",
-        help="Run plots vs consent probability"
+        "--vs-consent", action="store_true", help="Run plots vs consent probability"
     )
     parser.add_argument(
-        "--vs-dimension",
-        action="store_true",
-        help="Run plots vs dimension"
+        "--vs-dimension", action="store_true", help="Run plots vs dimension"
     )
     # Points range arguments
     parser.add_argument(
         "--points-start",
         type=int,
         default=100,
-        help="Starting number of points (default: 100)"
+        help="Starting number of points (default: 100)",
     )
     parser.add_argument(
         "--points-end",
         type=int,
-        default=10000,
-        help="Ending number of points (exclusive) (default: 10000)"
+        default=100000,
+        help="Ending number of points (exclusive) (default: 100000)",
     )
     parser.add_argument(
         "--points-step",
         type=int,
-        default=500,
-        help="Step size for points range (default: 500)"
+        default=1000,
+        help="Step size for points range (default: 1000)",
     )
     # Consent probability range arguments
     parser.add_argument(
         "--consent-start",
         type=float,
         default=0.05,
-        help="Starting consent probability (default: 0.05)"
+        help="Starting consent probability (default: 0.05)",
     )
     parser.add_argument(
         "--consent-end",
         type=float,
         default=1.00,
-        help="Ending consent probability (exclusive) (default: 1.00)"
+        help="Ending consent probability (exclusive) (default: 1.00)",
     )
     parser.add_argument(
         "--consent-step",
         type=float,
-        default=0.05,
-        help="Step size for consent probability range (default: 0.05)"
+        default=0.02,
+        help="Step size for consent probability range (default: 0.02)",
     )
     # Dimension range arguments
     parser.add_argument(
-        "--dim-start",
-        type=int,
-        default=3,
-        help="Starting dimension (default: 3)"
+        "--dim-start", type=int, default=3, help="Starting dimension (default: 3)"
     )
     parser.add_argument(
         "--dim-end",
         type=int,
-        default=6,
-        help="Ending dimension (inclusive) (default: 6)"
+        default=5,
+        help="Ending dimension (inclusive) (default: 5)",
     )
     args = parser.parse_args()
 
@@ -1058,16 +1077,28 @@ def main():
     if run_vs_points:
         num_points_list = range(args.points_start, args.points_end, args.points_step)
         if run_box:
-            logger.info(f"Running Box Benchmarks vs Number of Points (n_runs={n_runs})...")
-            plot_box_vs_points(n_dim, consent_probability, num_points_list, n_runs=n_runs)
+            logger.info(
+                f"Running Box Benchmarks vs Number of Points (n_runs={n_runs})..."
+            )
+            plot_box_vs_points(
+                n_dim, consent_probability, num_points_list, n_runs=n_runs
+            )
 
         if run_sphere:
-            logger.info(f"Running Sphere Benchmarks vs Number of Points (n_runs={n_runs})...")
-            plot_sphere_vs_points(n_dim, consent_probability, num_points_list, n_runs=n_runs)
+            logger.info(
+                f"Running Sphere Benchmarks vs Number of Points (n_runs={n_runs})..."
+            )
+            plot_sphere_vs_points(
+                n_dim, consent_probability, num_points_list, n_runs=n_runs
+            )
 
         if run_noisy_sphere:
-            logger.info(f"Running Noisy Sphere Benchmarks vs Number of Points (n_runs={n_runs})...")
-            plot_noisy_sphere_vs_points(n_dim, consent_probability, num_points_list, n_runs=n_runs)
+            logger.info(
+                f"Running Noisy Sphere Benchmarks vs Number of Points (n_runs={n_runs})..."
+            )
+            plot_noisy_sphere_vs_points(
+                n_dim, consent_probability, num_points_list, n_runs=n_runs
+            )
 
     # --- Consent probability on X-axis ---
     if run_vs_consent:
@@ -1079,20 +1110,28 @@ def main():
             curr += args.consent_step
 
         if run_box:
-            logger.info(f"Running Box Benchmarks vs Consent Probability (n_runs={n_runs})...")
-            plot_box_vs_consent(n_dim, num_points_fixed, consent_prob_list, n_runs=n_runs)
+            logger.info(
+                f"Running Box Benchmarks vs Consent Probability (n_runs={n_runs})..."
+            )
+            plot_box_vs_consent(
+                n_dim, num_points_fixed, consent_prob_list, n_runs=n_runs
+            )
 
         if run_sphere:
             logger.info(
                 f"Running Sphere Benchmarks vs Consent Probability (n_runs={n_runs})..."
             )
-            plot_sphere_vs_consent(n_dim, num_points_fixed, consent_prob_list, n_runs=n_runs)
+            plot_sphere_vs_consent(
+                n_dim, num_points_fixed, consent_prob_list, n_runs=n_runs
+            )
 
         if run_noisy_sphere:
             logger.info(
                 f"Running Noisy Sphere Benchmarks vs Consent Probability (n_runs={n_runs})..."
             )
-            plot_noisy_sphere_vs_consent(n_dim, num_points_fixed, consent_prob_list, n_runs=n_runs)
+            plot_noisy_sphere_vs_consent(
+                n_dim, num_points_fixed, consent_prob_list, n_runs=n_runs
+            )
 
     # --- Dimension on X-axis ---
     if run_vs_dimension:
@@ -1100,15 +1139,23 @@ def main():
 
         if run_box:
             logger.info(f"Running Box Benchmarks vs Dimension (n_runs={n_runs})...")
-            plot_box_vs_dimension(dimensions, consent_probability, num_points=10000, n_runs=n_runs)
+            plot_box_vs_dimension(
+                dimensions, consent_probability, num_points=10000, n_runs=n_runs
+            )
 
         if run_sphere:
             logger.info(f"Running Sphere Benchmarks vs Dimension (n_runs={n_runs})...")
-            plot_sphere_vs_dimension(dimensions, consent_probability, num_points=10000, n_runs=n_runs)
+            plot_sphere_vs_dimension(
+                dimensions, consent_probability, num_points=10000, n_runs=n_runs
+            )
 
         if run_noisy_sphere:
-            logger.info(f"Running Noisy Sphere Benchmarks vs Dimension (n_runs={n_runs})...")
-            plot_noisy_sphere_vs_dimension(dimensions, consent_probability, num_points=10000, n_runs=n_runs)
+            logger.info(
+                f"Running Noisy Sphere Benchmarks vs Dimension (n_runs={n_runs})..."
+            )
+            plot_noisy_sphere_vs_dimension(
+                dimensions, consent_probability, num_points=10000, n_runs=n_runs
+            )
 
 
 if __name__ == "__main__":
