@@ -70,7 +70,7 @@ def test_welzl_vs_miniball():
     logger.info("Running Welzl vs Miniball sanity checks...")
     import miniball
     for _ in range(50):
-        n_dim = random.randint(2, 4)
+        n_dim = random.randint(2, 6)
         num_samples = random.randint(10, 100)
         points = generate_in_sphere(n_dim, 10.0, num_samples)
         

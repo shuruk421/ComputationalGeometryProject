@@ -1,5 +1,5 @@
-import random
 import math
+import random
 from typing import Any, List, Optional, Tuple
 
 import numpy as np
@@ -224,14 +224,93 @@ def get_circum_ball(R: List[List[float]]) -> Tuple[List[float], float]:
     Computes the circumsphere of a set of points R.
     The center is the unique point in the affine hull of R that is equidistant from all points in R.
     """
-    if len(R) == 0:
+    n_pts = len(R)
+    if n_pts == 0:
         return None, -1.0
 
-    # Ensure all points are numpy arrays for vector operations
-    R_arr = [np.array(p) for p in R]
+    if n_pts == 1:
+        return R[0], 0.0
 
-    if len(R_arr) == 1:
-        return R_arr[0].tolist(), 0.0
+    if n_pts == 2:
+        p1, p2 = R[0], R[1]
+        center = [(x + y) * 0.5 for x, y in zip(p1, p2)]
+        radius_sq = sum((x - c) ** 2 for x, c in zip(p1, center))
+        return center, radius_sq
+
+    if n_pts == 3:
+        p1, p2, p3 = R[0], R[1], R[2]
+        v1 = [y - x for x, y in zip(p1, p2)]
+        v2 = [z - x for x, z in zip(p1, p3)]
+        
+        v1_v1 = sum(x * x for x in v1)
+        v1_v2 = sum(x * y for x, y in zip(v1, v2))
+        v2_v2 = sum(x * x for x in v2)
+        
+        a = 2.0 * v1_v1
+        b = 2.0 * v1_v2
+        c = 2.0 * v1_v2
+        d = 2.0 * v2_v2
+        
+        det = a * d - b * c
+        if abs(det) > 1e-12:
+            e = v1_v1
+            f = v2_v2
+            
+            lambda1 = (e * d - b * f) / det
+            lambda2 = (a * f - e * c) / det
+            
+            center = [p1_coord + lambda1 * v1_coord + lambda2 * v2_coord 
+                      for p1_coord, v1_coord, v2_coord in zip(p1, v1, v2)]
+            radius_sq = sum((x - c_coord) ** 2 for x, c_coord in zip(p1, center))
+            return center, radius_sq
+
+    if n_pts == 4:
+        p1, p2, p3, p4 = R[0], R[1], R[2], R[3]
+        v1 = [y - x for x, y in zip(p1, p2)]
+        v2 = [z - x for x, z in zip(p1, p3)]
+        v3 = [w - x for x, w in zip(p1, p4)]
+        
+        v1_v1 = sum(x * x for x in v1)
+        v1_v2 = sum(x * y for x, y in zip(v1, v2))
+        v1_v3 = sum(x * y for x, y in zip(v1, v3))
+        v2_v2 = sum(x * x for x in v2)
+        v2_v3 = sum(x * y for x, y in zip(v2, v3))
+        v3_v3 = sum(x * x for x in v3)
+        
+        m = [
+            [2.0 * v1_v1, 2.0 * v1_v2, 2.0 * v1_v3],
+            [2.0 * v1_v2, 2.0 * v2_v2, 2.0 * v2_v3],
+            [2.0 * v1_v3, 2.0 * v2_v3, 2.0 * v3_v3]
+        ]
+        
+        det = (m[0][0] * (m[1][1] * m[2][2] - m[1][2] * m[2][1]) -
+               m[0][1] * (m[1][0] * m[2][2] - m[1][2] * m[2][0]) +
+               m[0][2] * (m[1][0] * m[2][1] - m[1][1] * m[2][0]))
+               
+        if abs(det) > 1e-12:
+            b_vec = [v1_v1, v2_v2, v3_v3]
+            
+            det1 = (b_vec[0] * (m[1][1] * m[2][2] - m[1][2] * m[2][1]) -
+                    m[0][1] * (b_vec[1] * m[2][2] - m[1][2] * b_vec[2]) +
+                    m[0][2] * (b_vec[1] * m[2][1] - m[1][1] * b_vec[2]))
+            det2 = (m[0][0] * (b_vec[1] * m[2][2] - m[1][2] * b_vec[2]) -
+                    b_vec[0] * (m[1][0] * m[2][2] - m[1][2] * m[2][0]) +
+                    m[0][2] * (m[1][0] * b_vec[2] - b_vec[1] * m[2][0]))
+            det3 = (m[0][0] * (m[1][1] * b_vec[2] - b_vec[1] * m[2][1]) -
+                    m[0][1] * (m[1][0] * b_vec[2] - b_vec[1] * m[2][0]) +
+                    b_vec[0] * (m[1][0] * m[2][1] - m[1][1] * m[2][0]))
+                    
+            lambda1 = det1 / det
+            lambda2 = det2 / det
+            lambda3 = det3 / det
+            
+            center = [p1_coord + lambda1 * v1_coord + lambda2 * v2_coord + lambda3 * v3_coord
+                      for p1_coord, v1_coord, v2_coord, v3_coord in zip(p1, v1, v2, v3)]
+            radius_sq = sum((x - c_coord) ** 2 for x, c_coord in zip(p1, center))
+            return center, radius_sq
+
+    # Ensure all points are numpy arrays for vector operations (fallback for >= 5 points)
+    R_arr = [np.array(p) for p in R]
 
     # Points v_i = p_{i+1} - p_1
     p1 = R_arr[0]
@@ -252,7 +331,7 @@ def get_circum_ball(R: List[List[float]]) -> Tuple[List[float], float]:
     try:
         lambdas = np.linalg.solve(M, B)
     except np.linalg.LinAlgError:
-        # Fallback for degenerate cases: use our iterative Welzl
+        # Fallback for degenerate cases: use Welzl
         R_P = [(p.tolist(), True) for p in R_arr]
         return welzl(R_P, [], Oracle(), len(R_arr[0]), len(R_P))
 
@@ -270,43 +349,42 @@ def welzl(
     d: int,
     n: int,
     debug: bool = False,
+    P_coords: Optional[List[List[float]]] = None,
 ) -> Tuple[Optional[List[float]], float]:
     """
     Welzl's algorithm for finding the smallest enclosing ball.
-    Modified to account for point consent, implemented iteratively.
+    Modified to account for point consent.
+    This is written as a hybrid recursive-loop function: it loops over the points P[:n],
+    recursing only when the boundary set R expands (which happens at most d+1 times).
+    This avoids stack overhead and deep recursion limits.
     """
-    stack = [(n, R, 0)]
-    result = (None, -1.0)
+    if n == 0 or len(R) == d + 1:
+        if len(R) == 0:
+            return None, -1.0
+        center, radius_sq = get_circum_ball(R)
+        if debug:
+            for p in R:
+                dist_sq = sum((pi - ci) ** 2 for pi, ci in zip(p, center))
+                assert abs(dist_sq - radius_sq) < 1e-7, (
+                    f"Point {p} not on boundary. Dist_sq: {dist_sq}, Radius_sq: {radius_sq}"
+                )
+        return center, radius_sq
 
-    while stack:
-        curr_n, curr_R, state = stack.pop()
+    if P_coords is None:
+        P_coords = [p[0] for p in P]
 
-        if curr_n == 0 or len(curr_R) == d + 1:
-            if len(curr_R) == 0:
-                result = (None, -1.0)
-            else:
-                center, radius_sq = get_circum_ball(curr_R)
-                if debug:
-                    for p in curr_R:
-                        dist_sq = sum((pi - ci) ** 2 for pi, ci in zip(p, center))
-                        assert abs(dist_sq - radius_sq) < 1e-7, (
-                            f"Point {p} not on boundary. Dist_sq: {dist_sq}, Radius_sq: {radius_sq}"
-                        )
-                result = (center, radius_sq)
-        elif state == 0:
-            stack.append((curr_n, curr_R, 1))
-            stack.append((curr_n - 1, curr_R, 0))
-        else:
-            p_tup = P[curr_n - 1]
-            center, radius_sq = result
-            if center is not None and is_point_in_sphere(p_tup[0], center, radius_sq):
-                pass
-            elif oracle.get_ground_truth(p_tup):
-                stack.append((curr_n - 1, curr_R + [p_tup[0]], 0))
-            else:
-                pass
+    center, radius_sq = get_circum_ball(R)
 
-    return result
+    for i in range(n):
+        pt = P_coords[i]
+        if center is not None and is_point_in_sphere(pt, center, radius_sq):
+            continue
+
+        p_tup = P[i]
+        if oracle.get_ground_truth(p_tup):
+            center, radius_sq = welzl(P, R + [pt], oracle, d, i, debug=debug, P_coords=P_coords)
+
+    return center, radius_sq
 
 
 def incremental_distance_based(relation, oracle, debug: bool = False):
@@ -428,9 +506,7 @@ def decremental_distance_based(points, oracle):
         # 1. Calculate Minimum Enclosing Ball for active points using our iterative Welzl implementation
         active_P = [points[idx] for idx in active_indices]
         random.shuffle(active_P)
-        center, radius_sq = welzl(
-            active_P, [], Oracle(), d, len(active_P)
-        )
+        center, radius_sq = welzl(active_P, [], Oracle(), d, len(active_P))
 
         # 2. Identify points on the boundary (Edge)
         to_remove = []
