@@ -316,9 +316,10 @@ def welzl_cpp(
     
     res = module.welzl_consent_cpp(points, consents, d)
     
+    # Record oracle calls made in C++
+    oracle.add_call_count(res.oracle_calls)
+    
     if res.success:
-        # Record oracle calls made in C++
-        oracle.add_call_count(res.oracle_calls)
         return res.center, res.radius_sq
     else:
         return None, -1.0

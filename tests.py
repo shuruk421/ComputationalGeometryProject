@@ -91,42 +91,88 @@ def test_welzl_vs_miniball():
         )
 
 
+def assert_cpp_vs_python_match(points_with_consent, n_dim):
+    import db_consents
+    # Run with Python backend
+    db_consents.USE_CPP_BACKEND = False
+    oracle_py = Oracle()
+    res_py = welzl(points_with_consent, [], oracle_py, n_dim, len(points_with_consent))
+    
+    # Run with C++ backend
+    db_consents.USE_CPP_BACKEND = True
+    oracle_cpp = Oracle()
+    res_cpp = welzl(points_with_consent, [], oracle_cpp, n_dim, len(points_with_consent))
+    
+    # Compare results
+    if res_py[0] is None:
+        assert res_cpp[0] is None, f"Python found None, but C++ found a sphere: {res_cpp[0]} (radius_sq={res_cpp[1]})"
+    else:
+        assert res_cpp[0] is not None, f"Python found a sphere: {res_py[0]}, but C++ found None"
+        assert np.allclose(res_py[0], res_cpp[0], atol=1e-10), (
+            f"Center mismatch. Python: {res_py[0]}, C++: {res_cpp[0]}"
+        )
+        assert np.isclose(res_py[1], res_cpp[1], atol=1e-10), (
+            f"Radius squared mismatch. Python: {res_py[1]}, C++: {res_cpp[1]}"
+        )
+        
+    # Verify oracle call counts match
+    assert oracle_py.get_call_count() == oracle_cpp.get_call_count(), (
+        f"Oracle call count mismatch! Python: {oracle_py.get_call_count()}, C++: {oracle_cpp.get_call_count()}"
+    )
+
+
 def test_cpp_vs_python_welzl():
     logger.info("Running Python vs C++ Welzl comparison tests...")
     import db_consents
     original_backend = db_consents.USE_CPP_BACKEND
     try:
-        for _ in range(50):
-            n_dim = random.randint(2, 6)
-            num_samples = random.randint(10, 100)
-            points = generate_in_sphere(n_dim, 10.0, num_samples)
-            consent_probability = 0.7
-            points_with_consent = [
-                (p, random.random() < consent_probability) for p in points
-            ]
-            
-            # Run with Python backend
-            db_consents.USE_CPP_BACKEND = False
-            oracle_py = Oracle()
-            res_py = welzl(points_with_consent, [], oracle_py, n_dim, len(points_with_consent))
-            
-            # Run with C++ backend
-            db_consents.USE_CPP_BACKEND = True
-            oracle_cpp = Oracle()
-            res_cpp = welzl(points_with_consent, [], oracle_cpp, n_dim, len(points_with_consent))
-            
-            # Compare results
-            if res_py[0] is None:
-                assert res_cpp[0] is None
-            else:
-                assert res_cpp[0] is not None
-                assert np.allclose(res_py[0], res_cpp[0], atol=1e-10)
-                assert np.isclose(res_py[1], res_cpp[1], atol=1e-10)
+        # Scenario 1: Edge cases (empty, single point, small points)
+        logger.info("  Scenario 1: Edge cases...")
+        for n_dim in [2, 3, 5]:
+            # Empty points
+            assert_cpp_vs_python_match([], n_dim)
+            # Single point (consenting / non-consenting)
+            assert_cpp_vs_python_match([([0.0]*n_dim, True)], n_dim)
+            assert_cpp_vs_python_match([([0.0]*n_dim, False)], n_dim)
+            # Dual points
+            assert_cpp_vs_python_match([([0.0]*n_dim, True), ([1.0]*n_dim, True)], n_dim)
+            assert_cpp_vs_python_match([([0.0]*n_dim, True), ([1.0]*n_dim, False)], n_dim)
+
+        # Scenario 2: Varying consent probabilities (0.0, 0.3, 0.7, 1.0)
+        logger.info("  Scenario 2: Varying consent probabilities...")
+        for p in [0.0, 0.3, 0.7, 1.0]:
+            for _ in range(15):
+                n_dim = random.randint(2, 6)
+                n_points = random.randint(10, 200)
+                points = generate_in_sphere(n_dim, 10.0, n_points)
+                points_with_consent = [(pt, random.random() < p) for pt in points]
+                assert_cpp_vs_python_match(points_with_consent, n_dim)
+
+        # Scenario 3: Different point distributions (Box, Sphere, Noisy Sphere)
+        logger.info("  Scenario 3: Different distributions...")
+        for dist in ["box", "sphere", "noisy_sphere"]:
+            for _ in range(15):
+                n_dim = random.randint(2, 5)
+                n_points = random.randint(10, 200)
+                if dist == "box":
+                    points = generate_in_box(n_dim, -10.0, 10.0, n_points)
+                elif dist == "sphere":
+                    points = generate_in_sphere(n_dim, 10.0, n_points)
+                else:
+                    points = generate_noisy_sphere_points(n_dim, n_points, 10.0, 0.5)
                 
-            # Verify oracle call counts match
-            assert oracle_py.get_call_count() == oracle_cpp.get_call_count(), (
-                f"Oracle call count mismatch! Python: {oracle_py.get_call_count()}, C++: {oracle_cpp.get_call_count()}"
-            )
+                points_with_consent = [(pt, random.random() < 0.7) for pt in points]
+                assert_cpp_vs_python_match(points_with_consent, n_dim)
+
+        # Scenario 4: Larger datasets (up to 3000 points) and higher dimensions
+        logger.info("  Scenario 4: Larger datasets and higher dimensions...")
+        for _ in range(10):
+            n_dim = random.randint(3, 6)
+            n_points = random.randint(500, 3000)
+            points = generate_in_sphere(n_dim, 10.0, n_points)
+            points_with_consent = [(pt, random.random() < 0.7) for pt in points]
+            assert_cpp_vs_python_match(points_with_consent, n_dim)
+
     finally:
         db_consents.USE_CPP_BACKEND = original_backend
     logger.info("Python vs C++ Welzl comparison tests passed successfully!")
@@ -137,7 +183,9 @@ def do_tests(repetitions=10):
     test_welzl_vs_miniball()
     test_cpp_vs_python_welzl()
 
+    logger.info(f"Running {repetitions} repetitions of Incremental vs Decremental and correctness tests...")
     for i in range(repetitions):
+        logger.info(f"  Repetition {i+1}/{repetitions}...")
         n_dim = 3
         num_samples = 50
         gen_radius = half_width = 10
