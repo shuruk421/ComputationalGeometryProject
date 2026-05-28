@@ -131,6 +131,27 @@ Ball welzl_impl(
     const std::vector<int>& p_indices
 );
 
+// Circumsphere solver with fallback for degenerate configurations
+Ball get_circum_ball_with_fallback(
+    const std::vector<std::vector<double>>& R,
+    int dim
+) {
+    if (R.empty()) {
+        Ball b;
+        b.success = true;
+        b.radius_sq = -1.0;
+        return b;
+    }
+    Ball b = get_circum_ball(R, dim);
+    if (!b.success) {
+        // Fallback for degenerate boundary points: run Welzl on R itself
+        std::vector<int> r_indices(R.size(), -1);
+        auto dummy_callback = [](int) -> bool { return true; };
+        b = welzl_impl(R, {}, dim, static_cast<int>(R.size()), dummy_callback, r_indices);
+    }
+    return b;
+}
+
 Ball welzl_impl(
     const std::vector<std::vector<double>>& P,
     std::vector<std::vector<double>> R,
@@ -140,28 +161,10 @@ Ball welzl_impl(
     const std::vector<int>& p_indices
 ) {
     if (n == 0 || static_cast<int>(R.size()) == dim + 1) {
-        if (R.empty()) {
-            Ball b;
-            b.success = true;
-            b.radius_sq = -1.0;
-            return b;
-        }
-        Ball b = get_circum_ball(R, dim);
-        if (!b.success) {
-            // Fallback for degenerate boundary points: run Welzl on R itself
-            std::vector<int> r_indices(R.size(), -1);
-            auto dummy_callback = [](int) -> bool { return true; };
-            b = welzl_impl(R, {}, dim, static_cast<int>(R.size()), dummy_callback, r_indices);
-        }
-        return b;
+        return get_circum_ball_with_fallback(R, dim);
     }
     
-    Ball b = get_circum_ball(R, dim);
-    if (!b.success && !R.empty()) {
-        std::vector<int> r_indices(R.size(), -1);
-        auto dummy_callback = [](int) -> bool { return true; };
-        b = welzl_impl(R, {}, dim, static_cast<int>(R.size()), dummy_callback, r_indices);
-    }
+    Ball b = get_circum_ball_with_fallback(R, dim);
     
     double radius_sq = b.radius_sq;
     std::vector<double> center = b.center;
