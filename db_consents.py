@@ -305,8 +305,10 @@ def welzl_cpp(
 ) -> Tuple[Optional[List[float]], float]:
     module = import_welzl_cpp()
     if not module:
-        # Fall back to Python if library is not available
-        return welzl_py(P, [], oracle, d, n)
+        raise ImportError(
+            "C++ Welzl backend library 'welzl_cpp_module' could not be loaded. "
+            "Please ensure the module is compiled successfully in 'cpp_welzl/' and that you are running Python inside WSL (Linux environment)."
+        )
     
     # Extract points and consents directly as lists/vectors to pass to pybind11
     points = [P[i][0] for i in range(n)]
