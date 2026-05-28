@@ -18,8 +18,8 @@ def test_decremental_vs_incremental(box_points, sphere_points, noisy_disc_points
     oracle2 = Oracle()
     incremental_box = incremental_orthogonal(box_points, oracle2)
     # Make sure the incremental and decremental algorithms return the same result
-    assert np.allclose(decremental_box[0], incremental_box[0]) and np.allclose(
-        decremental_box[1], incremental_box[1]
+    assert np.allclose(decremental_box[0], incremental_box[0], atol=1e-9) and np.allclose(
+        decremental_box[1], incremental_box[1], atol=1e-9
     )
 
     oracle3 = Oracle()
@@ -27,8 +27,8 @@ def test_decremental_vs_incremental(box_points, sphere_points, noisy_disc_points
 
     oracle4 = Oracle()
     incremental_sphere = incremental_distance_based(sphere_points, oracle4, debug=True)
-    assert np.allclose(decremental_sphere[0], incremental_sphere[0]) and np.allclose(
-        decremental_sphere[1], incremental_sphere[1]
+    assert np.allclose(decremental_sphere[0], incremental_sphere[0], atol=1e-9) and np.allclose(
+        decremental_sphere[1], incremental_sphere[1], atol=1e-9
     )
 
     oracle5 = Oracle()
@@ -36,8 +36,8 @@ def test_decremental_vs_incremental(box_points, sphere_points, noisy_disc_points
 
     oracle6 = Oracle()
     incremental_disc = incremental_distance_based(noisy_disc_points, oracle6, debug=True)
-    assert np.allclose(decremental_disc[0], incremental_disc[0]) and np.allclose(
-        decremental_disc[1], incremental_disc[1]
+    assert np.allclose(decremental_disc[0], incremental_disc[0], atol=1e-9) and np.allclose(
+        decremental_disc[1], incremental_disc[1], atol=1e-9
     )
 
 
@@ -83,10 +83,10 @@ def test_welzl_vs_miniball():
         
         center_miniball, radius_sq_miniball = miniball.get_bounding_ball(np.array(points))
         
-        assert np.allclose(center_welzl, center_miniball, atol=1e-5), (
+        assert np.allclose(center_welzl, center_miniball, atol=1e-8), (
             f"Center mismatch. Welzl: {center_welzl}, Miniball: {center_miniball}"
         )
-        assert np.isclose(radius_sq_welzl, radius_sq_miniball, atol=1e-5), (
+        assert np.isclose(radius_sq_welzl, radius_sq_miniball, atol=1e-8), (
             f"Radius squared mismatch. Welzl: {radius_sq_welzl}, Miniball: {radius_sq_miniball}"
         )
 
@@ -120,8 +120,8 @@ def test_cpp_vs_python_welzl():
                 assert res_cpp[0] is None
             else:
                 assert res_cpp[0] is not None
-                assert np.allclose(res_py[0], res_cpp[0], atol=1e-5)
-                assert np.isclose(res_py[1], res_cpp[1], atol=1e-5)
+                assert np.allclose(res_py[0], res_cpp[0], atol=1e-10)
+                assert np.isclose(res_py[1], res_cpp[1], atol=1e-10)
                 
             # Verify oracle call counts match
             assert oracle_py.get_call_count() == oracle_cpp.get_call_count(), (
