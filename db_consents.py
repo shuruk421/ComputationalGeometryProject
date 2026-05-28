@@ -1,7 +1,7 @@
 import math
 import random
 from typing import Any, List, Optional, Tuple
-import ctypes
+import sys
 import os
 
 import numpy as np
@@ -12,31 +12,23 @@ GEOMETRY_TOLERANCE = 1e-10
 DEBUG_BOUNDARY_TOLERANCE = 1e-7
 
 USE_CPP_BACKEND = False
-_libwelzl = None
+_welzl_module = None
 
-def get_libwelzl():
-    global _libwelzl
-    if _libwelzl is None:
+def import_welzl_cpp():
+    global _welzl_module
+    if _welzl_module is None:
         try:
             dir_path = os.path.dirname(os.path.abspath(__file__))
-            lib_path = os.path.join(dir_path, "cpp_welzl", "libwelzl.so")
-            _libwelzl = ctypes.CDLL(lib_path)
-            
-            CALLBACK_TYPE = ctypes.CFUNCTYPE(ctypes.c_bool, ctypes.c_int)
-            _libwelzl.welzl_consent.argtypes = [
-                ctypes.POINTER(ctypes.c_double),
-                ctypes.POINTER(ctypes.c_int),
-                ctypes.c_int,
-                ctypes.c_int,
-                CALLBACK_TYPE,
-                ctypes.POINTER(ctypes.c_double),
-                ctypes.POINTER(ctypes.c_double)
-            ]
-            _libwelzl.welzl_consent.restype = ctypes.c_bool
+            cpp_dir = os.path.join(dir_path, "cpp_welzl")
+            if cpp_dir not in sys.path:
+                sys.path.append(cpp_dir)
+            import welzl_cpp_module
+            _welzl_module = welzl_cpp_module
         except Exception as e:
             # Fall back to False if loading fails
-            _libwelzl = False
-    return _libwelzl
+            _welzl_module = False
+    return _welzl_module
+
 
 
 
@@ -173,6 +165,10 @@ class Oracle:
         """Returns the number of unique oracle calls made."""
         return self._call_count
 
+    def add_call_count(self, count):
+        """Adds to the number of oracle calls made."""
+        self._call_count += count
+
     def reset(self):
         """Reset the cache and counter. Call this before running a new algorithm."""
         self._cache = {}
@@ -307,47 +303,24 @@ def welzl_cpp(
     d: int,
     n: int,
 ) -> Tuple[Optional[List[float]], float]:
-    lib = get_libwelzl()
-    if not lib:
+    module = import_welzl_cpp()
+    if not module:
         # Fall back to Python if library is not available
         return welzl_py(P, [], oracle, d, n)
     
-    flat_pts = []
-    original_indices = []
-    for i in range(n):
-        flat_pts.extend(P[i][0])
-        original_indices.append(i)
-        
-    c_points = (ctypes.c_double * len(flat_pts))(*flat_pts)
-    c_indices = (ctypes.c_int * len(original_indices))(*original_indices)
+    # Extract points and consents directly as lists/vectors to pass to pybind11
+    points = [P[i][0] for i in range(n)]
+    consents = [P[i][1] for i in range(n)]
     
-    # Callback to query Python oracle from C++
-    def consent_callback(idx):
-        return oracle.get_ground_truth(P[idx])
-        
-    CALLBACK_TYPE = ctypes.CFUNCTYPE(ctypes.c_bool, ctypes.c_int)
-    c_callback = CALLBACK_TYPE(consent_callback)
+    res = module.welzl_consent_cpp(points, consents, d)
     
-    out_center = (ctypes.c_double * d)()
-    out_radius_sq = ctypes.c_double(0.0)
-    
-    success = lib.welzl_consent(
-        c_points,
-        c_indices,
-        n,
-        d,
-        c_callback,
-        out_center,
-        ctypes.byref(out_radius_sq)
-    )
-    
-    # Python ctypes requires us to keep a reference to c_callback active 
-    # during the call to prevent garbage collection.
-    
-    if success:
-        return list(out_center), out_radius_sq.value
+    if res.success:
+        # Record oracle calls made in C++
+        oracle.add_call_count(res.oracle_calls)
+        return res.center, res.radius_sq
     else:
         return None, -1.0
+
 
 
 def welzl_py(
