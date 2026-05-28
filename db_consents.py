@@ -5,6 +5,11 @@ from typing import Any, List, Optional, Tuple
 import numpy as np
 
 
+# Tolerance constants for geometric checks
+GEOMETRY_TOLERANCE = 1e-10
+DEBUG_BOUNDARY_TOLERANCE = 1e-7
+
+
 def generate_in_box(n, low=0, high=1, count=1):
     """
     Generates 'count' random points of dimension 'n' within a box defined by [low, high].
@@ -172,7 +177,10 @@ def incremental_orthogonal(relation, oracle):
 
 
 def is_point_in_sphere(
-    point: List[float], center: List[float], radius_sq: float, tolerance=1e-10
+    point: List[float],
+    center: List[float],
+    radius_sq: float,
+    tolerance=GEOMETRY_TOLERANCE,
 ):
     """
     Checks if a point is inside a sphere (inclusive).
@@ -286,7 +294,7 @@ def welzl(
         if debug:
             for p in R:
                 dist_sq = sum((pi - ci) ** 2 for pi, ci in zip(p, center))
-                assert abs(dist_sq - radius_sq) < 1e-7, (
+                assert abs(dist_sq - radius_sq) < DEBUG_BOUNDARY_TOLERANCE, (
                     f"Point {p} not on boundary. Dist_sq: {dist_sq}, Radius_sq: {radius_sq}"
                 )
         return center, radius_sq
@@ -443,7 +451,7 @@ def decremental_distance_based(
                 diff = pt[col] - center[col]
                 dist_sq += diff * diff
 
-            if abs(dist_sq - radius_sq) <= 1e-10:
+            if abs(dist_sq - radius_sq) <= GEOMETRY_TOLERANCE:
                 # This point is on the boundary, check consent via oracle
                 if not oracle.get_ground_truth(points[idx]):
                     to_remove.append(idx)
