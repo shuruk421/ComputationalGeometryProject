@@ -224,93 +224,14 @@ def get_circum_ball(R: List[List[float]]) -> Tuple[List[float], float]:
     Computes the circumsphere of a set of points R.
     The center is the unique point in the affine hull of R that is equidistant from all points in R.
     """
-    n_pts = len(R)
-    if n_pts == 0:
+    if len(R) == 0:
         return None, -1.0
 
-    if n_pts == 1:
-        return R[0], 0.0
-
-    if n_pts == 2:
-        p1, p2 = R[0], R[1]
-        center = [(x + y) * 0.5 for x, y in zip(p1, p2)]
-        radius_sq = sum((x - c) ** 2 for x, c in zip(p1, center))
-        return center, radius_sq
-
-    if n_pts == 3:
-        p1, p2, p3 = R[0], R[1], R[2]
-        v1 = [y - x for x, y in zip(p1, p2)]
-        v2 = [z - x for x, z in zip(p1, p3)]
-        
-        v1_v1 = sum(x * x for x in v1)
-        v1_v2 = sum(x * y for x, y in zip(v1, v2))
-        v2_v2 = sum(x * x for x in v2)
-        
-        a = 2.0 * v1_v1
-        b = 2.0 * v1_v2
-        c = 2.0 * v1_v2
-        d = 2.0 * v2_v2
-        
-        det = a * d - b * c
-        if abs(det) > 1e-12:
-            e = v1_v1
-            f = v2_v2
-            
-            lambda1 = (e * d - b * f) / det
-            lambda2 = (a * f - e * c) / det
-            
-            center = [p1_coord + lambda1 * v1_coord + lambda2 * v2_coord 
-                      for p1_coord, v1_coord, v2_coord in zip(p1, v1, v2)]
-            radius_sq = sum((x - c_coord) ** 2 for x, c_coord in zip(p1, center))
-            return center, radius_sq
-
-    if n_pts == 4:
-        p1, p2, p3, p4 = R[0], R[1], R[2], R[3]
-        v1 = [y - x for x, y in zip(p1, p2)]
-        v2 = [z - x for x, z in zip(p1, p3)]
-        v3 = [w - x for x, w in zip(p1, p4)]
-        
-        v1_v1 = sum(x * x for x in v1)
-        v1_v2 = sum(x * y for x, y in zip(v1, v2))
-        v1_v3 = sum(x * y for x, y in zip(v1, v3))
-        v2_v2 = sum(x * x for x in v2)
-        v2_v3 = sum(x * y for x, y in zip(v2, v3))
-        v3_v3 = sum(x * x for x in v3)
-        
-        m = [
-            [2.0 * v1_v1, 2.0 * v1_v2, 2.0 * v1_v3],
-            [2.0 * v1_v2, 2.0 * v2_v2, 2.0 * v2_v3],
-            [2.0 * v1_v3, 2.0 * v2_v3, 2.0 * v3_v3]
-        ]
-        
-        det = (m[0][0] * (m[1][1] * m[2][2] - m[1][2] * m[2][1]) -
-               m[0][1] * (m[1][0] * m[2][2] - m[1][2] * m[2][0]) +
-               m[0][2] * (m[1][0] * m[2][1] - m[1][1] * m[2][0]))
-               
-        if abs(det) > 1e-12:
-            b_vec = [v1_v1, v2_v2, v3_v3]
-            
-            det1 = (b_vec[0] * (m[1][1] * m[2][2] - m[1][2] * m[2][1]) -
-                    m[0][1] * (b_vec[1] * m[2][2] - m[1][2] * b_vec[2]) +
-                    m[0][2] * (b_vec[1] * m[2][1] - m[1][1] * b_vec[2]))
-            det2 = (m[0][0] * (b_vec[1] * m[2][2] - m[1][2] * b_vec[2]) -
-                    b_vec[0] * (m[1][0] * m[2][2] - m[1][2] * m[2][0]) +
-                    m[0][2] * (m[1][0] * b_vec[2] - b_vec[1] * m[2][0]))
-            det3 = (m[0][0] * (m[1][1] * b_vec[2] - b_vec[1] * m[2][1]) -
-                    m[0][1] * (m[1][0] * b_vec[2] - b_vec[1] * m[2][0]) +
-                    b_vec[0] * (m[1][0] * m[2][1] - m[1][1] * m[2][0]))
-                    
-            lambda1 = det1 / det
-            lambda2 = det2 / det
-            lambda3 = det3 / det
-            
-            center = [p1_coord + lambda1 * v1_coord + lambda2 * v2_coord + lambda3 * v3_coord
-                      for p1_coord, v1_coord, v2_coord, v3_coord in zip(p1, v1, v2, v3)]
-            radius_sq = sum((x - c_coord) ** 2 for x, c_coord in zip(p1, center))
-            return center, radius_sq
-
-    # Ensure all points are numpy arrays for vector operations (fallback for >= 5 points)
+    # Ensure all points are numpy arrays for vector operations
     R_arr = [np.array(p) for p in R]
+
+    if len(R_arr) == 1:
+        return R_arr[0].tolist(), 0.0
 
     # Points v_i = p_{i+1} - p_1
     p1 = R_arr[0]
