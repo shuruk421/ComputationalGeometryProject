@@ -152,6 +152,9 @@ Ball get_circum_ball_with_fallback(
     return b;
 }
 
+// Recursive implementation of Welzl's Minimum Enclosing Ball algorithm with consent checks.
+// p_indices maps the shuffled points in P to their original pre-shuffled indices.
+// This ensures that consent_callback is queried with the correct original point index.
 Ball welzl_impl(
     const std::vector<std::vector<double>>& P,
     std::vector<std::vector<double>> R,
@@ -187,6 +190,9 @@ Ball welzl_impl(
         
         if (inside) continue;
         
+        // orig_idx is the original pre-shuffled index of the point.
+        // A value >= 0 indicates a point from the original dataset requiring a consent check.
+        // A value < 0 (e.g. in fallback runs on degenerate base cases) skips the consent check.
         int orig_idx = p_indices[i];
         bool consented = true;
         if (orig_idx >= 0) {
