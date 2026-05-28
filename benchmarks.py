@@ -464,6 +464,158 @@ def plot_sphere_vs_consent(n_dim, num_points, consent_prob_list, radius=10, n_ru
     plt.close()
 
 
+def plot_box_vs_dimension(
+    dimensions, consent_probability=0.7, num_points=1000, n_runs=10
+):
+    """
+    Runs box algorithms over a range of dimensions, measuring both oracle calls and running times,
+    then saves both corresponding plots.
+    """
+    incremental_calls = []
+    decremental_calls = []
+    incremental_times = []
+    decremental_times = []
+
+    pbar = tqdm(dimensions, desc="Running box benchmarks vs dimension")
+    for d in pbar:
+        inc_calls_runs = []
+        dec_calls_runs = []
+        inc_time_runs = []
+        dec_time_runs = []
+        for run_idx in range(n_runs):
+            pbar.set_description(
+                f"Box benchmarks vs dimension (d={d}, run {run_idx + 1}/{n_runs})"
+            )
+            # Generate random points in a box
+            points = generate_in_box(d, low=-10, high=10, count=num_points)
+            points_with_consent = [
+                (point, random.random() < consent_probability) for point in points
+            ]
+
+            # Run incremental algorithm
+            oracle_inc = Oracle()
+            start = time.perf_counter()
+            incremental_orthogonal(points_with_consent, oracle_inc)
+            inc_time_runs.append(time.perf_counter() - start)
+            inc_calls_runs.append(oracle_inc.get_call_count())
+
+            # Run decremental algorithm
+            oracle_dec = Oracle()
+            start = time.perf_counter()
+            decremental_orthogonal(points_with_consent, oracle_dec)
+            dec_time_runs.append(time.perf_counter() - start)
+            dec_calls_runs.append(oracle_dec.get_call_count())
+
+        incremental_calls.append(np.median(inc_calls_runs))
+        decremental_calls.append(np.median(dec_calls_runs))
+        incremental_times.append(np.median(inc_time_runs))
+        decremental_times.append(np.median(dec_time_runs))
+
+    # Plot 1: Oracle Calls vs Dimension (Box)
+    plt.figure(figsize=(12, 8))
+    plt.plot(dimensions, incremental_calls, marker='o', label="Incremental box algorithm")
+    plt.plot(dimensions, decremental_calls, marker='s', label="Decremental box algorithm")
+    plt.xlabel("Dimension (d)")
+    plt.ylabel("Number of Consent Requests")
+    plt.title(
+        f"Oracle Calls vs Dimension (Box)\n(N={num_points}, p={consent_probability}, runs={n_runs})"
+    )
+    plt.legend()
+    plt.grid(True, alpha=0.3)
+    plt.savefig(os.path.join(RESULTS_DIR, "oracle_calls_vs_dimension_box.png"), dpi=150)
+    plt.close()
+
+    # Plot 2: Running Time vs Dimension (Box)
+    plt.figure(figsize=(12, 8))
+    plt.plot(dimensions, incremental_times, marker='o', label="Incremental box algorithm")
+    plt.plot(dimensions, decremental_times, marker='s', label="Decremental box algorithm")
+    plt.xlabel("Dimension (d)")
+    plt.ylabel("Running Time (seconds)")
+    plt.title(
+        f"Running Time vs Dimension (Box)\n(N={num_points}, p={consent_probability}, runs={n_runs})"
+    )
+    plt.legend()
+    plt.grid(True, alpha=0.3)
+    plt.savefig(os.path.join(RESULTS_DIR, "running_time_vs_dimension_box.png"), dpi=150)
+    plt.close()
+
+
+def plot_sphere_vs_dimension(
+    dimensions, consent_probability=0.7, num_points=1000, radius=10, n_runs=10
+):
+    """
+    Runs sphere algorithms over a range of dimensions, measuring both oracle calls and running times,
+    then saves both corresponding plots.
+    """
+    incremental_calls = []
+    decremental_calls = []
+    incremental_times = []
+    decremental_times = []
+
+    pbar = tqdm(dimensions, desc="Running sphere benchmarks vs dimension")
+    for d in pbar:
+        inc_calls_runs = []
+        dec_calls_runs = []
+        inc_time_runs = []
+        dec_time_runs = []
+        for run_idx in range(n_runs):
+            pbar.set_description(
+                f"Sphere benchmarks vs dimension (d={d}, run {run_idx + 1}/{n_runs})"
+            )
+            # Generate random points in a sphere
+            points = generate_in_sphere(d, radius, num_points)
+            points_with_consent = [
+                (point, random.random() < consent_probability) for point in points
+            ]
+
+            # Run incremental algorithm
+            oracle_inc = Oracle()
+            start = time.perf_counter()
+            incremental_distance_based(points_with_consent, oracle_inc)
+            inc_time_runs.append(time.perf_counter() - start)
+            inc_calls_runs.append(oracle_inc.get_call_count())
+
+            # Run decremental algorithm
+            oracle_dec = Oracle()
+            start = time.perf_counter()
+            decremental_distance_based(points_with_consent, oracle_dec)
+            dec_time_runs.append(time.perf_counter() - start)
+            dec_calls_runs.append(oracle_dec.get_call_count())
+
+        incremental_calls.append(np.median(inc_calls_runs))
+        decremental_calls.append(np.median(dec_calls_runs))
+        incremental_times.append(np.median(inc_time_runs))
+        decremental_times.append(np.median(dec_time_runs))
+
+    # Plot 1: Oracle Calls vs Dimension (Sphere)
+    plt.figure(figsize=(12, 8))
+    plt.plot(dimensions, incremental_calls, marker='o', label="Incremental sphere algorithm")
+    plt.plot(dimensions, decremental_calls, marker='s', label="Decremental sphere algorithm")
+    plt.xlabel("Dimension (d)")
+    plt.ylabel("Number of Consent Requests")
+    plt.title(
+        f"Oracle Calls vs Dimension (Sphere)\n(N={num_points}, p={consent_probability}, runs={n_runs})"
+    )
+    plt.legend()
+    plt.grid(True, alpha=0.3)
+    plt.savefig(os.path.join(RESULTS_DIR, "oracle_calls_vs_dimension_sphere.png"), dpi=150)
+    plt.close()
+
+    # Plot 2: Running Time vs Dimension (Sphere)
+    plt.figure(figsize=(12, 8))
+    plt.plot(dimensions, incremental_times, marker='o', label="Incremental sphere algorithm")
+    plt.plot(dimensions, decremental_times, marker='s', label="Decremental sphere algorithm")
+    plt.xlabel("Dimension (d)")
+    plt.ylabel("Running Time (seconds)")
+    plt.title(
+        f"Running Time vs Dimension (Sphere)\n(N={num_points}, p={consent_probability}, runs={n_runs})"
+    )
+    plt.legend()
+    plt.grid(True, alpha=0.3)
+    plt.savefig(os.path.join(RESULTS_DIR, "running_time_vs_dimension_sphere.png"), dpi=150)
+    plt.close()
+
+
 def main():
     parser = argparse.ArgumentParser(
         description="Run benchmarks for db_consents orthogonal and distance-based algorithms."
@@ -480,7 +632,7 @@ def main():
     n_runs = args.runs
     n_dim = 3
     consent_probability = 0.7
-    num_points_list = range(100, 100000, 2000)
+    num_points_list = range(100, 10000, 500)
 
     logger.info(f"Running Box Benchmarks vs Number of Points (n_runs={n_runs})...")
     plot_box_vs_points(n_dim, consent_probability, num_points_list, n_runs=n_runs)
@@ -490,7 +642,7 @@ def main():
 
     # --- Consent probability on X-axis ---
     num_points_fixed = 500
-    consent_prob_list = [p / 100 for p in range(5, 100, 2)]
+    consent_prob_list = [p / 100 for p in range(5, 100, 5)]
 
     logger.info(f"Running Box Benchmarks vs Consent Probability (n_runs={n_runs})...")
     plot_box_vs_consent(n_dim, num_points_fixed, consent_prob_list, n_runs=n_runs)
@@ -499,6 +651,14 @@ def main():
         f"Running Sphere Benchmarks vs Consent Probability (n_runs={n_runs})..."
     )
     plot_sphere_vs_consent(n_dim, num_points_fixed, consent_prob_list, n_runs=n_runs)
+
+    # --- Dimension on X-axis ---
+    dimensions = list(range(3, 8))  # 3 to 7 inclusive
+    logger.info(f"Running Box Benchmarks vs Dimension (n_runs={n_runs})...")
+    plot_box_vs_dimension(dimensions, consent_probability, num_points=1000, n_runs=n_runs)
+
+    logger.info(f"Running Sphere Benchmarks vs Dimension (n_runs={n_runs})...")
+    plot_sphere_vs_dimension(dimensions, consent_probability, num_points=1000, n_runs=n_runs)
 
 
 if __name__ == "__main__":
