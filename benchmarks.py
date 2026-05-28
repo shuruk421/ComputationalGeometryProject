@@ -653,7 +653,7 @@ def main():
     plot_sphere_vs_consent(n_dim, num_points_fixed, consent_prob_list, n_runs=n_runs)
 
     # --- Dimension on X-axis ---
-    dimensions = list(range(3, 8))  # 3 to 7 inclusive
+    dimensions = list(range(3, 7))  # 3 to 6 inclusive
     logger.info(f"Running Box Benchmarks vs Dimension (n_runs={n_runs})...")
     plot_box_vs_dimension(dimensions, consent_probability, num_points=10000, n_runs=n_runs)
 
