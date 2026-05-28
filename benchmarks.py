@@ -1053,7 +1053,17 @@ def main():
         default=5,
         help="Ending dimension (inclusive) (default: 5)",
     )
+    parser.add_argument(
+        "--cpp",
+        action="store_true",
+        help="Use C++ Welzl backend for the benchmarks"
+    )
     args = parser.parse_args()
+
+    if args.cpp:
+        import db_consents
+        db_consents.USE_CPP_BACKEND = True
+        logger.info("Using C++ Welzl backend for distance-based calculations.")
 
     # Determine which shapes to run
     # If none of the shape flags are set, run all shapes

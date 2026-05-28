@@ -1,6 +1,8 @@
 import math
 import random
 from typing import Any, List, Optional, Tuple
+import sys
+import os
 
 import numpy as np
 
@@ -8,6 +10,26 @@ import numpy as np
 # Tolerance constants for geometric checks
 GEOMETRY_TOLERANCE = 1e-10
 DEBUG_BOUNDARY_TOLERANCE = 1e-7
+
+USE_CPP_BACKEND = False
+_welzl_module = None
+
+def import_welzl_cpp():
+    global _welzl_module
+    if _welzl_module is None:
+        try:
+            dir_path = os.path.dirname(os.path.abspath(__file__))
+            cpp_dir = os.path.join(dir_path, "cpp_welzl")
+            if cpp_dir not in sys.path:
+                sys.path.append(cpp_dir)
+            import welzl_cpp_module
+            _welzl_module = welzl_cpp_module
+        except Exception as e:
+            # Fall back to False if loading fails
+            _welzl_module = False
+    return _welzl_module
+
+
 
 
 def generate_in_box(n, low=0, high=1, count=1):
@@ -143,6 +165,10 @@ class Oracle:
         """Returns the number of unique oracle calls made."""
         return self._call_count
 
+    def add_call_count(self, count):
+        """Adds to the number of oracle calls made."""
+        self._call_count += count
+
     def reset(self):
         """Reset the cache and counter. Call this before running a new algorithm."""
         self._cache = {}
@@ -271,7 +297,36 @@ def get_circum_ball(R: List[List[float]]) -> Tuple[List[float], float]:
     return center.tolist(), radius_sq
 
 
-def welzl(
+def welzl_cpp(
+    P: List[Tuple[List[float], bool]],
+    oracle: Oracle,
+    d: int,
+    n: int,
+) -> Tuple[Optional[List[float]], float]:
+    module = import_welzl_cpp()
+    if not module:
+        raise ImportError(
+            "C++ Welzl backend library 'welzl_cpp_module' could not be loaded. "
+            "Please ensure the module is compiled successfully in 'cpp_welzl/' and that you are running Python inside WSL (Linux environment)."
+        )
+    
+    # Extract points and consents directly as lists/vectors to pass to pybind11
+    points = [P[i][0] for i in range(n)]
+    consents = [P[i][1] for i in range(n)]
+    
+    res = module.welzl_consent_cpp(points, consents, d)
+    
+    # Record oracle calls made in C++
+    oracle.add_call_count(res.oracle_calls)
+    
+    if res.success:
+        return res.center, res.radius_sq
+    else:
+        return None, -1.0
+
+
+
+def welzl_py(
     P: List[Tuple[List[float], bool]],
     R: List[List[float]],
     oracle: Oracle,
@@ -281,11 +336,7 @@ def welzl(
     P_coords: Optional[List[List[float]]] = None,
 ) -> Tuple[Optional[List[float]], float]:
     """
-    Welzl's algorithm for finding the smallest enclosing ball.
-    Modified to account for point consent.
-    This is written as a hybrid recursive-loop function: it loops over the points P[:n],
-    recursing only when the boundary set R expands (which happens at most d+1 times).
-    This avoids stack overhead and deep recursion limits.
+    Welzl's algorithm for finding the smallest enclosing ball in Python.
     """
     if n == 0 or len(R) == d + 1:
         if len(R) == 0:
@@ -316,6 +367,20 @@ def welzl(
             )
 
     return center, radius_sq
+
+
+def welzl(
+    P: List[Tuple[List[float], bool]],
+    R: List[List[float]],
+    oracle: Oracle,
+    d: int,
+    n: int,
+    debug: bool = False,
+    P_coords: Optional[List[List[float]]] = None,
+) -> Tuple[Optional[List[float]], float]:
+    if USE_CPP_BACKEND and len(R) == 0:
+        return welzl_cpp(P, oracle, d, n)
+    return welzl_py(P, R, oracle, d, n, debug=debug, P_coords=P_coords)
 
 
 def incremental_distance_based(relation, oracle, debug: bool = False):
