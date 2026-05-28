@@ -983,6 +983,57 @@ def main():
         action="store_true",
         help="Run plots vs dimension"
     )
+    # Points range arguments
+    parser.add_argument(
+        "--points-start",
+        type=int,
+        default=100,
+        help="Starting number of points (default: 100)"
+    )
+    parser.add_argument(
+        "--points-end",
+        type=int,
+        default=10000,
+        help="Ending number of points (exclusive) (default: 10000)"
+    )
+    parser.add_argument(
+        "--points-step",
+        type=int,
+        default=500,
+        help="Step size for points range (default: 500)"
+    )
+    # Consent probability range arguments
+    parser.add_argument(
+        "--consent-start",
+        type=float,
+        default=0.05,
+        help="Starting consent probability (default: 0.05)"
+    )
+    parser.add_argument(
+        "--consent-end",
+        type=float,
+        default=1.00,
+        help="Ending consent probability (exclusive) (default: 1.00)"
+    )
+    parser.add_argument(
+        "--consent-step",
+        type=float,
+        default=0.05,
+        help="Step size for consent probability range (default: 0.05)"
+    )
+    # Dimension range arguments
+    parser.add_argument(
+        "--dim-start",
+        type=int,
+        default=3,
+        help="Starting dimension (default: 3)"
+    )
+    parser.add_argument(
+        "--dim-end",
+        type=int,
+        default=6,
+        help="Ending dimension (inclusive) (default: 6)"
+    )
     args = parser.parse_args()
 
     # Determine which shapes to run
@@ -1005,7 +1056,7 @@ def main():
 
     # --- Points on X-axis ---
     if run_vs_points:
-        num_points_list = range(100, 10000, 500)
+        num_points_list = range(args.points_start, args.points_end, args.points_step)
         if run_box:
             logger.info(f"Running Box Benchmarks vs Number of Points (n_runs={n_runs})...")
             plot_box_vs_points(n_dim, consent_probability, num_points_list, n_runs=n_runs)
@@ -1021,7 +1072,11 @@ def main():
     # --- Consent probability on X-axis ---
     if run_vs_consent:
         num_points_fixed = 500
-        consent_prob_list = [p / 100 for p in range(5, 100, 5)]
+        consent_prob_list = []
+        curr = args.consent_start
+        while curr < args.consent_end - 1e-9:
+            consent_prob_list.append(round(curr, 4))
+            curr += args.consent_step
 
         if run_box:
             logger.info(f"Running Box Benchmarks vs Consent Probability (n_runs={n_runs})...")
@@ -1041,7 +1096,7 @@ def main():
 
     # --- Dimension on X-axis ---
     if run_vs_dimension:
-        dimensions = list(range(3, 7))  # 3 to 6 inclusive
+        dimensions = list(range(args.dim_start, args.dim_end + 1))
 
         if run_box:
             logger.info(f"Running Box Benchmarks vs Dimension (n_runs={n_runs})...")
