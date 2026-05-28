@@ -1,4 +1,5 @@
 import random
+import math
 from typing import Any, List, Optional, Tuple
 
 import numpy as np
@@ -15,10 +16,10 @@ def generate_in_box(n, low=0, high=1, count=1):
         count (int): Number of points to generate.
 
     Returns:
-        np.ndarray: Array of shape (count, n).
+        list: List of lists containing coordinates.
     """
     # Uniform distribution for each coordinate independently
-    return np.random.uniform(low, high, size=(count, n))
+    return np.random.uniform(low, high, size=(count, n)).tolist()
 
 
 def generate_in_sphere(n, radius, count):
@@ -31,7 +32,7 @@ def generate_in_sphere(n, radius, count):
         count (int): Number of points to generate.
 
     Returns:
-        np.ndarray: Array of shape (count, n).
+        list: List of lists containing coordinates.
     """
     # 1. Generate points using Gaussian distribution (spherically symmetric)
     # This places points with random directions but non-uniform distribution relative to distance from origin
@@ -46,7 +47,7 @@ def generate_in_sphere(n, radius, count):
     # To sample uniformly, we pick u ~ U[0,1] and take r = u^(1/n).
     random_radii = np.random.random(size=(count, 1)) ** (1 / n)
 
-    return points_on_surface * random_radii * radius
+    return (points_on_surface * random_radii * radius).tolist()
 
 
 def generate_noisy_sphere_points(n, count, r, noise_std, center_bounds=(-10, 10)):
@@ -54,7 +55,7 @@ def generate_noisy_sphere_points(n, count, r, noise_std, center_bounds=(-10, 10)
     Generates 'count' random points on a sphere surface with added Gaussian noise.
 
     Returns:
-        np.ndarray: Array of shape (count, n) containing the noisy points.
+        list: List of lists containing the noisy points.
     """
     # 1. Random Center
     center = np.random.uniform(center_bounds[0], center_bounds[1], size=(1, n))
@@ -69,20 +70,16 @@ def generate_noisy_sphere_points(n, count, r, noise_std, center_bounds=(-10, 10)
     # 4. Add Noise
     noise = np.random.normal(scale=noise_std, size=(count, n))
 
-    return points + noise
+    return (points + noise).tolist()
 
 
 def is_point_in_box(point, min_bounds, max_bounds):
     if len(min_bounds) == 0 and len(max_bounds) == 0:
         return False
-
-    point = np.array(point)
-    mins = np.array(min_bounds)
-    maxs = np.array(max_bounds)
-
-    # logical_and checks both conditions element-wise
-    # np.all ensures it is true for every dimension
-    return np.all((point >= mins) & (point <= maxs))
+    for i in range(len(point)):
+        if not (min_bounds[i] <= point[i] <= max_bounds[i]):
+            return False
+    return True
 
 
 def update_box(point, min_bounds, max_bounds):
@@ -95,17 +92,10 @@ def update_box(point, min_bounds, max_bounds):
         point (array-like): The point to include [p_1, p_2, ...]
 
     Returns:
-        tuple: (new_min_bounds, new_max_bounds) as numpy arrays
+        tuple: (new_min_bounds, new_max_bounds) as lists
     """
-    # Convert inputs to numpy arrays to ensure element-wise operations work
-    mins = np.array(min_bounds)
-    maxs = np.array(max_bounds)
-    p = np.array(point)
-
-    # Calculate new bounds element-wise
-    new_mins = np.minimum(mins, p)
-    new_maxs = np.maximum(maxs, p)
-
+    new_mins = [min(min_bounds[i], point[i]) for i in range(len(point))]
+    new_maxs = [max(max_bounds[i], point[i]) for i in range(len(point))]
     return new_mins, new_maxs
 
 
@@ -134,7 +124,7 @@ class Oracle:
         point, ground_truth = tup[0], tup[1]
 
         # Convert point to tuple for hashability (for caching)
-        point_tuple = tuple(point) if isinstance(point, (list, np.ndarray)) else point
+        point_tuple = tuple(point)
 
         # Check if we've already queried this point
         if point_tuple not in self._cache:
@@ -182,7 +172,7 @@ def incremental_orthogonal(relation, oracle):
 
 
 def is_point_in_sphere(
-    point: np.ndarray, center: np.ndarray, radius_sq: float, tolerance=1e-10
+    point: List[float], center: List[float], radius_sq: float, tolerance=1e-10
 ):
     """
     Checks if a point is inside a sphere (inclusive).
@@ -213,9 +203,10 @@ def is_point_in_sphere(
         dw = point[3] - center[3]
         distance_squared = dx * dx + dy * dy + dz * dz + dw * dw
     else:
-        # For d > 4, np.dot is faster than a Python loop or np.sum
-        diff = point - center
-        distance_squared = np.dot(diff, diff)
+        distance_squared = 0.0
+        for i in range(d):
+            diff = point[i] - center[i]
+            distance_squared += diff * diff
 
     # Compare with tolerance
     return distance_squared <= radius_sq + tolerance
@@ -225,19 +216,10 @@ def is_row_in_matrix(target_array, list_of_arrays):
     """
     Helper function for checking if a target array is in a list of arrays
     """
-    if len(list_of_arrays) == 0:
-        return False
-
-    # Convert list of arrays to a single 2D array (N x D)
-    matrix = np.array(list_of_arrays)
-
-    # 1. Compare target against every row (broadcasting) -> Result is matrix of bools
-    # 2. Check if ALL columns match for a row (.all(axis=1)) -> Result is 1D array of bools
-    # 3. Check if ANY row was a match (.any()) -> Result is single bool
-    return np.any(np.all(matrix == target_array, axis=1))
+    return target_array in list_of_arrays
 
 
-def get_circum_ball(R: List[np.ndarray]) -> Tuple[np.ndarray, float]:
+def get_circum_ball(R: List[List[float]]) -> Tuple[List[float], float]:
     """
     Computes the circumsphere of a set of points R.
     The center is the unique point in the affine hull of R that is equidistant from all points in R.
@@ -249,7 +231,7 @@ def get_circum_ball(R: List[np.ndarray]) -> Tuple[np.ndarray, float]:
     R_arr = [np.array(p) for p in R]
 
     if len(R_arr) == 1:
-        return R_arr[0], 0.0
+        return R_arr[0].tolist(), 0.0
 
     # Points v_i = p_{i+1} - p_1
     p1 = R_arr[0]
@@ -271,24 +253,24 @@ def get_circum_ball(R: List[np.ndarray]) -> Tuple[np.ndarray, float]:
         lambdas = np.linalg.solve(M, B)
     except np.linalg.LinAlgError:
         # Fallback for degenerate cases: use our iterative Welzl
-        R_P = [(p, True) for p in R_arr]
+        R_P = [(p.tolist(), True) for p in R_arr]
         return welzl(R_P, [], Oracle(), len(R_arr[0]), len(R_P))
 
     delta_c = np.sum([lambdas[j] * vs[j] for j in range(n)], axis=0)
 
     center = p1 + delta_c
     radius_sq = np.sum(delta_c**2)
-    return center, radius_sq
+    return center.tolist(), radius_sq
 
 
 def welzl(
-    P: List[Tuple[np.ndarray, bool]],
-    R: List[np.ndarray],
+    P: List[Tuple[List[float], bool]],
+    R: List[List[float]],
     oracle: Oracle,
     d: int,
     n: int,
     debug: bool = False,
-) -> Tuple[Optional[np.ndarray], float]:
+) -> Tuple[Optional[List[float]], float]:
     """
     Welzl's algorithm for finding the smallest enclosing ball.
     Modified to account for point consent, implemented iteratively.
@@ -305,11 +287,9 @@ def welzl(
             else:
                 center, radius_sq = get_circum_ball(curr_R)
                 if debug:
-                    center_arr = np.array(center)
                     for p in curr_R:
-                        p_arr = np.array(p)
-                        dist_sq = np.sum((p_arr - center_arr) ** 2)
-                        assert np.isclose(dist_sq, radius_sq, atol=1e-7), (
+                        dist_sq = sum((pi - ci) ** 2 for pi, ci in zip(p, center))
+                        assert abs(dist_sq - radius_sq) < 1e-7, (
                             f"Point {p} not on boundary. Dist_sq: {dist_sq}, Radius_sq: {radius_sq}"
                         )
                 result = (center, radius_sq)
@@ -354,7 +334,7 @@ def incremental_distance_based(relation, oracle, debug: bool = False):
     if center is None:
         return 0, 0.0
 
-    return center, np.sqrt(radius_sq)
+    return center, math.sqrt(radius_sq)
 
 
 def decremental_orthogonal(points, oracle):
@@ -373,58 +353,53 @@ def decremental_orthogonal(points, oracle):
     """
     # Separate coordinates and consents
     if not points:
-        return (np.array([]), np.array([]))
-
-    # Extract coordinates into a numpy array for speed
-    coords = np.array([p[0] for p in points])
-    # Store original tuples for oracle calls
-    point_tuples = [(p[0], p[1]) for p in points]
+        return ([], [])
 
     # Track which points are still in the box calculation
     # Initially, all points are candidates
-    active_mask = np.ones(len(points), dtype=bool)
+    active_indices = set(range(len(points)))
 
     while True:
         # 1. Get currently active coordinates
-        active_coords = coords[active_mask]
-
-        if active_coords.size == 0:
-            return (np.array([]), np.array([]))
+        if not active_indices:
+            return ([], [])
 
         # 2. Find Minimum Bounding Box of active points
-        min_bounds = np.min(active_coords, axis=0)
-        max_bounds = np.max(active_coords, axis=0)
+        first_idx = next(iter(active_indices))
+        d = len(points[first_idx][0])
 
-        # 3. Identify Active Points on the Edge
-        # Create masks relative to the *active* subset
-        on_min = active_coords == min_bounds
-        on_max = active_coords == max_bounds
+        min_bounds = list(points[first_idx][0])
+        max_bounds = list(points[first_idx][0])
+        for idx in active_indices:
+            pt = points[idx][0]
+            for col in range(d):
+                if pt[col] < min_bounds[col]:
+                    min_bounds[col] = pt[col]
+                if pt[col] > max_bounds[col]:
+                    max_bounds[col] = pt[col]
 
-        # A point is on the edge if it touches min or max in ANY dimension
-        is_on_edge_subset = np.any(on_min | on_max, axis=1)
+        # 3. Identify Active Points on the Edge and check consent
+        to_remove = []
+        for idx in active_indices:
+            pt = points[idx][0]
+            is_on_edge = False
+            for col in range(d):
+                if pt[col] == min_bounds[col] or pt[col] == max_bounds[col]:
+                    is_on_edge = True
+                    break
 
-        # 4. Check Consents of these edge points using oracle
-        active_indices = np.nonzero(active_mask)[0]
-        active_consents_array = np.zeros(len(active_indices), dtype=bool)
+            if is_on_edge:
+                # check consent via oracle
+                if not oracle.get_ground_truth(points[idx]):
+                    to_remove.append(idx)
 
-        # Only check consent for points on the edge
-        for subset_idx, global_idx in enumerate(active_indices):
-            if is_on_edge_subset[subset_idx]:
-                # This point is on the edge, check consent via oracle
-                tup = point_tuples[global_idx]
-                active_consents_array[subset_idx] = oracle.get_ground_truth(tup)
-
-        # Identify points that are ON the edge AND DO NOT consent
-        should_remove_subset = is_on_edge_subset & (~active_consents_array)
-
-        # 5. If no points need removal, we are done
-        if not np.any(should_remove_subset):
+        # 4. If no points need removal, we are done
+        if not to_remove:
             return (min_bounds, max_bounds)
 
-        # 6. Remove non-consenting edge points and repeat
-        # Map subset indices back to global mask to disable them
-        indices_to_remove = active_indices[should_remove_subset]
-        active_mask[indices_to_remove] = False
+        # 5. Remove non-consenting edge points and repeat
+        for idx in to_remove:
+            active_indices.remove(idx)
 
 
 def decremental_distance_based(points, oracle):
@@ -442,53 +417,40 @@ def decremental_distance_based(points, oracle):
     if not points:
         return None, 0.0
 
-    # Prepare data: Extract coords and store original tuples for oracle calls
-    coords = np.array([p[0] for p in points])
-    point_tuples = [(p[0], p[1]) for p in points]
-
     # Track active points
-    active_mask = np.ones(len(points), dtype=bool)
+    active_indices = set(range(len(points)))
+    d = len(points[0][0])
 
     while True:
-        active_coords = coords[active_mask]
-
-        if active_coords.size == 0:
+        if not active_indices:
             return None, 0.0
 
         # 1. Calculate Minimum Enclosing Ball for active points using our iterative Welzl implementation
-        # Do this by setting the consent of all dummy points to True
-        active_P = [(p, True) for p in active_coords]
+        active_P = [points[idx] for idx in active_indices]
         random.shuffle(active_P)
         center, radius_sq = welzl(
-            active_P, [], Oracle(), active_coords.shape[1], len(active_P)
+            active_P, [], Oracle(), d, len(active_P)
         )
-        center = np.array(center)  # Ensure center is numpy array for broadcasting
 
         # 2. Identify points on the boundary (Edge)
-        # Calculate squared distances from center to all active points
-        dists_sq = np.sum((active_coords - center) ** 2, axis=1)
+        to_remove = []
+        for idx in active_indices:
+            pt = points[idx][0]
+            dist_sq = 0.0
+            for col in range(d):
+                diff = pt[col] - center[col]
+                dist_sq += diff * diff
 
-        # Check tolerance to handle floating point precision issues
-        # Points are on the boundary if their distance is close to the radius
-        is_on_edge_subset = np.isclose(dists_sq, radius_sq)
-
-        # 3. Check Consents of boundary points using oracle
-        active_indices = np.nonzero(active_mask)[0]
-        active_consents_array = np.zeros(len(active_indices), dtype=bool)
-
-        # Only check consent for points on the boundary
-        for subset_idx, global_idx in enumerate(active_indices):
-            if is_on_edge_subset[subset_idx]:
+            # Check tolerance matching np.isclose defaults (atol=1e-8, rtol=1e-5)
+            if abs(dist_sq - radius_sq) <= 1e-8 + 1e-5 * radius_sq:
                 # This point is on the boundary, check consent via oracle
-                tup = point_tuples[global_idx]
-                active_consents_array[subset_idx] = oracle.get_ground_truth(tup)
+                if not oracle.get_ground_truth(points[idx]):
+                    to_remove.append(idx)
 
-        should_remove_subset = is_on_edge_subset & (~active_consents_array)
+        # 3. If no non-consenting points are on the boundary, we are done
+        if not to_remove:
+            return center, math.sqrt(radius_sq)
 
-        # 4. If no non-consenting points are on the boundary, we are done
-        if not np.any(should_remove_subset):
-            return center.tolist(), np.sqrt(radius_sq)
-
-        # 5. Remove non-consenting boundary points and repeat
-        indices_to_remove = active_indices[should_remove_subset]
-        active_mask[indices_to_remove] = False
+        # 4. Remove non-consenting boundary points and repeat
+        for idx in to_remove:
+            active_indices.remove(idx)

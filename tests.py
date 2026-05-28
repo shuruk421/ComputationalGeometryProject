@@ -81,7 +81,7 @@ def test_welzl_vs_miniball():
             points_all_consenting, [], Oracle(), n_dim, len(points_all_consenting), debug=True
         )
         
-        center_miniball, radius_sq_miniball = miniball.get_bounding_ball(points)
+        center_miniball, radius_sq_miniball = miniball.get_bounding_ball(np.array(points))
         
         assert np.allclose(center_welzl, center_miniball, atol=1e-5), (
             f"Center mismatch. Welzl: {center_welzl}, Miniball: {center_miniball}"
