@@ -26,26 +26,18 @@ WelzlResult welzl_consent_cpp(
         return res;
     }
     
-    std::vector<int> p_indices(P.size());
-    for (size_t i = 0; i < P.size(); ++i) {
-        p_indices[i] = i;
-    }
-    
     // Direct-mapped cache for unique consent queries
     std::vector<bool> queried(P.size(), false);
     
-    auto callback = [&](int orig_idx) -> bool {
-        if (orig_idx >= 0) {
-            if (!queried[orig_idx]) {
-                queried[orig_idx] = true;
-                res.oracle_calls++;
-            }
-            return consents[orig_idx];
+    auto callback = [&](int idx) -> bool {
+        if (!queried[idx]) {
+            queried[idx] = true;
+            res.oracle_calls++;
         }
-        return true;
+        return consents[idx];
     };
     
-    Ball b = welzl_impl(P, {}, dim, static_cast<int>(P.size()), callback, p_indices);
+    Ball b = welzl_impl(P, {}, dim, static_cast<int>(P.size()), callback);
     
     if (b.success && b.radius_sq >= 0.0) {
         res.center = b.center;

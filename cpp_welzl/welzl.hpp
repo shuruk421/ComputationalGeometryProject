@@ -15,7 +15,6 @@ struct Ball {
 extern "C" {
     bool welzl_consent(
         const double* points,
-        const int* original_indices,
         int num_points,
         int dim,
         bool (*consent_callback)(int),
@@ -33,8 +32,7 @@ Ball welzl_impl(
     std::vector<std::vector<double>> R,
     int dim,
     int n,
-    const std::function<bool(int)>& consent_callback,
-    const std::vector<int>& p_indices
+    const std::function<bool(int)>& consent_callback
 );
 
 #endif // WELZL_HPP

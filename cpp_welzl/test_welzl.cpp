@@ -59,13 +59,12 @@ void test_welzl_consent() {
         2.0, 0.0,
         0.0, 2.0
     };
-    int indices[] = {0, 1, 2, 3};
     
     double center[2] = {0.0, 0.0};
     double radius_sq = -1.0;
     
     callback_count = 0;
-    bool success = welzl_consent(points, indices, 4, 2, test_consent_callback, center, &radius_sq);
+    bool success = welzl_consent(points, 4, 2, test_consent_callback, center, &radius_sq);
     
     assert(success);
     assert(std::abs(center[0] - 1.0) < 1e-9);

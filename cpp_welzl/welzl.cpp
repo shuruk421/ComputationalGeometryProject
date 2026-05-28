@@ -127,8 +127,7 @@ Ball welzl_impl(
     std::vector<std::vector<double>> R,
     int dim,
     int n,
-    const std::function<bool(int)>& consent_callback,
-    const std::vector<int>& p_indices
+    const std::function<bool(int)>& consent_callback
 );
 
 // Circumsphere solver with fallback for degenerate configurations
@@ -145,23 +144,19 @@ Ball get_circum_ball_with_fallback(
     Ball b = get_circum_ball(R, dim);
     if (!b.success) {
         // Fallback for degenerate boundary points: run Welzl on R itself
-        std::vector<int> r_indices(R.size(), -1);
         auto dummy_callback = [](int) -> bool { return true; };
-        b = welzl_impl(R, {}, dim, static_cast<int>(R.size()), dummy_callback, r_indices);
+        b = welzl_impl(R, {}, dim, static_cast<int>(R.size()), dummy_callback);
     }
     return b;
 }
 
 // Recursive implementation of Welzl's Minimum Enclosing Ball algorithm with consent checks.
-// p_indices maps the shuffled points in P to their original pre-shuffled indices.
-// This ensures that consent_callback is queried with the correct original point index.
 Ball welzl_impl(
     const std::vector<std::vector<double>>& P,
     std::vector<std::vector<double>> R,
     int dim,
     int n,
-    const std::function<bool(int)>& consent_callback,
-    const std::vector<int>& p_indices
+    const std::function<bool(int)>& consent_callback
 ) {
     if (n == 0 || static_cast<int>(R.size()) == dim + 1) {
         return get_circum_ball_with_fallback(R, dim);
@@ -190,19 +185,10 @@ Ball welzl_impl(
         
         if (inside) continue;
         
-        // orig_idx is the original pre-shuffled index of the point.
-        // A value >= 0 indicates a point from the original dataset requiring a consent check.
-        // A value < 0 (e.g. in fallback runs on degenerate base cases) skips the consent check.
-        int orig_idx = p_indices[i];
-        bool consented = true;
-        if (orig_idx >= 0) {
-            consented = consent_callback(orig_idx);
-        }
-        
-        if (consented) {
+        if (consent_callback(i)) {
             auto next_R = R;
             next_R.push_back(pt);
-            Ball next_b = welzl_impl(P, next_R, dim, i, consent_callback, p_indices);
+            Ball next_b = welzl_impl(P, next_R, dim, i, consent_callback);
             if (next_b.success) {
                 b = next_b;
                 radius_sq = b.radius_sq;
@@ -218,7 +204,6 @@ Ball welzl_impl(
 extern "C" {
     bool welzl_consent(
         const double* points,
-        const int* original_indices,
         int num_points,
         int dim,
         bool (*consent_callback)(int),
@@ -236,9 +221,7 @@ extern "C" {
             }
         }
         
-        std::vector<int> p_indices(original_indices, original_indices + num_points);
-        
-        Ball b = welzl_impl(P, {}, dim, num_points, consent_callback, p_indices);
+        Ball b = welzl_impl(P, {}, dim, num_points, consent_callback);
         
         if (b.success && b.radius_sq >= 0.0) {
             for (int d = 0; d < dim; ++d) {
