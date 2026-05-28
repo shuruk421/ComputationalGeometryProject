@@ -655,10 +655,10 @@ def main():
     # --- Dimension on X-axis ---
     dimensions = list(range(3, 8))  # 3 to 7 inclusive
     logger.info(f"Running Box Benchmarks vs Dimension (n_runs={n_runs})...")
-    plot_box_vs_dimension(dimensions, consent_probability, num_points=1000, n_runs=n_runs)
+    plot_box_vs_dimension(dimensions, consent_probability, num_points=10000, n_runs=n_runs)
 
     logger.info(f"Running Sphere Benchmarks vs Dimension (n_runs={n_runs})...")
-    plot_sphere_vs_dimension(dimensions, consent_probability, num_points=1000, n_runs=n_runs)
+    plot_sphere_vs_dimension(dimensions, consent_probability, num_points=10000, n_runs=n_runs)
 
 
 if __name__ == "__main__":
