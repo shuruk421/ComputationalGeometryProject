@@ -366,9 +366,7 @@ def plot_box_vs_consent(
     plt.close()
 
 
-def plot_sphere_vs_consent(
-    n_dim, num_points, consent_prob_list, radius=10, n_runs=10
-):
+def plot_sphere_vs_consent(n_dim, num_points, consent_prob_list, radius=10, n_runs=10):
     """
     Runs sphere algorithms over a range of consent probabilities, measuring both oracle calls and running times,
     then saves both corresponding plots.
@@ -482,35 +480,25 @@ def main():
     n_runs = args.runs
     n_dim = 3
     consent_probability = 0.7
-    num_points_list = range(100, 10000, 500)
+    num_points_list = range(100, 100000, 2000)
 
     logger.info(f"Running Box Benchmarks vs Number of Points (n_runs={n_runs})...")
-    plot_box_vs_points(
-        n_dim, consent_probability, num_points_list, n_runs=n_runs
-    )
+    plot_box_vs_points(n_dim, consent_probability, num_points_list, n_runs=n_runs)
 
     logger.info(f"Running Sphere Benchmarks vs Number of Points (n_runs={n_runs})...")
-    plot_sphere_vs_points(
-        n_dim, consent_probability, num_points_list, n_runs=n_runs
-    )
+    plot_sphere_vs_points(n_dim, consent_probability, num_points_list, n_runs=n_runs)
 
     # --- Consent probability on X-axis ---
     num_points_fixed = 500
-    consent_prob_list = [p / 100 for p in range(5, 100, 5)]
+    consent_prob_list = [p / 100 for p in range(5, 100, 2)]
 
-    logger.info(
-        f"Running Box Benchmarks vs Consent Probability (n_runs={n_runs})..."
-    )
-    plot_box_vs_consent(
-        n_dim, num_points_fixed, consent_prob_list, n_runs=n_runs
-    )
+    logger.info(f"Running Box Benchmarks vs Consent Probability (n_runs={n_runs})...")
+    plot_box_vs_consent(n_dim, num_points_fixed, consent_prob_list, n_runs=n_runs)
 
     logger.info(
         f"Running Sphere Benchmarks vs Consent Probability (n_runs={n_runs})..."
     )
-    plot_sphere_vs_consent(
-        n_dim, num_points_fixed, consent_prob_list, n_runs=n_runs
-    )
+    plot_sphere_vs_consent(n_dim, num_points_fixed, consent_prob_list, n_runs=n_runs)
 
 
 if __name__ == "__main__":

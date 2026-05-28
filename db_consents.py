@@ -5,6 +5,11 @@ from typing import Any, List, Optional, Tuple
 import numpy as np
 
 
+# Tolerance constants for geometric checks
+GEOMETRY_TOLERANCE = 1e-10
+DEBUG_BOUNDARY_TOLERANCE = 1e-7
+
+
 def generate_in_box(n, low=0, high=1, count=1):
     """
     Generates 'count' random points of dimension 'n' within a box defined by [low, high].
@@ -172,7 +177,10 @@ def incremental_orthogonal(relation, oracle):
 
 
 def is_point_in_sphere(
-    point: List[float], center: List[float], radius_sq: float, tolerance=1e-10
+    point: List[float],
+    center: List[float],
+    radius_sq: float,
+    tolerance=GEOMETRY_TOLERANCE,
 ):
     """
     Checks if a point is inside a sphere (inclusive).
@@ -286,7 +294,7 @@ def welzl(
         if debug:
             for p in R:
                 dist_sq = sum((pi - ci) ** 2 for pi, ci in zip(p, center))
-                assert abs(dist_sq - radius_sq) < 1e-7, (
+                assert abs(dist_sq - radius_sq) < DEBUG_BOUNDARY_TOLERANCE, (
                     f"Point {p} not on boundary. Dist_sq: {dist_sq}, Radius_sq: {radius_sq}"
                 )
         return center, radius_sq
@@ -303,7 +311,9 @@ def welzl(
 
         p_tup = P[i]
         if oracle.get_ground_truth(p_tup):
-            center, radius_sq = welzl(P, R + [pt], oracle, d, i, debug=debug, P_coords=P_coords)
+            center, radius_sq = welzl(
+                P, R + [pt], oracle, d, i, debug=debug, P_coords=P_coords
+            )
 
     return center, radius_sq
 
@@ -401,7 +411,9 @@ def decremental_orthogonal(points, oracle):
             active_indices.remove(idx)
 
 
-def decremental_distance_based(points, oracle):
+def decremental_distance_based(
+    points: List[Tuple[List[float], bool]], oracle: Oracle
+) -> Tuple[Optional[List[float]], float]:
     """
     Finds the minimum enclosing ball containing all consenting points by iteratively
     removing non-consenting points that sit on the boundary of the ball.
@@ -424,8 +436,9 @@ def decremental_distance_based(points, oracle):
         if not active_indices:
             return None, 0.0
 
-        # 1. Calculate Minimum Enclosing Ball for active points using our iterative Welzl implementation
-        active_P = [points[idx] for idx in active_indices]
+        # 1. Calculate Minimum Enclosing Ball for active points using our Welzl implementation
+        # Pass all consents as True so that Welzl ignores real consent flags during MEB computation
+        active_P = [(points[idx][0], True) for idx in active_indices]
         random.shuffle(active_P)
         center, radius_sq = welzl(active_P, [], Oracle(), d, len(active_P))
 
@@ -438,8 +451,7 @@ def decremental_distance_based(points, oracle):
                 diff = pt[col] - center[col]
                 dist_sq += diff * diff
 
-            # Check tolerance matching np.isclose defaults (atol=1e-8, rtol=1e-5)
-            if abs(dist_sq - radius_sq) <= 1e-8 + 1e-5 * radius_sq:
+            if abs(dist_sq - radius_sq) <= GEOMETRY_TOLERANCE:
                 # This point is on the boundary, check consent via oracle
                 if not oracle.get_ground_truth(points[idx]):
                     to_remove.append(idx)
