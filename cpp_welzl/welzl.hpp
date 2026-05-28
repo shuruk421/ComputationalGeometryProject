@@ -2,6 +2,7 @@
 #define WELZL_HPP
 
 #include <vector>
+#include <functional>
 
 // Helper structure representing a bounding ball.
 struct Ball {
@@ -26,5 +27,14 @@ extern "C" {
 // Internal functions (exposed for testing)
 Ball get_circum_ball(const std::vector<std::vector<double>>& R, int dim);
 bool solve_linear_system(const std::vector<std::vector<double>>& M, const std::vector<double>& B, std::vector<double>& x);
+
+Ball welzl_impl(
+    const std::vector<std::vector<double>>& P,
+    std::vector<std::vector<double>> R,
+    int dim,
+    int n,
+    const std::function<bool(int)>& consent_callback,
+    const std::vector<int>& p_indices
+);
 
 #endif // WELZL_HPP

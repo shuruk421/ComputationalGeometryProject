@@ -127,7 +127,7 @@ Ball welzl_impl(
     std::vector<std::vector<double>> R,
     int dim,
     int n,
-    bool (*consent_callback)(int),
+    const std::function<bool(int)>& consent_callback,
     const std::vector<int>& p_indices
 );
 
@@ -136,7 +136,7 @@ Ball welzl_impl(
     std::vector<std::vector<double>> R,
     int dim,
     int n,
-    bool (*consent_callback)(int),
+    const std::function<bool(int)>& consent_callback,
     const std::vector<int>& p_indices
 ) {
     if (n == 0 || static_cast<int>(R.size()) == dim + 1) {
