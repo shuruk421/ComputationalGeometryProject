@@ -1,5 +1,5 @@
-import random
 import math
+import random
 from typing import Any, List, Optional, Tuple
 
 import numpy as np
@@ -252,7 +252,7 @@ def get_circum_ball(R: List[List[float]]) -> Tuple[List[float], float]:
     try:
         lambdas = np.linalg.solve(M, B)
     except np.linalg.LinAlgError:
-        # Fallback for degenerate cases: use our iterative Welzl
+        # Fallback for degenerate cases: use Welzl
         R_P = [(p.tolist(), True) for p in R_arr]
         return welzl(R_P, [], Oracle(), len(R_arr[0]), len(R_P))
 
@@ -270,43 +270,42 @@ def welzl(
     d: int,
     n: int,
     debug: bool = False,
+    P_coords: Optional[List[List[float]]] = None,
 ) -> Tuple[Optional[List[float]], float]:
     """
     Welzl's algorithm for finding the smallest enclosing ball.
-    Modified to account for point consent, implemented iteratively.
+    Modified to account for point consent.
+    This is written as a hybrid recursive-loop function: it loops over the points P[:n],
+    recursing only when the boundary set R expands (which happens at most d+1 times).
+    This avoids stack overhead and deep recursion limits.
     """
-    stack = [(n, R, 0)]
-    result = (None, -1.0)
+    if n == 0 or len(R) == d + 1:
+        if len(R) == 0:
+            return None, -1.0
+        center, radius_sq = get_circum_ball(R)
+        if debug:
+            for p in R:
+                dist_sq = sum((pi - ci) ** 2 for pi, ci in zip(p, center))
+                assert abs(dist_sq - radius_sq) < 1e-7, (
+                    f"Point {p} not on boundary. Dist_sq: {dist_sq}, Radius_sq: {radius_sq}"
+                )
+        return center, radius_sq
 
-    while stack:
-        curr_n, curr_R, state = stack.pop()
+    if P_coords is None:
+        P_coords = [p[0] for p in P]
 
-        if curr_n == 0 or len(curr_R) == d + 1:
-            if len(curr_R) == 0:
-                result = (None, -1.0)
-            else:
-                center, radius_sq = get_circum_ball(curr_R)
-                if debug:
-                    for p in curr_R:
-                        dist_sq = sum((pi - ci) ** 2 for pi, ci in zip(p, center))
-                        assert abs(dist_sq - radius_sq) < 1e-7, (
-                            f"Point {p} not on boundary. Dist_sq: {dist_sq}, Radius_sq: {radius_sq}"
-                        )
-                result = (center, radius_sq)
-        elif state == 0:
-            stack.append((curr_n, curr_R, 1))
-            stack.append((curr_n - 1, curr_R, 0))
-        else:
-            p_tup = P[curr_n - 1]
-            center, radius_sq = result
-            if center is not None and is_point_in_sphere(p_tup[0], center, radius_sq):
-                pass
-            elif oracle.get_ground_truth(p_tup):
-                stack.append((curr_n - 1, curr_R + [p_tup[0]], 0))
-            else:
-                pass
+    center, radius_sq = get_circum_ball(R)
 
-    return result
+    for i in range(n):
+        pt = P_coords[i]
+        if center is not None and is_point_in_sphere(pt, center, radius_sq):
+            continue
+
+        p_tup = P[i]
+        if oracle.get_ground_truth(p_tup):
+            center, radius_sq = welzl(P, R + [pt], oracle, d, i, debug=debug, P_coords=P_coords)
+
+    return center, radius_sq
 
 
 def incremental_distance_based(relation, oracle, debug: bool = False):
@@ -428,9 +427,7 @@ def decremental_distance_based(points, oracle):
         # 1. Calculate Minimum Enclosing Ball for active points using our iterative Welzl implementation
         active_P = [points[idx] for idx in active_indices]
         random.shuffle(active_P)
-        center, radius_sq = welzl(
-            active_P, [], Oracle(), d, len(active_P)
-        )
+        center, radius_sq = welzl(active_P, [], Oracle(), d, len(active_P))
 
         # 2. Identify points on the boundary (Edge)
         to_remove = []
