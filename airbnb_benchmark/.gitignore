@@ -1,0 +1,4 @@
+# Airbnb data files (downloaded separately)
+*.csv
+*.csv.gz
+tile_cache/
