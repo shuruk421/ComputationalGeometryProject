@@ -1,0 +1,4 @@
+# Flight dataset files
+*.csv
+*.csv.gz
+tile_cache/
