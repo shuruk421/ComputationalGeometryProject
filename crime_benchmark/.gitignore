@@ -1,0 +1,4 @@
+# Crime data files
+*.csv
+*.csv.gz
+tile_cache/
