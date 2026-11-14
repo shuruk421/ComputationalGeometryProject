@@ -1,0 +1,12 @@
+# Downloaded data and map tiles are never committed
+*.csv
+*.csv.gz
+*.zip
+*.tsv
+data/
+tile_cache/
+
+# ...but the small raw result tables are (the repo root ignores results/)
+!results/
+!results/*.csv
+!results/*.json
