@@ -16,8 +16,9 @@ Steps (each also runnable on its own):
 
 Design decisions
 ----------------
-Data.  The file is a single aircraft (ICAO24 471f63, a Wizz Air A320) from
-2016-03-09 to 2019-11-27, ~51M rows at one row per second, sorted by time.
+Data.  The file is a single aircraft (ICAO24 471f63, Wizz Air callsigns WZZ*,
+main base Bucharest) from 2016-03-09 to 2019-11-27, ~51M rows at one row per
+second (~590 days of airborne time), sorted by time.
 Reading only the head would cover a few flights from March 2016, so the
 sampler streams the whole file.  Cleaning drops stale (repeated) positions,
 garbled position jumps (implied speed > 350 m/s to every neighbour),
