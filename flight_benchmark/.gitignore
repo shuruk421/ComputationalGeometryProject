@@ -2,3 +2,8 @@
 *.csv
 *.csv.gz
 tile_cache/
+# Whole-file sample cache (rebuilt from flight.csv by flight_data.py)
+cache/
+*.npz
+# Small JSON results are committed (the root .gitignore ignores results/)
+!results/
