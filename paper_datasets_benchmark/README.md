@@ -33,8 +33,8 @@ credit-card URL, [3] "Flights Dataset" points to Honeynet, [6] "Funds Dataset" p
 bank-loan URL). The URLs themselves are unambiguous.
 
 **Airbnb, Chicago crimes, ADS-B.** The paper uses none of them. Its FL is the
-BTS on-time *table*, not ADS-B trajectories. I also grepped the author's two consent
-papers (Drien, Amarilli, Amsterdamer, ICDE 2021, *Managing Consent for Data Access in
+BTS on-time *table*, not ADS-B trajectories. The author's two consent
+papers were also checked (Drien, Amarilli, Amsterdamer, ICDE 2021, *Managing Consent for Data Access in
 Shared Databases*; Drien et al. 2023, *Query-Guided Resolution in Uncertain
 Databases*). Neither mentions Airbnb, Chicago or ADS-B. They use a synthetic
 generator, NELL, and TPC-H.
