@@ -1,4 +1,8 @@
-# Crime data files
+# Crime data files and local caches
 *.csv
 *.csv.gz
 tile_cache/
+sample_cache/
+
+# The root .gitignore ignores every results/ folder; keep this one (JSON only).
+!results/

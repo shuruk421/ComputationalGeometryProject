@@ -1,27 +1,43 @@
 """
-Plot Chicago Crime Incidents and Minimum Enclosing Ball (MEB) on OpenStreetMap.
+Small-multiple maps of the consenting MEB of Chicago crimes on map tiles.
 
-This script loads Chicago crime records, determines point consent based on a user-specified
-column (e.g., ARREST, DOMESTIC, PRIMARY=THEFT), computes the MEB of the consenting points,
-and plots consenting, non-consenting, and MEB boundary points onto OpenStreetMap tiles.
+One panel per consent threshold: consenting vs non-consenting incidents, the
+consenting-only MEB (a real geographic disk: the plot is in local km, and the
+Web-Mercator basemap is resampled row by row into that frame), its support
+points, the all-points MEB as a dashed reference, and a label with the
+threshold, % consenting and the consent requests of both algorithms.
+
+The panels draw exactly the benchmark sample for seed 0, so the request counts
+come from results/benchmark_runs.json (recomputed if that file is missing).
 """
 
 import argparse
-import csv
+import json
 import math
 import os
-import random
 import sys
 import urllib.request
-from PIL import Image
+
 import numpy as np
-import matplotlib.pyplot as plt
+from PIL import Image
 
-# Add parent directory to path to import db_consents
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-import db_consents
-from db_consents import Oracle, decremental_distance_based, incremental_distance_based
+import consent as C
+import crime_data as cd
+import viz_style as V
 
+V.apply()
+import matplotlib.pyplot as plt  # noqa: E402
+from matplotlib.lines import Line2D  # noqa: E402
+from matplotlib.patches import Circle  # noqa: E402
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+RESULTS = os.path.join(HERE, "results")
+TILE_ZOOM = 11
+
+
+# --------------------------------------------------------------------------
+# Tiles (CARTO Positron, cached in tile_cache/)
+# --------------------------------------------------------------------------
 
 def lat_lng_to_tile(lat, lng, zoom):
     """Convert latitude/longitude to OSM tile coordinates."""
@@ -41,26 +57,24 @@ def tile_to_lat_lng(xtile, ytile, zoom):
     return lat, lng
 
 
-def fetch_and_stitch_tiles(lat_min, lat_max, lng_min, lng_max, zoom=11):
-    """Fetch OpenStreetMap tiles covering the bounding box and stitch them together."""
+def fetch_and_stitch_tiles(lat_min, lat_max, lng_min, lng_max, zoom=TILE_ZOOM):
+    """Fetch map tiles covering the bounding box and stitch them together.
+
+    Returns (image, [lng_left, lng_right, lat_bottom, lat_top])."""
     xtile_min, ytile_min = lat_lng_to_tile(lat_max, lng_min, zoom)
     xtile_max, ytile_max = lat_lng_to_tile(lat_min, lng_max, zoom)
 
-    print(f"Fetching map tiles for zoom {zoom}: x=[{xtile_min}..{xtile_max}], y=[{ytile_min}..{ytile_max}]...")
-
-    cache_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "tile_cache")
+    cache_dir = os.path.join(HERE, "tile_cache")
     os.makedirs(cache_dir, exist_ok=True)
 
     tile_size = 256
     width = (xtile_max - xtile_min + 1) * tile_size
     height = (ytile_max - ytile_min + 1) * tile_size
-
-    stitched_img = Image.new("RGBA", (width, height))
+    stitched_img = Image.new("RGBA", (width, height), (245, 245, 243, 255))
 
     for x in range(xtile_min, xtile_max + 1):
         for y in range(ytile_min, ytile_max + 1):
             tile_file = os.path.join(cache_dir, f"light_{zoom}_{x}_{y}.png")
-
             if not os.path.exists(tile_file):
                 url = f"https://cartodb-basemaps-a.global.ssl.fastly.net/light_all/{zoom}/{x}/{y}.png"
                 headers = {"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) ChicagoCrimeMEBPlotter/1.0"}
@@ -72,369 +86,193 @@ def fetch_and_stitch_tiles(lat_min, lat_max, lng_min, lng_max, zoom=11):
                 except Exception as e:
                     print(f"  Failed to fetch tile {zoom}/{x}/{y}: {e}")
                     continue
-
             try:
                 tile_img = Image.open(tile_file).convert("RGBA")
-                x_pos = (x - xtile_min) * tile_size
-                y_pos = (y - ytile_min) * tile_size
-                stitched_img.paste(tile_img, (x_pos, y_pos))
+                stitched_img.paste(tile_img, ((x - xtile_min) * tile_size, (y - ytile_min) * tile_size))
             except Exception as e:
                 print(f"  Failed to process tile {tile_file}: {e}")
 
     lat_top, lng_left = tile_to_lat_lng(xtile_min, ytile_min, zoom)
     lat_bottom, lng_right = tile_to_lat_lng(xtile_max + 1, ytile_max + 1, zoom)
-
-    extent = [lng_left, lng_right, lat_bottom, lat_top]
-    return stitched_img, extent
+    return stitched_img, [lng_left, lng_right, lat_bottom, lat_top]
 
 
-def parse_consent_spec(column_spec, default_value="true"):
-    """
-    Parses column specification into (column_name, expected_value).
-    Examples:
-        'ARREST' -> ('ARREST', 'true')
-        'PRIMARY=THEFT' -> ('PRIMARY', 'THEFT')
-        'DOMESTIC' -> ('DOMESTIC', 'true')
-    """
-    if "=" in column_spec:
-        col, val = column_spec.split("=", 1)
-        return col.strip(), val.strip()
-    return column_spec.strip(), default_value.strip()
+def _merc(lat):
+    return math.log(math.tan(math.pi / 4 + math.radians(lat) / 2))
 
 
-def find_column_key(headers, target_col):
-    """Finds the actual CSV header key matching target_col (case-insensitive, ignores type suffix)."""
-    target_clean = target_col.split(":")[0].strip().upper()
-    for h in headers:
-        clean_h = h.split(":")[0].strip().upper()
-        if clean_h == target_clean or h.upper() == target_clean:
-            return h
-    return None
+def basemap_km(proj, xlim, ylim, zoom=TILE_ZOOM, fade=0.25):
+    """Basemap resampled into the local km frame. Returns (rgb array, extent)."""
+    lat_lo, lng_lo = proj.to_latlng(xlim[0], ylim[0])
+    lat_hi, lng_hi = proj.to_latlng(xlim[1], ylim[1])
+    img, (lng_l, lng_r, lat_b, lat_t) = fetch_and_stitch_tiles(lat_lo, lat_hi, lng_lo, lng_hi, zoom)
+    src = np.asarray(img.convert("RGB")).astype(np.float32)
+    h, w = src.shape[:2]
+    out_w = max(2, int(round(w * (lng_hi - lng_lo) / (lng_r - lng_l))))
+    m_t, m_b = _merc(lat_t), _merc(lat_b)
+    out_h = max(2, int(round(h * (_merc(lat_hi) - _merc(lat_lo)) / (m_t - m_b))))
+    xs = xlim[0] + (np.arange(out_w) + 0.5) / out_w * (xlim[1] - xlim[0])
+    ys = ylim[1] - (np.arange(out_h) + 0.5) / out_h * (ylim[1] - ylim[0])
+    cols = [(proj.to_latlng(x, 0.0)[1] - lng_l) / (lng_r - lng_l) * w for x in xs]
+    rows = [(m_t - _merc(proj.to_latlng(0.0, y)[0])) / (m_t - m_b) * h for y in ys]
+    ci = np.clip(np.array(cols).astype(int), 0, w - 1)
+    ri = np.clip(np.array(rows).astype(int), 0, h - 1)
+    out = src[ri][:, ci]
+    out = out * (1 - fade) + 255.0 * fade  # quieten the basemap so the data leads
+    return out.astype(np.uint8), [xlim[0], xlim[1], ylim[0], ylim[1]]
 
 
-def load_crimes_with_consent(csv_path, max_points, consent_col, consent_val):
-    """
-    Loads crime records and assigns boolean consent based on the specified column/value.
-    """
-    points_with_consent = []
-    total_read = 0
+# --------------------------------------------------------------------------
+# Panels
+# --------------------------------------------------------------------------
 
-    print(f"Reading crime data from {csv_path}...")
-    with open(csv_path, "r", encoding="utf-8") as f:
-        reader = csv.DictReader(f, delimiter=";")
-        headers = reader.fieldnames or []
-
-        col_key = find_column_key(headers, consent_col)
-        if not col_key:
-            print(f"Error: Column '{consent_col}' not found in CSV. Available columns:")
-            for h in headers:
-                print(f"  - {h}")
-            sys.exit(1)
-
-        print(f"Using column '{col_key}' for consent criteria (target value: '{consent_val}')...")
-
-        is_bool_mode = consent_val.lower() in ("true", "false", "1", "0", "yes", "no")
-        target_bool = consent_val.lower() in ("true", "1", "yes")
-
-        for row in reader:
-            total_read += 1
-            try:
-                lat_str = row.get("LATITUDE:DOUBLE", "")
-                lng_str = row.get("LONGITUDE:DOUBLE", "")
-                if not lat_str or not lng_str:
-                    continue
-
-                lat = float(lat_str)
-                lng = float(lng_str)
-
-                # Valid Chicago area bounds check
-                if not (41.60 <= lat <= 42.10 and -87.95 <= lng <= -87.50):
-                    continue
-
-                raw_val = row.get(col_key, "").strip()
-
-                if is_bool_mode:
-                    consent = (raw_val.lower() in ("true", "1", "yes")) == target_bool
-                else:
-                    consent = (raw_val.upper() == consent_val.upper())
-
-                points_with_consent.append(([lat, lng], consent))
-
-                if len(points_with_consent) >= max_points * 3:
-                    break
-
-            except (ValueError, KeyError):
-                continue
-
-    if len(points_with_consent) > max_points:
-        random.seed(42)
-        points_with_consent = random.sample(points_with_consent, max_points)
-
-    consenting_count = sum(1 for _, c in points_with_consent if c)
-    print(f"Sampled {len(points_with_consent)} points from {total_read} rows.")
-    print(f"Consenting: {consenting_count} / {len(points_with_consent)} "
-          f"({100 * consenting_count / max(len(points_with_consent), 1):.1f}%)")
-
-    return points_with_consent, col_key
+def load_seed0_calls(exp_id):
+    """{(cutoff, algorithm): calls} for seed 0 of a sweep, if results exist."""
+    path = os.path.join(RESULTS, "benchmark_runs.json")
+    if not os.path.exists(path):
+        return {}
+    with open(path) as f:
+        runs = json.load(f)["runs"]
+    return {(r["cutoff"], r["algorithm"]): r["calls"]
+            for r in runs if r["experiment"] == exp_id and r["seed"] == 0}
 
 
-def main():
-    parser = argparse.ArgumentParser(
-        description="Plot Chicago Crime MEB and (Non-)Consenting Points on OpenStreetMap"
-    )
-    parser.add_argument(
-        "--algo",
-        choices=["decremental", "incremental"],
-        default="decremental",
-        help="MEB algorithm to run: 'decremental' or 'incremental' (default: decremental)"
-    )
-    parser.add_argument(
-        "--column",
-        "--consent-column",
-        type=str,
-        default="ARREST",
-        help="Column to determine consent (e.g. 'ARREST', 'DOMESTIC', 'PRIMARY=THEFT'). Default: ARREST"
-    )
-    parser.add_argument(
-        "--consent-value",
-        type=str,
-        default="true",
-        help="Expected value in column to consider consenting (default: 'true')"
-    )
-    parser.add_argument(
-        "--n-points",
-        type=int,
-        default=6000,
-        help="Number of points to sample and plot (default: 6000)"
-    )
-    parser.add_argument(
-        "--csv",
-        type=str,
-        default=None,
-        help="Path to Crimes_Ordered.csv (default: Crimes_Ordered.csv in script directory)"
-    )
-    parser.add_argument(
-        "--zoom",
-        type=int,
-        default=11,
-        help="Zoom level for OpenStreetMap tiles (default: 11)"
-    )
-    parser.add_argument(
-        "--output",
-        type=str,
-        default=None,
-        help="Output PNG file path (default: chicago_crimes_meb_map.png)"
-    )
+def pick_panels(cutoffs, k):
+    if len(cutoffs) <= k:
+        return list(cutoffs)
+    idx = sorted({int(round(i * (len(cutoffs) - 1) / (k - 1))) for i in range(k)})
+    return [cutoffs[i] for i in idx]
 
-    args = parser.parse_args()
 
-    base_dir = os.path.dirname(os.path.abspath(__file__))
-    csv_path = args.csv if args.csv else os.path.join(base_dir, "Crimes_Ordered.csv")
-    output_path = args.output if args.output else os.path.join(base_dir, "chicago_crimes_meb_map.png")
+def draw_panel(ax, base, coords, flags, gt_c, gt_r, all_c, all_r, title, lines):
+    img, extent = base
+    ax.imshow(img, extent=extent, origin="upper", interpolation="bilinear", zorder=0)
+    xs_n = [p[0] for p, f in zip(coords, flags) if not f]
+    ys_n = [p[1] for p, f in zip(coords, flags) if not f]
+    xs_c = [p[0] for p, f in zip(coords, flags) if f]
+    ys_c = [p[1] for p, f in zip(coords, flags) if f]
+    ax.scatter(xs_n, ys_n, s=2.2, c=V.NONCONSENT, alpha=0.55, linewidths=0, zorder=2)
+    ax.scatter(xs_c, ys_c, s=3.2, c=V.CONSENT, alpha=0.9, linewidths=0, zorder=3)
+    ax.add_patch(Circle(all_c, all_r, fill=False, ec=V.INK2, lw=1.0, ls=(0, (4, 3)), zorder=4))
+    if gt_c is not None:
+        ax.add_patch(Circle(gt_c, gt_r, fill=False, ec=V.INK, lw=1.8, zorder=5))
+        ax.plot([gt_c[0]], [gt_c[1]], marker="+", ms=7, mew=1.6, color=V.INK, zorder=6)
+        sup = C.support_points([p for p, f in zip(coords, flags) if f], gt_c, gt_r, 1e-7)
+        ax.scatter([p[0] for p in sup], [p[1] for p in sup], s=46, c=V.INK, edgecolors=V.SURFACE,
+                   linewidths=1.6, zorder=7)
+    ax.text(0.03, 0.97, title, transform=ax.transAxes, va="top", ha="left", fontsize=10.5,
+            fontweight="semibold", color=V.INK, zorder=9,
+            bbox=dict(boxstyle="round,pad=0.35", fc=V.SURFACE, ec="none", alpha=0.92))
+    ax.text(0.03, 0.865, "\n".join(lines), transform=ax.transAxes, va="top", ha="left",
+            fontsize=8.8, color=V.INK2, linespacing=1.35, zorder=9,
+            bbox=dict(boxstyle="round,pad=0.35", fc=V.SURFACE, ec="none", alpha=0.92))
+    ax.set_xlim(extent[0], extent[1])
+    ax.set_ylim(extent[2], extent[3])
+    ax.set_aspect("equal")
+    ax.set_xticks([])
+    ax.set_yticks([])
+    ax.grid(False)
+    for s in ax.spines.values():
+        s.set_color(V.AXIS)
+        s.set_linewidth(0.8)
 
-    if not os.path.exists(csv_path):
-        print(f"Error: Dataset not found at {csv_path}")
-        sys.exit(1)
 
-    consent_col, consent_val = parse_consent_spec(args.column, args.consent_value)
+def scale_bar(ax, extent, km=10):
+    x0 = extent[1] - (extent[1] - extent[0]) * 0.05 - km
+    y0 = extent[2] + (extent[3] - extent[2]) * 0.05
+    ax.plot([x0, x0 + km], [y0, y0], color=V.INK, lw=2, solid_capstyle="butt", zorder=9)
+    ax.text(x0 + km / 2, y0 + 0.8, f"{km} km", ha="center", va="bottom", fontsize=8.5, color=V.INK, zorder=9)
 
-    points_with_consent, actual_col_name = load_crimes_with_consent(
-        csv_path=csv_path,
-        max_points=args.n_points,
-        consent_col=consent_col,
-        consent_val=consent_val
-    )
 
-    consenting_pts = [pt for pt, c in points_with_consent if c]
-    has_consenting = len(consenting_pts) > 0
+def plot_sweep_maps(records, proj, family, exp_id, n, targets, out_path, ncols=3, max_panels=9,
+                    title=None, subtitle=None, seed=0):
+    fam = C.THRESHOLD_FAMILIES[family]
+    cutoffs = []
+    for t in targets:
+        c = fam.cutoff_for_fraction(records, t)
+        if c not in cutoffs:
+            cutoffs.append(c)
+    cutoffs = pick_panels(cutoffs, max_panels)
+    rows, coords = cd.draw_points(records, proj, n, seed=seed)
+    all_c, all_r = C.exact_meb(coords)
+    pad = 1.06
+    xlim = (all_c[0] - all_r * pad, all_c[0] + all_r * pad)
+    ylim = (all_c[1] - all_r * pad, all_c[1] + all_r * pad)
+    base = basemap_km(proj, xlim, ylim)
+    calls = load_seed0_calls(exp_id)
 
-    if has_consenting:
-        print(f"Computing Minimum Enclosing Ball of consenting points ({args.algo.upper()})...")
-        db_consents.USE_CPP_BACKEND = False
-        oracle = Oracle()
-        if args.algo == "incremental":
-            center, radius = incremental_distance_based(points_with_consent, oracle)
-        else:
-            center, radius = decremental_distance_based(points_with_consent, oracle)
-
-        oracle_calls = oracle.get_call_count()
-        lat_c, lng_c = center[0], center[1]
-        print(f"Computed MEB Center: Lat={lat_c:.5f}, Lng={lng_c:.5f}")
-        print(f"MEB Radius (degrees): {radius:.5f}")
-        print(f"Consent Requests (Oracle Calls): {oracle_calls}")
-    else:
-        print("Warning: No consenting points found. MEB will not be drawn.")
-        lat_c, lng_c, radius = None, None, 0.0
-        oracle_calls = 0
-
-    # Separate points and find boundary support points
-    consenting_lats = []
-    consenting_lngs = []
-    non_consenting_lats = []
-    non_consenting_lngs = []
-    boundary_lats = []
-    boundary_lngs = []
-
-    tolerance = 1e-4
-    for (pt, consent) in points_with_consent:
-        if consent:
-            if has_consenting:
-                dist = math.sqrt((pt[0] - lat_c) ** 2 + (pt[1] - lng_c) ** 2)
-                if abs(dist - radius) <= tolerance:
-                    boundary_lats.append(pt[0])
-                    boundary_lngs.append(pt[1])
-                else:
-                    consenting_lats.append(pt[0])
-                    consenting_lngs.append(pt[1])
+    nrows = int(math.ceil(len(cutoffs) / ncols))
+    fig, axes = plt.subplots(nrows, ncols, figsize=(4.3 * ncols, 4.3 * nrows + 1.5))
+    axes = np.atleast_1d(axes).ravel()
+    for ax, cut in zip(axes, cutoffs):
+        rule = fam.rule(cut)
+        flags = [bool(rule(r)) for r in rows]
+        cons = [p for p, f in zip(coords, flags) if f]
+        gt_c, gt_r = C.exact_meb(cons, seed=seed) if cons else (None, 0.0)
+        pts = list(zip(coords, flags))
+        req = {}
+        for a in C.ALGORITHMS:
+            if (cut, a) in calls:
+                req[a] = calls[(cut, a)]
             else:
-                consenting_lats.append(pt[0])
-                consenting_lngs.append(pt[1])
-        else:
-            non_consenting_lats.append(pt[0])
-            non_consenting_lngs.append(pt[1])
+                req[a] = C.run_algorithm(a, pts, seed=1000 + seed)["calls"]
+        pct = 100.0 * len(cons) / len(rows)
+        lines = [f"{pct:.0f}% consenting  ·  MEB r = {gt_r:.1f} km",
+                 f"requests: incremental {req['incremental']:,}",
+                 f"              decremental {req['decremental']:,}"]
+        title = fam.label(cut).replace(">=", "≥").replace("<=", "≤")
+        draw_panel(ax, base, coords, flags, gt_c, gt_r, all_c, all_r, title, lines)
+    for ax in axes[len(cutoffs):]:
+        ax.axis("off")
+    scale_bar(axes[len(cutoffs) - 1], base[1])
 
-    print(f"Identified {len(boundary_lats)} boundary support points.")
+    handles = [
+        Line2D([], [], ls="none", marker="o", ms=6, mfc=V.CONSENT, mec="none", label="Consenting incident"),
+        Line2D([], [], ls="none", marker="o", ms=6, mfc=V.NONCONSENT, mec="none", label="Non-consenting incident"),
+        Line2D([], [], color=V.INK, lw=1.8, label="MEB of consenting incidents"),
+        Line2D([], [], ls="none", marker="o", ms=8, mfc=V.INK, mec=V.SURFACE, mew=1.5, label="Support points"),
+        Line2D([], [], color=V.INK2, lw=1.0, ls=(0, (4, 3)), label="MEB of all incidents"),
+    ]
+    fig.legend(handles=handles, loc="lower center", ncol=5, bbox_to_anchor=(0.5, 0.012), fontsize=9.5,
+               handlelength=2.2, columnspacing=1.6)
+    fig.suptitle(title or f"Consenting MEB by {fam.column} threshold", x=0.02, ha="left", y=0.995,
+                 fontsize=15, fontweight="semibold", color=V.INK)
+    fig.text(0.02, 0.962 if nrows > 2 else 0.945, subtitle or "", ha="left", va="top", fontsize=10.5,
+             color=V.INK2)
+    fig.text(0.98, 0.003, "Basemap © OpenStreetMap contributors © CARTO", ha="right", va="bottom",
+             fontsize=7.5, color=V.MUTED)
+    top = 0.935 if nrows > 2 else 0.885
+    fig.subplots_adjust(left=0.02, right=0.98, top=top, bottom=0.055, wspace=0.04, hspace=0.04)
+    fig.savefig(out_path, dpi=150)
+    plt.close(fig)
+    print(f"[maps] wrote {out_path}")
+    return out_path
 
-    # Calculate map bounding box
-    all_lats = [pt[0] for pt, _ in points_with_consent]
-    all_lngs = [pt[1] for pt, _ in points_with_consent]
 
-    if has_consenting:
-        plot_lat_min = min(min(all_lats), lat_c - radius)
-        plot_lat_max = max(max(all_lats), lat_c + radius)
-        plot_lng_min = min(min(all_lngs), lng_c - radius)
-        plot_lng_max = max(max(all_lngs), lng_c + radius)
-    else:
-        plot_lat_min, plot_lat_max = min(all_lats), max(all_lats)
-        plot_lng_min, plot_lng_max = min(all_lngs), max(all_lngs)
+def make_all(records, proj, out_dir=HERE):
+    import benchmark_crimes as B
 
-    lat_span = plot_lat_max - plot_lat_min
-    lng_span = plot_lng_max - plot_lng_min
-
-    pad_lat = max(lat_span * 0.06, 0.01)
-    pad_lng = max(lng_span * 0.06, 0.01)
-
-    lat_min, lat_max = plot_lat_min - pad_lat, plot_lat_max + pad_lat
-    lng_min, lng_max = plot_lng_min - pad_lng, plot_lng_max + pad_lng
-
-    map_img, extent = fetch_and_stitch_tiles(lat_min, lat_max, lng_min, lng_max, zoom=args.zoom)
-
-    # Plot
-    fig, ax = plt.subplots(figsize=(12, 10), dpi=150)
-    ax.imshow(map_img, extent=extent, origin="upper")
-
-    clean_col = actual_col_name.split(":")[0]
-    criteria_str = f"{clean_col} = {consent_val}"
-    consenting_total = len(consenting_lats) + len(boundary_lats)
-
-    # Non-consenting points (grey)
-    ax.scatter(
-        non_consenting_lngs,
-        non_consenting_lats,
-        c="#8e8e93",
-        s=2.5,
-        alpha=0.35,
-        zorder=2,
-        label=f"Non-Consenting ({clean_col} \u2260 {consent_val}, n={len(non_consenting_lats)})"
-    )
-
-    # Consenting interior points (emerald green)
-    ax.scatter(
-        consenting_lngs,
-        consenting_lats,
-        c="#10b981",
-        s=3.5,
-        alpha=0.6,
-        zorder=3,
-        label=f"Consenting ({criteria_str}, n={len(consenting_lats)})"
-    )
-
-    # Boundary points (vivid blue)
-    if boundary_lats:
-        ax.scatter(
-            boundary_lngs,
-            boundary_lats,
-            c="#007aff",
-            edgecolors="#ffffff",
-            linewidth=1.2,
-            s=55,
-            alpha=0.95,
-            zorder=6,
-            label=f"MEB Boundary Points (Support Set, n={len(boundary_lats)})"
-        )
-
-    # MEB footprint and center
-    if has_consenting:
-        circle = plt.Circle(
-            (lng_c, lat_c),
-            radius,
-            color="#ff3b30",
-            fill=True,
-            alpha=0.08,
-            linewidth=2,
-            linestyle="--",
-            label=f"MEB Footprint (Radius: {radius:.4f}\u00b0, Oracle Calls: {oracle_calls})"
-        )
-        ax.add_patch(circle)
-        circle_border = plt.Circle(
-            (lng_c, lat_c),
-            radius,
-            color="#ff3b30",
-            fill=False,
-            linewidth=2,
-            linestyle="-"
-        )
-        ax.add_patch(circle_border)
-
-        ax.plot(
-            lng_c,
-            lat_c,
-            marker="P",
-            color="#ff3b30",
-            markersize=10,
-            zorder=7,
-            label=f"MEB Center ({lat_c:.4f}, {lng_c:.4f})"
-        )
-
-    title_line1 = f"Chicago Crimes MEB ({args.algo.upper()}) \u2014 Criteria: {criteria_str}"
-    title_line2 = (
-        f"Total Points: {len(points_with_consent)}  |  "
-        f"Consenting: {consenting_total} ({100*consenting_total/max(len(points_with_consent),1):.1f}%)  |  "
-        f"Consent Requests (Oracle Calls): {oracle_calls}"
-    )
-
-    ax.set_title(
-        f"{title_line1}\n{title_line2}",
-        fontsize=12,
-        fontweight="bold",
-        color="#1c1c1e",
-        pad=15
-    )
-    ax.set_xlabel("Longitude", fontsize=9, color="#3a3a3c")
-    ax.set_ylabel("Latitude", fontsize=9, color="#3a3a3c")
-    ax.set_xlim(lng_min, lng_max)
-    ax.set_ylim(lat_min, lat_max)
-    ax.set_aspect("equal", adjustable="box")
-    ax.grid(True, color="#e5e5ea", linestyle=":", alpha=0.6)
-
-    fig.patch.set_facecolor("#ffffff")
-    ax.set_facecolor("#ffffff")
-    ax.tick_params(colors="#3a3a3c", labelsize=8)
-
-    legend = ax.legend(
-        loc="upper right",
-        frameon=True,
-        facecolor="#ffffff",
-        edgecolor="#e5e5ea",
-        fontsize=8.5
-    )
-    for text in legend.get_texts():
-        text.set_color("black")
-
-    plt.tight_layout()
-    plt.savefig(output_path, facecolor="#ffffff", edgecolor="none", bbox_inches="tight")
-    print(f"Map successfully rendered and saved to: {output_path}")
+    n = 2000
+    outs = []
+    outs.append(plot_sweep_maps(
+        records, proj, "DISTRICT", "district_n2000", n, B.SWEEP_TARGETS,
+        os.path.join(out_dir, "chicago_district_rollout_maps.png"),
+        title="Consent rolled out police district by district: the consenting MEB moves and grows",
+        subtitle=(f"Chicago crimes 2002–2020, {n:,} distinct incident locations sampled across the whole file. "
+                  "Consent = record's police DISTRICT ≤ k. Requests = unique consent (oracle) calls.")))
+    outs.append(plot_sweep_maps(
+        records, proj, "TIMESTAMP", "timestamp_n2000", n, (0.05, 0.20, 0.40, 0.60, 0.80, 0.95),
+        os.path.join(out_dir, "chicago_timestamp_cutoff_maps.png"), max_panels=6,
+        title="Consent by policy date: spatially random, so the MEB barely moves",
+        subtitle=(f"Same {n:,} locations. Consent = incident reported on or after the cutoff date. "
+                  "Requests = unique consent (oracle) calls.")))
+    return outs
 
 
 if __name__ == "__main__":
-    main()
+    ap = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
+    ap.add_argument("--csv", default=cd.DEFAULT_CSV)
+    ap.add_argument("--out-dir", default=HERE)
+    a = ap.parse_args()
+    recs, meta, proj = cd.load(a.csv)
+    make_all(recs, proj, a.out_dir)
