@@ -96,6 +96,15 @@ def rule_op(cand):
     return "≥" if cand.sign > 0 else "≤"
 
 
+def threshold_text(ds, t):
+    """Short panel label for a threshold; decodes Spotify's popularity+year tie-break."""
+    if ds.key == "spotify":
+        p = int(np.floor(t))
+        y = 1900 + int(round((t - p) * 1000))
+        return f"popularity > {p}, or = {p} & year ≥ {y}"
+    return f"t = {fmt_compact(t)}"
+
+
 def rule_text(cand, t):
     return f"{cand.label} {rule_op(cand)} {fmt_compact(t)}"
 
@@ -128,7 +137,7 @@ def algo_legend_handles(bound=False):
     if bound:
         hs.append(Line2D([], [], color=MUTED, lw=1.2,
                          label="non-consenters outside the consenting MEB "
-                               "(decremental must query each)"))
+                               "(lower bound for decremental)"))
     return hs
 
 
@@ -190,12 +199,18 @@ def spatial(key, n=5000):
 
     ncol = len(fracs)
     aspect = (hi[1] - lo[1]) / (hi[0] - lo[0])
-    fig, axes = plt.subplots(2, ncol, figsize=(3.6 * ncol, 2 * 3.6 * aspect + 2.4), squeeze=False)
+    fig = plt.figure(figsize=(3.5 * ncol, 2 * (3.15 * aspect + 0.7) + 1.3), layout="constrained")
+    subfigs = fig.subfigures(2, 1, hspace=0.02)
     row_title = {"column": f"Consent = {cand.label} {rule_op(cand)} t",
                  "random": "Random consent at the same rate (contrast)"}
     for ri, mech in enumerate(("column", "random")):
+        sf = subfigs[ri]
+        sf.set_facecolor(SURFACE)
+        row_axes = sf.subplots(1, ncol, squeeze=False)[0]
+        sf.suptitle(row_title[mech], x=0.005, ha="left", fontsize=10.5, color=INK,
+                    fontweight="semibold")
         for ci, f in enumerate(fracs):
-            ax = axes[ri, ci]
+            ax = row_axes[ci]
             t, real, m, c, r = panels[(mech, f)]
             if bg is not None:
                 ax.imshow(bg[0], extent=bg[1], origin="upper", zorder=0, interpolation="bilinear")
@@ -216,7 +231,7 @@ def spatial(key, n=5000):
                 ax.plot(*(c * scale), marker="+", color=INK, ms=9, mew=1.6, zorder=6)
             ri_ = calls.get((mech, round(f, 4), "incremental"))
             rd_ = calls.get((mech, round(f, 4), "decremental"))
-            head = f"t = {fmt_compact(t)}" if mech == "column" else f"Bernoulli p = {real:.2f}"
+            head = threshold_text(ds, t) if mech == "column" else f"Bernoulli p = {real:.2f}"
             txt = (f"{head}\n{100*m.mean():.0f}% consenting ({int(m.sum())}/{len(m)})\n"
                    f"oracle calls: inc {ri_['calls']} · dec {rd_['calls']}\n"
                    f"radius {r/r_all:.2f} × all-points MEB")
@@ -232,8 +247,6 @@ def spatial(key, n=5000):
                 ax.set_ylabel(("north-south (km)" if geo else ds.axis_labels[1]))
             if ri == 1:
                 ax.set_xlabel(("east-west (km)" if geo else ds.axis_labels[0]))
-        axes[ri, 0].annotate(row_title[mech], xy=(0, 1.03), xycoords="axes fraction",
-                             fontsize=10.5, color=INK, fontweight="semibold", ha="left", va="bottom")
     handles = [
         Line2D([], [], ls="", marker="o", ms=6, mfc=C_CONSENT, mec=C_CONSENT, label="consenting"),
         Line2D([], [], ls="", marker="o", ms=6, mfc=C_NON if not geo else MUTED,
@@ -243,14 +256,13 @@ def spatial(key, n=5000):
                label="support points (on the MEB)"),
         Line2D([], [], color=MUTED, lw=1, label="MEB of all points"),
     ]
-    fig.legend(handles=handles, loc="lower center", ncol=5, bbox_to_anchor=(0.5, 0.0))
+    fig.legend(handles=handles, loc="outside lower center", ncol=5)
     n_txt = f"{len(X):,} of {N:,} points" if len(X) < N else f"all {N:,} points"
     fig.suptitle(f"{ds.code} — {ds.title}: consenting MEB across consent thresholds "
-                 f"({n_txt}, seed 0)", x=0.01, y=0.995, ha="left", fontsize=12.5, color=INK,
+                 f"({n_txt}, seed 0)", x=0.005, ha="left", fontsize=12.5, color=INK,
                  fontweight="semibold")
     sub = ds.unit_note + (f"  {TILE_ATTRIBUTION}." if bg is not None else "")
-    fig.text(0.01, 0.962, sub, fontsize=8.5, color=INK2, ha="left", va="top", wrap=True)
-    fig.tight_layout(rect=(0, 0.04, 1, 0.93))
+    subfigs[1].supxlabel(sub, x=0.005, ha="left", fontsize=8.3, color=INK2)
     return save(fig, f"{key}_spatial.png")
 
 
@@ -307,14 +319,22 @@ def performance(key):
     mechs = [m for m in ("column", "random") if any(r["mechanism"] == m for r in sweep)]
     n = sweep[0]["n"]
     seeds = len({r["seed"] for r in sweep})
-    fig, axes = plt.subplots(len(mechs), 3, figsize=(14.5, 4.1 * len(mechs) + 0.6),
-                             squeeze=False, sharey="col", sharex=True)
+    fig = plt.figure(figsize=(14.5, 4.0 * len(mechs) + 1.0), layout="constrained")
+    subfigs = np.atleast_1d(fig.subfigures(len(mechs), 1, hspace=0.03))
     titles = ("Consent requests (oracle calls)", "Consent requests per point (% of n)",
               "Run time (s, log scale)")
+    all_axes = []
     for ri, mech in enumerate(mechs):
+        sf = subfigs[ri]
+        sf.set_facecolor(SURFACE)
+        axes = sf.subplots(1, 3)
+        all_axes.append(axes)
+        lab = (f"Consent = {cand.label} {rule_op(cand)} t  (t = quantiles of the column)"
+               if mech == "column" else "Random consent at the same rates (contrast)")
+        sf.suptitle(lab, x=0.005, ha="left", fontsize=10.5, fontweight="semibold", color=INK)
         A = _agg([r for r in sweep if r["mechanism"] == mech], "target_frac")
         for ci, metric in enumerate(("calls", "per_n", "sec")):
-            ax = axes[ri, ci]
+            ax = axes[ci]
             if metric in ("calls", "per_n"):
                 b = A["incremental"]["bound" if metric == "calls" else "bound_per_n"].mean(1)
                 ax.plot(100 * A["incremental"]["x"], b * (100.0 if metric == "per_n" else 1.0),
@@ -328,29 +348,28 @@ def performance(key):
                              A["decremental"][metric].mean(1))
             for xc in xs:
                 ax.axvline(xc, color=AXIS, lw=1, zorder=1)
-                ax.annotate(f"crossover\n≈{xc:.0f}%", xy=(xc, 1), xycoords=("data", "axes fraction"),
-                            xytext=(3, -3), textcoords="offset points", va="top", fontsize=7.8,
-                            color=INK2)
-            if ri == 0:
-                ax.set_title(titles[ci], loc="left")
-            if ri == len(mechs) - 1:
-                ax.set_xlabel("% of points consenting")
+                ax.annotate(f"crossover\n≈{xc:.0f}%", xy=(xc, 1),
+                            xycoords=("data", "axes fraction"), xytext=(3, -3),
+                            textcoords="offset points", va="top", fontsize=7.8, color=INK2)
+            ax.set_title(titles[ci], loc="left")
+            ax.set_xlabel("% of points consenting")
             ax.set_xlim(0, 100)
             if metric != "sec":
                 ax.set_ylim(bottom=0)
-        lab = (f"Consent = {cand.label} {rule_op(cand)} t  (t = quantiles of the column)"
-               if mech == "column" else "Random consent at the same rates (contrast)")
-        axes[ri, 0].annotate(lab, xy=(0, 1.13 if ri == 0 else 1.04), xycoords="axes fraction",
-                             fontsize=10.5, fontweight="semibold", color=INK, ha="left", va="bottom")
-    fig.legend(handles=algo_legend_handles(bound=True), loc="upper right", ncol=3,
-               bbox_to_anchor=(0.995, 1.0))
+    # same y-range per metric across the two rows, so the rows compare directly
+    for ci in range(3):
+        lims = [a[ci].get_ylim() for a in all_axes]
+        lo_ = min(l[0] for l in lims)
+        hi_ = max(l[1] for l in lims)
+        for a in all_axes:
+            a[ci].set_ylim(lo_, hi_)
+    subfigs[0].legend(handles=algo_legend_handles(bound=True), loc="outside upper right",
+                      ncol=3, fontsize=9)
     fig.suptitle(f"{ds.code} — {ds.title}: incremental vs decremental consent-aware MEB",
-                 x=0.01, ha="left", fontsize=12.5, color=INK, fontweight="semibold")
-    fig.text(0.01, 0.935 if len(mechs) == 2 else 0.9,
-             f"n = {n} points per run, {seeds} seeds per point (fresh subsample + shuffle); "
-             f"line = mean, band = min–max.",
-             fontsize=8.8, color=INK2)
-    fig.tight_layout(rect=(0, 0, 1, 0.93 if len(mechs) == 2 else 0.88))
+                 x=0.005, ha="left", fontsize=12.5, color=INK, fontweight="semibold")
+    fig.supxlabel(f"n = {n:,} points per run, {seeds} seeds per point (fresh subsample + "
+                  f"shuffle); line = mean, band = min–max over seeds; x = realised % "
+                  f"consenting.", x=0.005, ha="left", fontsize=8.5, color=INK2)
     return save(fig, f"{key}_performance.png")
 
 
@@ -362,11 +381,15 @@ def vs_n(key):
     rows = read_csv(path)
     A = _agg(rows, "n")
     frac = np.mean([r["frac"] for r in rows])
-    fig, axes = plt.subplots(1, 3, figsize=(14.5, 4.3))
+    fig, axes = plt.subplots(1, 3, figsize=(14.5, 4.6), layout="constrained")
     titles = ("Consent requests (oracle calls)", "Consent requests per point (% of n)",
               "Run time (s)")
     for ci, metric in enumerate(("calls", "per_n", "sec")):
         ax = axes[ci]
+        if metric in ("calls", "per_n"):
+            b = A["incremental"]["bound" if metric == "calls" else "bound_per_n"].mean(1)
+            ax.plot(A["incremental"]["x"], b * (100.0 if metric == "per_n" else 1.0),
+                    color=MUTED, lw=1.2, zorder=2)
         for algo in ("incremental", "decremental"):
             _series(ax, A[algo]["x"], A[algo][metric], ALGO_COLOR[algo], algo,
                     scale_y=100.0 if metric == "per_n" else 1.0)
@@ -378,15 +401,20 @@ def vs_n(key):
         ax.set_title(titles[ci] + (", log-log" if metric != "per_n" else ""), loc="left")
         ax.set_xlabel("n (points, log scale)")
         xs = sorted(set(A["incremental"]["x"].astype(int)))
+        # drop a tick that sits too close to the next one (e.g. 16,000 next to N = 20,817)
+        xs = [x for i, x in enumerate(xs) if i == len(xs) - 1 or xs[i + 1] / x > 1.45]
         ax.set_xticks(xs)
         ax.set_xticklabels([f"{x:,}" for x in xs], rotation=0)
         ax.minorticks_off()
-    fig.legend(handles=algo_legend_handles(), loc="upper right", ncol=2, bbox_to_anchor=(0.995, 1.02))
+    fig.legend(handles=algo_legend_handles(bound=True), loc="outside lower right", ncol=3,
+               fontsize=9)
     cand = ds.candidates[ds.chosen]
+    seeds = len({r["seed"] for r in rows})
     fig.suptitle(f"{ds.code} — {ds.title}: scaling with n at a fixed threshold "
                  f"({rule_text(cand, rows[0]['threshold'])}, ≈{100*frac:.0f}% consenting)",
-                 x=0.01, ha="left", fontsize=12.5, color=INK, fontweight="semibold")
-    fig.tight_layout(rect=(0, 0, 1, 0.93))
+                 x=0.005, ha="left", fontsize=12.5, color=INK, fontweight="semibold")
+    fig.supxlabel(f"{seeds} seeds per n (fresh subsample + shuffle); line = mean, band = "
+                  f"min–max over seeds.", x=0.005, ha="left", fontsize=8.5, color=INK2)
     return save(fig, f"{key}_vs_n.png")
 
 
@@ -400,7 +428,8 @@ def overview(keys, metric):
         return None
     nc = 3
     nr = int(np.ceil(len(keys) / nc))
-    fig, axes = plt.subplots(nr, nc, figsize=(14.5, 3.9 * nr + 0.7), squeeze=False)
+    fig, axes = plt.subplots(nr, nc, figsize=(14.5, 3.9 * nr + 0.7), squeeze=False,
+                             layout="constrained")
     for i, key in enumerate(keys):
         ax = axes[i // nc, i % nc]
         ds = datasets.load(key)
@@ -416,18 +445,21 @@ def overview(keys, metric):
         ax.set_xlim(0, 100)
         ax.set_title(f"{ds.code} — {ds.title}  (n={sweep[0]['n']})", loc="left", fontsize=10)
         cand = ds.candidates[ds.chosen]
-        ax.text(0.98, 0.95, f"consent: {cand.label} {rule_op(cand)} t",
-                transform=ax.transAxes, ha="right", va="top", fontsize=8, color=INK2)
+        ax.text(0.98, 0.97 if metric != "sec" else 0.03, f"consent: {cand.label} {rule_op(cand)} t",
+                transform=ax.transAxes, ha="right", va="top" if metric != "sec" else "bottom",
+                fontsize=8, color=INK2)
         if i // nc == nr - 1:
             ax.set_xlabel("% of points consenting")
+        if i == 0:
+            ax.legend(handles=algo_legend_handles(), loc="center right", fontsize=8.5)
     for j in range(len(keys), nr * nc):
         axes[j // nc, j % nc].set_visible(False)
     what = {"per_n": "Consent requests per point (% of n)", "sec": "Run time (s, log scale)",
             "calls": "Consent requests (oracle calls)"}[metric]
-    fig.legend(handles=algo_legend_handles(), loc="upper right", ncol=2, bbox_to_anchor=(0.995, 1.0))
     fig.suptitle(f"All paper datasets — {what} vs % consenting (consent-column thresholds)",
-                 x=0.01, ha="left", fontsize=12.5, color=INK, fontweight="semibold")
-    fig.tight_layout(rect=(0, 0, 1, 0.95))
+                 x=0.005, ha="left", fontsize=12.5, color=INK, fontweight="semibold")
+    fig.supxlabel("Line = mean over seeds, band = min–max. Each panel has its own y-scale.",
+                  x=0.005, ha="left", fontsize=8.5, color=INK2)
     return save(fig, f"overview_{'calls' if metric == 'per_n' else 'time'}.png")
 
 
