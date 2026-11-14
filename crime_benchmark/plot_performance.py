@@ -103,7 +103,7 @@ def plot_algo(ax, xs, pts, algo, field, scale=1.0, label_end=False, label=None):
 
 def plot_bound(ax, xs, pts, scale=1.0, label=True):
     lb = [p["lower_bound"]["mean"] * scale for p in pts]
-    ax.plot(xs, lb, color=V.MUTED, lw=1.2, ls=(0, (3, 2.5)), zorder=3)
+    ax.plot(xs, lb, color=V.INK2, lw=1.1, ls=(0, (3, 2.5)), zorder=6)
     return lb
 
 
@@ -111,7 +111,7 @@ def legend_handles(bound=True):
     hs = [Line2D([], [], color=V.ALGO_COLOR[a], lw=1.8, marker=V.ALGO_MARKER[a], ms=5.5, mec=V.SURFACE,
                  mew=1.2, label=V.ALGO_LABEL[a]) for a in ("incremental", "decremental")]
     if bound:
-        hs.append(Line2D([], [], color=V.MUTED, lw=1.2, ls=(0, (3, 2.5)),
+        hs.append(Line2D([], [], color=V.INK2, lw=1.1, ls=(0, (3, 2.5)),
                          label="Lower bound (non-consenting points outside the answer + support)"))
     return hs
 
@@ -142,9 +142,8 @@ def fig_requests(points, out):
             ax.set_xlim(0, 100)
             ax.xaxis.set_major_formatter(FuncFormatter(lambda v, p: f"{v:.0f}%"))
             if i == 0:
-                ax.set_title(ttl, loc="left")
-                ax.text(0, 1.005, sub, transform=ax.transAxes, fontsize=9, color=V.MUTED, va="bottom")
-                ax.title.set_position((0, 1.07))
+                ax.set_title(ttl, loc="left", pad=17)
+                ax.text(0, 1.012, sub, transform=ax.transAxes, fontsize=9, color=V.MUTED, va="bottom")
             if j == 0:
                 ax.set_ylabel(ylab)
             if i == 1:
@@ -158,8 +157,9 @@ def fig_requests(points, out):
         a.set_ylim(lo, hi)
     header(fig, "Consent requests vs consenting fraction",
            "Mean of 5 seeds (band: min–max). Requests are unique oracle calls. Clustered consent forces both "
-           "algorithms to ask nearly every non-consenting point outside the answer;\nrandom consent needs only a "
-           "handful, and there decremental asks 5–10× fewer than incremental.", y_sub=0.945)
+           "algorithms to ask almost every non-consenting point outside the answer;\nrandom consent needs only a "
+           "handful, and there decremental sits on the lower bound while incremental asks 4–16× more.",
+           y_sub=0.945)
     fig.legend(handles=legend_handles(), loc="lower center", ncol=3, bbox_to_anchor=(0.5, 0.0))
     fig.subplots_adjust(left=0.065, right=0.985, top=0.83, bottom=0.12, wspace=0.16, hspace=0.12)
     fig.savefig(out, dpi=150)
@@ -179,15 +179,15 @@ def fig_runtime(points, out):
         log_axis(ax, "y", _sec)
         ax.set_xlim(0, 100)
         ax.xaxis.set_major_formatter(FuncFormatter(lambda v, p: f"{v:.0f}%"))
-        ax.set_title(ttl, loc="left")
-        ax.title.set_position((0, 1.07))
-        ax.text(0, 1.01, sub, transform=ax.transAxes, fontsize=9, color=V.MUTED, va="bottom")
+        ax.set_title(ttl, loc="left", pad=17)
+        ax.text(0, 1.012, sub, transform=ax.transAxes, fontsize=9, color=V.MUTED, va="bottom")
         ax.set_xlabel("Consenting incidents")
         if j == 0:
             ax.set_ylabel("Run time per query (pure Python)")
     header(fig, "Run time vs consenting fraction",
-           "Mean of 5 seeds (band: min–max). Decremental recomputes a full MEB after every peeling round, so "
-           "with clustered consent it is 100–1000× slower than incremental.", y_sub=0.915)
+           "Mean of 5 seeds (band: min–max). Decremental recomputes a full MEB after every peeling round: "
+           "with clustered consent it is ~200–850× slower than incremental, with random consent 1.2–80×.",
+           y_sub=0.915)
     fig.legend(handles=legend_handles(bound=False), loc="lower center", ncol=2, bbox_to_anchor=(0.5, 0.0))
     fig.subplots_adjust(left=0.075, right=0.985, top=0.74, bottom=0.2, wspace=0.08)
     fig.savefig(out, dpi=150)
@@ -229,7 +229,8 @@ def fig_scaling(points, meta, out):
             a.set_ylim(lo, hi)
     header(fig, "Scaling with n at ≈50% consent",
            "Mean of 5 seeds (band: min–max), log–log. Random consent: requests stay near-constant in n. "
-           "Clustered consent: requests grow linearly for both;\ndecremental's run time grows ~quadratically.",
+           "Clustered consent: requests grow linearly for both;\ndecremental's run time grows ~n^1.7 "
+           "(26 s per run at n = 4,000).",
            y_sub=0.948)
     fig.legend(handles=legend_handles(), loc="lower center", ncol=3, bbox_to_anchor=(0.5, 0.0))
     fig.subplots_adjust(left=0.085, right=0.98, top=0.85, bottom=0.12, wspace=0.12, hspace=0.12)

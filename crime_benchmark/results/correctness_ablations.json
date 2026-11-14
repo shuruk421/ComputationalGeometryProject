@@ -1,0 +1,339 @@
+{
+ "duplicates_kept": [
+  {
+   "rule": "ARREST",
+   "seed": 0,
+   "n_records": 50000,
+   "n_unique_locations": 39711,
+   "gt_radius": 24.051870800417998,
+   "incremental": {
+    "radius": 23.862028501181243,
+    "calls": 89,
+    "correct": false
+   },
+   "decremental": {
+    "radius": 23.7406707513646,
+    "calls": 21,
+    "correct": false
+   }
+  },
+  {
+   "rule": "LOCATION outdoor public",
+   "seed": 0,
+   "n_records": 50000,
+   "n_unique_locations": 39711,
+   "gt_radius": 23.902143470827045,
+   "incremental": {
+    "radius": 23.53416359335254,
+    "calls": 71,
+    "correct": false
+   },
+   "decremental": {
+    "radius": 23.448289745736258,
+    "calls": 42,
+    "correct": false
+   }
+  },
+  {
+   "rule": "TIMESTAMP 50%",
+   "seed": 0,
+   "n_records": 50000,
+   "n_unique_locations": 39711,
+   "gt_radius": 24.562060138555154,
+   "incremental": {
+    "radius": 24.482541356035735,
+    "calls": 32,
+    "correct": false
+   },
+   "decremental": {
+    "radius": 24.482541356035735,
+    "calls": 3,
+    "correct": false
+   }
+  },
+  {
+   "rule": "TIMESTAMP 10%",
+   "seed": 0,
+   "n_records": 50000,
+   "n_unique_locations": 39711,
+   "gt_radius": 24.09369625545238,
+   "incremental": {
+    "radius": 23.817547591009447,
+    "calls": 150,
+    "correct": false
+   },
+   "decremental": {
+    "radius": 23.817547591009447,
+    "calls": 19,
+    "correct": false
+   }
+  },
+  {
+   "rule": "ARREST",
+   "seed": 1,
+   "n_records": 50000,
+   "n_unique_locations": 39691,
+   "gt_radius": 24.051870800417998,
+   "incremental": {
+    "radius": 23.593211217916323,
+    "calls": 116,
+    "correct": false
+   },
+   "decremental": {
+    "radius": 23.907593059063828,
+    "calls": 8,
+    "correct": false
+   }
+  },
+  {
+   "rule": "LOCATION outdoor public",
+   "seed": 1,
+   "n_records": 50000,
+   "n_unique_locations": 39691,
+   "gt_radius": 24.09369625545238,
+   "incremental": {
+    "radius": 24.020853695279026,
+    "calls": 82,
+    "correct": false
+   },
+   "decremental": {
+    "radius": 24.020853695279026,
+    "calls": 4,
+    "correct": false
+   }
+  },
+  {
+   "rule": "TIMESTAMP 50%",
+   "seed": 1,
+   "n_records": 50000,
+   "n_unique_locations": 39691,
+   "gt_radius": 24.137786000377087,
+   "incremental": {
+    "radius": 24.137786000377087,
+    "calls": 54,
+    "correct": true
+   },
+   "decremental": {
+    "radius": 24.058358599455616,
+    "calls": 3,
+    "correct": false
+   }
+  },
+  {
+   "rule": "TIMESTAMP 10%",
+   "seed": 1,
+   "n_records": 50000,
+   "n_unique_locations": 39691,
+   "gt_radius": 24.137786000377087,
+   "incremental": {
+    "radius": 23.935384292924983,
+    "calls": 186,
+    "correct": false
+   },
+   "decremental": {
+    "radius": 23.935384292924983,
+    "calls": 8,
+    "correct": false
+   }
+  },
+  {
+   "rule": "ARREST",
+   "seed": 2,
+   "n_records": 50000,
+   "n_unique_locations": 39649,
+   "gt_radius": 24.049725538974453,
+   "incremental": {
+    "radius": 24.049725538974453,
+    "calls": 52,
+    "correct": true
+   },
+   "decremental": {
+    "radius": 23.781095257588113,
+    "calls": 17,
+    "correct": false
+   }
+  },
+  {
+   "rule": "LOCATION outdoor public",
+   "seed": 2,
+   "n_records": 50000,
+   "n_unique_locations": 39649,
+   "gt_radius": 23.748624978319416,
+   "incremental": {
+    "radius": 23.718819033408984,
+    "calls": 74,
+    "correct": false
+   },
+   "decremental": {
+    "radius": 23.718819033408984,
+    "calls": 19,
+    "correct": false
+   }
+  },
+  {
+   "rule": "TIMESTAMP 50%",
+   "seed": 2,
+   "n_records": 50000,
+   "n_unique_locations": 39649,
+   "gt_radius": 25.211144490086127,
+   "incremental": {
+    "radius": 25.211144490086127,
+    "calls": 36,
+    "correct": true
+   },
+   "decremental": {
+    "radius": 25.211144490086127,
+    "calls": 2,
+    "correct": true
+   }
+  },
+  {
+   "rule": "TIMESTAMP 10%",
+   "seed": 2,
+   "n_records": 50000,
+   "n_unique_locations": 39649,
+   "gt_radius": 24.09369625545238,
+   "incremental": {
+    "radius": 24.09369625545238,
+    "calls": 140,
+    "correct": true
+   },
+   "decremental": {
+    "radius": 24.09369625545238,
+    "calls": 7,
+    "correct": true
+   }
+  },
+  {
+   "rule": "ARREST",
+   "seed": 3,
+   "n_records": 50000,
+   "n_unique_locations": 39530,
+   "gt_radius": 24.09369625545238,
+   "incremental": {
+    "radius": 23.74867434195012,
+    "calls": 149,
+    "correct": false
+   },
+   "decremental": {
+    "radius": 23.915013699557022,
+    "calls": 12,
+    "correct": false
+   }
+  },
+  {
+   "rule": "LOCATION outdoor public",
+   "seed": 3,
+   "n_records": 50000,
+   "n_unique_locations": 39530,
+   "gt_radius": 23.91114550323118,
+   "incremental": {
+    "radius": 23.665768781089703,
+    "calls": 70,
+    "correct": false
+   },
+   "decremental": {
+    "radius": 23.665768781089703,
+    "calls": 37,
+    "correct": false
+   }
+  },
+  {
+   "rule": "TIMESTAMP 50%",
+   "seed": 3,
+   "n_records": 50000,
+   "n_unique_locations": 39530,
+   "gt_radius": 24.24361979985662,
+   "incremental": {
+    "radius": 24.19562791600995,
+    "calls": 34,
+    "correct": false
+   },
+   "decremental": {
+    "radius": 24.19562791600995,
+    "calls": 3,
+    "correct": false
+   }
+  },
+  {
+   "rule": "TIMESTAMP 10%",
+   "seed": 3,
+   "n_records": 50000,
+   "n_unique_locations": 39530,
+   "gt_radius": 24.24361979985662,
+   "incremental": {
+    "radius": 23.835885928574168,
+    "calls": 393,
+    "correct": false
+   },
+   "decremental": {
+    "radius": 24.19562791600995,
+    "calls": 3,
+    "correct": false
+   }
+  }
+ ],
+ "feet_units": [
+  {
+   "sample_seed": 0,
+   "unit": "km",
+   "runs_per_algo": 10,
+   "gt_radius": 23.452546199719976,
+   "wrong": {
+    "incremental": 0,
+    "decremental": 0
+   }
+  },
+  {
+   "sample_seed": 0,
+   "unit": "feet",
+   "runs_per_algo": 10,
+   "gt_radius": 76944.04921167971,
+   "wrong": {
+    "incremental": 0,
+    "decremental": 0
+   }
+  },
+  {
+   "sample_seed": 1,
+   "unit": "km",
+   "runs_per_algo": 10,
+   "gt_radius": 23.171421573995215,
+   "wrong": {
+    "incremental": 0,
+    "decremental": 0
+   }
+  },
+  {
+   "sample_seed": 1,
+   "unit": "feet",
+   "runs_per_algo": 10,
+   "gt_radius": 76021.72432413125,
+   "wrong": {
+    "incremental": 0,
+    "decremental": 5
+   }
+  },
+  {
+   "sample_seed": 2,
+   "unit": "km",
+   "runs_per_algo": 10,
+   "gt_radius": 22.284135794820937,
+   "wrong": {
+    "incremental": 0,
+    "decremental": 0
+   }
+  },
+  {
+   "sample_seed": 2,
+   "unit": "feet",
+   "runs_per_algo": 10,
+   "gt_radius": 73110.6817415385,
+   "wrong": {
+    "incremental": 0,
+    "decremental": 8
+   }
+  }
+ ],
+ "seconds": 46.39168047904968
+}

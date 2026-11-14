@@ -160,12 +160,18 @@ def draw_panel(ax, base, coords, flags, gt_c, gt_r, all_c, all_r, title, lines):
         sup = C.support_points([p for p, f in zip(coords, flags) if f], gt_c, gt_r, 1e-7)
         ax.scatter([p[0] for p in sup], [p[1] for p in sup], s=46, c=V.INK, edgecolors=V.SURFACE,
                    linewidths=1.6, zorder=7)
-    ax.text(0.03, 0.97, title, transform=ax.transAxes, va="top", ha="left", fontsize=10.5,
-            fontweight="semibold", color=V.INK, zorder=9,
-            bbox=dict(boxstyle="round,pad=0.35", fc=V.SURFACE, ec="none", alpha=0.92))
-    ax.text(0.03, 0.865, "\n".join(lines), transform=ax.transAxes, va="top", ha="left",
-            fontsize=8.8, color=V.INK2, linespacing=1.35, zorder=9,
-            bbox=dict(boxstyle="round,pad=0.35", fc=V.SURFACE, ec="none", alpha=0.92))
+    # Labels sit above the map so they never hide data (O'Hare, in the NW
+    # corner, often carries the support points).
+    stat, req = lines
+    ax.set_title(title, loc="left", pad=17, fontsize=11, fontweight="semibold", color=V.INK)
+    ax.set_title(stat, loc="right", pad=17, fontsize=9.5, fontweight="normal", color=V.INK2)
+    t = ax.text(0, 1.012, "requests ", transform=ax.transAxes, fontsize=9, color=V.INK2,
+                va="bottom", ha="left")
+    for algo in C.ALGORITHMS:
+        t = ax.annotate("●", xy=(1, 0), xycoords=t, va="bottom", ha="left", fontsize=9,
+                        color=V.ALGO_COLOR[algo])
+        t = ax.annotate(f" {algo} {req[algo]:,}    ", xy=(1, 0), xycoords=t, va="bottom", ha="left",
+                        fontsize=9, color=V.INK2)
     ax.set_xlim(extent[0], extent[1])
     ax.set_ylim(extent[2], extent[3])
     ax.set_aspect("equal")
@@ -202,7 +208,8 @@ def plot_sweep_maps(records, proj, family, exp_id, n, targets, out_path, ncols=3
     calls = load_seed0_calls(exp_id)
 
     nrows = int(math.ceil(len(cutoffs) / ncols))
-    fig, axes = plt.subplots(nrows, ncols, figsize=(4.3 * ncols, 4.3 * nrows + 1.5))
+    fig_h = 4.75 * nrows + 1.45
+    fig, axes = plt.subplots(nrows, ncols, figsize=(4.3 * ncols, fig_h))
     axes = np.atleast_1d(axes).ravel()
     for ax, cut in zip(axes, cutoffs):
         rule = fam.rule(cut)
@@ -217,11 +224,9 @@ def plot_sweep_maps(records, proj, family, exp_id, n, targets, out_path, ncols=3
             else:
                 req[a] = C.run_algorithm(a, pts, seed=1000 + seed)["calls"]
         pct = 100.0 * len(cons) / len(rows)
-        lines = [f"{pct:.0f}% consenting  ·  MEB r = {gt_r:.1f} km",
-                 f"requests: incremental {req['incremental']:,}",
-                 f"              decremental {req['decremental']:,}"]
-        title = fam.label(cut).replace(">=", "≥").replace("<=", "≤")
-        draw_panel(ax, base, coords, flags, gt_c, gt_r, all_c, all_r, title, lines)
+        stat = f"{pct:.0f}% consenting · r = {gt_r:.1f} km"
+        panel_title = fam.label(cut).replace(">=", "≥").replace("<=", "≤")
+        draw_panel(ax, base, coords, flags, gt_c, gt_r, all_c, all_r, panel_title, (stat, req))
     for ax in axes[len(cutoffs):]:
         ax.axis("off")
     scale_bar(axes[len(cutoffs) - 1], base[1])
@@ -235,14 +240,13 @@ def plot_sweep_maps(records, proj, family, exp_id, n, targets, out_path, ncols=3
     ]
     fig.legend(handles=handles, loc="lower center", ncol=5, bbox_to_anchor=(0.5, 0.012), fontsize=9.5,
                handlelength=2.2, columnspacing=1.6)
-    fig.suptitle(title or f"Consenting MEB by {fam.column} threshold", x=0.02, ha="left", y=0.995,
-                 fontsize=15, fontweight="semibold", color=V.INK)
-    fig.text(0.02, 0.962 if nrows > 2 else 0.945, subtitle or "", ha="left", va="top", fontsize=10.5,
-             color=V.INK2)
+    fig.text(0.02, 1 - 0.18 / fig_h, title or f"Consenting MEB by {fam.column} threshold", ha="left", va="top",
+             fontsize=15, fontweight="semibold", color=V.INK)
+    fig.text(0.02, 1 - 0.55 / fig_h, subtitle or "", ha="left", va="top", fontsize=10.5, color=V.INK2)
     fig.text(0.98, 0.003, "Basemap © OpenStreetMap contributors © CARTO", ha="right", va="bottom",
              fontsize=7.5, color=V.MUTED)
-    top = 0.935 if nrows > 2 else 0.885
-    fig.subplots_adjust(left=0.02, right=0.98, top=top, bottom=0.055, wspace=0.04, hspace=0.04)
+    fig.subplots_adjust(left=0.02, right=0.98, top=1 - 1.25 / fig_h, bottom=0.6 / fig_h, wspace=0.04,
+                        hspace=0.47 / 4.3)
     fig.savefig(out_path, dpi=150)
     plt.close(fig)
     print(f"[maps] wrote {out_path}")
@@ -250,12 +254,12 @@ def plot_sweep_maps(records, proj, family, exp_id, n, targets, out_path, ncols=3
 
 
 def make_all(records, proj, out_dir=HERE):
-    import benchmark_crimes as B
 
     n = 2000
     outs = []
     outs.append(plot_sweep_maps(
-        records, proj, "DISTRICT", "district_n2000", n, B.SWEEP_TARGETS,
+        records, proj, "DISTRICT", "district_n2000", n,
+        (0.05, 0.10, 0.20, 0.40, 0.50, 0.60, 0.70, 0.80, 0.95),  # subset of benchmark_crimes.SWEEP_TARGETS
         os.path.join(out_dir, "chicago_district_rollout_maps.png"),
         title="Consent rolled out police district by district: the consenting MEB moves and grows",
         subtitle=(f"Chicago crimes 2002–2020, {n:,} distinct incident locations sampled across the whole file. "
@@ -263,9 +267,10 @@ def make_all(records, proj, out_dir=HERE):
     outs.append(plot_sweep_maps(
         records, proj, "TIMESTAMP", "timestamp_n2000", n, (0.05, 0.20, 0.40, 0.60, 0.80, 0.95),
         os.path.join(out_dir, "chicago_timestamp_cutoff_maps.png"), max_panels=6,
-        title="Consent by policy date: spatially random, so the MEB barely moves",
+        title="Consent by policy date is spatially random: the MEB barely moves",
         subtitle=(f"Same {n:,} locations. Consent = incident reported on or after the cutoff date. "
-                  "Requests = unique consent (oracle) calls.")))
+                  "Requests = unique consent (oracle) calls. At 5% only ~100 points consent, "
+                  "so the city's edges are simply missed.")))
     return outs
 
 
