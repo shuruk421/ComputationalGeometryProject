@@ -1,0 +1,3965 @@
+{
+ "primary_column": "optin_date",
+ "contrast_column": "leg_random",
+ "algo_unit_km": 1000.0,
+ "points_in_pool": 796715,
+ "projection": "azimuthal equidistant centred on (47.076N, 15.140E)",
+ "seeds": 6,
+ "fractions": [
+  0.1,
+  0.5
+ ],
+ "ns": [
+  1000,
+  2000,
+  5000,
+  10000,
+  20000,
+  50000
+ ],
+ "summary": [
+  {
+   "column": "optin_date",
+   "target_frac": 0.1,
+   "n": 1000,
+   "label": "legs since 2019-07-25",
+   "seeds": 6,
+   "consent_pct": {
+    "mean": 10.516666666666667,
+    "std": 0.7756717518813395,
+    "min": 9.3,
+    "max": 11.4,
+    "median": 10.7,
+    "count": 6
+   },
+   "lower_bound_calls": {
+    "mean": 43.833333333333336,
+    "std": 15.664184200483172,
+    "min": 21.0,
+    "max": 59.0,
+    "median": 49.5,
+    "count": 6
+   },
+   "gt_radius_km": {
+    "mean": 1178.4965813027577,
+    "std": 62.268229666234085,
+    "min": 1121.0333458320495,
+    "max": 1269.1529527013488,
+    "median": 1149.781492827533,
+    "count": 6
+   },
+   "incremental_calls": {
+    "mean": 124.33333333333333,
+    "std": 39.93828572518689,
+    "min": 78.0,
+    "max": 171.0,
+    "median": 122.0,
+    "count": 6
+   },
+   "incremental_time_s": {
+    "mean": 0.006369949999997478,
+    "std": 0.0030604952009402734,
+    "min": 0.0022671000000116237,
+    "max": 0.01120599999998717,
+    "median": 0.006765700000002539,
+    "count": 6
+   },
+   "decremental_calls": {
+    "mean": 46.333333333333336,
+    "std": 15.500537625084707,
+    "min": 26.0,
+    "max": 64.0,
+    "median": 50.5,
+    "count": 6
+   },
+   "decremental_time_s": {
+    "mean": 0.386758683333331,
+    "std": 0.13526066152470753,
+    "min": 0.15858849999997915,
+    "max": 0.5515774000000135,
+    "median": 0.3741679999999974,
+    "count": 6
+   },
+   "incremental_calls_per_n": {
+    "mean": 0.12433333333333334,
+    "std": 0.03993828572518689,
+    "min": 0.078,
+    "max": 0.171,
+    "median": 0.122,
+    "count": 6
+   },
+   "incremental_mismatches": 0,
+   "incremental_skipped": 0,
+   "decremental_calls_per_n": {
+    "mean": 0.04633333333333333,
+    "std": 0.015500537625084708,
+    "min": 0.026,
+    "max": 0.064,
+    "median": 0.0505,
+    "count": 6
+   },
+   "decremental_mismatches": 0,
+   "decremental_skipped": 0
+  },
+  {
+   "column": "optin_date",
+   "target_frac": 0.1,
+   "n": 2000,
+   "label": "legs since 2019-07-25",
+   "seeds": 6,
+   "consent_pct": {
+    "mean": 10.225,
+    "std": 0.8394938951535026,
+    "min": 9.05,
+    "max": 11.55,
+    "median": 10.2,
+    "count": 6
+   },
+   "lower_bound_calls": {
+    "mean": 51.666666666666664,
+    "std": 22.105806175452337,
+    "min": 35.0,
+    "max": 83.0,
+    "median": 39.5,
+    "count": 6
+   },
+   "gt_radius_km": {
+    "mean": 1334.0304544875808,
+    "std": 128.381977884091,
+    "min": 1219.7901004446057,
+    "max": 1583.6250097396346,
+    "median": 1309.5719352668432,
+    "count": 6
+   },
+   "incremental_calls": {
+    "mean": 141.16666666666666,
+    "std": 32.214386020327424,
+    "min": 98.0,
+    "max": 190.0,
+    "median": 137.5,
+    "count": 6
+   },
+   "incremental_time_s": {
+    "mean": 0.008450766666664814,
+    "std": 0.0037463650744020325,
+    "min": 0.004583599999989474,
+    "max": 0.012376899999992474,
+    "median": 0.008406500000006645,
+    "count": 6
+   },
+   "decremental_calls": {
+    "mean": 55.333333333333336,
+    "std": 23.11420919405781,
+    "min": 39.0,
+    "max": 92.0,
+    "median": 42.0,
+    "count": 6
+   },
+   "decremental_time_s": {
+    "mean": 0.8946255666666664,
+    "std": 0.4312807395709689,
+    "min": 0.5235528999999985,
+    "max": 1.5682931999999994,
+    "median": 0.7058914999999928,
+    "count": 6
+   },
+   "incremental_calls_per_n": {
+    "mean": 0.07058333333333333,
+    "std": 0.01610719301016371,
+    "min": 0.049,
+    "max": 0.095,
+    "median": 0.06875,
+    "count": 6
+   },
+   "incremental_mismatches": 0,
+   "incremental_skipped": 0,
+   "decremental_calls_per_n": {
+    "mean": 0.027666666666666662,
+    "std": 0.011557104597028906,
+    "min": 0.0195,
+    "max": 0.046,
+    "median": 0.021,
+    "count": 6
+   },
+   "decremental_mismatches": 0,
+   "decremental_skipped": 0
+  },
+  {
+   "column": "optin_date",
+   "target_frac": 0.1,
+   "n": 5000,
+   "label": "legs since 2019-07-25",
+   "seeds": 6,
+   "consent_pct": {
+    "mean": 10.173333333333334,
+    "std": 0.3689263702511203,
+    "min": 9.78,
+    "max": 10.62,
+    "median": 10.18,
+    "count": 6
+   },
+   "lower_bound_calls": {
+    "mean": 76.5,
+    "std": 19.46021582614129,
+    "min": 56.0,
+    "max": 111.0,
+    "median": 69.5,
+    "count": 6
+   },
+   "gt_radius_km": {
+    "mean": 1353.247756878978,
+    "std": 45.54177258622586,
+    "min": 1296.4954639671118,
+    "max": 1405.2739306455844,
+    "median": 1356.24666572042,
+    "count": 6
+   },
+   "incremental_calls": {
+    "mean": 277.1666666666667,
+    "std": 38.8608629171647,
+    "min": 230.0,
+    "max": 325.0,
+    "median": 276.0,
+    "count": 6
+   },
+   "incremental_time_s": {
+    "mean": 0.0274209833333335,
+    "std": 0.015353971440046205,
+    "min": 0.016226600000010194,
+    "max": 0.055841200000003255,
+    "median": 0.021268599999999083,
+    "count": 6
+   },
+   "decremental_calls": {
+    "mean": 84.83333333333333,
+    "std": 18.691352724366062,
+    "min": 60.0,
+    "max": 113.0,
+    "median": 83.5,
+    "count": 6
+   },
+   "decremental_time_s": {
+    "mean": 2.3575229166666625,
+    "std": 0.9924518929646425,
+    "min": 1.0326407999999958,
+    "max": 3.8959342999999933,
+    "median": 2.2748590499999892,
+    "count": 6
+   },
+   "incremental_calls_per_n": {
+    "mean": 0.055433333333333334,
+    "std": 0.007772172583432939,
+    "min": 0.046,
+    "max": 0.065,
+    "median": 0.0552,
+    "count": 6
+   },
+   "incremental_mismatches": 0,
+   "incremental_skipped": 0,
+   "decremental_calls_per_n": {
+    "mean": 0.016966666666666668,
+    "std": 0.0037382705448732122,
+    "min": 0.012,
+    "max": 0.0226,
+    "median": 0.0167,
+    "count": 6
+   },
+   "decremental_mismatches": 0,
+   "decremental_skipped": 0
+  },
+  {
+   "column": "optin_date",
+   "target_frac": 0.1,
+   "n": 10000,
+   "label": "legs since 2019-07-25",
+   "seeds": 6,
+   "consent_pct": {
+    "mean": 10.095,
+    "std": 0.20315019074566473,
+    "min": 9.73,
+    "max": 10.31,
+    "median": 10.135,
+    "count": 6
+   },
+   "lower_bound_calls": {
+    "mean": 81.33333333333333,
+    "std": 15.214028613968972,
+    "min": 63.0,
+    "max": 104.0,
+    "median": 79.5,
+    "count": 6
+   },
+   "gt_radius_km": {
+    "mean": 1459.1256139550953,
+    "std": 56.21037924309577,
+    "min": 1407.9927687411666,
+    "max": 1532.8702722450107,
+    "median": 1438.653161363219,
+    "count": 6
+   },
+   "incremental_calls": {
+    "mean": 357.0,
+    "std": 94.50925880568528,
+    "min": 223.0,
+    "max": 502.0,
+    "median": 360.5,
+    "count": 6
+   },
+   "incremental_time_s": {
+    "mean": 0.052397983333335674,
+    "std": 0.02151421084980153,
+    "min": 0.033809899999994286,
+    "max": 0.08938040000001024,
+    "median": 0.04653700000001493,
+    "count": 6
+   },
+   "decremental_calls": {
+    "mean": 87.83333333333333,
+    "std": 14.133883637085267,
+    "min": 72.0,
+    "max": 112.0,
+    "median": 85.0,
+    "count": 6
+   },
+   "decremental_time_s": {
+    "mean": 4.697961716666664,
+    "std": 1.154760264281703,
+    "min": 2.8169283000000007,
+    "max": 6.112695099999996,
+    "median": 4.720390049999992,
+    "count": 6
+   },
+   "incremental_calls_per_n": {
+    "mean": 0.0357,
+    "std": 0.009450925880568528,
+    "min": 0.0223,
+    "max": 0.0502,
+    "median": 0.03605,
+    "count": 6
+   },
+   "incremental_mismatches": 0,
+   "incremental_skipped": 0,
+   "decremental_calls_per_n": {
+    "mean": 0.008783333333333334,
+    "std": 0.0014133883637085266,
+    "min": 0.0072,
+    "max": 0.0112,
+    "median": 0.0085,
+    "count": 6
+   },
+   "decremental_mismatches": 0,
+   "decremental_skipped": 0
+  },
+  {
+   "column": "optin_date",
+   "target_frac": 0.1,
+   "n": 20000,
+   "label": "legs since 2019-07-25",
+   "seeds": 6,
+   "consent_pct": {
+    "mean": 10.061666666666667,
+    "std": 0.22326367072738634,
+    "min": 9.84,
+    "max": 10.47,
+    "median": 10.0225,
+    "count": 6
+   },
+   "lower_bound_calls": {
+    "mean": 123.0,
+    "std": 36.502054736685714,
+    "min": 72.0,
+    "max": 166.0,
+    "median": 123.0,
+    "count": 6
+   },
+   "gt_radius_km": {
+    "mean": 1570.905941531163,
+    "std": 112.93155284543437,
+    "min": 1448.1759082256006,
+    "max": 1718.7186926386173,
+    "median": 1537.1069592796885,
+    "count": 6
+   },
+   "incremental_calls": {
+    "mean": 453.1666666666667,
+    "std": 106.48834051982719,
+    "min": 326.0,
+    "max": 593.0,
+    "median": 458.5,
+    "count": 6
+   },
+   "incremental_time_s": {
+    "mean": 0.1279383833333346,
+    "std": 0.06865314385818491,
+    "min": 0.05964330000000473,
+    "max": 0.22030820000000517,
+    "median": 0.10232720000000484,
+    "count": 6
+   },
+   "decremental_calls": {
+    "mean": 137.0,
+    "std": 48.286644116152864,
+    "min": 77.0,
+    "max": 202.0,
+    "median": 129.0,
+    "count": 6
+   },
+   "decremental_time_s": {
+    "mean": 12.193127949999996,
+    "std": 4.482270719545067,
+    "min": 6.481117299999994,
+    "max": 16.776818399999996,
+    "median": 12.178099349999997,
+    "count": 6
+   },
+   "incremental_calls_per_n": {
+    "mean": 0.022658333333333336,
+    "std": 0.005324417025991359,
+    "min": 0.0163,
+    "max": 0.02965,
+    "median": 0.022925,
+    "count": 6
+   },
+   "incremental_mismatches": 0,
+   "incremental_skipped": 0,
+   "decremental_calls_per_n": {
+    "mean": 0.006849999999999999,
+    "std": 0.002414332205807643,
+    "min": 0.00385,
+    "max": 0.0101,
+    "median": 0.00645,
+    "count": 6
+   },
+   "decremental_mismatches": 0,
+   "decremental_skipped": 0
+  },
+  {
+   "column": "optin_date",
+   "target_frac": 0.1,
+   "n": 50000,
+   "label": "legs since 2019-07-25",
+   "seeds": 6,
+   "consent_pct": {
+    "mean": 10.023666666666665,
+    "std": 0.14408562269243458,
+    "min": 9.9,
+    "max": 10.302,
+    "median": 9.987,
+    "count": 6
+   },
+   "lower_bound_calls": {
+    "mean": 211.33333333333334,
+    "std": 34.90940656422946,
+    "min": 164.0,
+    "max": 250.0,
+    "median": 226.0,
+    "count": 6
+   },
+   "gt_radius_km": {
+    "mean": 1681.2385265321145,
+    "std": 71.10533985188503,
+    "min": 1587.9006867777591,
+    "max": 1742.0076144658667,
+    "median": 1716.413985544757,
+    "count": 6
+   },
+   "incremental_calls": {
+    "mean": 593.5,
+    "std": 80.6839513162314,
+    "min": 457.0,
+    "max": 692.0,
+    "median": 612.0,
+    "count": 6
+   },
+   "incremental_time_s": {
+    "mean": 0.32599788333333396,
+    "std": 0.21341074778197938,
+    "min": 0.13677740000002814,
+    "max": 0.7391380000000254,
+    "median": 0.2681721999999809,
+    "count": 6
+   },
+   "decremental_calls": null,
+   "decremental_time_s": null,
+   "incremental_calls_per_n": {
+    "mean": 0.011869999999999999,
+    "std": 0.001613679026324628,
+    "min": 0.00914,
+    "max": 0.01384,
+    "median": 0.012240000000000001,
+    "count": 6
+   },
+   "incremental_mismatches": 0,
+   "incremental_skipped": 0,
+   "decremental_calls_per_n": null,
+   "decremental_mismatches": 0,
+   "decremental_skipped": 6
+  },
+  {
+   "column": "optin_date",
+   "target_frac": 0.5,
+   "n": 1000,
+   "label": "legs since 2018-04-14",
+   "seeds": 6,
+   "consent_pct": {
+    "mean": 49.833333333333336,
+    "std": 0.5887840577551902,
+    "min": 49.1,
+    "max": 50.6,
+    "median": 49.8,
+    "count": 6
+   },
+   "lower_bound_calls": {
+    "mean": 5.0,
+    "std": 1.5491933384829668,
+    "min": 4.0,
+    "max": 8.0,
+    "median": 4.5,
+    "count": 6
+   },
+   "gt_radius_km": {
+    "mean": 1827.5909596390463,
+    "std": 65.06867736334758,
+    "min": 1709.6279425190087,
+    "max": 1886.5176754051304,
+    "median": 1844.6607554410098,
+    "count": 6
+   },
+   "incremental_calls": {
+    "mean": 28.833333333333332,
+    "std": 8.70440501508671,
+    "min": 19.0,
+    "max": 38.0,
+    "median": 28.5,
+    "count": 6
+   },
+   "incremental_time_s": {
+    "mean": 0.00684924999999718,
+    "std": 0.0021464509943013048,
+    "min": 0.003925200000026052,
+    "max": 0.009611199999994824,
+    "median": 0.00677619999999024,
+    "count": 6
+   },
+   "decremental_calls": {
+    "mean": 5.166666666666667,
+    "std": 1.6020819787597222,
+    "min": 4.0,
+    "max": 8.0,
+    "median": 4.5,
+    "count": 6
+   },
+   "decremental_time_s": {
+    "mean": 0.04182183333335843,
+    "std": 0.02956638839651689,
+    "min": 0.01484430000004977,
+    "max": 0.09780699999998888,
+    "median": 0.03366470000003119,
+    "count": 6
+   },
+   "incremental_calls_per_n": {
+    "mean": 0.028833333333333336,
+    "std": 0.00870440501508671,
+    "min": 0.019,
+    "max": 0.038,
+    "median": 0.0285,
+    "count": 6
+   },
+   "incremental_mismatches": 0,
+   "incremental_skipped": 0,
+   "decremental_calls_per_n": {
+    "mean": 0.005166666666666667,
+    "std": 0.0016020819787597221,
+    "min": 0.004,
+    "max": 0.008,
+    "median": 0.0045000000000000005,
+    "count": 6
+   },
+   "decremental_mismatches": 0,
+   "decremental_skipped": 0
+  },
+  {
+   "column": "optin_date",
+   "target_frac": 0.5,
+   "n": 2000,
+   "label": "legs since 2018-04-14",
+   "seeds": 6,
+   "consent_pct": {
+    "mean": 49.449999999999996,
+    "std": 0.7463243262818107,
+    "min": 48.7,
+    "max": 50.55,
+    "median": 49.15,
+    "count": 6
+   },
+   "lower_bound_calls": {
+    "mean": 5.0,
+    "std": 1.0954451150103321,
+    "min": 3.0,
+    "max": 6.0,
+    "median": 5.0,
+    "count": 6
+   },
+   "gt_radius_km": {
+    "mean": 1856.0234714189664,
+    "std": 53.48923756930991,
+    "min": 1751.797949429495,
+    "max": 1903.7689778921338,
+    "median": 1871.0348127627017,
+    "count": 6
+   },
+   "incremental_calls": {
+    "mean": 35.833333333333336,
+    "std": 7.11102430502573,
+    "min": 27.0,
+    "max": 47.0,
+    "median": 34.0,
+    "count": 6
+   },
+   "incremental_time_s": {
+    "mean": 0.0184458166666559,
+    "std": 0.007070658404249479,
+    "min": 0.0106117999999924,
+    "max": 0.029362899999966885,
+    "median": 0.01614144999999212,
+    "count": 6
+   },
+   "decremental_calls": {
+    "mean": 5.5,
+    "std": 1.51657508881031,
+    "min": 3.0,
+    "max": 7.0,
+    "median": 5.5,
+    "count": 6
+   },
+   "decremental_time_s": {
+    "mean": 0.05943160000002005,
+    "std": 0.017380180436931382,
+    "min": 0.037199900000018715,
+    "max": 0.0874644000000444,
+    "median": 0.0567758500000366,
+    "count": 6
+   },
+   "incremental_calls_per_n": {
+    "mean": 0.017916666666666668,
+    "std": 0.003555512152512865,
+    "min": 0.0135,
+    "max": 0.0235,
+    "median": 0.017,
+    "count": 6
+   },
+   "incremental_mismatches": 0,
+   "incremental_skipped": 0,
+   "decremental_calls_per_n": {
+    "mean": 0.0027500000000000003,
+    "std": 0.0007582875444051551,
+    "min": 0.0015,
+    "max": 0.0035,
+    "median": 0.00275,
+    "count": 6
+   },
+   "decremental_mismatches": 0,
+   "decremental_skipped": 0
+  },
+  {
+   "column": "optin_date",
+   "target_frac": 0.5,
+   "n": 5000,
+   "label": "legs since 2018-04-14",
+   "seeds": 6,
+   "consent_pct": {
+    "mean": 49.57999999999999,
+    "std": 0.8193656082604401,
+    "min": 48.4,
+    "max": 50.46,
+    "median": 49.57,
+    "count": 6
+   },
+   "lower_bound_calls": {
+    "mean": 6.666666666666667,
+    "std": 3.559026084010437,
+    "min": 3.0,
+    "max": 12.0,
+    "median": 5.5,
+    "count": 6
+   },
+   "gt_radius_km": {
+    "mean": 1965.5096042911227,
+    "std": 61.55775228499337,
+    "min": 1865.492663293672,
+    "max": 2027.339004423994,
+    "median": 1985.703349428773,
+    "count": 6
+   },
+   "incremental_calls": {
+    "mean": 41.666666666666664,
+    "std": 9.72967967955095,
+    "min": 26.0,
+    "max": 55.0,
+    "median": 42.0,
+    "count": 6
+   },
+   "incremental_time_s": {
+    "mean": 0.028513516666672938,
+    "std": 0.012165689538935827,
+    "min": 0.00942290000000412,
+    "max": 0.04547840000003589,
+    "median": 0.0288117500000169,
+    "count": 6
+   },
+   "decremental_calls": {
+    "mean": 6.833333333333333,
+    "std": 3.763863263545405,
+    "min": 3.0,
+    "max": 12.0,
+    "median": 5.5,
+    "count": 6
+   },
+   "decremental_time_s": {
+    "mean": 0.1883666000000043,
+    "std": 0.1288738771888569,
+    "min": 0.06922389999999723,
+    "max": 0.3925461000000041,
+    "median": 0.13628380000000107,
+    "count": 6
+   },
+   "incremental_calls_per_n": {
+    "mean": 0.008333333333333335,
+    "std": 0.0019459359359101898,
+    "min": 0.0052,
+    "max": 0.011,
+    "median": 0.008400000000000001,
+    "count": 6
+   },
+   "incremental_mismatches": 0,
+   "incremental_skipped": 0,
+   "decremental_calls_per_n": {
+    "mean": 0.0013666666666666669,
+    "std": 0.000752772652709081,
+    "min": 0.0006,
+    "max": 0.0024,
+    "median": 0.0010999999999999998,
+    "count": 6
+   },
+   "decremental_mismatches": 0,
+   "decremental_skipped": 0
+  },
+  {
+   "column": "optin_date",
+   "target_frac": 0.5,
+   "n": 10000,
+   "label": "legs since 2018-04-14",
+   "seeds": 6,
+   "consent_pct": {
+    "mean": 49.94333333333333,
+    "std": 0.4338509728773998,
+    "min": 49.42,
+    "max": 50.54,
+    "median": 49.86,
+    "count": 6
+   },
+   "lower_bound_calls": {
+    "mean": 8.333333333333334,
+    "std": 3.011090610836324,
+    "min": 4.0,
+    "max": 12.0,
+    "median": 8.5,
+    "count": 6
+   },
+   "gt_radius_km": {
+    "mean": 1949.4015248415133,
+    "std": 40.349712913412546,
+    "min": 1904.0254065042923,
+    "max": 2005.0833795819551,
+    "median": 1935.8829239591912,
+    "count": 6
+   },
+   "incremental_calls": {
+    "mean": 50.833333333333336,
+    "std": 12.781497043252275,
+    "min": 29.0,
+    "max": 66.0,
+    "median": 52.0,
+    "count": 6
+   },
+   "incremental_time_s": {
+    "mean": 0.08692846666666772,
+    "std": 0.03662220836943894,
+    "min": 0.029353800000023966,
+    "max": 0.12027399999999489,
+    "median": 0.10090935000002332,
+    "count": 6
+   },
+   "decremental_calls": {
+    "mean": 9.166666666666666,
+    "std": 3.311595788538611,
+    "min": 5.0,
+    "max": 14.0,
+    "median": 8.5,
+    "count": 6
+   },
+   "decremental_time_s": {
+    "mean": 0.4586561000000036,
+    "std": 0.2584701450731805,
+    "min": 0.21432320000002392,
+    "max": 0.916756399999997,
+    "median": 0.41795580000001564,
+    "count": 6
+   },
+   "incremental_calls_per_n": {
+    "mean": 0.005083333333333334,
+    "std": 0.0012781497043252276,
+    "min": 0.0029,
+    "max": 0.0066,
+    "median": 0.0052,
+    "count": 6
+   },
+   "incremental_mismatches": 0,
+   "incremental_skipped": 0,
+   "decremental_calls_per_n": {
+    "mean": 0.0009166666666666666,
+    "std": 0.0003311595788538611,
+    "min": 0.0005,
+    "max": 0.0014,
+    "median": 0.0008500000000000001,
+    "count": 6
+   },
+   "decremental_mismatches": 0,
+   "decremental_skipped": 0
+  },
+  {
+   "column": "optin_date",
+   "target_frac": 0.5,
+   "n": 20000,
+   "label": "legs since 2018-04-14",
+   "seeds": 6,
+   "consent_pct": {
+    "mean": 50.044999999999995,
+    "std": 0.2928822288907267,
+    "min": 49.835,
+    "max": 50.45,
+    "median": 49.88,
+    "count": 6
+   },
+   "lower_bound_calls": {
+    "mean": 14.0,
+    "std": 4.381780460041329,
+    "min": 9.0,
+    "max": 21.0,
+    "median": 14.0,
+    "count": 6
+   },
+   "gt_radius_km": {
+    "mean": 2009.0469437358909,
+    "std": 35.91035693034232,
+    "min": 1960.0874685106878,
+    "max": 2048.7624314947307,
+    "median": 2010.4162550791966,
+    "count": 6
+   },
+   "incremental_calls": {
+    "mean": 54.0,
+    "std": 9.121403400793104,
+    "min": 42.0,
+    "max": 63.0,
+    "median": 58.0,
+    "count": 6
+   },
+   "incremental_time_s": {
+    "mean": 0.11845274999999826,
+    "std": 0.0859418874637738,
+    "min": 0.03728790000002391,
+    "max": 0.2605358999999794,
+    "median": 0.09397465000000693,
+    "count": 6
+   },
+   "decremental_calls": {
+    "mean": 14.333333333333334,
+    "std": 4.273952113286562,
+    "min": 10.0,
+    "max": 21.0,
+    "median": 14.0,
+    "count": 6
+   },
+   "decremental_time_s": {
+    "mean": 1.93847654999999,
+    "std": 0.5879568567545114,
+    "min": 0.995160999999996,
+    "max": 2.6513889999999947,
+    "median": 1.9825555999999835,
+    "count": 6
+   },
+   "incremental_calls_per_n": {
+    "mean": 0.0026999999999999997,
+    "std": 0.00045607017003965525,
+    "min": 0.0021,
+    "max": 0.00315,
+    "median": 0.0029,
+    "count": 6
+   },
+   "incremental_mismatches": 0,
+   "incremental_skipped": 0,
+   "decremental_calls_per_n": {
+    "mean": 0.0007166666666666667,
+    "std": 0.00021369760566432804,
+    "min": 0.0005,
+    "max": 0.00105,
+    "median": 0.0007,
+    "count": 6
+   },
+   "decremental_mismatches": 0,
+   "decremental_skipped": 0
+  },
+  {
+   "column": "optin_date",
+   "target_frac": 0.5,
+   "n": 50000,
+   "label": "legs since 2018-04-14",
+   "seeds": 6,
+   "consent_pct": {
+    "mean": 49.96033333333333,
+    "std": 0.21648248581967625,
+    "min": 49.694,
+    "max": 50.252,
+    "median": 50.032,
+    "count": 6
+   },
+   "lower_bound_calls": {
+    "mean": 29.5,
+    "std": 8.215838362577491,
+    "min": 20.0,
+    "max": 44.0,
+    "median": 28.5,
+    "count": 6
+   },
+   "gt_radius_km": {
+    "mean": 2028.9641834306512,
+    "std": 19.721801524421533,
+    "min": 2003.9806628772424,
+    "max": 2050.668326739178,
+    "median": 2027.785984085739,
+    "count": 6
+   },
+   "incremental_calls": {
+    "mean": 82.5,
+    "std": 12.565826673959815,
+    "min": 72.0,
+    "max": 106.0,
+    "median": 79.0,
+    "count": 6
+   },
+   "incremental_time_s": {
+    "mean": 0.2506424333333257,
+    "std": 0.07076534444511913,
+    "min": 0.1335353999999711,
+    "max": 0.3289005999999972,
+    "median": 0.2771711000000039,
+    "count": 6
+   },
+   "decremental_calls": {
+    "mean": 30.166666666666668,
+    "std": 8.256310717667224,
+    "min": 20.0,
+    "max": 44.0,
+    "median": 29.0,
+    "count": 6
+   },
+   "decremental_time_s": {
+    "mean": 10.917428750000008,
+    "std": 3.8020019622540038,
+    "min": 7.403742399999999,
+    "max": 17.38407010000003,
+    "median": 10.458993399999997,
+    "count": 6
+   },
+   "incremental_calls_per_n": {
+    "mean": 0.0016499999999999998,
+    "std": 0.0002513165334791963,
+    "min": 0.00144,
+    "max": 0.00212,
+    "median": 0.00158,
+    "count": 6
+   },
+   "incremental_mismatches": 0,
+   "incremental_skipped": 0,
+   "decremental_calls_per_n": {
+    "mean": 0.0006033333333333334,
+    "std": 0.0001651262143533445,
+    "min": 0.0004,
+    "max": 0.00088,
+    "median": 0.00058,
+    "count": 6
+   },
+   "decremental_mismatches": 0,
+   "decremental_skipped": 0
+  }
+ ],
+ "runs": [
+  {
+   "seed": 0,
+   "n": 1000,
+   "n_consenting": 110,
+   "consent_pct": 11.0,
+   "gt_radius_km": 1142.3977545180035,
+   "gt_center_km": [
+    29.677668367579983,
+    353.806149154025
+   ],
+   "gt_support_km": [
+    [
+     -187.2573751586418,
+     1475.417408199713
+    ],
+    [
+     246.61271189380176,
+     -767.805109891663
+    ]
+   ],
+   "lower_bound_calls": 59,
+   "incremental_calls": 161,
+   "incremental_time_s": 0.0068442000000175085,
+   "incremental_radius_km": 1142.3977545180035,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 4.547473508864641e-13,
+   "incremental_ok": true,
+   "decremental_calls": 64,
+   "decremental_time_s": 0.4942759000000194,
+   "decremental_radius_km": 1142.3977545180035,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 2.2737367544323206e-13,
+   "decremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.1,
+   "label": "legs since 2019-07-25",
+   "threshold": 1564095771.0
+  },
+  {
+   "seed": 1,
+   "n": 1000,
+   "n_consenting": 104,
+   "consent_pct": 10.4,
+   "gt_radius_km": 1136.6976085997742,
+   "gt_center_km": [
+    -240.62827417084964,
+    45.62325266119394
+   ],
+   "gt_support_km": [
+    [
+     -1207.4767183928307,
+     -552.110416544398
+    ],
+    [
+     84.4921094562921,
+     -1043.5866396674544
+    ],
+    [
+     140.5512826200518,
+     1116.503077329274
+    ]
+   ],
+   "lower_bound_calls": 56,
+   "decremental_calls": 58,
+   "decremental_time_s": 0.5515774000000135,
+   "decremental_radius_km": 1136.6976085997742,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 2.2737367544323206e-13,
+   "decremental_ok": true,
+   "incremental_calls": 147,
+   "incremental_time_s": 0.007208300000002055,
+   "incremental_radius_km": 1136.6976085997742,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 2.2737367544323206e-13,
+   "incremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.1,
+   "label": "legs since 2019-07-25",
+   "threshold": 1564095771.0
+  },
+  {
+   "seed": 2,
+   "n": 1000,
+   "n_consenting": 93,
+   "consent_pct": 9.3,
+   "gt_radius_km": 1244.532595028308,
+   "gt_center_km": [
+    -279.26152813265816,
+    -74.98254586910875
+   ],
+   "gt_support_km": [
+    [
+     -1425.4185126459427,
+     -559.9418709050425
+    ],
+    [
+     866.8954563806265,
+     409.976779166825
+    ]
+   ],
+   "lower_bound_calls": 21,
+   "incremental_calls": 78,
+   "incremental_time_s": 0.0022671000000116237,
+   "incremental_radius_km": 1244.532595028308,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 0.0,
+   "incremental_ok": true,
+   "decremental_calls": 26,
+   "decremental_time_s": 0.15858849999997915,
+   "decremental_radius_km": 1244.532595028308,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 0.0,
+   "decremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.1,
+   "label": "legs since 2019-07-25",
+   "threshold": 1564095771.0
+  },
+  {
+   "seed": 3,
+   "n": 1000,
+   "n_consenting": 100,
+   "consent_pct": 10.0,
+   "gt_radius_km": 1269.1529527013488,
+   "gt_center_km": [
+    -391.1131590128876,
+    -55.9278204797459
+   ],
+   "gt_support_km": [
+    [
+     867.5635052461176,
+     -218.661566827501
+    ],
+    [
+     104.84161812668202,
+     1112.3093456740246
+    ],
+    [
+     -1566.5128910999347,
+     -534.6601957796108
+    ]
+   ],
+   "lower_bound_calls": 28,
+   "decremental_calls": 29,
+   "decremental_time_s": 0.37162029999998936,
+   "decremental_radius_km": 1269.1529527013488,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 2.2737367544323206e-13,
+   "decremental_ok": true,
+   "incremental_calls": 97,
+   "incremental_time_s": 0.00668719999998757,
+   "incremental_radius_km": 1269.152952701349,
+   "incremental_rel_err": 1.7915387972684848e-16,
+   "incremental_max_excess_km": 0.0,
+   "incremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.1,
+   "label": "legs since 2019-07-25",
+   "threshold": 1564095771.0
+  },
+  {
+   "seed": 4,
+   "n": 1000,
+   "n_consenting": 110,
+   "consent_pct": 11.0,
+   "gt_radius_km": 1157.1652311370622,
+   "gt_center_km": [
+    -272.1128366267962,
+    -212.55923795806407
+   ],
+   "gt_support_km": [
+    [
+     -1389.4437782423336,
+     -513.5624589724355
+    ],
+    [
+     885.0206099483038,
+     -203.98258536390395
+    ],
+    [
+     -1052.0846421763376,
+     642.236266651242
+    ]
+   ],
+   "lower_bound_calls": 52,
+   "incremental_calls": 171,
+   "incremental_time_s": 0.01120599999998717,
+   "incremental_radius_km": 1157.1652311370622,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 0.0,
+   "incremental_ok": true,
+   "decremental_calls": 52,
+   "decremental_time_s": 0.3767157000000054,
+   "decremental_radius_km": 1157.1652311370622,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 0.0,
+   "decremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.1,
+   "label": "legs since 2019-07-25",
+   "threshold": 1564095771.0
+  },
+  {
+   "seed": 5,
+   "n": 1000,
+   "n_consenting": 114,
+   "consent_pct": 11.4,
+   "gt_radius_km": 1121.0333458320495,
+   "gt_center_km": [
+    -111.84238305075309,
+    66.50827282713867
+   ],
+   "gt_support_km": [
+    [
+     -1038.6412948926977,
+     -564.1735324249128
+    ],
+    [
+     145.59640708444346,
+     -1024.5650665048813
+    ],
+    [
+     -0.16828816490076667,
+     1181.96542529819
+    ]
+   ],
+   "lower_bound_calls": 47,
+   "decremental_calls": 49,
+   "decremental_time_s": 0.36777429999997935,
+   "decremental_radius_km": 1121.0333458320497,
+   "decremental_rel_err": 2.0282507767373464e-16,
+   "decremental_max_excess_km": 0.0,
+   "decremental_ok": true,
+   "incremental_calls": 92,
+   "incremental_time_s": 0.004006899999978941,
+   "incremental_radius_km": 1121.0333458320495,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 4.547473508864641e-13,
+   "incremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.1,
+   "label": "legs since 2019-07-25",
+   "threshold": 1564095771.0
+  },
+  {
+   "seed": 0,
+   "n": 2000,
+   "n_consenting": 195,
+   "consent_pct": 9.75,
+   "gt_radius_km": 1583.6250097396346,
+   "gt_center_km": [
+    220.77575113534098,
+    -258.66337879284254
+   ],
+   "gt_support_km": [
+    [
+     -1077.7589445894687,
+     647.7999770422037
+    ],
+    [
+     1519.3104468601507,
+     -1165.126734627889
+    ]
+   ],
+   "lower_bound_calls": 39,
+   "incremental_calls": 98,
+   "incremental_time_s": 0.004851999999999634,
+   "incremental_radius_km": 1583.6250097396346,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 2.2737367544323206e-13,
+   "incremental_ok": true,
+   "decremental_calls": 42,
+   "decremental_time_s": 0.6436158999999861,
+   "decremental_radius_km": 1583.6250097396346,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 2.2737367544323206e-13,
+   "decremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.1,
+   "label": "legs since 2019-07-25",
+   "threshold": 1564095771.0
+  },
+  {
+   "seed": 1,
+   "n": 2000,
+   "n_consenting": 206,
+   "consent_pct": 10.3,
+   "gt_radius_km": 1219.7901004446057,
+   "gt_center_km": [
+    -359.08225836099405,
+    -148.6354184401757
+   ],
+   "gt_support_km": [
+    [
+     857.855492458557,
+     -232.00447608696396
+    ],
+    [
+     154.37137352437455,
+     957.824367113003
+    ],
+    [
+     -1369.8718677642719,
+     -831.4181471797289
+    ]
+   ],
+   "lower_bound_calls": 83,
+   "decremental_calls": 92,
+   "decremental_time_s": 1.5682931999999994,
+   "decremental_radius_km": 1219.7901004446057,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 2.2737367544323206e-13,
+   "decremental_ok": true,
+   "incremental_calls": 149,
+   "incremental_time_s": 0.0057904999999891515,
+   "incremental_radius_km": 1219.7901004446057,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 0.0,
+   "incremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.1,
+   "label": "legs since 2019-07-25",
+   "threshold": 1564095771.0
+  },
+  {
+   "seed": 2,
+   "n": 2000,
+   "n_consenting": 181,
+   "consent_pct": 9.05,
+   "gt_radius_km": 1323.3629269902533,
+   "gt_center_km": [
+    -403.8660471953005,
+    73.71833676281295
+   ],
+   "gt_support_km": [
+    [
+     -1568.0291085780802,
+     -555.5779392821713
+    ],
+    [
+     883.6446831106545,
+     -232.23191389771046
+    ],
+    [
+     213.06160861434608,
+     1244.4829177223776
+    ]
+   ],
+   "lower_bound_calls": 40,
+   "incremental_calls": 126,
+   "incremental_time_s": 0.004583599999989474,
+   "incremental_radius_km": 1323.3629269902533,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 2.2737367544323206e-13,
+   "incremental_ok": true,
+   "decremental_calls": 42,
+   "decremental_time_s": 0.7681670999999994,
+   "decremental_radius_km": 1323.3629269902533,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 2.2737367544323206e-13,
+   "decremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.1,
+   "label": "legs since 2019-07-25",
+   "threshold": 1564095771.0
+  },
+  {
+   "seed": 3,
+   "n": 2000,
+   "n_consenting": 202,
+   "consent_pct": 10.1,
+   "gt_radius_km": 1307.3259803494495,
+   "gt_center_km": [
+    -401.20067225672915,
+    104.5997146202966
+   ],
+   "gt_support_km": [
+    [
+     -1557.8000774290103,
+     -504.80904381017945
+    ],
+    [
+     826.8614033241777,
+     -343.6912148179037
+    ],
+    [
+     115.66977193408671,
+     1305.4103419960868
+    ]
+   ],
+   "lower_bound_calls": 77,
+   "decremental_calls": 77,
+   "decremental_time_s": 1.2903161000000125,
+   "decremental_radius_km": 1307.3259803494498,
+   "decremental_rel_err": 1.7392270853705122e-16,
+   "decremental_max_excess_km": 0.0,
+   "decremental_ok": true,
+   "incremental_calls": 190,
+   "incremental_time_s": 0.011022500000024138,
+   "incremental_radius_km": 1307.3259803494495,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 2.2737367544323206e-13,
+   "incremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.1,
+   "label": "legs since 2019-07-25",
+   "threshold": 1564095771.0
+  },
+  {
+   "seed": 4,
+   "n": 2000,
+   "n_consenting": 231,
+   "consent_pct": 11.55,
+   "gt_radius_km": 1311.8178901842368,
+   "gt_center_km": [
+    -293.22729870742006,
+    47.36396560594858
+   ],
+   "gt_support_km": [
+    [
+     92.31096264489054,
+     1301.2485001787538
+    ],
+    [
+     -1456.0709907194048,
+     -559.8104121105017
+    ],
+    [
+     -63.1689829799342,
+     -1244.123296573611
+    ]
+   ],
+   "lower_bound_calls": 36,
+   "incremental_calls": 124,
+   "incremental_time_s": 0.012079099999994014,
+   "incremental_radius_km": 1311.8178901842368,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 2.2737367544323206e-13,
+   "incremental_ok": true,
+   "decremental_calls": 39,
+   "decremental_time_s": 0.5235528999999985,
+   "decremental_radius_km": 1311.8178901842368,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 2.2737367544323206e-13,
+   "decremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.1,
+   "label": "legs since 2019-07-25",
+   "threshold": 1564095771.0
+  },
+  {
+   "seed": 5,
+   "n": 2000,
+   "n_consenting": 212,
+   "consent_pct": 10.6,
+   "gt_radius_km": 1258.2608192173043,
+   "gt_center_km": [
+    -366.1347073625969,
+    -80.16716636317645
+   ],
+   "gt_support_km": [
+    [
+     108.75911564203221,
+     1085.0350246961477
+    ],
+    [
+     -1529.893404118101,
+     -558.587467879879
+    ],
+    [
+     884.3523818125578,
+     -219.81790565105317
+    ]
+   ],
+   "lower_bound_calls": 35,
+   "decremental_calls": 40,
+   "decremental_time_s": 0.573808200000002,
+   "decremental_radius_km": 1258.260819217304,
+   "decremental_rel_err": 1.8070472510196167e-16,
+   "decremental_max_excess_km": 6.821210263296962e-13,
+   "decremental_ok": true,
+   "incremental_calls": 160,
+   "incremental_time_s": 0.012376899999992474,
+   "incremental_radius_km": 1258.260819217304,
+   "incremental_rel_err": 1.8070472510196167e-16,
+   "incremental_max_excess_km": 6.821210263296962e-13,
+   "incremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.1,
+   "label": "legs since 2019-07-25",
+   "threshold": 1564095771.0
+  },
+  {
+   "seed": 0,
+   "n": 5000,
+   "n_consenting": 489,
+   "consent_pct": 9.78,
+   "gt_radius_km": 1330.8345976707353,
+   "gt_center_km": [
+    -396.41269564090635,
+    79.97229164210773
+   ],
+   "gt_support_km": [
+    [
+     -1366.3438007261475,
+     -831.2655355718152
+    ],
+    [
+     836.133388629651,
+     -421.9747937232167
+    ],
+    [
+     125.82921590040813,
+     1304.0573018383368
+    ]
+   ],
+   "lower_bound_calls": 68,
+   "incremental_calls": 230,
+   "incremental_time_s": 0.016378899999978103,
+   "incremental_radius_km": 1330.8345976707355,
+   "incremental_rel_err": 1.7085043914637322e-16,
+   "incremental_max_excess_km": 0.0,
+   "incremental_ok": true,
+   "decremental_calls": 91,
+   "decremental_time_s": 2.10428619999999,
+   "decremental_radius_km": 1330.8345976707353,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 2.2737367544323206e-13,
+   "decremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.1,
+   "label": "legs since 2019-07-25",
+   "threshold": 1564095771.0
+  },
+  {
+   "seed": 1,
+   "n": 5000,
+   "n_consenting": 518,
+   "consent_pct": 10.36,
+   "gt_radius_km": 1313.036802924627,
+   "gt_center_km": [
+    -409.3273368349227,
+    72.5873438955833
+   ],
+   "gt_support_km": [
+    [
+     -1570.034594606363,
+     -541.2728255169862
+    ],
+    [
+     868.3507170985293,
+     -230.0749040497991
+    ],
+    [
+     118.32343442272602,
+     1274.9393345479602
+    ]
+   ],
+   "lower_bound_calls": 111,
+   "decremental_calls": 113,
+   "decremental_time_s": 3.8959342999999933,
+   "decremental_radius_km": 1313.0368029246272,
+   "decremental_rel_err": 1.7316626231403821e-16,
+   "decremental_max_excess_km": -2.2737367544323206e-13,
+   "decremental_ok": true,
+   "incremental_calls": 244,
+   "incremental_time_s": 0.033542000000011285,
+   "incremental_radius_km": 1313.036802924627,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 0.0,
+   "incremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.1,
+   "label": "legs since 2019-07-25",
+   "threshold": 1564095771.0
+  },
+  {
+   "seed": 2,
+   "n": 5000,
+   "n_consenting": 489,
+   "consent_pct": 9.78,
+   "gt_radius_km": 1392.1870122957046,
+   "gt_center_km": [
+    -261.495442243699,
+    -45.37973446166449
+   ],
+   "gt_support_km": [
+    [
+     -1565.6923999209575,
+     -532.467994215709
+    ],
+    [
+     1042.7015154335595,
+     441.70852529238
+    ]
+   ],
+   "lower_bound_calls": 56,
+   "incremental_calls": 325,
+   "incremental_time_s": 0.02357089999998152,
+   "incremental_radius_km": 1392.1870122957046,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 0.0,
+   "incremental_ok": true,
+   "decremental_calls": 60,
+   "decremental_time_s": 1.0326407999999958,
+   "decremental_radius_km": 1392.1870122957046,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 0.0,
+   "decremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.1,
+   "label": "legs since 2019-07-25",
+   "threshold": 1564095771.0
+  },
+  {
+   "seed": 3,
+   "n": 5000,
+   "n_consenting": 525,
+   "consent_pct": 10.5,
+   "gt_radius_km": 1405.2739306455844,
+   "gt_center_km": [
+    -212.44558748884245,
+    -98.33871364597636
+   ],
+   "gt_support_km": [
+    [
+     -1552.3319863227546,
+     -522.0122416979202
+    ],
+    [
+     1070.494755499899,
+     -671.8009150891238
+    ],
+    [
+     -62.04504319856992,
+     1298.8636684122853
+    ]
+   ],
+   "lower_bound_calls": 67,
+   "decremental_calls": 76,
+   "decremental_time_s": 1.7293678999999997,
+   "decremental_radius_km": 1405.2739306455844,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 0.0,
+   "decremental_ok": true,
+   "incremental_calls": 312,
+   "incremental_time_s": 0.055841200000003255,
+   "incremental_radius_km": 1405.2739306455844,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 0.0,
+   "incremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.1,
+   "label": "legs since 2019-07-25",
+   "threshold": 1564095771.0
+  },
+  {
+   "seed": 4,
+   "n": 5000,
+   "n_consenting": 500,
+   "consent_pct": 10.0,
+   "gt_radius_km": 1381.6587337701048,
+   "gt_center_km": [
+    -351.41462500841516,
+    112.13094995798822
+   ],
+   "gt_support_km": [
+    [
+     899.6099840128189,
+     -474.31451573040664
+    ],
+    [
+     -213.5821988977608,
+     1486.8975042920906
+    ],
+    [
+     -1549.2405368338634,
+     -576.4864630971433
+    ]
+   ],
+   "lower_bound_calls": 71,
+   "incremental_calls": 295,
+   "incremental_time_s": 0.018966300000016645,
+   "incremental_radius_km": 1381.6587337701046,
+   "incremental_rel_err": 1.6456572805268782e-16,
+   "incremental_max_excess_km": 2.2737367544323206e-13,
+   "incremental_ok": true,
+   "decremental_calls": 74,
+   "decremental_time_s": 2.4454318999999884,
+   "decremental_radius_km": 1381.6587337701046,
+   "decremental_rel_err": 1.6456572805268782e-16,
+   "decremental_max_excess_km": 2.2737367544323206e-13,
+   "decremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.1,
+   "label": "legs since 2019-07-25",
+   "threshold": 1564095771.0
+  },
+  {
+   "seed": 5,
+   "n": 5000,
+   "n_consenting": 531,
+   "consent_pct": 10.62,
+   "gt_radius_km": 1296.4954639671118,
+   "gt_center_km": [
+    -395.53533351675617,
+    -2.3728845708459456
+   ],
+   "gt_support_km": [
+    [
+     -1566.4957947206713,
+     -558.9266433259291
+    ],
+    [
+     882.0660395190463,
+     -222.90682686619476
+    ],
+    [
+     120.83324977664863,
+     1186.8554258367303
+    ]
+   ],
+   "lower_bound_calls": 86,
+   "decremental_calls": 95,
+   "decremental_time_s": 2.9374764000000084,
+   "decremental_radius_km": 1296.4954639671118,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 0.0,
+   "decremental_ok": true,
+   "incremental_calls": 257,
+   "incremental_time_s": 0.016226600000010194,
+   "incremental_radius_km": 1296.4954639671118,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 0.0,
+   "incremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.1,
+   "label": "legs since 2019-07-25",
+   "threshold": 1564095771.0
+  },
+  {
+   "seed": 0,
+   "n": 10000,
+   "n_consenting": 1005,
+   "consent_pct": 10.05,
+   "gt_radius_km": 1532.8702722450107,
+   "gt_center_km": [
+    -61.89000724055293,
+    -253.89344442956065
+   ],
+   "gt_support_km": [
+    [
+     1292.599367982389,
+     -971.5631483607343
+    ],
+    [
+     172.2844698301922,
+     1260.983971674177
+    ],
+    [
+     -1562.1203171129855,
+     -568.5365579289007
+    ]
+   ],
+   "lower_bound_calls": 63,
+   "incremental_calls": 223,
+   "incremental_time_s": 0.039114900000015496,
+   "incremental_radius_km": 1532.8702722450107,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 2.2737367544323206e-13,
+   "incremental_ok": true,
+   "decremental_calls": 72,
+   "decremental_time_s": 2.8169283000000007,
+   "decremental_radius_km": 1532.8702722450107,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 2.2737367544323206e-13,
+   "decremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.1,
+   "label": "legs since 2019-07-25",
+   "threshold": 1564095771.0
+  },
+  {
+   "seed": 1,
+   "n": 10000,
+   "n_consenting": 1020,
+   "consent_pct": 10.2,
+   "gt_radius_km": 1412.9084830451914,
+   "gt_center_km": [
+    -292.49886770707536,
+    51.83534984645966
+   ],
+   "gt_support_km": [
+    [
+     -168.58370888650134,
+     1459.299528742511
+    ],
+    [
+     -1564.795149767189,
+     -562.633975764734
+    ],
+    [
+     984.089993085861,
+     -553.665485793308
+    ]
+   ],
+   "lower_bound_calls": 104,
+   "decremental_calls": 112,
+   "decremental_time_s": 6.112695099999996,
+   "decremental_radius_km": 1412.9084830451914,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 2.2737367544323206e-13,
+   "decremental_ok": true,
+   "incremental_calls": 354,
+   "incremental_time_s": 0.0632030999999813,
+   "incremental_radius_km": 1412.9084830451914,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 2.2737367544323206e-13,
+   "incremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.1,
+   "label": "legs since 2019-07-25",
+   "threshold": 1564095771.0
+  },
+  {
+   "seed": 2,
+   "n": 10000,
+   "n_consenting": 1007,
+   "consent_pct": 10.07,
+   "gt_radius_km": 1407.9927687411666,
+   "gt_center_km": [
+    -310.4373576072187,
+    77.15659840302224
+   ],
+   "gt_support_km": [
+    [
+     960.5872256529052,
+     -528.5992481026834
+    ],
+    [
+     -217.91669087763898,
+     1482.106264069138
+    ],
+    [
+     -1565.9716878702413,
+     -560.085257063486
+    ]
+   ],
+   "lower_bound_calls": 93,
+   "incremental_calls": 400,
+   "incremental_time_s": 0.034920499999998356,
+   "incremental_radius_km": 1407.9927687411666,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 2.2737367544323206e-13,
+   "incremental_ok": true,
+   "decremental_calls": 95,
+   "decremental_time_s": 5.62509270000001,
+   "decremental_radius_km": 1407.9927687411666,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 0.0,
+   "decremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.1,
+   "label": "legs since 2019-07-25",
+   "threshold": 1564095771.0
+  },
+  {
+   "seed": 3,
+   "n": 10000,
+   "n_consenting": 973,
+   "consent_pct": 9.73,
+   "gt_radius_km": 1523.675836972767,
+   "gt_center_km": [
+    -139.14108883291988,
+    -27.00497867592999
+   ],
+   "gt_support_km": [
+    [
+     -1568.8925910677597,
+     -553.6915059688556
+    ],
+    [
+     1290.6104134019197,
+     499.68154861699577
+    ]
+   ],
+   "lower_bound_calls": 77,
+   "decremental_calls": 85,
+   "decremental_time_s": 4.64521959999999,
+   "decremental_radius_km": 1523.675836972767,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 2.2737367544323206e-13,
+   "decremental_ok": true,
+   "incremental_calls": 502,
+   "incremental_time_s": 0.08938040000001024,
+   "incremental_radius_km": 1523.675836972767,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 2.2737367544323206e-13,
+   "incremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.1,
+   "label": "legs since 2019-07-25",
+   "threshold": 1564095771.0
+  },
+  {
+   "seed": 4,
+   "n": 10000,
+   "n_consenting": 1021,
+   "consent_pct": 10.21,
+   "gt_radius_km": 1421.2722224376648,
+   "gt_center_km": [
+    -240.23627795475647,
+    -47.05776772900583
+   ],
+   "gt_support_km": [
+    [
+     1120.5242464547425,
+     -457.35707979482436
+    ],
+    [
+     -98.24573158099633,
+     1367.1039680754177
+    ],
+    [
+     -1564.1281320485828,
+     -564.0926688110402
+    ]
+   ],
+   "lower_bound_calls": 82,
+   "incremental_calls": 296,
+   "incremental_time_s": 0.033809899999994286,
+   "incremental_radius_km": 1421.2722224376648,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 2.2737367544323206e-13,
+   "incremental_ok": true,
+   "decremental_calls": 85,
+   "decremental_time_s": 4.192274099999992,
+   "decremental_radius_km": 1421.2722224376648,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 2.2737367544323206e-13,
+   "decremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.1,
+   "label": "legs since 2019-07-25",
+   "threshold": 1564095771.0
+  },
+  {
+   "seed": 5,
+   "n": 10000,
+   "n_consenting": 1031,
+   "consent_pct": 10.31,
+   "gt_radius_km": 1456.034100288773,
+   "gt_center_km": [
+    -178.72895656415213,
+    -120.04203647382062
+   ],
+   "gt_support_km": [
+    [
+     1208.9989533880173,
+     -560.7761390158408
+    ],
+    [
+     116.22320783908188,
+     1305.8045618380681
+    ],
+    [
+     -1568.250903335617,
+     -555.0869314492409
+    ]
+   ],
+   "lower_bound_calls": 69,
+   "decremental_calls": 78,
+   "decremental_time_s": 4.7955604999999935,
+   "decremental_radius_km": 1456.0341002887728,
+   "decremental_rel_err": 1.5615958128874686e-16,
+   "decremental_max_excess_km": 2.2737367544323206e-13,
+   "decremental_ok": true,
+   "incremental_calls": 367,
+   "incremental_time_s": 0.05395910000001436,
+   "incremental_radius_km": 1456.0341002887726,
+   "incremental_rel_err": 3.123191625774937e-16,
+   "incremental_max_excess_km": 4.547473508864641e-13,
+   "incremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.1,
+   "label": "legs since 2019-07-25",
+   "threshold": 1564095771.0
+  },
+  {
+   "seed": 0,
+   "n": 20000,
+   "n_consenting": 1984,
+   "consent_pct": 9.92,
+   "gt_radius_km": 1448.1759082256006,
+   "gt_center_km": [
+    -184.38979937671627,
+    -126.30953397685829
+   ],
+   "gt_support_km": [
+    [
+     127.48704285483649,
+     1287.885041194719
+    ],
+    [
+     -1566.3132402450142,
+     -559.3234653275331
+    ],
+    [
+     1119.4690575820607,
+     -756.5202465922456
+    ]
+   ],
+   "lower_bound_calls": 160,
+   "incremental_calls": 543,
+   "incremental_time_s": 0.11603940000000534,
+   "incremental_radius_km": 1448.1759082256006,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 0.0,
+   "incremental_ok": true,
+   "decremental_calls": 185,
+   "decremental_time_s": 16.487943899999976,
+   "decremental_radius_km": 1448.1759082256,
+   "decremental_rel_err": 3.140138903730626e-16,
+   "decremental_max_excess_km": 6.821210263296962e-13,
+   "decremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.1,
+   "label": "legs since 2019-07-25",
+   "threshold": 1564095771.0
+  },
+  {
+   "seed": 1,
+   "n": 20000,
+   "n_consenting": 2094,
+   "consent_pct": 10.47,
+   "gt_radius_km": 1580.3796108372987,
+   "gt_center_km": [
+    -45.34967956985292,
+    -130.43767585125133
+   ],
+   "gt_support_km": [
+    [
+     1292.599367982389,
+     -971.5631483607343
+    ],
+    [
+     -157.78824986699718,
+     1445.9370518895187
+    ],
+    [
+     -1566.5996947084673,
+     -558.6877263953447
+    ]
+   ],
+   "lower_bound_calls": 94,
+   "decremental_calls": 100,
+   "decremental_time_s": 9.133979799999992,
+   "decremental_radius_km": 1580.3796108372992,
+   "decremental_rel_err": 2.877456452665414e-16,
+   "decremental_max_excess_km": -2.2737367544323206e-13,
+   "decremental_ok": true,
+   "incremental_calls": 326,
+   "incremental_time_s": 0.05964330000000473,
+   "incremental_radius_km": 1580.3796108372992,
+   "incremental_rel_err": 2.877456452665414e-16,
+   "incremental_max_excess_km": -2.2737367544323206e-13,
+   "incremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.1,
+   "label": "legs since 2019-07-25",
+   "threshold": 1564095771.0
+  },
+  {
+   "seed": 2,
+   "n": 20000,
+   "n_consenting": 2019,
+   "consent_pct": 10.095,
+   "gt_radius_km": 1492.3566326922958,
+   "gt_center_km": [
+    -168.84709210584114,
+    -34.61565955420709
+   ],
+   "gt_support_km": [
+    [
+     1226.7954926294885,
+     493.8823014768408
+    ],
+    [
+     -1564.4896768411709,
+     -563.1136205852549
+    ]
+   ],
+   "lower_bound_calls": 166,
+   "incremental_calls": 340,
+   "incremental_time_s": 0.07703950000001214,
+   "incremental_radius_km": 1492.3566326922958,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": -2.2737367544323206e-13,
+   "incremental_ok": true,
+   "decremental_calls": 202,
+   "decremental_time_s": 16.776818399999996,
+   "decremental_radius_km": 1492.3566326922958,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": -2.2737367544323206e-13,
+   "decremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.1,
+   "label": "legs since 2019-07-25",
+   "threshold": 1564095771.0
+  },
+  {
+   "seed": 3,
+   "n": 20000,
+   "n_consenting": 2018,
+   "consent_pct": 10.09,
+   "gt_radius_km": 1493.8343077220784,
+   "gt_center_km": [
+    -160.24507381036247,
+    -56.16505390820853
+   ],
+   "gt_support_km": [
+    [
+     1233.4892787565059,
+     481.46445923491626
+    ],
+    [
+     -1568.4657957897473,
+     -554.6179976404736
+    ],
+    [
+     1139.7308467936205,
+     -792.1022419734187
+    ]
+   ],
+   "lower_bound_calls": 124,
+   "decremental_calls": 133,
+   "decremental_time_s": 15.222218900000001,
+   "decremental_radius_km": 1493.8343077220784,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 0.0,
+   "decremental_ok": true,
+   "incremental_calls": 593,
+   "incremental_time_s": 0.22030820000000517,
+   "incremental_radius_km": 1493.8343077220784,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 0.0,
+   "incremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.1,
+   "label": "legs since 2019-07-25",
+   "threshold": 1564095771.0
+  },
+  {
+   "seed": 4,
+   "n": 20000,
+   "n_consenting": 1991,
+   "consent_pct": 9.955,
+   "gt_radius_km": 1718.7186926386173,
+   "gt_center_km": [
+    139.18944071117727,
+    -370.7783487472176
+   ],
+   "gt_support_km": [
+    [
+     -1570.0323781958537,
+     -551.2076096711023
+    ],
+    [
+     1644.8281319188332,
+     -1199.6607746460265
+    ],
+    [
+     -80.61610440540174,
+     1333.8270210558348
+    ]
+   ],
+   "lower_bound_calls": 72,
+   "incremental_calls": 463,
+   "incremental_time_s": 0.08861500000000433,
+   "incremental_radius_km": 1718.718692638617,
+   "incremental_rel_err": 1.32292548173874e-16,
+   "incremental_max_excess_km": 4.547473508864641e-13,
+   "incremental_ok": true,
+   "decremental_calls": 77,
+   "decremental_time_s": 6.481117299999994,
+   "decremental_radius_km": 1718.718692638617,
+   "decremental_rel_err": 1.32292548173874e-16,
+   "decremental_max_excess_km": 4.547473508864641e-13,
+   "decremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.1,
+   "label": "legs since 2019-07-25",
+   "threshold": 1564095771.0
+  },
+  {
+   "seed": 5,
+   "n": 20000,
+   "n_consenting": 1968,
+   "consent_pct": 9.84,
+   "gt_radius_km": 1691.970497071088,
+   "gt_center_km": [
+    113.65835051805264,
+    -311.5445427655932
+   ],
+   "gt_support_km": [
+    [
+     -1557.163273470908,
+     -578.2264952293409
+    ],
+    [
+     1559.4454987421482,
+     -1190.4436751971946
+    ],
+    [
+     -98.24573158099633,
+     1367.1039680754177
+    ]
+   ],
+   "lower_bound_calls": 122,
+   "decremental_calls": 125,
+   "decremental_time_s": 9.05668940000001,
+   "decremental_radius_km": 1691.970497071088,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 0.0,
+   "decremental_ok": true,
+   "incremental_calls": 454,
+   "incremental_time_s": 0.20598489999997582,
+   "incremental_radius_km": 1691.970497071088,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 0.0,
+   "incremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.1,
+   "label": "legs since 2019-07-25",
+   "threshold": 1564095771.0
+  },
+  {
+   "seed": 0,
+   "n": 50000,
+   "n_consenting": 4950,
+   "consent_pct": 9.9,
+   "gt_radius_km": 1702.470850521241,
+   "gt_center_km": [
+    122.37945294539986,
+    -353.62207673515786
+   ],
+   "gt_support_km": [
+    [
+     1594.8462307909253,
+     -1208.167912261687
+    ],
+    [
+     -298.3928369131195,
+     1296.0317284499592
+    ],
+    [
+     -1569.4933202594539,
+     -543.2889324655033
+    ]
+   ],
+   "lower_bound_calls": 230,
+   "incremental_calls": 636,
+   "incremental_time_s": 0.13677740000002814,
+   "incremental_radius_km": 1702.470850521241,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 4.547473508864641e-13,
+   "incremental_ok": true,
+   "decremental_skipped": true,
+   "column": "optin_date",
+   "target_frac": 0.1,
+   "label": "legs since 2019-07-25",
+   "threshold": 1564095771.0
+  },
+  {
+   "seed": 1,
+   "n": 50000,
+   "n_consenting": 5151,
+   "consent_pct": 10.302,
+   "gt_radius_km": 1594.1645331980917,
+   "gt_center_km": [
+    -41.14236522756332,
+    -98.35438294389375
+   ],
+   "gt_support_km": [
+    [
+     1292.599367982389,
+     -971.5631483607343
+    ],
+    [
+     -206.75382367298914,
+     1487.1844540885738
+    ],
+    [
+     -1571.4599540925565,
+     -544.9958903266304
+    ]
+   ],
+   "lower_bound_calls": 230,
+   "decremental_skipped": true,
+   "incremental_calls": 552,
+   "incremental_time_s": 0.33739909999997053,
+   "incremental_radius_km": 1594.1645331980922,
+   "incremental_rel_err": 2.8525747588561927e-16,
+   "incremental_max_excess_km": 2.2737367544323206e-13,
+   "incremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.1,
+   "label": "legs since 2019-07-25",
+   "threshold": 1564095771.0
+  },
+  {
+   "seed": 2,
+   "n": 50000,
+   "n_consenting": 4988,
+   "consent_pct": 9.976,
+   "gt_radius_km": 1587.9006867777591,
+   "gt_center_km": [
+    -45.36855255245942,
+    -100.8370790983646
+   ],
+   "gt_support_km": [
+    [
+     1355.2031359902358,
+     -849.0533154377954
+    ],
+    [
+     -193.95842286835543,
+     1480.0960761959332
+    ],
+    [
+     -1564.4896768411709,
+     -563.1136205852549
+    ]
+   ],
+   "lower_bound_calls": 250,
+   "incremental_calls": 613,
+   "incremental_time_s": 0.7391380000000254,
+   "incremental_radius_km": 1587.9006867777591,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 0.0,
+   "incremental_ok": true,
+   "decremental_skipped": true,
+   "column": "optin_date",
+   "target_frac": 0.1,
+   "label": "legs since 2019-07-25",
+   "threshold": 1564095771.0
+  },
+  {
+   "seed": 3,
+   "n": 50000,
+   "n_consenting": 4999,
+   "consent_pct": 9.998,
+   "gt_radius_km": 1742.0076144658667,
+   "gt_center_km": [
+    148.27565007251397,
+    -260.52386343538046
+   ],
+   "gt_support_km": [
+    [
+     1611.8765621887308,
+     -1205.2264086365874
+    ],
+    [
+     -232.37638124928955,
+     1439.3862988695707
+    ],
+    [
+     -1570.7354765659272,
+     -542.6431207545126
+    ]
+   ],
+   "lower_bound_calls": 172,
+   "decremental_skipped": true,
+   "incremental_calls": 692,
+   "incremental_time_s": 0.20632840000001806,
+   "incremental_radius_km": 1742.0076144658667,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 6.821210263296962e-13,
+   "incremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.1,
+   "label": "legs since 2019-07-25",
+   "threshold": 1564095771.0
+  },
+  {
+   "seed": 4,
+   "n": 50000,
+   "n_consenting": 4967,
+   "consent_pct": 9.934,
+   "gt_radius_km": 1730.3571205682729,
+   "gt_center_km": [
+    146.62626071046313,
+    -333.90854807709445
+   ],
+   "gt_support_km": [
+    [
+     1644.8281319188332,
+     -1199.6607746460265
+    ],
+    [
+     -276.1849118786134,
+     1343.99683573785
+    ],
+    [
+     -1570.0323781958537,
+     -551.2076096711023
+    ]
+   ],
+   "lower_bound_calls": 164,
+   "incremental_calls": 457,
+   "incremental_time_s": 0.27499849999998105,
+   "incremental_radius_km": 1730.3571205682733,
+   "incremental_rel_err": 2.628054899656314e-16,
+   "incremental_max_excess_km": 0.0,
+   "incremental_ok": true,
+   "decremental_skipped": true,
+   "column": "optin_date",
+   "target_frac": 0.1,
+   "label": "legs since 2019-07-25",
+   "threshold": 1564095771.0
+  },
+  {
+   "seed": 5,
+   "n": 50000,
+   "n_consenting": 5016,
+   "consent_pct": 10.032,
+   "gt_radius_km": 1730.5303536614563,
+   "gt_center_km": [
+    130.64006241831726,
+    -214.0982803316729
+   ],
+   "gt_support_km": [
+    [
+     1559.4454987421482,
+     -1190.4436751971946
+    ],
+    [
+     -200.33155856368674,
+     1484.4873345397673
+    ],
+    [
+     -1564.1281320485828,
+     -564.0926688110402
+    ]
+   ],
+   "lower_bound_calls": 222,
+   "decremental_skipped": true,
+   "incremental_calls": 611,
+   "incremental_time_s": 0.2613458999999807,
+   "incremental_radius_km": 1730.5303536614558,
+   "incremental_rel_err": 2.6277918207231073e-16,
+   "incremental_max_excess_km": 2.2737367544323206e-13,
+   "incremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.1,
+   "label": "legs since 2019-07-25",
+   "threshold": 1564095771.0
+  },
+  {
+   "seed": 0,
+   "n": 1000,
+   "n_consenting": 498,
+   "consent_pct": 49.8,
+   "gt_radius_km": 1886.5176754051304,
+   "gt_center_km": [
+    309.9688455453128,
+    -344.3944021423453
+   ],
+   "gt_support_km": [
+    [
+     -1563.568940708121,
+     -565.3131725005006
+    ],
+    [
+     1829.0287060714136,
+     -1463.0570321405048
+    ],
+    [
+     -187.2573751586418,
+     1475.417408199713
+    ]
+   ],
+   "lower_bound_calls": 4,
+   "incremental_calls": 22,
+   "incremental_time_s": 0.005413900000007743,
+   "incremental_radius_km": 1886.5176754051304,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 0.0,
+   "incremental_ok": true,
+   "decremental_calls": 4,
+   "decremental_time_s": 0.01484430000004977,
+   "decremental_radius_km": 1886.5176754051304,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 0.0,
+   "decremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.5,
+   "label": "legs since 2018-04-14",
+   "threshold": 1523678734.0
+  },
+  {
+   "seed": 1,
+   "n": 1000,
+   "n_consenting": 506,
+   "consent_pct": 50.6,
+   "gt_radius_km": 1867.1886611590269,
+   "gt_center_km": [
+    302.4915941430366,
+    -428.4050640649959
+   ],
+   "gt_support_km": [
+    [
+     1861.8977491278833,
+     -1455.3646251754692
+    ],
+    [
+     -1149.1276797182861,
+     745.9862591808654
+    ],
+    [
+     -1562.7123458084698,
+     -514.4734017404556
+    ]
+   ],
+   "lower_bound_calls": 5,
+   "decremental_calls": 6,
+   "decremental_time_s": 0.04751680000003944,
+   "decremental_radius_km": 1867.1886611590269,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 2.2737367544323206e-13,
+   "decremental_ok": true,
+   "incremental_calls": 22,
+   "incremental_time_s": 0.003925200000026052,
+   "incremental_radius_km": 1867.1886611590269,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 2.2737367544323206e-13,
+   "incremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.5,
+   "label": "legs since 2018-04-14",
+   "threshold": 1523678734.0
+  },
+  {
+   "seed": 2,
+   "n": 1000,
+   "n_consenting": 491,
+   "consent_pct": 49.1,
+   "gt_radius_km": 1822.1328497229927,
+   "gt_center_km": [
+    286.23415614553926,
+    -390.546524641021
+   ],
+   "gt_support_km": [
+    [
+     -1531.5915717576083,
+     -515.7573269426845
+    ],
+    [
+     1790.3564489518333,
+     -1419.0329126514655
+    ],
+    [
+     -1054.478471686761,
+     843.4136739110403
+    ]
+   ],
+   "lower_bound_calls": 4,
+   "incremental_calls": 19,
+   "incremental_time_s": 0.005841599999996561,
+   "incremental_radius_km": 1822.1328497229924,
+   "incremental_rel_err": 1.247843566827733e-16,
+   "incremental_max_excess_km": 4.547473508864641e-13,
+   "incremental_ok": true,
+   "decremental_calls": 4,
+   "decremental_time_s": 0.03525990000002821,
+   "decremental_radius_km": 1822.1328497229927,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 2.2737367544323206e-13,
+   "decremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.5,
+   "label": "legs since 2018-04-14",
+   "threshold": 1523678734.0
+  },
+  {
+   "seed": 3,
+   "n": 1000,
+   "n_consenting": 498,
+   "consent_pct": 49.8,
+   "gt_radius_km": 1870.652552029294,
+   "gt_center_km": [
+    108.11534059533967,
+    -634.3759008529177
+   ],
+   "gt_support_km": [
+    [
+     -1742.245186160872,
+     -909.1610740995582
+    ],
+    [
+     1786.5136314268282,
+     -1460.4026242388197
+    ],
+    [
+     -1066.026586668659,
+     821.8973238732991
+    ]
+   ],
+   "lower_bound_calls": 5,
+   "decremental_calls": 5,
+   "decremental_time_s": 0.0234335000000101,
+   "decremental_radius_km": 1870.652552029294,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 4.547473508864641e-13,
+   "decremental_ok": true,
+   "incremental_calls": 37,
+   "incremental_time_s": 0.008592799999973977,
+   "incremental_radius_km": 1870.652552029294,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 6.821210263296962e-13,
+   "incremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.5,
+   "label": "legs since 2018-04-14",
+   "threshold": 1523678734.0
+  },
+  {
+   "seed": 4,
+   "n": 1000,
+   "n_consenting": 504,
+   "consent_pct": 50.4,
+   "gt_radius_km": 1709.6279425190087,
+   "gt_center_km": [
+    232.39204341203745,
+    -259.06192704776987
+   ],
+   "gt_support_km": [
+    [
+     -863.3636362955712,
+     1053.244131854
+    ],
+    [
+     -1372.345525420733,
+     -848.6762391353133
+    ],
+    [
+     1570.00856029515,
+     -1323.7730407322608
+    ]
+   ],
+   "lower_bound_calls": 8,
+   "incremental_calls": 38,
+   "incremental_time_s": 0.009611199999994824,
+   "incremental_radius_km": 1709.627942519009,
+   "incremental_rel_err": 1.3299599859617057e-16,
+   "incremental_max_excess_km": -2.2737367544323206e-13,
+   "incremental_ok": true,
+   "decremental_calls": 8,
+   "decremental_time_s": 0.09780699999998888,
+   "decremental_radius_km": 1709.6279425190085,
+   "decremental_rel_err": 1.3299599859617057e-16,
+   "decremental_max_excess_km": 4.547473508864641e-13,
+   "decremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.5,
+   "label": "legs since 2018-04-14",
+   "threshold": 1523678734.0
+  },
+  {
+   "seed": 5,
+   "n": 1000,
+   "n_consenting": 493,
+   "consent_pct": 49.3,
+   "gt_radius_km": 1809.4260769988273,
+   "gt_center_km": [
+    244.7838548227923,
+    -441.30358620697376
+   ],
+   "gt_support_km": [
+    [
+     -1039.1284974481157,
+     833.683394044021
+    ],
+    [
+     -1559.6126269162314,
+     -576.1222229424027
+    ],
+    [
+     1760.6803720275648,
+     -1429.2714385431761
+    ]
+   ],
+   "lower_bound_calls": 4,
+   "decremental_calls": 4,
+   "decremental_time_s": 0.03206950000003417,
+   "decremental_radius_km": 1809.4260769988273,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 2.2737367544323206e-13,
+   "decremental_ok": true,
+   "incremental_calls": 35,
+   "incremental_time_s": 0.007710799999983919,
+   "incremental_radius_km": 1809.4260769988277,
+   "incremental_rel_err": 2.5132132042703996e-16,
+   "incremental_max_excess_km": 0.0,
+   "incremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.5,
+   "label": "legs since 2018-04-14",
+   "threshold": 1523678734.0
+  },
+  {
+   "seed": 0,
+   "n": 2000,
+   "n_consenting": 985,
+   "consent_pct": 49.25,
+   "gt_radius_km": 1751.797949429495,
+   "gt_center_km": [
+    168.81521586196956,
+    -312.5013670706711
+   ],
+   "gt_support_km": [
+    [
+     -929.1279790417454,
+     1052.5322575664684
+    ],
+    [
+     -1568.0398839639188,
+     -540.8222330338756
+    ],
+    [
+     1603.7620265910534,
+     -1317.3514583797253
+    ]
+   ],
+   "lower_bound_calls": 6,
+   "incremental_calls": 47,
+   "incremental_time_s": 0.029362899999966885,
+   "incremental_radius_km": 1751.797949429495,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 2.2737367544323206e-13,
+   "incremental_ok": true,
+   "decremental_calls": 7,
+   "decremental_time_s": 0.05547370000005003,
+   "decremental_radius_km": 1751.797949429495,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 2.2737367544323206e-13,
+   "decremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.5,
+   "label": "legs since 2018-04-14",
+   "threshold": 1523678734.0
+  },
+  {
+   "seed": 1,
+   "n": 2000,
+   "n_consenting": 974,
+   "consent_pct": 48.7,
+   "gt_radius_km": 1903.7689778921338,
+   "gt_center_km": [
+    165.6239434858655,
+    -598.9790425215755
+   ],
+   "gt_support_km": [
+    [
+     -1705.4866556646891,
+     -950.0936205882135
+    ],
+    [
+     1873.7702247217162,
+     -1439.5577735662011
+    ],
+    [
+     -1104.879335015933,
+     818.8212750480889
+    ]
+   ],
+   "lower_bound_calls": 5,
+   "decremental_calls": 5,
+   "decremental_time_s": 0.06949819999999818,
+   "decremental_radius_km": 1903.7689778921335,
+   "decremental_rel_err": 1.1943343865965385e-16,
+   "decremental_max_excess_km": 2.2737367544323206e-13,
+   "decremental_ok": true,
+   "incremental_calls": 33,
+   "incremental_time_s": 0.013928599999985636,
+   "incremental_radius_km": 1903.7689778921338,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 4.547473508864641e-13,
+   "incremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.5,
+   "label": "legs since 2018-04-14",
+   "threshold": 1523678734.0
+  },
+  {
+   "seed": 2,
+   "n": 2000,
+   "n_consenting": 981,
+   "consent_pct": 49.05,
+   "gt_radius_km": 1874.0209079219412,
+   "gt_center_km": [
+    100.48514893926497,
+    -626.1535793169597
+   ],
+   "gt_support_km": [
+    [
+     -1751.1802853726895,
+     -914.75275239772
+    ],
+    [
+     1796.4972987638898,
+     -1423.334331076453
+    ],
+    [
+     213.06160861434608,
+     1244.4829177223776
+    ]
+   ],
+   "lower_bound_calls": 5,
+   "incremental_calls": 41,
+   "incremental_time_s": 0.017109599999969305,
+   "incremental_radius_km": 1874.0209079219417,
+   "incremental_rel_err": 2.4265863255000874e-16,
+   "incremental_max_excess_km": -2.2737367544323206e-13,
+   "incremental_ok": true,
+   "decremental_calls": 5,
+   "decremental_time_s": 0.05807800000002317,
+   "decremental_radius_km": 1874.0209079219417,
+   "decremental_rel_err": 2.4265863255000874e-16,
+   "decremental_max_excess_km": -2.2737367544323206e-13,
+   "decremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.5,
+   "label": "legs since 2018-04-14",
+   "threshold": 1523678734.0
+  },
+  {
+   "seed": 3,
+   "n": 2000,
+   "n_consenting": 979,
+   "consent_pct": 48.95,
+   "gt_radius_km": 1856.1298217327637,
+   "gt_center_km": [
+    277.76098782682925,
+    -394.2921165551375
+   ],
+   "gt_support_km": [
+    [
+     -1156.386450797117,
+     784.0283149973649
+    ],
+    [
+     -1572.0979712802057,
+     -546.7379972378869
+    ],
+    [
+     1814.2153939296943,
+     -1435.6977882761987
+    ]
+   ],
+   "lower_bound_calls": 6,
+   "decremental_calls": 7,
+   "decremental_time_s": 0.0874644000000444,
+   "decremental_radius_km": 1856.129821732764,
+   "decremental_rel_err": 1.2249879980429957e-16,
+   "decremental_max_excess_km": 2.2737367544323206e-13,
+   "decremental_ok": true,
+   "incremental_calls": 32,
+   "incremental_time_s": 0.0106117999999924,
+   "incremental_radius_km": 1856.1298217327637,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 2.2737367544323206e-13,
+   "incremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.5,
+   "label": "legs since 2018-04-14",
+   "threshold": 1523678734.0
+  },
+  {
+   "seed": 4,
+   "n": 2000,
+   "n_consenting": 1011,
+   "consent_pct": 50.55,
+   "gt_radius_km": 1868.0487176034624,
+   "gt_center_km": [
+    153.78499807898604,
+    -565.7884449049227
+   ],
+   "gt_support_km": [
+    [
+     -1679.7464721685656,
+     -923.2354465034701
+    ],
+    [
+     1808.8773439374272,
+     -1431.9728005825932
+    ],
+    [
+     92.31096264489054,
+     1301.2485001787538
+    ]
+   ],
+   "lower_bound_calls": 3,
+   "incremental_calls": 35,
+   "incremental_time_s": 0.024488700000006247,
+   "incremental_radius_km": 1868.048717603462,
+   "incremental_rel_err": 2.434344172082749e-16,
+   "incremental_max_excess_km": 4.547473508864641e-13,
+   "incremental_ok": true,
+   "decremental_calls": 3,
+   "decremental_time_s": 0.037199900000018715,
+   "decremental_radius_km": 1868.0487176034624,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 0.0,
+   "decremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.5,
+   "label": "legs since 2018-04-14",
+   "threshold": 1523678734.0
+  },
+  {
+   "seed": 5,
+   "n": 2000,
+   "n_consenting": 1004,
+   "consent_pct": 50.2,
+   "gt_radius_km": 1882.3744539340023,
+   "gt_center_km": [
+    308.63287771044077,
+    -397.9412074196038
+   ],
+   "gt_support_km": [
+    [
+     -1156.386450797117,
+     784.0283149973649
+    ],
+    [
+     -1568.5348049264653,
+     -537.8521651281512
+    ],
+    [
+     1865.191338177258,
+     -1456.458729226638
+    ]
+   ],
+   "lower_bound_calls": 5,
+   "decremental_calls": 6,
+   "decremental_time_s": 0.0488753999999858,
+   "decremental_radius_km": 1882.3744539340023,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 2.2737367544323206e-13,
+   "decremental_ok": true,
+   "incremental_calls": 27,
+   "incremental_time_s": 0.015173300000014933,
+   "incremental_radius_km": 1882.3744539340023,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 0.0,
+   "incremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.5,
+   "label": "legs since 2018-04-14",
+   "threshold": 1523678734.0
+  },
+  {
+   "seed": 0,
+   "n": 5000,
+   "n_consenting": 2457,
+   "consent_pct": 49.14,
+   "gt_radius_km": 2027.339004423994,
+   "gt_center_km": [
+    201.58325164789036,
+    -281.8231970159379
+   ],
+   "gt_support_km": [
+    [
+     -1328.3670944148623,
+     1048.3479864944152
+    ],
+    [
+     -1705.1492321985522,
+     -970.6444175831069
+    ],
+    [
+     1850.6527872552335,
+     -1461.0912350762649
+    ]
+   ],
+   "lower_bound_calls": 6,
+   "incremental_calls": 26,
+   "incremental_time_s": 0.00942290000000412,
+   "incremental_radius_km": 2027.3390044239936,
+   "incremental_rel_err": 2.2430750352759407e-16,
+   "incremental_max_excess_km": 2.2737367544323206e-13,
+   "incremental_ok": true,
+   "decremental_calls": 6,
+   "decremental_time_s": 0.16078550000003133,
+   "decremental_radius_km": 2027.339004423994,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": -2.2737367544323206e-13,
+   "decremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.5,
+   "label": "legs since 2018-04-14",
+   "threshold": 1523678734.0
+  },
+  {
+   "seed": 1,
+   "n": 5000,
+   "n_consenting": 2456,
+   "consent_pct": 49.12,
+   "gt_radius_km": 1918.0286234767325,
+   "gt_center_km": [
+    148.00406586635506,
+    -635.9380092606399
+   ],
+   "gt_support_km": [
+    [
+     -1747.55262932785,
+     -928.681268415268
+    ],
+    [
+     1878.824273507805,
+     -1462.4337499006372
+    ],
+    [
+     -220.54017054574285,
+     1246.3502115715135
+    ]
+   ],
+   "lower_bound_calls": 10,
+   "decremental_calls": 11,
+   "decremental_time_s": 0.29880040000000463,
+   "decremental_radius_km": 1918.0286234767325,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 4.547473508864641e-13,
+   "decremental_ok": true,
+   "incremental_calls": 47,
+   "incremental_time_s": 0.03142490000004727,
+   "incremental_radius_km": 1918.0286234767327,
+   "incremental_rel_err": 1.1854550691275976e-16,
+   "incremental_max_excess_km": 0.0,
+   "incremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.5,
+   "label": "legs since 2018-04-14",
+   "threshold": 1523678734.0
+  },
+  {
+   "seed": 2,
+   "n": 5000,
+   "n_consenting": 2420,
+   "consent_pct": 48.4,
+   "gt_radius_km": 1865.492663293672,
+   "gt_center_km": [
+    288.10160695999264,
+    -381.998222911323
+   ],
+   "gt_support_km": [
+    [
+     1829.5597317043653,
+     -1432.6978595640055
+    ],
+    [
+     -216.99518460871025,
+     1413.8136012922928
+    ],
+    [
+     -1569.6197612556025,
+     -552.0987663487126
+    ]
+   ],
+   "lower_bound_calls": 12,
+   "incremental_calls": 40,
+   "incremental_time_s": 0.026198599999986527,
+   "incremental_radius_km": 1865.492663293672,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 2.2737367544323206e-13,
+   "incremental_ok": true,
+   "decremental_calls": 12,
+   "decremental_time_s": 0.3925461000000041,
+   "decremental_radius_km": 1865.492663293672,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 2.2737367544323206e-13,
+   "decremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.5,
+   "label": "legs since 2018-04-14",
+   "threshold": 1523678734.0
+  },
+  {
+   "seed": 3,
+   "n": 5000,
+   "n_consenting": 2518,
+   "consent_pct": 50.36,
+   "gt_radius_km": 1985.9593720640787,
+   "gt_center_km": [
+    174.70709983617994,
+    -406.9528976278005
+   ],
+   "gt_support_km": [
+    [
+     -1147.1903133577732,
+     1075.1475903554822
+    ],
+    [
+     -1729.6024982780164,
+     -970.5481265104598
+    ],
+    [
+     1857.8131135271403,
+     -1461.0822891953032
+    ]
+   ],
+   "lower_bound_calls": 5,
+   "decremental_calls": 5,
+   "decremental_time_s": 0.1117820999999708,
+   "decremental_radius_km": 1985.9593720640787,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 0.0,
+   "decremental_ok": true,
+   "incremental_calls": 55,
+   "incremental_time_s": 0.035309599999948205,
+   "incremental_radius_km": 1985.9593720640787,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 0.0,
+   "incremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.5,
+   "label": "legs since 2018-04-14",
+   "threshold": 1523678734.0
+  },
+  {
+   "seed": 4,
+   "n": 5000,
+   "n_consenting": 2500,
+   "consent_pct": 50.0,
+   "gt_radius_km": 2010.7906356947906,
+   "gt_center_km": [
+    171.41293610909125,
+    -347.96017697655014
+   ],
+   "gt_support_km": [
+    [
+     -1263.2697236373497,
+     1060.9275568123198
+    ],
+    [
+     -1750.8871846739532,
+     -937.9103665988201
+    ],
+    [
+     1851.9541250969621,
+     -1452.0708112488105
+    ]
+   ],
+   "lower_bound_calls": 4,
+   "incremental_calls": 44,
+   "incremental_time_s": 0.023246700000015608,
+   "incremental_radius_km": 2010.7906356947906,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 0.0,
+   "incremental_ok": true,
+   "decremental_calls": 4,
+   "decremental_time_s": 0.06922389999999723,
+   "decremental_radius_km": 2010.7906356947906,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 2.2737367544323206e-13,
+   "decremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.5,
+   "label": "legs since 2018-04-14",
+   "threshold": 1523678734.0
+  },
+  {
+   "seed": 5,
+   "n": 5000,
+   "n_consenting": 2523,
+   "consent_pct": 50.46,
+   "gt_radius_km": 1985.4473267934673,
+   "gt_center_km": [
+    338.7379947842515,
+    -194.22080564262757
+   ],
+   "gt_support_km": [
+    [
+     -1188.5824245685362,
+     1074.358487937143
+    ],
+    [
+     1866.0584141370389,
+     -1462.800099222398
+    ]
+   ],
+   "lower_bound_calls": 3,
+   "decremental_calls": 3,
+   "decremental_time_s": 0.09706160000001773,
+   "decremental_radius_km": 1985.4473267934673,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 0.0,
+   "decremental_ok": true,
+   "incremental_calls": 38,
+   "incremental_time_s": 0.04547840000003589,
+   "incremental_radius_km": 1985.4473267934673,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 0.0,
+   "incremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.5,
+   "label": "legs since 2018-04-14",
+   "threshold": 1523678734.0
+  },
+  {
+   "seed": 0,
+   "n": 10000,
+   "n_consenting": 4999,
+   "consent_pct": 49.99,
+   "gt_radius_km": 1924.1283965731918,
+   "gt_center_km": [
+    138.63872727327674,
+    -604.2303348152233
+   ],
+   "gt_support_km": [
+    [
+     -1757.6232902741128,
+     -930.5131068189379
+    ],
+    [
+     1862.691663133641,
+     -1458.57895268183
+    ],
+    [
+     -843.3855234653871,
+     1050.4292850040583
+    ]
+   ],
+   "lower_bound_calls": 11,
+   "incremental_calls": 60,
+   "incremental_time_s": 0.11362179999997579,
+   "incremental_radius_km": 1924.1283965731918,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 6.821210263296962e-13,
+   "incremental_ok": true,
+   "decremental_calls": 12,
+   "decremental_time_s": 0.46830600000004097,
+   "decremental_radius_km": 1924.1283965731925,
+   "decremental_rel_err": 3.545091000915172e-16,
+   "decremental_max_excess_km": 0.0,
+   "decremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.5,
+   "label": "legs since 2018-04-14",
+   "threshold": 1523678734.0
+  },
+  {
+   "seed": 1,
+   "n": 10000,
+   "n_consenting": 4942,
+   "consent_pct": 49.42,
+   "gt_radius_km": 2005.0833795819551,
+   "gt_center_km": [
+    184.04306005765082,
+    -376.04379791727524
+   ],
+   "gt_support_km": [
+    [
+     -1231.5475168461633,
+     1043.9782715087324
+    ],
+    [
+     -1745.9585495177887,
+     -919.5998172124422
+    ],
+    [
+     1871.750048437833,
+     -1458.635355453401
+    ]
+   ],
+   "lower_bound_calls": 6,
+   "decremental_calls": 7,
+   "decremental_time_s": 0.3676055999999903,
+   "decremental_radius_km": 2005.0833795819556,
+   "decremental_rel_err": 2.267972272461186e-16,
+   "decremental_max_excess_km": 0.0,
+   "decremental_ok": true,
+   "incremental_calls": 29,
+   "incremental_time_s": 0.029353800000023966,
+   "incremental_radius_km": 2005.0833795819556,
+   "incremental_rel_err": 2.267972272461186e-16,
+   "incremental_max_excess_km": 2.2737367544323206e-13,
+   "incremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.5,
+   "label": "legs since 2018-04-14",
+   "threshold": 1523678734.0
+  },
+  {
+   "seed": 2,
+   "n": 10000,
+   "n_consenting": 4973,
+   "consent_pct": 49.73,
+   "gt_radius_km": 1991.4061184712568,
+   "gt_center_km": [
+    176.60055029102017,
+    -408.1482639194252
+   ],
+   "gt_support_km": [
+    [
+     -1180.5578514162075,
+     1049.1847115395947
+    ],
+    [
+     -1736.692757276922,
+     -960.4226956112085
+    ],
+    [
+     1868.7083932934197,
+     -1458.133681120314
+    ]
+   ],
+   "lower_bound_calls": 4,
+   "incremental_calls": 46,
+   "incremental_time_s": 0.12027399999999489,
+   "incremental_radius_km": 1991.406118471257,
+   "incremental_rel_err": 1.141774514671975e-16,
+   "incremental_max_excess_km": 2.2737367544323206e-13,
+   "incremental_ok": true,
+   "decremental_calls": 5,
+   "decremental_time_s": 0.21432320000002392,
+   "decremental_radius_km": 1991.4061184712568,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 2.2737367544323206e-13,
+   "decremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.5,
+   "label": "legs since 2018-04-14",
+   "threshold": 1523678734.0
+  },
+  {
+   "seed": 3,
+   "n": 10000,
+   "n_consenting": 5035,
+   "consent_pct": 50.35,
+   "gt_radius_km": 1925.5772565817977,
+   "gt_center_km": [
+    189.24436559169223,
+    -505.6579706749309
+   ],
+   "gt_support_km": [
+    [
+     1873.9706652755935,
+     -1438.1519739899497
+    ],
+    [
+     -942.3246870720587,
+     1052.3533419023377
+    ],
+    [
+     -1690.580244035602,
+     -922.9195290584865
+    ]
+   ],
+   "lower_bound_calls": 12,
+   "decremental_calls": 14,
+   "decremental_time_s": 0.916756399999997,
+   "decremental_radius_km": 1925.5772565817977,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 0.0,
+   "decremental_ok": true,
+   "incremental_calls": 52,
+   "incremental_time_s": 0.08972990000000891,
+   "incremental_radius_km": 1925.5772565817974,
+   "incremental_rel_err": 1.18080785731161e-16,
+   "incremental_max_excess_km": 4.547473508864641e-13,
+   "incremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.5,
+   "label": "legs since 2018-04-14",
+   "threshold": 1523678734.0
+  },
+  {
+   "seed": 4,
+   "n": 10000,
+   "n_consenting": 5054,
+   "consent_pct": 50.54,
+   "gt_radius_km": 1946.1885913365848,
+   "gt_center_km": [
+    159.09287008009443,
+    -482.955988305636
+   ],
+   "gt_support_km": [
+    [
+     -1722.2981881242167,
+     -980.9697623697105
+    ],
+    [
+     1841.8295686295917,
+     -1460.7326685365667
+    ],
+    [
+     -227.2135179884014,
+     1424.5076175296508
+    ]
+   ],
+   "lower_bound_calls": 9,
+   "incremental_calls": 66,
+   "incremental_time_s": 0.11208880000003774,
+   "incremental_radius_km": 1946.188591336585,
+   "incremental_rel_err": 1.1683023755014335e-16,
+   "incremental_max_excess_km": 2.2737367544323206e-13,
+   "incremental_ok": true,
+   "decremental_calls": 9,
+   "decremental_time_s": 0.546316499999989,
+   "decremental_radius_km": 1946.188591336585,
+   "decremental_rel_err": 1.1683023755014335e-16,
+   "decremental_max_excess_km": 2.2737367544323206e-13,
+   "decremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.5,
+   "label": "legs since 2018-04-14",
+   "threshold": 1523678734.0
+  },
+  {
+   "seed": 5,
+   "n": 10000,
+   "n_consenting": 4963,
+   "consent_pct": 49.63,
+   "gt_radius_km": 1904.0254065042923,
+   "gt_center_km": [
+    188.54295815005483,
+    -544.3692166041518
+   ],
+   "gt_support_km": [
+    [
+     -1677.051383020118,
+     -924.9877957718861
+    ],
+    [
+     1857.1549331098008,
+     -1461.4552679836127
+    ],
+    [
+     -240.99398837674113,
+     1310.5730359153902
+    ]
+   ],
+   "lower_bound_calls": 8,
+   "decremental_calls": 8,
+   "decremental_time_s": 0.2386288999999806,
+   "decremental_radius_km": 1904.025406504292,
+   "decremental_rel_err": 1.1941735371098867e-16,
+   "decremental_max_excess_km": 4.547473508864641e-13,
+   "decremental_ok": true,
+   "incremental_calls": 52,
+   "incremental_time_s": 0.05650249999996504,
+   "incremental_radius_km": 1904.0254065042918,
+   "incremental_rel_err": 2.3883470742197734e-16,
+   "incremental_max_excess_km": 6.821210263296962e-13,
+   "incremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.5,
+   "label": "legs since 2018-04-14",
+   "threshold": 1523678734.0
+  },
+  {
+   "seed": 0,
+   "n": 20000,
+   "n_consenting": 9968,
+   "consent_pct": 49.84,
+   "gt_radius_km": 2010.9935949809037,
+   "gt_center_km": [
+    186.60433918454643,
+    -369.383402625336
+   ],
+   "gt_support_km": [
+    [
+     -1243.5014852608572,
+     1044.4385698809454
+    ],
+    [
+     -1735.0862303424828,
+     -962.0051994275645
+    ],
+    [
+     1872.2464819710694,
+     -1466.062847821734
+    ]
+   ],
+   "lower_bound_calls": 21,
+   "incremental_calls": 42,
+   "incremental_time_s": 0.03728790000002391,
+   "incremental_radius_km": 2010.9935949809042,
+   "incremental_rel_err": 2.261306808840345e-16,
+   "incremental_max_excess_km": 0.0,
+   "incremental_ok": true,
+   "decremental_calls": 21,
+   "decremental_time_s": 2.6513889999999947,
+   "decremental_radius_km": 2010.9935949809037,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 4.547473508864641e-13,
+   "decremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.5,
+   "label": "legs since 2018-04-14",
+   "threshold": 1523678734.0
+  },
+  {
+   "seed": 1,
+   "n": 20000,
+   "n_consenting": 9984,
+   "consent_pct": 49.92,
+   "gt_radius_km": 2048.7624314947307,
+   "gt_center_km": [
+    209.95251184055098,
+    -255.65439795169408
+   ],
+   "gt_support_km": [
+    [
+     -1376.6118630557423,
+     1040.5867003838503
+    ],
+    [
+     -1735.2187953898965,
+     -898.8775988948748
+    ],
+    [
+     1868.7083932934197,
+     -1458.133681120314
+    ]
+   ],
+   "lower_bound_calls": 9,
+   "decremental_calls": 10,
+   "decremental_time_s": 0.995160999999996,
+   "decremental_radius_km": 2048.7624314947307,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 4.547473508864641e-13,
+   "decremental_ok": true,
+   "incremental_calls": 57,
+   "incremental_time_s": 0.17816849999996975,
+   "incremental_radius_km": 2048.762431494731,
+   "incremental_rel_err": 2.2196197269914343e-16,
+   "incremental_max_excess_km": 0.0,
+   "incremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.5,
+   "label": "legs since 2018-04-14",
+   "threshold": 1523678734.0
+  },
+  {
+   "seed": 2,
+   "n": 20000,
+   "n_consenting": 9967,
+   "consent_pct": 49.835,
+   "gt_radius_km": 1977.315044259034,
+   "gt_center_km": [
+    186.37585839351445,
+    -427.6452580654386
+   ],
+   "gt_support_km": [
+    [
+     1873.312047176642,
+     -1459.1592323900534
+    ],
+    [
+     -1127.5544932075334,
+     1049.9750637339914
+    ],
+    [
+     -1719.1497166948693,
+     -955.6102824157168
+    ]
+   ],
+   "lower_bound_calls": 13,
+   "incremental_calls": 60,
+   "incremental_time_s": 0.10521399999998948,
+   "incremental_radius_km": 1977.3150442590338,
+   "incremental_rel_err": 1.1499112197795297e-16,
+   "incremental_max_excess_km": 6.821210263296962e-13,
+   "incremental_ok": true,
+   "decremental_calls": 13,
+   "decremental_time_s": 1.8911879999999996,
+   "decremental_radius_km": 1977.3150442590338,
+   "decremental_rel_err": 1.1499112197795297e-16,
+   "decremental_max_excess_km": 6.821210263296962e-13,
+   "decremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.5,
+   "label": "legs since 2018-04-14",
+   "threshold": 1523678734.0
+  },
+  {
+   "seed": 3,
+   "n": 20000,
+   "n_consenting": 10090,
+   "consent_pct": 50.45,
+   "gt_radius_km": 2009.8389151774895,
+   "gt_center_km": [
+    181.01923421042466,
+    -328.3202201928508
+   ],
+   "gt_support_km": [
+    [
+     -1289.6642543519633,
+     1041.5493142635487
+    ],
+    [
+     -1727.3179518363943,
+     -958.9561288697487
+    ],
+    [
+     1848.1971778640907,
+     -1450.8041484326109
+    ]
+   ],
+   "lower_bound_calls": 16,
+   "decremental_calls": 17,
+   "decremental_time_s": 2.0739231999999674,
+   "decremental_radius_km": 2009.83891517749,
+   "decremental_rel_err": 2.262605960370238e-16,
+   "decremental_max_excess_km": 0.0,
+   "decremental_ok": true,
+   "incremental_calls": 63,
+   "incremental_time_s": 0.2605358999999794,
+   "incremental_radius_km": 2009.8389151774895,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 4.547473508864641e-13,
+   "incremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.5,
+   "label": "legs since 2018-04-14",
+   "threshold": 1523678734.0
+  },
+  {
+   "seed": 4,
+   "n": 20000,
+   "n_consenting": 10078,
+   "consent_pct": 50.39,
+   "gt_radius_km": 1960.0874685106878,
+   "gt_center_km": [
+    169.6130382873655,
+    -494.990121059002
+   ],
+   "gt_support_km": [
+    [
+     -227.2135179884014,
+     1424.5076175296508
+    ],
+    [
+     -1733.1727024653685,
+     -965.4678665483145
+    ],
+    [
+     1872.2464819710694,
+     -1466.062847821734
+    ]
+   ],
+   "lower_bound_calls": 10,
+   "incremental_calls": 59,
+   "incremental_time_s": 0.08273530000002438,
+   "incremental_radius_km": 1960.0874685106878,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 0.0,
+   "incremental_ok": true,
+   "decremental_calls": 10,
+   "decremental_time_s": 1.6225079000000164,
+   "decremental_radius_km": 1960.0874685106876,
+   "decremental_rel_err": 1.1600180047883015e-16,
+   "decremental_max_excess_km": 4.547473508864641e-13,
+   "decremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.5,
+   "label": "legs since 2018-04-14",
+   "threshold": 1523678734.0
+  },
+  {
+   "seed": 5,
+   "n": 20000,
+   "n_consenting": 9967,
+   "consent_pct": 49.835,
+   "gt_radius_km": 2047.2842079924997,
+   "gt_center_km": [
+    189.31887705610896,
+    -284.4337728183954
+   ],
+   "gt_support_km": [
+    [
+     -1375.3374986256397,
+     1035.877953378843
+    ],
+    [
+     -1750.8746758141851,
+     -937.9026746767948
+    ],
+    [
+     1881.6649433195928,
+     -1436.5350792571955
+    ]
+   ],
+   "lower_bound_calls": 15,
+   "decremental_calls": 15,
+   "decremental_time_s": 2.3966901999999664,
+   "decremental_radius_km": 2047.2842079924997,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 4.547473508864641e-13,
+   "decremental_ok": true,
+   "incremental_calls": 43,
+   "incremental_time_s": 0.04677490000000262,
+   "incremental_radius_km": 2047.2842079924997,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 4.547473508864641e-13,
+   "incremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.5,
+   "label": "legs since 2018-04-14",
+   "threshold": 1523678734.0
+  },
+  {
+   "seed": 0,
+   "n": 50000,
+   "n_consenting": 24847,
+   "consent_pct": 49.694,
+   "gt_radius_km": 2035.5738450556062,
+   "gt_center_km": [
+    194.41563701091758,
+    -313.4811655211822
+   ],
+   "gt_support_km": [
+    [
+     -1319.1255804550221,
+     1047.6778485936957
+    ],
+    [
+     -1735.0862303424828,
+     -962.0051994275645
+    ],
+    [
+     1872.2464819710694,
+     -1466.062847821734
+    ]
+   ],
+   "lower_bound_calls": 44,
+   "incremental_calls": 106,
+   "incremental_time_s": 0.1335353999999711,
+   "incremental_radius_km": 2035.5738450556062,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 4.547473508864641e-13,
+   "incremental_ok": true,
+   "decremental_calls": 44,
+   "decremental_time_s": 17.38407010000003,
+   "decremental_radius_km": 2035.5738450556066,
+   "decremental_rel_err": 2.234000756057276e-16,
+   "decremental_max_excess_km": 0.0,
+   "decremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.5,
+   "label": "legs since 2018-04-14",
+   "threshold": 1523678734.0
+  },
+  {
+   "seed": 1,
+   "n": 50000,
+   "n_consenting": 25018,
+   "consent_pct": 50.036,
+   "gt_radius_km": 2050.617440936269,
+   "gt_center_km": [
+    202.18050157268075,
+    -268.0181133253936
+   ],
+   "gt_support_km": [
+    [
+     -1376.6118630557423,
+     1040.5867003838503
+    ],
+    [
+     -1718.4821203630927,
+     -986.4100549358297
+    ],
+    [
+     1871.750048437833,
+     -1458.635355453401
+    ]
+   ],
+   "lower_bound_calls": 20,
+   "decremental_calls": 20,
+   "decremental_time_s": 7.403742399999999,
+   "decremental_radius_km": 2050.617440936269,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 0.0,
+   "decremental_ok": true,
+   "incremental_calls": 73,
+   "incremental_time_s": 0.2837319000000207,
+   "incremental_radius_km": 2050.617440936269,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 0.0,
+   "incremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.5,
+   "label": "legs since 2018-04-14",
+   "threshold": 1523678734.0
+  },
+  {
+   "seed": 2,
+   "n": 50000,
+   "n_consenting": 24856,
+   "consent_pct": 49.712,
+   "gt_radius_km": 2012.9467018597409,
+   "gt_center_km": [
+    198.26254325963234,
+    -342.84225950314726
+   ],
+   "gt_support_km": [
+    [
+     -1239.5736034289246,
+     1065.9095425556154
+    ],
+    [
+     -1719.1497166948693,
+     -955.6102824157168
+    ],
+    [
+     1873.312047176642,
+     -1459.1592323900534
+    ]
+   ],
+   "lower_bound_calls": 31,
+   "incremental_calls": 79,
+   "incremental_time_s": 0.3289005999999972,
+   "incremental_radius_km": 2012.9467018597404,
+   "incremental_rel_err": 2.259112724973432e-16,
+   "incremental_max_excess_km": 2.2737367544323206e-13,
+   "incremental_ok": true,
+   "decremental_calls": 32,
+   "decremental_time_s": 11.848574600000006,
+   "decremental_radius_km": 2012.9467018597404,
+   "decremental_rel_err": 2.259112724973432e-16,
+   "decremental_max_excess_km": 2.2737367544323206e-13,
+   "decremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.5,
+   "label": "legs since 2018-04-14",
+   "threshold": 1523678734.0
+  },
+  {
+   "seed": 3,
+   "n": 50000,
+   "n_consenting": 25014,
+   "consent_pct": 50.028,
+   "gt_radius_km": 2019.998123115872,
+   "gt_center_km": [
+    176.53907963467375,
+    -347.9254788860482
+   ],
+   "gt_support_km": [
+    [
+     -1289.6642543519633,
+     1041.5493142635487
+    ],
+    [
+     -1757.6232902741128,
+     -930.5131068189379
+    ],
+    [
+     1865.191338177258,
+     -1456.458729226638
+    ]
+   ],
+   "lower_bound_calls": 31,
+   "decremental_calls": 33,
+   "decremental_time_s": 12.324013900000011,
+   "decremental_radius_km": 2019.998123115872,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 0.0,
+   "decremental_ok": true,
+   "incremental_calls": 79,
+   "incremental_time_s": 0.20107819999998355,
+   "incremental_radius_km": 2019.9981231158724,
+   "incremental_rel_err": 2.2512266010673846e-16,
+   "incremental_max_excess_km": -4.547473508864641e-13,
+   "incremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.5,
+   "label": "legs since 2018-04-14",
+   "threshold": 1523678734.0
+  },
+  {
+   "seed": 4,
+   "n": 50000,
+   "n_consenting": 25126,
+   "consent_pct": 50.252,
+   "gt_radius_km": 2003.9806628772424,
+   "gt_center_km": [
+    183.94301637361775,
+    -396.4601835468562
+   ],
+   "gt_support_km": [
+    [
+     -1206.5019725758218,
+     1046.6618590716137
+    ],
+    [
+     -1739.9034158472268,
+     -957.4890619631453
+    ],
+    [
+     1878.547689796773,
+     -1466.1580371477285
+    ]
+   ],
+   "lower_bound_calls": 25,
+   "incremental_calls": 86,
+   "incremental_time_s": 0.2706102999999871,
+   "incremental_radius_km": 2003.9806628772424,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 2.2737367544323206e-13,
+   "incremental_ok": true,
+   "decremental_calls": 26,
+   "decremental_time_s": 7.4747593000000165,
+   "decremental_radius_km": 2003.9806628772424,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 2.2737367544323206e-13,
+   "decremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.5,
+   "label": "legs since 2018-04-14",
+   "threshold": 1523678734.0
+  },
+  {
+   "seed": 5,
+   "n": 50000,
+   "n_consenting": 25020,
+   "consent_pct": 50.04,
+   "gt_radius_km": 2050.668326739178,
+   "gt_center_km": [
+    193.1332848680418,
+    -285.15951301564854
+   ],
+   "gt_support_km": [
+    [
+     -1375.3374986256397,
+     1035.877953378843
+    ],
+    [
+     -1750.8746758141851,
+     -937.9026746767948
+    ],
+    [
+     1888.075858326284,
+     -1439.4602792676726
+    ]
+   ],
+   "lower_bound_calls": 26,
+   "decremental_calls": 26,
+   "decremental_time_s": 9.069412199999988,
+   "decremental_radius_km": 2050.6683267391777,
+   "decremental_rel_err": 2.21755680797767e-16,
+   "decremental_max_excess_km": 4.547473508864641e-13,
+   "decremental_ok": true,
+   "incremental_calls": 72,
+   "incremental_time_s": 0.28599819999999454,
+   "incremental_radius_km": 2050.6683267391777,
+   "incremental_rel_err": 2.21755680797767e-16,
+   "incremental_max_excess_km": 4.547473508864641e-13,
+   "incremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.5,
+   "label": "legs since 2018-04-14",
+   "threshold": 1523678734.0
+  }
+ ]
+}

@@ -1,0 +1,6046 @@
+{
+ "primary_column": "optin_date",
+ "contrast_column": "leg_random",
+ "algo_unit_km": 1000.0,
+ "points_in_pool": 796715,
+ "projection": "azimuthal equidistant centred on (47.076N, 15.140E)",
+ "seeds": 6,
+ "n": 10000,
+ "fractions": [
+  0.05,
+  0.1,
+  0.2,
+  0.35,
+  0.5,
+  0.65,
+  0.8,
+  0.9,
+  0.95
+ ],
+ "summary": [
+  {
+   "column": "leg_random",
+   "target_frac": 0.05,
+   "n": 10000,
+   "label": "random flight legs p=0.05",
+   "seeds": 6,
+   "consent_pct": {
+    "mean": 5.3500000000000005,
+    "std": 0.2153137245973881,
+    "min": 5.15,
+    "max": 5.63,
+    "median": 5.28,
+    "count": 6
+   },
+   "lower_bound_calls": {
+    "mean": 82.16666666666667,
+    "std": 51.03103630798287,
+    "min": 23.0,
+    "max": 158.0,
+    "median": 78.0,
+    "count": 6
+   },
+   "gt_radius_km": {
+    "mean": 1681.1417194207352,
+    "std": 226.70599124973242,
+    "min": 1335.4258553472625,
+    "max": 1883.5191229390457,
+    "median": 1755.2905465140946,
+    "count": 6
+   },
+   "incremental_calls": {
+    "mean": 347.6666666666667,
+    "std": 81.1287043324782,
+    "min": 245.0,
+    "max": 457.0,
+    "median": 348.0,
+    "count": 6
+   },
+   "incremental_time_s": {
+    "mean": 0.04181948333333274,
+    "std": 0.016286820227096578,
+    "min": 0.027868799999993144,
+    "max": 0.07411790000000451,
+    "median": 0.0373101000000009,
+    "count": 6
+   },
+   "decremental_calls": {
+    "mean": 85.5,
+    "std": 52.73992794837702,
+    "min": 25.0,
+    "max": 162.0,
+    "median": 80.0,
+    "count": 6
+   },
+   "decremental_time_s": {
+    "mean": 3.637504966666665,
+    "std": 2.0115545128186993,
+    "min": 1.4998064999999983,
+    "max": 5.841402500000001,
+    "median": 3.5358144499999895,
+    "count": 6
+   },
+   "incremental_calls_per_n": {
+    "mean": 0.03476666666666667,
+    "std": 0.008112870433247819,
+    "min": 0.0245,
+    "max": 0.0457,
+    "median": 0.0348,
+    "count": 6
+   },
+   "incremental_mismatches": 0,
+   "incremental_skipped": 0,
+   "decremental_calls_per_n": {
+    "mean": 0.00855,
+    "std": 0.0052739927948377025,
+    "min": 0.0025,
+    "max": 0.0162,
+    "median": 0.008,
+    "count": 6
+   },
+   "decremental_mismatches": 0,
+   "decremental_skipped": 0
+  },
+  {
+   "column": "leg_random",
+   "target_frac": 0.1,
+   "n": 10000,
+   "label": "random flight legs p=0.10",
+   "seeds": 6,
+   "consent_pct": {
+    "mean": 10.381666666666666,
+    "std": 0.31147498561949827,
+    "min": 9.92,
+    "max": 10.7,
+    "median": 10.425,
+    "count": 6
+   },
+   "lower_bound_calls": {
+    "mean": 34.0,
+    "std": 13.813037319865606,
+    "min": 15.0,
+    "max": 48.0,
+    "median": 38.5,
+    "count": 6
+   },
+   "gt_radius_km": {
+    "mean": 1830.2451221937056,
+    "std": 70.26435238328604,
+    "min": 1707.4875691729394,
+    "max": 1901.1469530344816,
+    "median": 1846.7660830862164,
+    "count": 6
+   },
+   "incremental_calls": {
+    "mean": 221.33333333333334,
+    "std": 41.89828954344875,
+    "min": 180.0,
+    "max": 293.0,
+    "median": 219.5,
+    "count": 6
+   },
+   "incremental_time_s": {
+    "mean": 0.07290476666666734,
+    "std": 0.03293505357916675,
+    "min": 0.03664960000000406,
+    "max": 0.12296800000000019,
+    "median": 0.06215150000000591,
+    "count": 6
+   },
+   "decremental_calls": {
+    "mean": 36.333333333333336,
+    "std": 15.015547498065686,
+    "min": 15.0,
+    "max": 53.0,
+    "median": 40.5,
+    "count": 6
+   },
+   "decremental_time_s": {
+    "mean": 1.4135716333333352,
+    "std": 0.5920394582801615,
+    "min": 0.5080994000000061,
+    "max": 2.146232600000001,
+    "median": 1.3182615499999955,
+    "count": 6
+   },
+   "incremental_calls_per_n": {
+    "mean": 0.022133333333333335,
+    "std": 0.0041898289543448744,
+    "min": 0.018,
+    "max": 0.0293,
+    "median": 0.02195,
+    "count": 6
+   },
+   "incremental_mismatches": 0,
+   "incremental_skipped": 0,
+   "decremental_calls_per_n": {
+    "mean": 0.0036333333333333335,
+    "std": 0.0015015547498065686,
+    "min": 0.0015,
+    "max": 0.0053,
+    "median": 0.00405,
+    "count": 6
+   },
+   "decremental_mismatches": 0,
+   "decremental_skipped": 0
+  },
+  {
+   "column": "leg_random",
+   "target_frac": 0.2,
+   "n": 10000,
+   "label": "random flight legs p=0.20",
+   "seeds": 6,
+   "consent_pct": {
+    "mean": 20.060000000000002,
+    "std": 0.2807846149631417,
+    "min": 19.72,
+    "max": 20.4,
+    "median": 20.075,
+    "count": 6
+   },
+   "lower_bound_calls": {
+    "mean": 11.666666666666666,
+    "std": 4.633213427705081,
+    "min": 7.0,
+    "max": 18.0,
+    "median": 9.5,
+    "count": 6
+   },
+   "gt_radius_km": {
+    "mean": 2006.5461257673617,
+    "std": 20.830393060109547,
+    "min": 1975.6593979418988,
+    "max": 2035.8513984623476,
+    "median": 2006.1310651859292,
+    "count": 6
+   },
+   "incremental_calls": {
+    "mean": 130.66666666666666,
+    "std": 22.59793500890439,
+    "min": 103.0,
+    "max": 164.0,
+    "median": 128.0,
+    "count": 6
+   },
+   "incremental_time_s": {
+    "mean": 0.07386283333333428,
+    "std": 0.030113340764828272,
+    "min": 0.04382900000000234,
+    "max": 0.13069670000000144,
+    "median": 0.06655465000000049,
+    "count": 6
+   },
+   "decremental_calls": {
+    "mean": 11.666666666666666,
+    "std": 4.633213427705081,
+    "min": 7.0,
+    "max": 18.0,
+    "median": 9.5,
+    "count": 6
+   },
+   "decremental_time_s": {
+    "mean": 0.48463721666666376,
+    "std": 0.17846805236998126,
+    "min": 0.2278067999999962,
+    "max": 0.6848419000000021,
+    "median": 0.49593109999999996,
+    "count": 6
+   },
+   "incremental_calls_per_n": {
+    "mean": 0.013066666666666666,
+    "std": 0.0022597935008904393,
+    "min": 0.0103,
+    "max": 0.0164,
+    "median": 0.012799999999999999,
+    "count": 6
+   },
+   "incremental_mismatches": 0,
+   "incremental_skipped": 0,
+   "decremental_calls_per_n": {
+    "mean": 0.0011666666666666668,
+    "std": 0.0004633213427705081,
+    "min": 0.0007,
+    "max": 0.0018,
+    "median": 0.00095,
+    "count": 6
+   },
+   "decremental_mismatches": 0,
+   "decremental_skipped": 0
+  },
+  {
+   "column": "leg_random",
+   "target_frac": 0.35,
+   "n": 10000,
+   "label": "random flight legs p=0.35",
+   "seeds": 6,
+   "consent_pct": {
+    "mean": 35.61833333333333,
+    "std": 0.4803505664269227,
+    "min": 35.07,
+    "max": 36.33,
+    "median": 35.605000000000004,
+    "count": 6
+   },
+   "lower_bound_calls": {
+    "mean": 9.333333333333334,
+    "std": 3.6147844564602556,
+    "min": 5.0,
+    "max": 15.0,
+    "median": 8.5,
+    "count": 6
+   },
+   "gt_radius_km": {
+    "mean": 2018.9002335670775,
+    "std": 17.06425600628675,
+    "min": 1998.0426347684243,
+    "max": 2038.693147453067,
+    "median": 2019.9655374532874,
+    "count": 6
+   },
+   "incremental_calls": {
+    "mean": 75.33333333333333,
+    "std": 25.208464186988202,
+    "min": 49.0,
+    "max": 114.0,
+    "median": 67.5,
+    "count": 6
+   },
+   "incremental_time_s": {
+    "mean": 0.05875140000000142,
+    "std": 0.02478736543612278,
+    "min": 0.02349710000000016,
+    "max": 0.0894674000000002,
+    "median": 0.05634659999999414,
+    "count": 6
+   },
+   "decremental_calls": {
+    "mean": 9.333333333333334,
+    "std": 3.6147844564602556,
+    "min": 5.0,
+    "max": 15.0,
+    "median": 8.5,
+    "count": 6
+   },
+   "decremental_time_s": {
+    "mean": 0.39530026666666807,
+    "std": 0.2223131259575225,
+    "min": 0.2068222999999989,
+    "max": 0.809558599999999,
+    "median": 0.34636774999999886,
+    "count": 6
+   },
+   "incremental_calls_per_n": {
+    "mean": 0.007533333333333333,
+    "std": 0.00252084641869882,
+    "min": 0.0049,
+    "max": 0.0114,
+    "median": 0.00675,
+    "count": 6
+   },
+   "incremental_mismatches": 0,
+   "incremental_skipped": 0,
+   "decremental_calls_per_n": {
+    "mean": 0.0009333333333333333,
+    "std": 0.00036147844564602555,
+    "min": 0.0005,
+    "max": 0.0015,
+    "median": 0.0008500000000000001,
+    "count": 6
+   },
+   "decremental_mismatches": 0,
+   "decremental_skipped": 0
+  },
+  {
+   "column": "leg_random",
+   "target_frac": 0.5,
+   "n": 10000,
+   "label": "random flight legs p=0.50",
+   "seeds": 6,
+   "consent_pct": {
+    "mean": 50.29833333333334,
+    "std": 0.6097349150792228,
+    "min": 49.51,
+    "max": 50.96,
+    "median": 50.35,
+    "count": 6
+   },
+   "lower_bound_calls": {
+    "mean": 4.666666666666667,
+    "std": 2.160246899469287,
+    "min": 3.0,
+    "max": 9.0,
+    "median": 4.0,
+    "count": 6
+   },
+   "gt_radius_km": {
+    "mean": 2039.390171970316,
+    "std": 12.53483621930173,
+    "min": 2023.2059372528756,
+    "max": 2060.8379775202284,
+    "median": 2039.7718759179318,
+    "count": 6
+   },
+   "incremental_calls": {
+    "mean": 54.0,
+    "std": 17.146428199482248,
+    "min": 32.0,
+    "max": 80.0,
+    "median": 52.5,
+    "count": 6
+   },
+   "incremental_time_s": {
+    "mean": 0.06404551666666691,
+    "std": 0.03217272708114322,
+    "min": 0.03126720000000205,
+    "max": 0.10790430000000129,
+    "median": 0.05853435000000218,
+    "count": 6
+   },
+   "decremental_calls": {
+    "mean": 4.666666666666667,
+    "std": 2.160246899469287,
+    "min": 3.0,
+    "max": 9.0,
+    "median": 4.0,
+    "count": 6
+   },
+   "decremental_time_s": {
+    "mean": 0.14063038333332697,
+    "std": 0.07932580664776069,
+    "min": 0.07107979999997838,
+    "max": 0.2873788999999931,
+    "median": 0.11910144999999517,
+    "count": 6
+   },
+   "incremental_calls_per_n": {
+    "mean": 0.005399999999999999,
+    "std": 0.0017146428199482247,
+    "min": 0.0032,
+    "max": 0.008,
+    "median": 0.0052499999999999995,
+    "count": 6
+   },
+   "incremental_mismatches": 0,
+   "incremental_skipped": 0,
+   "decremental_calls_per_n": {
+    "mean": 0.0004666666666666667,
+    "std": 0.00021602468994692865,
+    "min": 0.0003,
+    "max": 0.0009,
+    "median": 0.0004,
+    "count": 6
+   },
+   "decremental_mismatches": 0,
+   "decremental_skipped": 0
+  },
+  {
+   "column": "leg_random",
+   "target_frac": 0.65,
+   "n": 10000,
+   "label": "random flight legs p=0.65",
+   "seeds": 6,
+   "consent_pct": {
+    "mean": 65.33666666666666,
+    "std": 0.6472917940671491,
+    "min": 64.36,
+    "max": 66.2,
+    "median": 65.44,
+    "count": 6
+   },
+   "lower_bound_calls": {
+    "mean": 3.1666666666666665,
+    "std": 0.40824829046386296,
+    "min": 3.0,
+    "max": 4.0,
+    "median": 3.0,
+    "count": 6
+   },
+   "gt_radius_km": {
+    "mean": 2044.4925751047358,
+    "std": 10.415668882499933,
+    "min": 2033.8328574730706,
+    "max": 2064.4132026547863,
+    "median": 2042.352564458868,
+    "count": 6
+   },
+   "incremental_calls": {
+    "mean": 41.166666666666664,
+    "std": 11.617515511789371,
+    "min": 27.0,
+    "max": 54.0,
+    "median": 40.5,
+    "count": 6
+   },
+   "incremental_time_s": {
+    "mean": 0.07502333333332878,
+    "std": 0.028667317351832044,
+    "min": 0.04254530000000045,
+    "max": 0.12526719999999614,
+    "median": 0.0681208499999979,
+    "count": 6
+   },
+   "decremental_calls": {
+    "mean": 3.1666666666666665,
+    "std": 0.40824829046386296,
+    "min": 3.0,
+    "max": 4.0,
+    "median": 3.0,
+    "count": 6
+   },
+   "decremental_time_s": {
+    "mean": 0.08628183333333261,
+    "std": 0.047520324841133506,
+    "min": 0.04311100000000323,
+    "max": 0.169386700000004,
+    "median": 0.07162539999999495,
+    "count": 6
+   },
+   "incremental_calls_per_n": {
+    "mean": 0.004116666666666667,
+    "std": 0.0011617515511789373,
+    "min": 0.0027,
+    "max": 0.0054,
+    "median": 0.00405,
+    "count": 6
+   },
+   "incremental_mismatches": 0,
+   "incremental_skipped": 0,
+   "decremental_calls_per_n": {
+    "mean": 0.00031666666666666665,
+    "std": 4.082482904638632e-05,
+    "min": 0.0003,
+    "max": 0.0004,
+    "median": 0.0003,
+    "count": 6
+   },
+   "decremental_mismatches": 0,
+   "decremental_skipped": 0
+  },
+  {
+   "column": "leg_random",
+   "target_frac": 0.8,
+   "n": 10000,
+   "label": "random flight legs p=0.80",
+   "seeds": 6,
+   "consent_pct": {
+    "mean": 79.745,
+    "std": 0.3577009924503976,
+    "min": 79.42,
+    "max": 80.31,
+    "median": 79.61000000000001,
+    "count": 6
+   },
+   "lower_bound_calls": {
+    "mean": 3.0,
+    "std": 0.0,
+    "min": 3.0,
+    "max": 3.0,
+    "median": 3.0,
+    "count": 6
+   },
+   "gt_radius_km": {
+    "mean": 2045.2080377583468,
+    "std": 9.656788671694116,
+    "min": 2038.1256333947372,
+    "max": 2064.4132026547863,
+    "median": 2042.352564458868,
+    "count": 6
+   },
+   "incremental_calls": {
+    "mean": 34.5,
+    "std": 5.357238094391549,
+    "min": 26.0,
+    "max": 42.0,
+    "median": 35.0,
+    "count": 6
+   },
+   "incremental_time_s": {
+    "mean": 0.08636273333333537,
+    "std": 0.04185804893377891,
+    "min": 0.06314830000000171,
+    "max": 0.1702370000000002,
+    "median": 0.0686924000000051,
+    "count": 6
+   },
+   "decremental_calls": {
+    "mean": 3.0,
+    "std": 0.0,
+    "min": 3.0,
+    "max": 3.0,
+    "median": 3.0,
+    "count": 6
+   },
+   "decremental_time_s": {
+    "mean": 0.07122450000000076,
+    "std": 0.026801177572113272,
+    "min": 0.04346000000000316,
+    "max": 0.11585589999999968,
+    "median": 0.06722235000000865,
+    "count": 6
+   },
+   "incremental_calls_per_n": {
+    "mean": 0.00345,
+    "std": 0.0005357238094391549,
+    "min": 0.0026,
+    "max": 0.0042,
+    "median": 0.0034999999999999996,
+    "count": 6
+   },
+   "incremental_mismatches": 0,
+   "incremental_skipped": 0,
+   "decremental_calls_per_n": {
+    "mean": 0.0003,
+    "std": 0.0,
+    "min": 0.0003,
+    "max": 0.0003,
+    "median": 0.0003,
+    "count": 6
+   },
+   "decremental_mismatches": 0,
+   "decremental_skipped": 0
+  },
+  {
+   "column": "leg_random",
+   "target_frac": 0.9,
+   "n": 10000,
+   "label": "random flight legs p=0.90",
+   "seeds": 6,
+   "consent_pct": {
+    "mean": 89.91333333333334,
+    "std": 0.1550053762508446,
+    "min": 89.74,
+    "max": 90.13,
+    "median": 89.9,
+    "count": 6
+   },
+   "lower_bound_calls": {
+    "mean": 3.0,
+    "std": 0.0,
+    "min": 3.0,
+    "max": 3.0,
+    "median": 3.0,
+    "count": 6
+   },
+   "gt_radius_km": {
+    "mean": 2045.2080377583468,
+    "std": 9.656788671694116,
+    "min": 2038.1256333947372,
+    "max": 2064.4132026547863,
+    "median": 2042.352564458868,
+    "count": 6
+   },
+   "incremental_calls": {
+    "mean": 33.5,
+    "std": 5.468089245796926,
+    "min": 25.0,
+    "max": 41.0,
+    "median": 34.0,
+    "count": 6
+   },
+   "incremental_time_s": {
+    "mean": 0.09444904999999675,
+    "std": 0.04740686871915512,
+    "min": 0.06577209999998956,
+    "max": 0.18977780000000166,
+    "median": 0.07805509999999671,
+    "count": 6
+   },
+   "decremental_calls": {
+    "mean": 3.0,
+    "std": 0.0,
+    "min": 3.0,
+    "max": 3.0,
+    "median": 3.0,
+    "count": 6
+   },
+   "decremental_time_s": {
+    "mean": 0.06462604999999873,
+    "std": 0.02545806105238664,
+    "min": 0.04135610000000156,
+    "max": 0.10828360000000004,
+    "median": 0.06004089999998996,
+    "count": 6
+   },
+   "incremental_calls_per_n": {
+    "mean": 0.00335,
+    "std": 0.0005468089245796927,
+    "min": 0.0025,
+    "max": 0.0041,
+    "median": 0.0034000000000000002,
+    "count": 6
+   },
+   "incremental_mismatches": 0,
+   "incremental_skipped": 0,
+   "decremental_calls_per_n": {
+    "mean": 0.0003,
+    "std": 0.0,
+    "min": 0.0003,
+    "max": 0.0003,
+    "median": 0.0003,
+    "count": 6
+   },
+   "decremental_mismatches": 0,
+   "decremental_skipped": 0
+  },
+  {
+   "column": "leg_random",
+   "target_frac": 0.95,
+   "n": 10000,
+   "label": "random flight legs p=0.95",
+   "seeds": 6,
+   "consent_pct": {
+    "mean": 94.84833333333334,
+    "std": 0.15892346166210947,
+    "min": 94.69,
+    "max": 95.04,
+    "median": 94.845,
+    "count": 6
+   },
+   "lower_bound_calls": {
+    "mean": 3.0,
+    "std": 0.0,
+    "min": 3.0,
+    "max": 3.0,
+    "median": 3.0,
+    "count": 6
+   },
+   "gt_radius_km": {
+    "mean": 2045.2080377583468,
+    "std": 9.656788671694116,
+    "min": 2038.1256333947372,
+    "max": 2064.4132026547863,
+    "median": 2042.352564458868,
+    "count": 6
+   },
+   "incremental_calls": {
+    "mean": 33.166666666666664,
+    "std": 5.49241901776136,
+    "min": 25.0,
+    "max": 41.0,
+    "median": 33.5,
+    "count": 6
+   },
+   "incremental_time_s": {
+    "mean": 0.09492041666666869,
+    "std": 0.04357314292347606,
+    "min": 0.06497699999999895,
+    "max": 0.1818552000000011,
+    "median": 0.08129025000000212,
+    "count": 6
+   },
+   "decremental_calls": {
+    "mean": 3.0,
+    "std": 0.0,
+    "min": 3.0,
+    "max": 3.0,
+    "median": 3.0,
+    "count": 6
+   },
+   "decremental_time_s": {
+    "mean": 0.06645378333333578,
+    "std": 0.024888070657520054,
+    "min": 0.04215820000000292,
+    "max": 0.1084637000000015,
+    "median": 0.06231365000000011,
+    "count": 6
+   },
+   "incremental_calls_per_n": {
+    "mean": 0.003316666666666666,
+    "std": 0.0005492419017761361,
+    "min": 0.0025,
+    "max": 0.0041,
+    "median": 0.00335,
+    "count": 6
+   },
+   "incremental_mismatches": 0,
+   "incremental_skipped": 0,
+   "decremental_calls_per_n": {
+    "mean": 0.0003,
+    "std": 0.0,
+    "min": 0.0003,
+    "max": 0.0003,
+    "median": 0.0003,
+    "count": 6
+   },
+   "decremental_mismatches": 0,
+   "decremental_skipped": 0
+  },
+  {
+   "column": "optin_date",
+   "target_frac": 0.05,
+   "n": 10000,
+   "label": "legs since 2019-09-28",
+   "seeds": 6,
+   "consent_pct": {
+    "mean": 5.003333333333334,
+    "std": 0.20284641152030947,
+    "min": 4.67,
+    "max": 5.2,
+    "median": 5.04,
+    "count": 6
+   },
+   "lower_bound_calls": {
+    "mean": 96.33333333333333,
+    "std": 23.81316162685389,
+    "min": 63.0,
+    "max": 128.0,
+    "median": 98.5,
+    "count": 6
+   },
+   "gt_radius_km": {
+    "mean": 1448.0689911728384,
+    "std": 62.263935396705016,
+    "min": 1403.6275531359804,
+    "max": 1532.8702722450107,
+    "median": 1410.450625893179,
+    "count": 6
+   },
+   "incremental_calls": {
+    "mean": 519.1666666666666,
+    "std": 169.5233513904992,
+    "min": 251.0,
+    "max": 773.0,
+    "median": 527.5,
+    "count": 6
+   },
+   "incremental_time_s": {
+    "mean": 0.04662341666666858,
+    "std": 0.01816866972504721,
+    "min": 0.02793349999999606,
+    "max": 0.06843980000000727,
+    "median": 0.04318559999999927,
+    "count": 6
+   },
+   "decremental_calls": {
+    "mean": 102.83333333333333,
+    "std": 19.518367418067186,
+    "min": 72.0,
+    "max": 128.0,
+    "median": 104.5,
+    "count": 6
+   },
+   "decremental_time_s": {
+    "mean": 4.380455116666667,
+    "std": 0.9779881383246987,
+    "min": 2.7960361000000002,
+    "max": 5.7299516,
+    "median": 4.3224205,
+    "count": 6
+   },
+   "incremental_calls_per_n": {
+    "mean": 0.051916666666666667,
+    "std": 0.01695233513904992,
+    "min": 0.0251,
+    "max": 0.0773,
+    "median": 0.052750000000000005,
+    "count": 6
+   },
+   "incremental_mismatches": 0,
+   "incremental_skipped": 0,
+   "decremental_calls_per_n": {
+    "mean": 0.010283333333333334,
+    "std": 0.0019518367418067187,
+    "min": 0.0072,
+    "max": 0.0128,
+    "median": 0.010450000000000001,
+    "count": 6
+   },
+   "decremental_mismatches": 0,
+   "decremental_skipped": 0
+  },
+  {
+   "column": "optin_date",
+   "target_frac": 0.1,
+   "n": 10000,
+   "label": "legs since 2019-07-25",
+   "seeds": 6,
+   "consent_pct": {
+    "mean": 10.095,
+    "std": 0.20315019074566473,
+    "min": 9.73,
+    "max": 10.31,
+    "median": 10.135,
+    "count": 6
+   },
+   "lower_bound_calls": {
+    "mean": 81.33333333333333,
+    "std": 15.214028613968972,
+    "min": 63.0,
+    "max": 104.0,
+    "median": 79.5,
+    "count": 6
+   },
+   "gt_radius_km": {
+    "mean": 1459.1256139550953,
+    "std": 56.21037924309577,
+    "min": 1407.9927687411666,
+    "max": 1532.8702722450107,
+    "median": 1438.653161363219,
+    "count": 6
+   },
+   "incremental_calls": {
+    "mean": 357.0,
+    "std": 94.50925880568528,
+    "min": 223.0,
+    "max": 502.0,
+    "median": 360.5,
+    "count": 6
+   },
+   "incremental_time_s": {
+    "mean": 0.0490887833333303,
+    "std": 0.014738666591165777,
+    "min": 0.034368600000000527,
+    "max": 0.06965679999998997,
+    "median": 0.048048399999998104,
+    "count": 6
+   },
+   "decremental_calls": {
+    "mean": 87.83333333333333,
+    "std": 14.133883637085267,
+    "min": 72.0,
+    "max": 112.0,
+    "median": 85.0,
+    "count": 6
+   },
+   "decremental_time_s": {
+    "mean": 4.459596799999999,
+    "std": 0.9977341486436656,
+    "min": 2.7729362,
+    "max": 5.700751,
+    "median": 4.547649849999999,
+    "count": 6
+   },
+   "incremental_calls_per_n": {
+    "mean": 0.0357,
+    "std": 0.009450925880568528,
+    "min": 0.0223,
+    "max": 0.0502,
+    "median": 0.03605,
+    "count": 6
+   },
+   "incremental_mismatches": 0,
+   "incremental_skipped": 0,
+   "decremental_calls_per_n": {
+    "mean": 0.008783333333333334,
+    "std": 0.0014133883637085266,
+    "min": 0.0072,
+    "max": 0.0112,
+    "median": 0.0085,
+    "count": 6
+   },
+   "decremental_mismatches": 0,
+   "decremental_skipped": 0
+  },
+  {
+   "column": "optin_date",
+   "target_frac": 0.2,
+   "n": 10000,
+   "label": "legs since 2019-04-05",
+   "seeds": 6,
+   "consent_pct": {
+    "mean": 20.188333333333336,
+    "std": 0.4589299147654975,
+    "min": 19.63,
+    "max": 20.93,
+    "median": 20.18,
+    "count": 6
+   },
+   "lower_bound_calls": {
+    "mean": 42.833333333333336,
+    "std": 9.516652072376433,
+    "min": 32.0,
+    "max": 60.0,
+    "median": 40.0,
+    "count": 6
+   },
+   "gt_radius_km": {
+    "mean": 1651.595320966059,
+    "std": 60.87956723822519,
+    "min": 1597.1682143480316,
+    "max": 1744.0995956493296,
+    "median": 1631.4712772340322,
+    "count": 6
+   },
+   "incremental_calls": {
+    "mean": 185.66666666666666,
+    "std": 39.682069838488346,
+    "min": 124.0,
+    "max": 238.0,
+    "median": 190.5,
+    "count": 6
+   },
+   "incremental_time_s": {
+    "mean": 0.060019083333336276,
+    "std": 0.01828715192493672,
+    "min": 0.039288600000000784,
+    "max": 0.08754170000000272,
+    "median": 0.052602950000004256,
+    "count": 6
+   },
+   "decremental_calls": {
+    "mean": 45.0,
+    "std": 9.633275663033837,
+    "min": 32.0,
+    "max": 61.0,
+    "median": 44.5,
+    "count": 6
+   },
+   "decremental_time_s": {
+    "mean": 2.513467716666668,
+    "std": 1.0499475054727212,
+    "min": 1.5035636000000068,
+    "max": 4.439184900000001,
+    "median": 2.330186999999997,
+    "count": 6
+   },
+   "incremental_calls_per_n": {
+    "mean": 0.018566666666666665,
+    "std": 0.003968206983848835,
+    "min": 0.0124,
+    "max": 0.0238,
+    "median": 0.01905,
+    "count": 6
+   },
+   "incremental_mismatches": 0,
+   "incremental_skipped": 0,
+   "decremental_calls_per_n": {
+    "mean": 0.0045000000000000005,
+    "std": 0.0009633275663033837,
+    "min": 0.0032,
+    "max": 0.0061,
+    "median": 0.00445,
+    "count": 6
+   },
+   "decremental_mismatches": 0,
+   "decremental_skipped": 0
+  },
+  {
+   "column": "optin_date",
+   "target_frac": 0.35,
+   "n": 10000,
+   "label": "legs since 2018-09-27",
+   "seeds": 6,
+   "consent_pct": {
+    "mean": 35.02166666666667,
+    "std": 0.4194957290207688,
+    "min": 34.5,
+    "max": 35.75,
+    "median": 34.95,
+    "count": 6
+   },
+   "lower_bound_calls": {
+    "mean": 10.833333333333334,
+    "std": 4.875106836436169,
+    "min": 6.0,
+    "max": 20.0,
+    "median": 10.0,
+    "count": 6
+   },
+   "gt_radius_km": {
+    "mean": 1932.5147239313408,
+    "std": 50.92401901904138,
+    "min": 1875.1603043706423,
+    "max": 2005.0833795819556,
+    "median": 1919.3825506819292,
+    "count": 6
+   },
+   "incremental_calls": {
+    "mean": 68.5,
+    "std": 16.36765102267274,
+    "min": 48.0,
+    "max": 90.0,
+    "median": 67.5,
+    "count": 6
+   },
+   "incremental_time_s": {
+    "mean": 0.06371548333333472,
+    "std": 0.021096995309040946,
+    "min": 0.03410539999999429,
+    "max": 0.08737080000000041,
+    "median": 0.06693489999999613,
+    "count": 6
+   },
+   "decremental_calls": {
+    "mean": 12.166666666666666,
+    "std": 5.23131595936115,
+    "min": 7.0,
+    "max": 22.0,
+    "median": 11.0,
+    "count": 6
+   },
+   "decremental_time_s": {
+    "mean": 0.5629361500000002,
+    "std": 0.2915786486329877,
+    "min": 0.35853360000000123,
+    "max": 1.126744500000001,
+    "median": 0.45239660000000104,
+    "count": 6
+   },
+   "incremental_calls_per_n": {
+    "mean": 0.006849999999999999,
+    "std": 0.001636765102267274,
+    "min": 0.0048,
+    "max": 0.009,
+    "median": 0.00675,
+    "count": 6
+   },
+   "incremental_mismatches": 0,
+   "incremental_skipped": 0,
+   "decremental_calls_per_n": {
+    "mean": 0.001216666666666667,
+    "std": 0.000523131595936115,
+    "min": 0.0007,
+    "max": 0.0022,
+    "median": 0.0011,
+    "count": 6
+   },
+   "decremental_mismatches": 0,
+   "decremental_skipped": 0
+  },
+  {
+   "column": "optin_date",
+   "target_frac": 0.5,
+   "n": 10000,
+   "label": "legs since 2018-04-14",
+   "seeds": 6,
+   "consent_pct": {
+    "mean": 49.94333333333333,
+    "std": 0.4338509728773998,
+    "min": 49.42,
+    "max": 50.54,
+    "median": 49.86,
+    "count": 6
+   },
+   "lower_bound_calls": {
+    "mean": 8.333333333333334,
+    "std": 3.011090610836324,
+    "min": 4.0,
+    "max": 12.0,
+    "median": 8.5,
+    "count": 6
+   },
+   "gt_radius_km": {
+    "mean": 1949.4015248415133,
+    "std": 40.349712913412546,
+    "min": 1904.0254065042923,
+    "max": 2005.0833795819551,
+    "median": 1935.8829239591912,
+    "count": 6
+   },
+   "incremental_calls": {
+    "mean": 50.833333333333336,
+    "std": 12.781497043252275,
+    "min": 29.0,
+    "max": 66.0,
+    "median": 52.0,
+    "count": 6
+   },
+   "incremental_time_s": {
+    "mean": 0.06644588333333375,
+    "std": 0.02449533493287527,
+    "min": 0.02548119999999443,
+    "max": 0.09183209999999953,
+    "median": 0.06833599999999862,
+    "count": 6
+   },
+   "decremental_calls": {
+    "mean": 9.166666666666666,
+    "std": 3.311595788538611,
+    "min": 5.0,
+    "max": 14.0,
+    "median": 8.5,
+    "count": 6
+   },
+   "decremental_time_s": {
+    "mean": 0.3985316499999992,
+    "std": 0.1891512907833668,
+    "min": 0.1647195000000039,
+    "max": 0.7015440999999925,
+    "median": 0.37845750000000056,
+    "count": 6
+   },
+   "incremental_calls_per_n": {
+    "mean": 0.005083333333333334,
+    "std": 0.0012781497043252276,
+    "min": 0.0029,
+    "max": 0.0066,
+    "median": 0.0052,
+    "count": 6
+   },
+   "incremental_mismatches": 0,
+   "incremental_skipped": 0,
+   "decremental_calls_per_n": {
+    "mean": 0.0009166666666666666,
+    "std": 0.0003311595788538611,
+    "min": 0.0005,
+    "max": 0.0014,
+    "median": 0.0008500000000000001,
+    "count": 6
+   },
+   "decremental_mismatches": 0,
+   "decremental_skipped": 0
+  },
+  {
+   "column": "optin_date",
+   "target_frac": 0.65,
+   "n": 10000,
+   "label": "legs since 2017-10-12",
+   "seeds": 6,
+   "consent_pct": {
+    "mean": 65.21666666666667,
+    "std": 0.34610210439502676,
+    "min": 64.91,
+    "max": 65.72,
+    "median": 65.08,
+    "count": 6
+   },
+   "lower_bound_calls": {
+    "mean": 7.833333333333333,
+    "std": 2.9944392908634274,
+    "min": 4.0,
+    "max": 12.0,
+    "median": 7.5,
+    "count": 6
+   },
+   "gt_radius_km": {
+    "mean": 1954.7088752849777,
+    "std": 34.72081175509591,
+    "min": 1925.5772565817974,
+    "max": 2005.0833795819551,
+    "median": 1938.4452912350307,
+    "count": 6
+   },
+   "incremental_calls": {
+    "mean": 42.833333333333336,
+    "std": 9.020347369512255,
+    "min": 29.0,
+    "max": 52.0,
+    "median": 44.5,
+    "count": 6
+   },
+   "incremental_time_s": {
+    "mean": 0.06817591666666593,
+    "std": 0.026805986052997253,
+    "min": 0.027178400000003933,
+    "max": 0.11057409999999379,
+    "median": 0.06768609999999953,
+    "count": 6
+   },
+   "decremental_calls": {
+    "mean": 8.333333333333334,
+    "std": 2.9439202887759492,
+    "min": 5.0,
+    "max": 13.0,
+    "median": 8.0,
+    "count": 6
+   },
+   "decremental_time_s": {
+    "mean": 0.4083620166666684,
+    "std": 0.20040190023783275,
+    "min": 0.17915450000000277,
+    "max": 0.7486985000000033,
+    "median": 0.3738109499999993,
+    "count": 6
+   },
+   "incremental_calls_per_n": {
+    "mean": 0.0042833333333333334,
+    "std": 0.0009020347369512255,
+    "min": 0.0029,
+    "max": 0.0052,
+    "median": 0.00445,
+    "count": 6
+   },
+   "incremental_mismatches": 0,
+   "incremental_skipped": 0,
+   "decremental_calls_per_n": {
+    "mean": 0.0008333333333333334,
+    "std": 0.00029439202887759485,
+    "min": 0.0005,
+    "max": 0.0013,
+    "median": 0.0007999999999999999,
+    "count": 6
+   },
+   "decremental_mismatches": 0,
+   "decremental_skipped": 0
+  },
+  {
+   "column": "optin_date",
+   "target_frac": 0.8,
+   "n": 10000,
+   "label": "legs since 2017-04-21",
+   "seeds": 6,
+   "consent_pct": {
+    "mean": 79.98166666666667,
+    "std": 0.3531241519163845,
+    "min": 79.51,
+    "max": 80.34,
+    "median": 80.095,
+    "count": 6
+   },
+   "lower_bound_calls": {
+    "mean": 7.833333333333333,
+    "std": 2.9944392908634274,
+    "min": 4.0,
+    "max": 12.0,
+    "median": 7.5,
+    "count": 6
+   },
+   "gt_radius_km": {
+    "mean": 1954.7088752849777,
+    "std": 34.72081175509591,
+    "min": 1925.5772565817974,
+    "max": 2005.0833795819551,
+    "median": 1938.4452912350307,
+    "count": 6
+   },
+   "incremental_calls": {
+    "mean": 40.166666666666664,
+    "std": 9.600347215943112,
+    "min": 27.0,
+    "max": 51.0,
+    "median": 40.5,
+    "count": 6
+   },
+   "incremental_time_s": {
+    "mean": 0.08686108333333091,
+    "std": 0.05276427526064842,
+    "min": 0.02762390000000181,
+    "max": 0.18645379999999534,
+    "median": 0.07784445000000062,
+    "count": 6
+   },
+   "decremental_calls": {
+    "mean": 8.333333333333334,
+    "std": 2.9439202887759492,
+    "min": 5.0,
+    "max": 13.0,
+    "median": 8.0,
+    "count": 6
+   },
+   "decremental_time_s": {
+    "mean": 0.422012349999999,
+    "std": 0.22149521453337687,
+    "min": 0.17764269999999982,
+    "max": 0.8136642999999992,
+    "median": 0.37977225000000114,
+    "count": 6
+   },
+   "incremental_calls_per_n": {
+    "mean": 0.004016666666666666,
+    "std": 0.0009600347215943112,
+    "min": 0.0027,
+    "max": 0.0051,
+    "median": 0.00405,
+    "count": 6
+   },
+   "incremental_mismatches": 0,
+   "incremental_skipped": 0,
+   "decremental_calls_per_n": {
+    "mean": 0.0008333333333333334,
+    "std": 0.00029439202887759485,
+    "min": 0.0005,
+    "max": 0.0013,
+    "median": 0.0007999999999999999,
+    "count": 6
+   },
+   "decremental_mismatches": 0,
+   "decremental_skipped": 0
+  },
+  {
+   "column": "optin_date",
+   "target_frac": 0.9,
+   "n": 10000,
+   "label": "legs since 2016-12-05",
+   "seeds": 6,
+   "consent_pct": {
+    "mean": 90.06333333333333,
+    "std": 0.3499523777125522,
+    "min": 89.52,
+    "max": 90.43,
+    "median": 90.105,
+    "count": 6
+   },
+   "lower_bound_calls": {
+    "mean": 7.833333333333333,
+    "std": 2.9944392908634274,
+    "min": 4.0,
+    "max": 12.0,
+    "median": 7.5,
+    "count": 6
+   },
+   "gt_radius_km": {
+    "mean": 1954.7088752849777,
+    "std": 34.72081175509591,
+    "min": 1925.5772565817974,
+    "max": 2005.0833795819551,
+    "median": 1938.4452912350307,
+    "count": 6
+   },
+   "incremental_calls": {
+    "mean": 38.333333333333336,
+    "std": 8.71014733897577,
+    "min": 25.0,
+    "max": 46.0,
+    "median": 40.0,
+    "count": 6
+   },
+   "incremental_time_s": {
+    "mean": 0.0841973333333333,
+    "std": 0.0444269952427879,
+    "min": 0.029630199999999718,
+    "max": 0.16156229999999994,
+    "median": 0.07892755000000307,
+    "count": 6
+   },
+   "decremental_calls": {
+    "mean": 8.333333333333334,
+    "std": 2.9439202887759492,
+    "min": 5.0,
+    "max": 13.0,
+    "median": 8.0,
+    "count": 6
+   },
+   "decremental_time_s": {
+    "mean": 0.40943568333333386,
+    "std": 0.22383262395517808,
+    "min": 0.16061290000000383,
+    "max": 0.8018012999999939,
+    "median": 0.37457705000000274,
+    "count": 6
+   },
+   "incremental_calls_per_n": {
+    "mean": 0.003833333333333333,
+    "std": 0.0008710147338975767,
+    "min": 0.0025,
+    "max": 0.0046,
+    "median": 0.004,
+    "count": 6
+   },
+   "incremental_mismatches": 0,
+   "incremental_skipped": 0,
+   "decremental_calls_per_n": {
+    "mean": 0.0008333333333333334,
+    "std": 0.00029439202887759485,
+    "min": 0.0005,
+    "max": 0.0013,
+    "median": 0.0007999999999999999,
+    "count": 6
+   },
+   "decremental_mismatches": 0,
+   "decremental_skipped": 0
+  },
+  {
+   "column": "optin_date",
+   "target_frac": 0.95,
+   "n": 10000,
+   "label": "legs since 2016-09-03",
+   "seeds": 6,
+   "consent_pct": {
+    "mean": 94.99833333333333,
+    "std": 0.24318031718596586,
+    "min": 94.57,
+    "max": 95.32,
+    "median": 95.02000000000001,
+    "count": 6
+   },
+   "lower_bound_calls": {
+    "mean": 5.0,
+    "std": 1.6733200530681511,
+    "min": 4.0,
+    "max": 8.0,
+    "median": 4.0,
+    "count": 6
+   },
+   "gt_radius_km": {
+    "mean": 1992.2996050066906,
+    "std": 39.39626844616231,
+    "min": 1929.2959146047936,
+    "max": 2035.3560242937863,
+    "median": 1991.6810987217837,
+    "count": 6
+   },
+   "incremental_calls": {
+    "mean": 33.5,
+    "std": 4.679743582719036,
+    "min": 25.0,
+    "max": 39.0,
+    "median": 34.0,
+    "count": 6
+   },
+   "incremental_time_s": {
+    "mean": 0.07788466666666949,
+    "std": 0.036285281557277754,
+    "min": 0.039451800000001924,
+    "max": 0.13325590000000886,
+    "median": 0.0679823000000006,
+    "count": 6
+   },
+   "decremental_calls": {
+    "mean": 5.333333333333333,
+    "std": 1.505545305418162,
+    "min": 4.0,
+    "max": 8.0,
+    "median": 5.0,
+    "count": 6
+   },
+   "decremental_time_s": {
+    "mean": 0.22220409999999724,
+    "std": 0.109667602345197,
+    "min": 0.14259799999999956,
+    "max": 0.42834780000000094,
+    "median": 0.16904539999999457,
+    "count": 6
+   },
+   "incremental_calls_per_n": {
+    "mean": 0.00335,
+    "std": 0.00046797435827190353,
+    "min": 0.0025,
+    "max": 0.0039,
+    "median": 0.0034,
+    "count": 6
+   },
+   "incremental_mismatches": 0,
+   "incremental_skipped": 0,
+   "decremental_calls_per_n": {
+    "mean": 0.0005333333333333334,
+    "std": 0.00015055453054181622,
+    "min": 0.0004,
+    "max": 0.0008,
+    "median": 0.0005,
+    "count": 6
+   },
+   "decremental_mismatches": 0,
+   "decremental_skipped": 0
+  }
+ ],
+ "runs": [
+  {
+   "seed": 0,
+   "n": 10000,
+   "n_consenting": 520,
+   "consent_pct": 5.2,
+   "gt_radius_km": 1532.8702722450107,
+   "gt_center_km": [
+    -61.89000724055305,
+    -253.8934444295609
+   ],
+   "gt_support_km": [
+    [
+     -1562.1203171129855,
+     -568.5365579289007
+    ],
+    [
+     1292.599367982389,
+     -971.5631483607343
+    ],
+    [
+     172.2844698301922,
+     1260.983971674177
+    ]
+   ],
+   "lower_bound_calls": 63,
+   "incremental_calls": 251,
+   "incremental_time_s": 0.03039650000000016,
+   "incremental_radius_km": 1532.8702722450107,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 2.2737367544323206e-13,
+   "incremental_ok": true,
+   "decremental_calls": 72,
+   "decremental_time_s": 2.7960361000000002,
+   "decremental_radius_km": 1532.8702722450107,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 2.2737367544323206e-13,
+   "decremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.05,
+   "label": "legs since 2019-09-28",
+   "threshold": 1569642321.0
+  },
+  {
+   "seed": 0,
+   "n": 10000,
+   "n_consenting": 1005,
+   "consent_pct": 10.05,
+   "gt_radius_km": 1532.8702722450107,
+   "gt_center_km": [
+    -61.89000724055293,
+    -253.89344442956065
+   ],
+   "gt_support_km": [
+    [
+     1292.599367982389,
+     -971.5631483607343
+    ],
+    [
+     172.2844698301922,
+     1260.983971674177
+    ],
+    [
+     -1562.1203171129855,
+     -568.5365579289007
+    ]
+   ],
+   "lower_bound_calls": 63,
+   "incremental_calls": 223,
+   "incremental_time_s": 0.03877929999999985,
+   "incremental_radius_km": 1532.8702722450107,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 2.2737367544323206e-13,
+   "incremental_ok": true,
+   "decremental_calls": 72,
+   "decremental_time_s": 2.7729362,
+   "decremental_radius_km": 1532.8702722450107,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 2.2737367544323206e-13,
+   "decremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.1,
+   "label": "legs since 2019-07-25",
+   "threshold": 1564095771.0
+  },
+  {
+   "seed": 0,
+   "n": 10000,
+   "n_consenting": 1963,
+   "consent_pct": 19.63,
+   "gt_radius_km": 1644.8464359124407,
+   "gt_center_km": [
+    -224.22607287577034,
+    -335.35533663620885
+   ],
+   "gt_support_km": [
+    [
+     -1757.6232902741128,
+     -930.5131068189379
+    ],
+    [
+     1292.599367982389,
+     -971.5631483607343
+    ],
+    [
+     172.2844698301922,
+     1260.983971674177
+    ]
+   ],
+   "lower_bound_calls": 40,
+   "incremental_calls": 162,
+   "incremental_time_s": 0.039288600000000784,
+   "incremental_radius_km": 1644.8464359124407,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 0.0,
+   "incremental_ok": true,
+   "decremental_calls": 46,
+   "decremental_time_s": 2.641392700000001,
+   "decremental_radius_km": 1644.8464359124405,
+   "decremental_rel_err": 1.3823398371964234e-16,
+   "decremental_max_excess_km": 0.0,
+   "decremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.2,
+   "label": "legs since 2019-04-05",
+   "threshold": 1554472479.0
+  },
+  {
+   "seed": 0,
+   "n": 10000,
+   "n_consenting": 3485,
+   "consent_pct": 34.85,
+   "gt_radius_km": 1924.128396573192,
+   "gt_center_km": [
+    138.63872727327632,
+    -604.2303348152235
+   ],
+   "gt_support_km": [
+    [
+     -1757.6232902741128,
+     -930.5131068189379
+    ],
+    [
+     1862.691663133641,
+     -1458.57895268183
+    ],
+    [
+     -843.3855234653871,
+     1050.4292850040583
+    ]
+   ],
+   "lower_bound_calls": 11,
+   "incremental_calls": 66,
+   "incremental_time_s": 0.08737080000000041,
+   "incremental_radius_km": 1924.1283965731918,
+   "incremental_rel_err": 1.1816970003050573e-16,
+   "incremental_max_excess_km": 6.821210263296962e-13,
+   "incremental_ok": true,
+   "decremental_calls": 13,
+   "decremental_time_s": 0.4866671,
+   "decremental_radius_km": 1924.1283965731925,
+   "decremental_rel_err": 2.3633940006101146e-16,
+   "decremental_max_excess_km": 0.0,
+   "decremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.35,
+   "label": "legs since 2018-09-27",
+   "threshold": 1538082433.0
+  },
+  {
+   "seed": 0,
+   "n": 10000,
+   "n_consenting": 4999,
+   "consent_pct": 49.99,
+   "gt_radius_km": 1924.1283965731918,
+   "gt_center_km": [
+    138.63872727327674,
+    -604.2303348152233
+   ],
+   "gt_support_km": [
+    [
+     -1757.6232902741128,
+     -930.5131068189379
+    ],
+    [
+     1862.691663133641,
+     -1458.57895268183
+    ],
+    [
+     -843.3855234653871,
+     1050.4292850040583
+    ]
+   ],
+   "lower_bound_calls": 11,
+   "incremental_calls": 60,
+   "incremental_time_s": 0.09183209999999953,
+   "incremental_radius_km": 1924.1283965731918,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 6.821210263296962e-13,
+   "incremental_ok": true,
+   "decremental_calls": 12,
+   "decremental_time_s": 0.4109037000000004,
+   "decremental_radius_km": 1924.1283965731925,
+   "decremental_rel_err": 3.545091000915172e-16,
+   "decremental_max_excess_km": 0.0,
+   "decremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.5,
+   "label": "legs since 2018-04-14",
+   "threshold": 1523678734.0
+  },
+  {
+   "seed": 0,
+   "n": 10000,
+   "n_consenting": 6508,
+   "consent_pct": 65.08,
+   "gt_radius_km": 1930.7019911334764,
+   "gt_center_km": [
+    141.65145911550735,
+    -583.5756414195303
+   ],
+   "gt_support_km": [
+    [
+     -1757.6232902741128,
+     -930.5131068189379
+    ],
+    [
+     1862.691663133641,
+     -1458.57895268183
+    ],
+    [
+     -243.02564824822895,
+     1308.416351596571
+    ]
+   ],
+   "lower_bound_calls": 10,
+   "incremental_calls": 50,
+   "incremental_time_s": 0.06198370000000075,
+   "incremental_radius_km": 1930.7019911334764,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 0.0,
+   "incremental_ok": true,
+   "decremental_calls": 10,
+   "decremental_time_s": 0.427673200000001,
+   "decremental_radius_km": 1930.7019911334762,
+   "decremental_rel_err": 1.1776735948241578e-16,
+   "decremental_max_excess_km": 2.2737367544323206e-13,
+   "decremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.65,
+   "label": "legs since 2017-10-12",
+   "threshold": 1507812572.0
+  },
+  {
+   "seed": 0,
+   "n": 10000,
+   "n_consenting": 8013,
+   "consent_pct": 80.13,
+   "gt_radius_km": 1930.7019911334764,
+   "gt_center_km": [
+    141.65145911550735,
+    -583.5756414195303
+   ],
+   "gt_support_km": [
+    [
+     -1757.6232902741128,
+     -930.5131068189379
+    ],
+    [
+     1862.691663133641,
+     -1458.57895268183
+    ],
+    [
+     -243.02564824822895,
+     1308.416351596571
+    ]
+   ],
+   "lower_bound_calls": 10,
+   "incremental_calls": 45,
+   "incremental_time_s": 0.08028459999999882,
+   "incremental_radius_km": 1930.7019911334764,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 0.0,
+   "incremental_ok": true,
+   "decremental_calls": 10,
+   "decremental_time_s": 0.44244220000000034,
+   "decremental_radius_km": 1930.7019911334762,
+   "decremental_rel_err": 1.1776735948241578e-16,
+   "decremental_max_excess_km": 2.2737367544323206e-13,
+   "decremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.8,
+   "label": "legs since 2017-04-21",
+   "threshold": 1492793617.0
+  },
+  {
+   "seed": 0,
+   "n": 10000,
+   "n_consenting": 9001,
+   "consent_pct": 90.01,
+   "gt_radius_km": 1930.7019911334764,
+   "gt_center_km": [
+    141.65145911550735,
+    -583.5756414195303
+   ],
+   "gt_support_km": [
+    [
+     -1757.6232902741128,
+     -930.5131068189379
+    ],
+    [
+     1862.691663133641,
+     -1458.57895268183
+    ],
+    [
+     -243.02564824822895,
+     1308.416351596571
+    ]
+   ],
+   "lower_bound_calls": 10,
+   "incremental_calls": 45,
+   "incremental_time_s": 0.08434570000000008,
+   "incremental_radius_km": 1930.7019911334764,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 0.0,
+   "incremental_ok": true,
+   "decremental_calls": 10,
+   "decremental_time_s": 0.43406650000000013,
+   "decremental_radius_km": 1930.7019911334762,
+   "decremental_rel_err": 1.1776735948241578e-16,
+   "decremental_max_excess_km": 2.2737367544323206e-13,
+   "decremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.9,
+   "label": "legs since 2016-12-05",
+   "threshold": 1480937628.0
+  },
+  {
+   "seed": 0,
+   "n": 10000,
+   "n_consenting": 9498,
+   "consent_pct": 94.98,
+   "gt_radius_km": 1973.6367786778856,
+   "gt_center_km": [
+    66.44847691049813,
+    -640.8060318187389
+   ],
+   "gt_support_km": [
+    [
+     -1906.0461450222233,
+     -573.6710886333118
+    ],
+    [
+     1862.691663133641,
+     -1458.57895268183
+    ],
+    [
+     -243.02564824822895,
+     1308.416351596571
+    ]
+   ],
+   "lower_bound_calls": 8,
+   "incremental_calls": 36,
+   "incremental_time_s": 0.048989599999998745,
+   "incremental_radius_km": 1973.6367786778856,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": -2.2737367544323206e-13,
+   "incremental_ok": true,
+   "decremental_calls": 8,
+   "decremental_time_s": 0.42834780000000094,
+   "decremental_radius_km": 1973.6367786778856,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": -2.2737367544323206e-13,
+   "decremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.95,
+   "label": "legs since 2016-09-03",
+   "threshold": 1472892136.0
+  },
+  {
+   "seed": 0,
+   "n": 10000,
+   "n_consenting": 515,
+   "consent_pct": 5.15,
+   "gt_radius_km": 1335.4258553472625,
+   "gt_center_km": [
+    -234.82912264776235,
+    -173.23798035563914
+   ],
+   "gt_support_km": [
+    [
+     1078.0248006180834,
+     -417.73090723788096
+    ],
+    [
+     334.6802331479645,
+     1034.661563808156
+    ],
+    [
+     -1499.4836550685714,
+     -602.2031639748607
+    ]
+   ],
+   "lower_bound_calls": 158,
+   "incremental_calls": 383,
+   "incremental_time_s": 0.038170900000000785,
+   "incremental_radius_km": 1335.4258553472625,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 0.0,
+   "incremental_ok": true,
+   "decremental_calls": 162,
+   "decremental_time_s": 5.841402500000001,
+   "decremental_radius_km": 1335.4258553472625,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 0.0,
+   "decremental_ok": true,
+   "column": "leg_random",
+   "target_frac": 0.05,
+   "label": "random flight legs p=0.05",
+   "threshold": 0.05
+  },
+  {
+   "seed": 0,
+   "n": 10000,
+   "n_consenting": 992,
+   "consent_pct": 9.92,
+   "gt_radius_km": 1845.5802478320895,
+   "gt_center_km": [
+    275.1139422984239,
+    -380.8635579913975
+   ],
+   "gt_support_km": [
+    [
+     -1156.386450797117,
+     784.0283149973649
+    ],
+    [
+     -1560.3805518594106,
+     -573.5457136369876
+    ],
+    [
+     1794.5500722677775,
+     -1428.4704967483483
+    ]
+   ],
+   "lower_bound_calls": 48,
+   "incremental_calls": 227,
+   "incremental_time_s": 0.0605197000000004,
+   "incremental_radius_km": 1845.580247832089,
+   "incremental_rel_err": 2.4639803737639317e-16,
+   "incremental_max_excess_km": 2.2737367544323206e-13,
+   "incremental_ok": true,
+   "decremental_calls": 53,
+   "decremental_time_s": 2.146232600000001,
+   "decremental_radius_km": 1845.5802478320895,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 0.0,
+   "decremental_ok": true,
+   "column": "leg_random",
+   "target_frac": 0.1,
+   "label": "random flight legs p=0.10",
+   "threshold": 0.1
+  },
+  {
+   "seed": 0,
+   "n": 10000,
+   "n_consenting": 1972,
+   "consent_pct": 19.72,
+   "gt_radius_km": 2014.2194956034336,
+   "gt_center_km": [
+    -84.61600770581468,
+    -846.0248694422875
+   ],
+   "gt_support_km": [
+    [
+     -2085.3941232039015,
+     -613.7166495858323
+    ],
+    [
+     1832.9463628612266,
+     -1462.494440024859
+    ],
+    [
+     -134.14039146746563,
+     1167.5856966508634
+    ]
+   ],
+   "lower_bound_calls": 18,
+   "incremental_calls": 139,
+   "incremental_time_s": 0.07825640000000078,
+   "incremental_radius_km": 2014.219495603434,
+   "incremental_rel_err": 2.2576851821714087e-16,
+   "incremental_max_excess_km": 0.0,
+   "incremental_ok": true,
+   "decremental_calls": 18,
+   "decremental_time_s": 0.6848419000000021,
+   "decremental_radius_km": 2014.2194956034336,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 4.547473508864641e-13,
+   "decremental_ok": true,
+   "column": "leg_random",
+   "target_frac": 0.2,
+   "label": "random flight legs p=0.20",
+   "threshold": 0.2
+  },
+  {
+   "seed": 0,
+   "n": 10000,
+   "n_consenting": 3545,
+   "consent_pct": 35.45,
+   "gt_radius_km": 2022.6966645354435,
+   "gt_center_km": [
+    -77.05677818112683,
+    -854.3053137196222
+   ],
+   "gt_support_km": [
+    [
+     -2085.3941232039015,
+     -613.7166495858323
+    ],
+    [
+     1861.2998549350045,
+     -1432.2978392573684
+    ],
+    [
+     -134.14039146746563,
+     1167.5856966508634
+    ]
+   ],
+   "lower_bound_calls": 15,
+   "incremental_calls": 97,
+   "incremental_time_s": 0.0894674000000002,
+   "incremental_radius_km": 2022.6966645354435,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 2.2737367544323206e-13,
+   "incremental_ok": true,
+   "decremental_calls": 15,
+   "decremental_time_s": 0.809558599999999,
+   "decremental_radius_km": 2022.6966645354435,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 0.0,
+   "decremental_ok": true,
+   "column": "leg_random",
+   "target_frac": 0.35,
+   "label": "random flight legs p=0.35",
+   "threshold": 0.35
+  },
+  {
+   "seed": 0,
+   "n": 10000,
+   "n_consenting": 5034,
+   "consent_pct": 50.34,
+   "gt_radius_km": 2039.855695795335,
+   "gt_center_km": [
+    -50.08627781385311,
+    -749.8534710647709
+   ],
+   "gt_support_km": [
+    [
+     -219.25177535532228,
+     1282.9756644284744
+    ],
+    [
+     -2085.3941232039015,
+     -613.7166495858323
+    ],
+    [
+     1862.691663133641,
+     -1458.57895268183
+    ]
+   ],
+   "lower_bound_calls": 4,
+   "incremental_calls": 64,
+   "incremental_time_s": 0.10790430000000129,
+   "incremental_radius_km": 2039.855695795335,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": -2.2737367544323206e-13,
+   "incremental_ok": true,
+   "decremental_calls": 4,
+   "decremental_time_s": 0.15752399999999867,
+   "decremental_radius_km": 2039.855695795335,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 0.0,
+   "decremental_ok": true,
+   "column": "leg_random",
+   "target_frac": 0.5,
+   "label": "random flight legs p=0.50",
+   "threshold": 0.5
+  },
+  {
+   "seed": 0,
+   "n": 10000,
+   "n_consenting": 6570,
+   "consent_pct": 65.7,
+   "gt_radius_km": 2043.5742326389338,
+   "gt_center_km": [
+    -44.88104904019852,
+    -725.5291644167014
+   ],
+   "gt_support_km": [
+    [
+     -243.02564824822895,
+     1308.416351596571
+    ],
+    [
+     -2085.3941232039015,
+     -613.7166495858323
+    ],
+    [
+     1862.691663133641,
+     -1458.57895268183
+    ]
+   ],
+   "lower_bound_calls": 3,
+   "incremental_calls": 47,
+   "incremental_time_s": 0.0730524999999993,
+   "incremental_radius_km": 2043.5742326389338,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 2.2737367544323206e-13,
+   "incremental_ok": true,
+   "decremental_calls": 3,
+   "decremental_time_s": 0.11280160000000095,
+   "decremental_radius_km": 2043.5742326389338,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 4.547473508864641e-13,
+   "decremental_ok": true,
+   "column": "leg_random",
+   "target_frac": 0.65,
+   "label": "random flight legs p=0.65",
+   "threshold": 0.65
+  },
+  {
+   "seed": 0,
+   "n": 10000,
+   "n_consenting": 8031,
+   "consent_pct": 80.31,
+   "gt_radius_km": 2043.5742326389343,
+   "gt_center_km": [
+    -44.88104904019829,
+    -725.5291644167016
+   ],
+   "gt_support_km": [
+    [
+     -2085.3941232039015,
+     -613.7166495858323
+    ],
+    [
+     1862.691663133641,
+     -1458.57895268183
+    ],
+    [
+     -243.02564824822895,
+     1308.416351596571
+    ]
+   ],
+   "lower_bound_calls": 3,
+   "incremental_calls": 37,
+   "incremental_time_s": 0.07341860000000011,
+   "incremental_radius_km": 2043.5742326389338,
+   "incremental_rel_err": 2.2252548677873763e-16,
+   "incremental_max_excess_km": 2.2737367544323206e-13,
+   "incremental_ok": true,
+   "decremental_calls": 3,
+   "decremental_time_s": 0.11585589999999968,
+   "decremental_radius_km": 2043.5742326389338,
+   "decremental_rel_err": 2.2252548677873763e-16,
+   "decremental_max_excess_km": 4.547473508864641e-13,
+   "decremental_ok": true,
+   "column": "leg_random",
+   "target_frac": 0.8,
+   "label": "random flight legs p=0.80",
+   "threshold": 0.8
+  },
+  {
+   "seed": 0,
+   "n": 10000,
+   "n_consenting": 8999,
+   "consent_pct": 89.99,
+   "gt_radius_km": 2043.5742326389343,
+   "gt_center_km": [
+    -44.88104904019829,
+    -725.5291644167016
+   ],
+   "gt_support_km": [
+    [
+     -2085.3941232039015,
+     -613.7166495858323
+    ],
+    [
+     1862.691663133641,
+     -1458.57895268183
+    ],
+    [
+     -243.02564824822895,
+     1308.416351596571
+    ]
+   ],
+   "lower_bound_calls": 3,
+   "incremental_calls": 36,
+   "incremental_time_s": 0.07776580000000166,
+   "incremental_radius_km": 2043.5742326389338,
+   "incremental_rel_err": 2.2252548677873763e-16,
+   "incremental_max_excess_km": 2.2737367544323206e-13,
+   "incremental_ok": true,
+   "decremental_calls": 3,
+   "decremental_time_s": 0.10828360000000004,
+   "decremental_radius_km": 2043.5742326389338,
+   "decremental_rel_err": 2.2252548677873763e-16,
+   "decremental_max_excess_km": 4.547473508864641e-13,
+   "decremental_ok": true,
+   "column": "leg_random",
+   "target_frac": 0.9,
+   "label": "random flight legs p=0.90",
+   "threshold": 0.9
+  },
+  {
+   "seed": 0,
+   "n": 10000,
+   "n_consenting": 9504,
+   "consent_pct": 95.04,
+   "gt_radius_km": 2043.5742326389343,
+   "gt_center_km": [
+    -44.88104904019829,
+    -725.5291644167016
+   ],
+   "gt_support_km": [
+    [
+     -2085.3941232039015,
+     -613.7166495858323
+    ],
+    [
+     1862.691663133641,
+     -1458.57895268183
+    ],
+    [
+     -243.02564824822895,
+     1308.416351596571
+    ]
+   ],
+   "lower_bound_calls": 3,
+   "incremental_calls": 36,
+   "incremental_time_s": 0.08300020000000075,
+   "incremental_radius_km": 2043.5742326389338,
+   "incremental_rel_err": 2.2252548677873763e-16,
+   "incremental_max_excess_km": 2.2737367544323206e-13,
+   "incremental_ok": true,
+   "decremental_calls": 3,
+   "decremental_time_s": 0.1084637000000015,
+   "decremental_radius_km": 2043.5742326389338,
+   "decremental_rel_err": 2.2252548677873763e-16,
+   "decremental_max_excess_km": 4.547473508864641e-13,
+   "decremental_ok": true,
+   "column": "leg_random",
+   "target_frac": 0.95,
+   "label": "random flight legs p=0.95",
+   "threshold": 0.95
+  },
+  {
+   "seed": 1,
+   "n": 10000,
+   "n_consenting": 508,
+   "consent_pct": 5.08,
+   "gt_radius_km": 1412.9084830451914,
+   "gt_center_km": [
+    -292.49886770707536,
+    51.83534984645976
+   ],
+   "gt_support_km": [
+    [
+     -1564.795149767189,
+     -562.633975764734
+    ],
+    [
+     984.089993085861,
+     -553.665485793308
+    ],
+    [
+     -168.58370888650134,
+     1459.299528742511
+    ]
+   ],
+   "lower_bound_calls": 104,
+   "decremental_calls": 112,
+   "decremental_time_s": 5.7299516,
+   "decremental_radius_km": 1412.9084830451914,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 2.2737367544323206e-13,
+   "decremental_ok": true,
+   "incremental_calls": 526,
+   "incremental_time_s": 0.034841699999997644,
+   "incremental_radius_km": 1412.9084830451914,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 2.2737367544323206e-13,
+   "incremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.05,
+   "label": "legs since 2019-09-28",
+   "threshold": 1569642321.0
+  },
+  {
+   "seed": 1,
+   "n": 10000,
+   "n_consenting": 1020,
+   "consent_pct": 10.2,
+   "gt_radius_km": 1412.9084830451914,
+   "gt_center_km": [
+    -292.49886770707536,
+    51.83534984645966
+   ],
+   "gt_support_km": [
+    [
+     -168.58370888650134,
+     1459.299528742511
+    ],
+    [
+     -1564.795149767189,
+     -562.633975764734
+    ],
+    [
+     984.089993085861,
+     -553.665485793308
+    ]
+   ],
+   "lower_bound_calls": 104,
+   "decremental_calls": 112,
+   "decremental_time_s": 5.700751,
+   "decremental_radius_km": 1412.9084830451914,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 2.2737367544323206e-13,
+   "decremental_ok": true,
+   "incremental_calls": 354,
+   "incremental_time_s": 0.05731749999999636,
+   "incremental_radius_km": 1412.9084830451914,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 2.2737367544323206e-13,
+   "incremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.1,
+   "label": "legs since 2019-07-25",
+   "threshold": 1564095771.0
+  },
+  {
+   "seed": 1,
+   "n": 10000,
+   "n_consenting": 2040,
+   "consent_pct": 20.4,
+   "gt_radius_km": 1597.1682143480316,
+   "gt_center_km": [
+    -359.67810437957104,
+    -126.39566168180849
+   ],
+   "gt_support_km": [
+    [
+     -1745.9585495177887,
+     -919.5998172124422
+    ],
+    [
+     1118.8582063600459,
+     -730.4458936560741
+    ],
+    [
+     -168.58370888650134,
+     1459.299528742511
+    ]
+   ],
+   "lower_bound_calls": 60,
+   "decremental_calls": 61,
+   "decremental_time_s": 4.439184900000001,
+   "decremental_radius_km": 1597.1682143480316,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 4.547473508864641e-13,
+   "decremental_ok": true,
+   "incremental_calls": 200,
+   "incremental_time_s": 0.05262570000000011,
+   "incremental_radius_km": 1597.1682143480318,
+   "incremental_rel_err": 1.423605061762681e-16,
+   "incremental_max_excess_km": 2.2737367544323206e-13,
+   "incremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.2,
+   "label": "legs since 2019-04-05",
+   "threshold": 1554472479.0
+  },
+  {
+   "seed": 1,
+   "n": 10000,
+   "n_consenting": 3484,
+   "consent_pct": 34.84,
+   "gt_radius_km": 2005.0833795819556,
+   "gt_center_km": [
+    184.04306005765102,
+    -376.04379791727547
+   ],
+   "gt_support_km": [
+    [
+     -1231.5475168461633,
+     1043.9782715087324
+    ],
+    [
+     -1745.9585495177887,
+     -919.5998172124422
+    ],
+    [
+     1871.750048437833,
+     -1458.635355453401
+    ]
+   ],
+   "lower_bound_calls": 6,
+   "decremental_calls": 7,
+   "decremental_time_s": 0.3731986999999961,
+   "decremental_radius_km": 2005.0833795819556,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 0.0,
+   "decremental_ok": true,
+   "incremental_calls": 48,
+   "incremental_time_s": 0.03410539999999429,
+   "incremental_radius_km": 2005.0833795819556,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 2.2737367544323206e-13,
+   "incremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.35,
+   "label": "legs since 2018-09-27",
+   "threshold": 1538082433.0
+  },
+  {
+   "seed": 1,
+   "n": 10000,
+   "n_consenting": 4942,
+   "consent_pct": 49.42,
+   "gt_radius_km": 2005.0833795819551,
+   "gt_center_km": [
+    184.04306005765082,
+    -376.04379791727524
+   ],
+   "gt_support_km": [
+    [
+     -1231.5475168461633,
+     1043.9782715087324
+    ],
+    [
+     -1745.9585495177887,
+     -919.5998172124422
+    ],
+    [
+     1871.750048437833,
+     -1458.635355453401
+    ]
+   ],
+   "lower_bound_calls": 6,
+   "decremental_calls": 7,
+   "decremental_time_s": 0.3460113000000007,
+   "decremental_radius_km": 2005.0833795819556,
+   "decremental_rel_err": 2.267972272461186e-16,
+   "decremental_max_excess_km": 0.0,
+   "decremental_ok": true,
+   "incremental_calls": 29,
+   "incremental_time_s": 0.02548119999999443,
+   "incremental_radius_km": 2005.0833795819556,
+   "incremental_rel_err": 2.267972272461186e-16,
+   "incremental_max_excess_km": 2.2737367544323206e-13,
+   "incremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.5,
+   "label": "legs since 2018-04-14",
+   "threshold": 1523678734.0
+  },
+  {
+   "seed": 1,
+   "n": 10000,
+   "n_consenting": 6508,
+   "consent_pct": 65.08,
+   "gt_radius_km": 2005.0833795819551,
+   "gt_center_km": [
+    184.04306005765082,
+    -376.04379791727524
+   ],
+   "gt_support_km": [
+    [
+     -1231.5475168461633,
+     1043.9782715087324
+    ],
+    [
+     -1745.9585495177887,
+     -919.5998172124422
+    ],
+    [
+     1871.750048437833,
+     -1458.635355453401
+    ]
+   ],
+   "lower_bound_calls": 6,
+   "decremental_calls": 7,
+   "decremental_time_s": 0.31994869999999764,
+   "decremental_radius_km": 2005.0833795819556,
+   "decremental_rel_err": 2.267972272461186e-16,
+   "decremental_max_excess_km": 0.0,
+   "decremental_ok": true,
+   "incremental_calls": 29,
+   "incremental_time_s": 0.027178400000003933,
+   "incremental_radius_km": 2005.0833795819556,
+   "incremental_rel_err": 2.267972272461186e-16,
+   "incremental_max_excess_km": 2.2737367544323206e-13,
+   "incremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.65,
+   "label": "legs since 2017-10-12",
+   "threshold": 1507812572.0
+  },
+  {
+   "seed": 1,
+   "n": 10000,
+   "n_consenting": 8006,
+   "consent_pct": 80.06,
+   "gt_radius_km": 2005.0833795819551,
+   "gt_center_km": [
+    184.04306005765082,
+    -376.04379791727524
+   ],
+   "gt_support_km": [
+    [
+     -1231.5475168461633,
+     1043.9782715087324
+    ],
+    [
+     -1745.9585495177887,
+     -919.5998172124422
+    ],
+    [
+     1871.750048437833,
+     -1458.635355453401
+    ]
+   ],
+   "lower_bound_calls": 6,
+   "decremental_calls": 7,
+   "decremental_time_s": 0.31710230000000195,
+   "decremental_radius_km": 2005.0833795819556,
+   "decremental_rel_err": 2.267972272461186e-16,
+   "decremental_max_excess_km": 0.0,
+   "decremental_ok": true,
+   "incremental_calls": 27,
+   "incremental_time_s": 0.02762390000000181,
+   "incremental_radius_km": 2005.0833795819556,
+   "incremental_rel_err": 2.267972272461186e-16,
+   "incremental_max_excess_km": 2.2737367544323206e-13,
+   "incremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.8,
+   "label": "legs since 2017-04-21",
+   "threshold": 1492793617.0
+  },
+  {
+   "seed": 1,
+   "n": 10000,
+   "n_consenting": 9020,
+   "consent_pct": 90.2,
+   "gt_radius_km": 2005.0833795819551,
+   "gt_center_km": [
+    184.04306005765082,
+    -376.04379791727524
+   ],
+   "gt_support_km": [
+    [
+     -1231.5475168461633,
+     1043.9782715087324
+    ],
+    [
+     -1745.9585495177887,
+     -919.5998172124422
+    ],
+    [
+     1871.750048437833,
+     -1458.635355453401
+    ]
+   ],
+   "lower_bound_calls": 6,
+   "decremental_calls": 7,
+   "decremental_time_s": 0.31508760000000535,
+   "decremental_radius_km": 2005.0833795819556,
+   "decremental_rel_err": 2.267972272461186e-16,
+   "decremental_max_excess_km": 0.0,
+   "decremental_ok": true,
+   "incremental_calls": 25,
+   "incremental_time_s": 0.029630199999999718,
+   "incremental_radius_km": 2005.0833795819556,
+   "incremental_rel_err": 2.267972272461186e-16,
+   "incremental_max_excess_km": 2.2737367544323206e-13,
+   "incremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.9,
+   "label": "legs since 2016-12-05",
+   "threshold": 1480937628.0
+  },
+  {
+   "seed": 1,
+   "n": 10000,
+   "n_consenting": 9500,
+   "consent_pct": 95.0,
+   "gt_radius_km": 2032.146715020112,
+   "gt_center_km": [
+    71.97292537646693,
+    -515.0133025784243
+   ],
+   "gt_support_km": [
+    [
+     -1231.5475168461633,
+     1043.9782715087324
+    ],
+    [
+     -1959.0328393620885,
+     -583.1004156453516
+    ],
+    [
+     1871.750048437833,
+     -1458.635355453401
+    ]
+   ],
+   "lower_bound_calls": 4,
+   "decremental_calls": 5,
+   "decremental_time_s": 0.14259799999999956,
+   "decremental_radius_km": 2032.146715020112,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 2.2737367544323206e-13,
+   "decremental_ok": true,
+   "incremental_calls": 25,
+   "incremental_time_s": 0.039451800000001924,
+   "incremental_radius_km": 2032.1467150201115,
+   "incremental_rel_err": 2.2377683044502206e-16,
+   "incremental_max_excess_km": 6.821210263296962e-13,
+   "incremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.95,
+   "label": "legs since 2016-09-03",
+   "threshold": 1472892136.0
+  },
+  {
+   "seed": 1,
+   "n": 10000,
+   "n_consenting": 560,
+   "consent_pct": 5.6,
+   "gt_radius_km": 1878.4402087731814,
+   "gt_center_km": [
+    312.2987806216433,
+    -411.42507989155695
+   ],
+   "gt_support_km": [
+    [
+     1871.750048437833,
+     -1458.635355453401
+    ],
+    [
+     -1150.643769439234,
+     766.8519304745164
+    ],
+    [
+     -1558.9671988477924,
+     -575.4410913542413
+    ]
+   ],
+   "lower_bound_calls": 37,
+   "decremental_calls": 39,
+   "decremental_time_s": 1.9703896999999984,
+   "decremental_radius_km": 1878.4402087731814,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 2.2737367544323206e-13,
+   "decremental_ok": true,
+   "incremental_calls": 407,
+   "incremental_time_s": 0.03596600000000194,
+   "incremental_radius_km": 1878.4402087731814,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 2.2737367544323206e-13,
+   "incremental_ok": true,
+   "column": "leg_random",
+   "target_frac": 0.05,
+   "label": "random flight legs p=0.05",
+   "threshold": 0.05
+  },
+  {
+   "seed": 1,
+   "n": 10000,
+   "n_consenting": 1061,
+   "consent_pct": 10.61,
+   "gt_radius_km": 1901.1469530344816,
+   "gt_center_km": [
+    180.27297008974296,
+    -590.7269326026349
+   ],
+   "gt_support_km": [
+    [
+     -1150.643769439234,
+     766.8519304745164
+    ],
+    [
+     -1688.8510398723636,
+     -938.1966038193743
+    ],
+    [
+     1871.750048437833,
+     -1458.635355453401
+    ]
+   ],
+   "lower_bound_calls": 15,
+   "decremental_calls": 15,
+   "decremental_time_s": 0.5080994000000061,
+   "decremental_radius_km": 1901.1469530344816,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 4.547473508864641e-13,
+   "decremental_ok": true,
+   "incremental_calls": 235,
+   "incremental_time_s": 0.03664960000000406,
+   "incremental_radius_km": 1901.1469530344818,
+   "incremental_rel_err": 1.1959815893259258e-16,
+   "incremental_max_excess_km": 2.2737367544323206e-13,
+   "incremental_ok": true,
+   "column": "leg_random",
+   "target_frac": 0.1,
+   "label": "random flight legs p=0.10",
+   "threshold": 0.1
+  },
+  {
+   "seed": 1,
+   "n": 10000,
+   "n_consenting": 2029,
+   "consent_pct": 20.29,
+   "gt_radius_km": 2035.8513984623476,
+   "gt_center_km": [
+    -35.783719744975464,
+    -747.2944808627491
+   ],
+   "gt_support_km": [
+    [
+     -2068.9415202342725,
+     -642.6031491746837
+    ],
+    [
+     1871.750048437833,
+     -1458.635355453401
+    ],
+    [
+     124.22017096800259,
+     1282.2595764557068
+    ]
+   ],
+   "lower_bound_calls": 9,
+   "decremental_calls": 9,
+   "decremental_time_s": 0.43373499999999865,
+   "decremental_radius_km": 2035.8513984623476,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 4.547473508864641e-13,
+   "decremental_ok": true,
+   "incremental_calls": 116,
+   "incremental_time_s": 0.06726869999999963,
+   "incremental_radius_km": 2035.8513984623476,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 4.547473508864641e-13,
+   "incremental_ok": true,
+   "column": "leg_random",
+   "target_frac": 0.2,
+   "label": "random flight legs p=0.20",
+   "threshold": 0.2
+  },
+  {
+   "seed": 1,
+   "n": 10000,
+   "n_consenting": 3633,
+   "consent_pct": 36.33,
+   "gt_radius_km": 2035.851398462348,
+   "gt_center_km": [
+    -35.783719744975514,
+    -747.2944808627495
+   ],
+   "gt_support_km": [
+    [
+     -2068.9415202342725,
+     -642.6031491746837
+    ],
+    [
+     1871.750048437833,
+     -1458.635355453401
+    ],
+    [
+     124.22017096800259,
+     1282.2595764557068
+    ]
+   ],
+   "lower_bound_calls": 9,
+   "decremental_calls": 9,
+   "decremental_time_s": 0.4383059999999972,
+   "decremental_radius_km": 2035.8513984623476,
+   "decremental_rel_err": 2.233696188385502e-16,
+   "decremental_max_excess_km": 4.547473508864641e-13,
+   "decremental_ok": true,
+   "incremental_calls": 57,
+   "incremental_time_s": 0.06009209999999854,
+   "incremental_radius_km": 2035.8513984623476,
+   "incremental_rel_err": 2.233696188385502e-16,
+   "incremental_max_excess_km": 4.547473508864641e-13,
+   "incremental_ok": true,
+   "column": "leg_random",
+   "target_frac": 0.35,
+   "label": "random flight legs p=0.35",
+   "threshold": 0.35
+  },
+  {
+   "seed": 1,
+   "n": 10000,
+   "n_consenting": 5094,
+   "consent_pct": 50.94,
+   "gt_radius_km": 2060.8379775202284,
+   "gt_center_km": [
+    -8.294532261406085,
+    -614.5467675829752
+   ],
+   "gt_support_km": [
+    [
+     -1231.5475168461633,
+     1043.9782715087324
+    ],
+    [
+     -2068.9415202342725,
+     -642.6031491746837
+    ],
+    [
+     1871.750048437833,
+     -1458.635355453401
+    ]
+   ],
+   "lower_bound_calls": 4,
+   "decremental_calls": 4,
+   "decremental_time_s": 0.09386569999999494,
+   "decremental_radius_km": 2060.8379775202284,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 9.094947017729282e-13,
+   "decremental_ok": true,
+   "incremental_calls": 32,
+   "incremental_time_s": 0.05752830000000131,
+   "incremental_radius_km": 2060.8379775202284,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 9.094947017729282e-13,
+   "incremental_ok": true,
+   "column": "leg_random",
+   "target_frac": 0.5,
+   "label": "random flight legs p=0.50",
+   "threshold": 0.5
+  },
+  {
+   "seed": 1,
+   "n": 10000,
+   "n_consenting": 6557,
+   "consent_pct": 65.57,
+   "gt_radius_km": 2064.4132026547863,
+   "gt_center_km": [
+    -4.99686641236477,
+    -598.6220480588827
+   ],
+   "gt_support_km": [
+    [
+     -2068.9415202342725,
+     -642.6031491746837
+    ],
+    [
+     1871.750048437833,
+     -1458.635355453401
+    ],
+    [
+     -168.58370888650134,
+     1459.299528742511
+    ]
+   ],
+   "lower_bound_calls": 3,
+   "decremental_calls": 3,
+   "decremental_time_s": 0.04311100000000323,
+   "decremental_radius_km": 2064.413202654787,
+   "decremental_rel_err": 2.2027923009873693e-16,
+   "decremental_max_excess_km": 0.0,
+   "decremental_ok": true,
+   "incremental_calls": 27,
+   "incremental_time_s": 0.0631891999999965,
+   "incremental_radius_km": 2064.4132026547863,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 4.547473508864641e-13,
+   "incremental_ok": true,
+   "column": "leg_random",
+   "target_frac": 0.65,
+   "label": "random flight legs p=0.65",
+   "threshold": 0.65
+  },
+  {
+   "seed": 1,
+   "n": 10000,
+   "n_consenting": 7968,
+   "consent_pct": 79.68,
+   "gt_radius_km": 2064.4132026547863,
+   "gt_center_km": [
+    -4.99686641236477,
+    -598.6220480588827
+   ],
+   "gt_support_km": [
+    [
+     -2068.9415202342725,
+     -642.6031491746837
+    ],
+    [
+     1871.750048437833,
+     -1458.635355453401
+    ],
+    [
+     -168.58370888650134,
+     1459.299528742511
+    ]
+   ],
+   "lower_bound_calls": 3,
+   "decremental_calls": 3,
+   "decremental_time_s": 0.04346000000000316,
+   "decremental_radius_km": 2064.413202654787,
+   "decremental_rel_err": 2.2027923009873693e-16,
+   "decremental_max_excess_km": 0.0,
+   "decremental_ok": true,
+   "incremental_calls": 26,
+   "incremental_time_s": 0.06314830000000171,
+   "incremental_radius_km": 2064.4132026547863,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 4.547473508864641e-13,
+   "incremental_ok": true,
+   "column": "leg_random",
+   "target_frac": 0.8,
+   "label": "random flight legs p=0.80",
+   "threshold": 0.8
+  },
+  {
+   "seed": 1,
+   "n": 10000,
+   "n_consenting": 9002,
+   "consent_pct": 90.02,
+   "gt_radius_km": 2064.4132026547863,
+   "gt_center_km": [
+    -4.99686641236477,
+    -598.6220480588827
+   ],
+   "gt_support_km": [
+    [
+     -2068.9415202342725,
+     -642.6031491746837
+    ],
+    [
+     1871.750048437833,
+     -1458.635355453401
+    ],
+    [
+     -168.58370888650134,
+     1459.299528742511
+    ]
+   ],
+   "lower_bound_calls": 3,
+   "decremental_calls": 3,
+   "decremental_time_s": 0.043155800000000966,
+   "decremental_radius_km": 2064.413202654787,
+   "decremental_rel_err": 2.2027923009873693e-16,
+   "decremental_max_excess_km": 0.0,
+   "decremental_ok": true,
+   "incremental_calls": 25,
+   "incremental_time_s": 0.06712370000000334,
+   "incremental_radius_km": 2064.4132026547863,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 4.547473508864641e-13,
+   "incremental_ok": true,
+   "column": "leg_random",
+   "target_frac": 0.9,
+   "label": "random flight legs p=0.90",
+   "threshold": 0.9
+  },
+  {
+   "seed": 1,
+   "n": 10000,
+   "n_consenting": 9469,
+   "consent_pct": 94.69,
+   "gt_radius_km": 2064.4132026547863,
+   "gt_center_km": [
+    -4.99686641236477,
+    -598.6220480588827
+   ],
+   "gt_support_km": [
+    [
+     -2068.9415202342725,
+     -642.6031491746837
+    ],
+    [
+     1871.750048437833,
+     -1458.635355453401
+    ],
+    [
+     -168.58370888650134,
+     1459.299528742511
+    ]
+   ],
+   "lower_bound_calls": 3,
+   "decremental_calls": 3,
+   "decremental_time_s": 0.046369300000002056,
+   "decremental_radius_km": 2064.413202654787,
+   "decremental_rel_err": 2.2027923009873693e-16,
+   "decremental_max_excess_km": 0.0,
+   "decremental_ok": true,
+   "incremental_calls": 25,
+   "incremental_time_s": 0.0695799000000008,
+   "incremental_radius_km": 2064.4132026547863,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 4.547473508864641e-13,
+   "incremental_ok": true,
+   "column": "leg_random",
+   "target_frac": 0.95,
+   "label": "random flight legs p=0.95",
+   "threshold": 0.95
+  },
+  {
+   "seed": 2,
+   "n": 10000,
+   "n_consenting": 467,
+   "consent_pct": 4.67,
+   "gt_radius_km": 1407.9927687411666,
+   "gt_center_km": [
+    -310.4373576072187,
+    77.15659840302224
+   ],
+   "gt_support_km": [
+    [
+     960.5872256529052,
+     -528.5992481026834
+    ],
+    [
+     -217.91669087763898,
+     1482.106264069138
+    ],
+    [
+     -1565.9716878702413,
+     -560.085257063486
+    ]
+   ],
+   "lower_bound_calls": 93,
+   "incremental_calls": 529,
+   "incremental_time_s": 0.02793349999999606,
+   "incremental_radius_km": 1407.9927687411666,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 2.2737367544323206e-13,
+   "incremental_ok": true,
+   "decremental_calls": 97,
+   "decremental_time_s": 4.9831312000000025,
+   "decremental_radius_km": 1407.9927687411666,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 0.0,
+   "decremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.05,
+   "label": "legs since 2019-09-28",
+   "threshold": 1569642321.0
+  },
+  {
+   "seed": 2,
+   "n": 10000,
+   "n_consenting": 1007,
+   "consent_pct": 10.07,
+   "gt_radius_km": 1407.9927687411666,
+   "gt_center_km": [
+    -310.4373576072187,
+    77.15659840302224
+   ],
+   "gt_support_km": [
+    [
+     960.5872256529052,
+     -528.5992481026834
+    ],
+    [
+     -217.91669087763898,
+     1482.106264069138
+    ],
+    [
+     -1565.9716878702413,
+     -560.085257063486
+    ]
+   ],
+   "lower_bound_calls": 93,
+   "incremental_calls": 400,
+   "incremental_time_s": 0.034368600000000527,
+   "incremental_radius_km": 1407.9927687411666,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 2.2737367544323206e-13,
+   "incremental_ok": true,
+   "decremental_calls": 95,
+   "decremental_time_s": 5.071113799999999,
+   "decremental_radius_km": 1407.9927687411666,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 0.0,
+   "decremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.1,
+   "label": "legs since 2019-07-25",
+   "threshold": 1564095771.0
+  },
+  {
+   "seed": 2,
+   "n": 10000,
+   "n_consenting": 2022,
+   "consent_pct": 20.22,
+   "gt_radius_km": 1598.6337765442393,
+   "gt_center_km": [
+    -286.92516032176843,
+    -115.0373683738165
+   ],
+   "gt_support_km": [
+    [
+     -1675.2835429769916,
+     -907.5592625944558
+    ],
+    [
+     1162.5078429227974,
+     -789.4066445226747
+    ],
+    [
+     -217.91669087763898,
+     1482.106264069138
+    ]
+   ],
+   "lower_bound_calls": 40,
+   "incremental_calls": 181,
+   "incremental_time_s": 0.05095229999999873,
+   "incremental_radius_km": 1598.6337765442393,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 0.0,
+   "incremental_ok": true,
+   "decremental_calls": 43,
+   "decremental_time_s": 2.6700816999999972,
+   "decremental_radius_km": 1598.6337765442395,
+   "decremental_rel_err": 1.4222999587481812e-16,
+   "decremental_max_excess_km": 0.0,
+   "decremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.2,
+   "label": "legs since 2019-04-05",
+   "threshold": 1554472479.0
+  },
+  {
+   "seed": 2,
+   "n": 10000,
+   "n_consenting": 3450,
+   "consent_pct": 34.5,
+   "gt_radius_km": 1982.5343451759265,
+   "gt_center_km": [
+    226.49113741254578,
+    -347.474005842044
+   ],
+   "gt_support_km": [
+    [
+     -1180.5578514162075,
+     1049.1847115395947
+    ],
+    [
+     -1675.2835429769916,
+     -907.5592625944558
+    ],
+    [
+     1868.7083932934197,
+     -1458.133681120314
+    ]
+   ],
+   "lower_bound_calls": 8,
+   "incremental_calls": 54,
+   "incremental_time_s": 0.061242700000001093,
+   "incremental_radius_km": 1982.5343451759268,
+   "incremental_rel_err": 1.146883916520777e-16,
+   "incremental_max_excess_km": 0.0,
+   "incremental_ok": true,
+   "decremental_calls": 9,
+   "decremental_time_s": 0.41812610000000205,
+   "decremental_radius_km": 1982.534345175927,
+   "decremental_rel_err": 2.293767833041554e-16,
+   "decremental_max_excess_km": -2.2737367544323206e-13,
+   "decremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.35,
+   "label": "legs since 2018-09-27",
+   "threshold": 1538082433.0
+  },
+  {
+   "seed": 2,
+   "n": 10000,
+   "n_consenting": 4973,
+   "consent_pct": 49.73,
+   "gt_radius_km": 1991.4061184712568,
+   "gt_center_km": [
+    176.60055029102017,
+    -408.1482639194252
+   ],
+   "gt_support_km": [
+    [
+     -1180.5578514162075,
+     1049.1847115395947
+    ],
+    [
+     -1736.692757276922,
+     -960.4226956112085
+    ],
+    [
+     1868.7083932934197,
+     -1458.133681120314
+    ]
+   ],
+   "lower_bound_calls": 4,
+   "incremental_calls": 46,
+   "incremental_time_s": 0.07735459999999961,
+   "incremental_radius_km": 1991.406118471257,
+   "incremental_rel_err": 1.141774514671975e-16,
+   "incremental_max_excess_km": 2.2737367544323206e-13,
+   "incremental_ok": true,
+   "decremental_calls": 5,
+   "decremental_time_s": 0.1647195000000039,
+   "decremental_radius_km": 1991.4061184712568,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 2.2737367544323206e-13,
+   "decremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.5,
+   "label": "legs since 2018-04-14",
+   "threshold": 1523678734.0
+  },
+  {
+   "seed": 2,
+   "n": 10000,
+   "n_consenting": 6491,
+   "consent_pct": 64.91,
+   "gt_radius_km": 1991.406118471257,
+   "gt_center_km": [
+    176.60055029102017,
+    -408.1482639194254
+   ],
+   "gt_support_km": [
+    [
+     -1180.5578514162075,
+     1049.1847115395947
+    ],
+    [
+     -1736.692757276922,
+     -960.4226956112085
+    ],
+    [
+     1868.7083932934197,
+     -1458.133681120314
+    ]
+   ],
+   "lower_bound_calls": 4,
+   "incremental_calls": 37,
+   "incremental_time_s": 0.06308870000000155,
+   "incremental_radius_km": 1991.406118471257,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 2.2737367544323206e-13,
+   "incremental_ok": true,
+   "decremental_calls": 5,
+   "decremental_time_s": 0.17915450000000277,
+   "decremental_radius_km": 1991.4061184712568,
+   "decremental_rel_err": 1.1417745146719747e-16,
+   "decremental_max_excess_km": 2.2737367544323206e-13,
+   "decremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.65,
+   "label": "legs since 2017-10-12",
+   "threshold": 1507812572.0
+  },
+  {
+   "seed": 2,
+   "n": 10000,
+   "n_consenting": 8027,
+   "consent_pct": 80.27,
+   "gt_radius_km": 1991.406118471257,
+   "gt_center_km": [
+    176.60055029102017,
+    -408.1482639194254
+   ],
+   "gt_support_km": [
+    [
+     -1180.5578514162075,
+     1049.1847115395947
+    ],
+    [
+     -1736.692757276922,
+     -960.4226956112085
+    ],
+    [
+     1868.7083932934197,
+     -1458.133681120314
+    ]
+   ],
+   "lower_bound_calls": 4,
+   "incremental_calls": 33,
+   "incremental_time_s": 0.06982879999999625,
+   "incremental_radius_km": 1991.406118471257,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 2.2737367544323206e-13,
+   "incremental_ok": true,
+   "decremental_calls": 5,
+   "decremental_time_s": 0.17764269999999982,
+   "decremental_radius_km": 1991.4061184712568,
+   "decremental_rel_err": 1.1417745146719747e-16,
+   "decremental_max_excess_km": 2.2737367544323206e-13,
+   "decremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.8,
+   "label": "legs since 2017-04-21",
+   "threshold": 1492793617.0
+  },
+  {
+   "seed": 2,
+   "n": 10000,
+   "n_consenting": 9039,
+   "consent_pct": 90.39,
+   "gt_radius_km": 1991.406118471257,
+   "gt_center_km": [
+    176.60055029102017,
+    -408.1482639194254
+   ],
+   "gt_support_km": [
+    [
+     -1180.5578514162075,
+     1049.1847115395947
+    ],
+    [
+     -1736.692757276922,
+     -960.4226956112085
+    ],
+    [
+     1868.7083932934197,
+     -1458.133681120314
+    ]
+   ],
+   "lower_bound_calls": 4,
+   "incremental_calls": 33,
+   "incremental_time_s": 0.05914079999999444,
+   "incremental_radius_km": 1991.406118471257,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 2.2737367544323206e-13,
+   "incremental_ok": true,
+   "decremental_calls": 5,
+   "decremental_time_s": 0.16061290000000383,
+   "decremental_radius_km": 1991.4061184712568,
+   "decremental_rel_err": 1.1417745146719747e-16,
+   "decremental_max_excess_km": 2.2737367544323206e-13,
+   "decremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.9,
+   "label": "legs since 2016-12-05",
+   "threshold": 1480937628.0
+  },
+  {
+   "seed": 2,
+   "n": 10000,
+   "n_consenting": 9504,
+   "consent_pct": 95.04,
+   "gt_radius_km": 1991.406118471257,
+   "gt_center_km": [
+    176.60055029102017,
+    -408.1482639194254
+   ],
+   "gt_support_km": [
+    [
+     -1180.5578514162075,
+     1049.1847115395947
+    ],
+    [
+     -1736.692757276922,
+     -960.4226956112085
+    ],
+    [
+     1868.7083932934197,
+     -1458.133681120314
+    ]
+   ],
+   "lower_bound_calls": 4,
+   "incremental_calls": 33,
+   "incremental_time_s": 0.06764890000000179,
+   "incremental_radius_km": 1991.406118471257,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 2.2737367544323206e-13,
+   "incremental_ok": true,
+   "decremental_calls": 5,
+   "decremental_time_s": 0.16003549999999933,
+   "decremental_radius_km": 1991.4061184712568,
+   "decremental_rel_err": 1.1417745146719747e-16,
+   "decremental_max_excess_km": 2.2737367544323206e-13,
+   "decremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.95,
+   "label": "legs since 2016-09-03",
+   "threshold": 1472892136.0
+  },
+  {
+   "seed": 2,
+   "n": 10000,
+   "n_consenting": 563,
+   "consent_pct": 5.63,
+   "gt_radius_km": 1883.5191229390457,
+   "gt_center_km": [
+    308.2871730907262,
+    -380.8435820549234
+   ],
+   "gt_support_km": [
+    [
+     -1137.6057387345957,
+     826.2346979295875
+    ],
+    [
+     -1568.3780218014372,
+     -541.3802842679376
+    ],
+    [
+     1856.3348151895889,
+     -1453.7801059319065
+    ]
+   ],
+   "lower_bound_calls": 23,
+   "incremental_calls": 245,
+   "incremental_time_s": 0.03644930000000102,
+   "incremental_radius_km": 1883.519122939046,
+   "incremental_rel_err": 1.2071747649072862e-16,
+   "incremental_max_excess_km": 0.0,
+   "incremental_ok": true,
+   "decremental_calls": 25,
+   "decremental_time_s": 1.4998064999999983,
+   "decremental_radius_km": 1883.519122939046,
+   "decremental_rel_err": 1.2071747649072862e-16,
+   "decremental_max_excess_km": 2.2737367544323206e-13,
+   "decremental_ok": true,
+   "column": "leg_random",
+   "target_frac": 0.05,
+   "label": "random flight legs p=0.05",
+   "threshold": 0.05
+  },
+  {
+   "seed": 2,
+   "n": 10000,
+   "n_consenting": 1070,
+   "consent_pct": 10.7,
+   "gt_radius_km": 1883.6021838710888,
+   "gt_center_km": [
+    307.1749516397848,
+    -382.30406595234257
+   ],
+   "gt_support_km": [
+    [
+     -1137.6057387345957,
+     826.2346979295875
+    ],
+    [
+     -1569.534004392676,
+     -543.3030766060921
+    ],
+    [
+     1856.3348151895889,
+     -1453.7801059319065
+    ]
+   ],
+   "lower_bound_calls": 20,
+   "incremental_calls": 181,
+   "incremental_time_s": 0.0509024999999923,
+   "incremental_radius_km": 1883.6021838710888,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 2.2737367544323206e-13,
+   "incremental_ok": true,
+   "decremental_calls": 22,
+   "decremental_time_s": 1.3161518999999942,
+   "decremental_radius_km": 1883.602183871089,
+   "decremental_rel_err": 1.2071215322969343e-16,
+   "decremental_max_excess_km": 2.2737367544323206e-13,
+   "decremental_ok": true,
+   "column": "leg_random",
+   "target_frac": 0.1,
+   "label": "random flight legs p=0.10",
+   "threshold": 0.1
+  },
+  {
+   "seed": 2,
+   "n": 10000,
+   "n_consenting": 2022,
+   "consent_pct": 20.22,
+   "gt_radius_km": 1997.2010940932291,
+   "gt_center_km": [
+    0.13287684759966112,
+    -716.6732111448383
+   ],
+   "gt_support_km": [
+    [
+     -1992.976693042165,
+     -588.8982031775928
+    ],
+    [
+     1856.3348151895889,
+     -1453.7801059319065
+    ],
+    [
+     -146.30988553724788,
+     1275.1517629912646
+    ]
+   ],
+   "lower_bound_calls": 9,
+   "incremental_calls": 117,
+   "incremental_time_s": 0.04382900000000234,
+   "incremental_radius_km": 1997.2010940932294,
+   "incremental_rel_err": 1.1384616006655276e-16,
+   "incremental_max_excess_km": 0.0,
+   "incremental_ok": true,
+   "decremental_calls": 9,
+   "decremental_time_s": 0.3522584999999907,
+   "decremental_radius_km": 1997.2010940932291,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 2.2737367544323206e-13,
+   "decremental_ok": true,
+   "column": "leg_random",
+   "target_frac": 0.2,
+   "label": "random flight legs p=0.20",
+   "threshold": 0.2
+  },
+  {
+   "seed": 2,
+   "n": 10000,
+   "n_consenting": 3517,
+   "consent_pct": 35.17,
+   "gt_radius_km": 2000.8831458120512,
+   "gt_center_km": [
+    3.599732141381873,
+    -720.1077363526624
+   ],
+   "gt_support_km": [
+    [
+     -1992.976693042165,
+     -588.8982031775928
+    ],
+    [
+     1863.3902289444102,
+     -1458.1542600866856
+    ],
+    [
+     -146.30988553724788,
+     1275.1517629912646
+    ]
+   ],
+   "lower_bound_calls": 8,
+   "incremental_calls": 73,
+   "incremental_time_s": 0.05260109999998974,
+   "incremental_radius_km": 2000.8831458120512,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 4.547473508864641e-13,
+   "incremental_ok": true,
+   "decremental_calls": 8,
+   "decremental_time_s": 0.300928600000006,
+   "decremental_radius_km": 2000.8831458120512,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 2.2737367544323206e-13,
+   "decremental_ok": true,
+   "column": "leg_random",
+   "target_frac": 0.35,
+   "label": "random flight legs p=0.35",
+   "threshold": 0.35
+  },
+  {
+   "seed": 2,
+   "n": 10000,
+   "n_consenting": 4951,
+   "consent_pct": 49.51,
+   "gt_radius_km": 2031.622468934126,
+   "gt_center_km": [
+    38.60465067232899,
+    -575.9714808859861
+   ],
+   "gt_support_km": [
+    [
+     -1180.5578514162075,
+     1049.1847115395947
+    ],
+    [
+     -1992.976693042165,
+     -588.8982031775928
+    ],
+    [
+     1868.7083932934197,
+     -1458.133681120314
+    ]
+   ],
+   "lower_bound_calls": 4,
+   "incremental_calls": 59,
+   "incremental_time_s": 0.059540400000003046,
+   "incremental_radius_km": 2031.622468934126,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 2.2737367544323206e-13,
+   "incremental_ok": true,
+   "decremental_calls": 4,
+   "decremental_time_s": 0.0895967000000013,
+   "decremental_radius_km": 2031.622468934126,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 2.2737367544323206e-13,
+   "decremental_ok": true,
+   "column": "leg_random",
+   "target_frac": 0.5,
+   "label": "random flight legs p=0.50",
+   "threshold": 0.5
+  },
+  {
+   "seed": 2,
+   "n": 10000,
+   "n_consenting": 6436,
+   "consent_pct": 64.36,
+   "gt_radius_km": 2040.0758719554872,
+   "gt_center_km": [
+    46.53109443739001,
+    -540.7572835229674
+   ],
+   "gt_support_km": [
+    [
+     -1992.976693042165,
+     -588.8982031775928
+    ],
+    [
+     1868.7083932934197,
+     -1458.133681120314
+    ],
+    [
+     -217.91669087763898,
+     1482.106264069138
+    ]
+   ],
+   "lower_bound_calls": 3,
+   "incremental_calls": 53,
+   "incremental_time_s": 0.0867911999999933,
+   "incremental_radius_km": 2040.0758719554872,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 4.547473508864641e-13,
+   "incremental_ok": true,
+   "decremental_calls": 3,
+   "decremental_time_s": 0.0491408999999976,
+   "decremental_radius_km": 2040.0758719554872,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 4.547473508864641e-13,
+   "decremental_ok": true,
+   "column": "leg_random",
+   "target_frac": 0.65,
+   "label": "random flight legs p=0.65",
+   "threshold": 0.65
+  },
+  {
+   "seed": 2,
+   "n": 10000,
+   "n_consenting": 7954,
+   "consent_pct": 79.54,
+   "gt_radius_km": 2040.0758719554872,
+   "gt_center_km": [
+    46.53109443739001,
+    -540.7572835229674
+   ],
+   "gt_support_km": [
+    [
+     -1992.976693042165,
+     -588.8982031775928
+    ],
+    [
+     1868.7083932934197,
+     -1458.133681120314
+    ],
+    [
+     -217.91669087763898,
+     1482.106264069138
+    ]
+   ],
+   "lower_bound_calls": 3,
+   "incremental_calls": 36,
+   "incremental_time_s": 0.08362770000000808,
+   "incremental_radius_km": 2040.0758719554872,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 4.547473508864641e-13,
+   "incremental_ok": true,
+   "decremental_calls": 3,
+   "decremental_time_s": 0.051451299999996536,
+   "decremental_radius_km": 2040.0758719554872,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 4.547473508864641e-13,
+   "decremental_ok": true,
+   "column": "leg_random",
+   "target_frac": 0.8,
+   "label": "random flight legs p=0.80",
+   "threshold": 0.8
+  },
+  {
+   "seed": 2,
+   "n": 10000,
+   "n_consenting": 8974,
+   "consent_pct": 89.74,
+   "gt_radius_km": 2040.0758719554872,
+   "gt_center_km": [
+    46.53109443739001,
+    -540.7572835229674
+   ],
+   "gt_support_km": [
+    [
+     -1992.976693042165,
+     -588.8982031775928
+    ],
+    [
+     1868.7083932934197,
+     -1458.133681120314
+    ],
+    [
+     -217.91669087763898,
+     1482.106264069138
+    ]
+   ],
+   "lower_bound_calls": 3,
+   "incremental_calls": 36,
+   "incremental_time_s": 0.08791049999999245,
+   "incremental_radius_km": 2040.0758719554872,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 4.547473508864641e-13,
+   "incremental_ok": true,
+   "decremental_calls": 3,
+   "decremental_time_s": 0.04135610000000156,
+   "decremental_radius_km": 2040.0758719554872,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 4.547473508864641e-13,
+   "decremental_ok": true,
+   "column": "leg_random",
+   "target_frac": 0.9,
+   "label": "random flight legs p=0.90",
+   "threshold": 0.9
+  },
+  {
+   "seed": 2,
+   "n": 10000,
+   "n_consenting": 9469,
+   "consent_pct": 94.69,
+   "gt_radius_km": 2040.0758719554872,
+   "gt_center_km": [
+    46.53109443739001,
+    -540.7572835229674
+   ],
+   "gt_support_km": [
+    [
+     -1992.976693042165,
+     -588.8982031775928
+    ],
+    [
+     1868.7083932934197,
+     -1458.133681120314
+    ],
+    [
+     -217.91669087763898,
+     1482.106264069138
+    ]
+   ],
+   "lower_bound_calls": 3,
+   "incremental_calls": 35,
+   "incremental_time_s": 0.09052990000000705,
+   "incremental_radius_km": 2040.0758719554872,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 4.547473508864641e-13,
+   "incremental_ok": true,
+   "decremental_calls": 3,
+   "decremental_time_s": 0.04215820000000292,
+   "decremental_radius_km": 2040.0758719554872,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 4.547473508864641e-13,
+   "decremental_ok": true,
+   "column": "leg_random",
+   "target_frac": 0.95,
+   "label": "random flight legs p=0.95",
+   "threshold": 0.95
+  },
+  {
+   "seed": 3,
+   "n": 10000,
+   "n_consenting": 488,
+   "consent_pct": 4.88,
+   "gt_radius_km": 1523.675836972767,
+   "gt_center_km": [
+    -139.1410888329201,
+    -27.00497867592988
+   ],
+   "gt_support_km": [
+    [
+     -1568.8925910677597,
+     -553.6915059688556
+    ],
+    [
+     1290.6104134019197,
+     499.68154861699577
+    ]
+   ],
+   "lower_bound_calls": 77,
+   "decremental_calls": 94,
+   "decremental_time_s": 4.228932200000003,
+   "decremental_radius_km": 1523.675836972767,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 2.2737367544323206e-13,
+   "decremental_ok": true,
+   "incremental_calls": 773,
+   "incremental_time_s": 0.06659950000000947,
+   "incremental_radius_km": 1523.675836972767,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 2.2737367544323206e-13,
+   "incremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.05,
+   "label": "legs since 2019-09-28",
+   "threshold": 1569642321.0
+  },
+  {
+   "seed": 3,
+   "n": 10000,
+   "n_consenting": 973,
+   "consent_pct": 9.73,
+   "gt_radius_km": 1523.675836972767,
+   "gt_center_km": [
+    -139.14108883291988,
+    -27.00497867592999
+   ],
+   "gt_support_km": [
+    [
+     -1568.8925910677597,
+     -553.6915059688556
+    ],
+    [
+     1290.6104134019197,
+     499.68154861699577
+    ]
+   ],
+   "lower_bound_calls": 77,
+   "decremental_calls": 85,
+   "decremental_time_s": 4.754502299999999,
+   "decremental_radius_km": 1523.675836972767,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 2.2737367544323206e-13,
+   "decremental_ok": true,
+   "incremental_calls": 502,
+   "incremental_time_s": 0.06965679999998997,
+   "incremental_radius_km": 1523.675836972767,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 2.2737367544323206e-13,
+   "incremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.1,
+   "label": "legs since 2019-07-25",
+   "threshold": 1564095771.0
+  },
+  {
+   "seed": 3,
+   "n": 10000,
+   "n_consenting": 1981,
+   "consent_pct": 19.81,
+   "gt_radius_km": 1744.0995956493296,
+   "gt_center_km": [
+    155.6847967628645,
+    -302.732844638105
+   ],
+   "gt_support_km": [
+    [
+     1568.3890065649762,
+     -1325.5476935484762
+    ],
+    [
+     -942.3246870720587,
+     1052.3533419023377
+    ],
+    [
+     -1571.4789179371546,
+     -545.1970732735591
+    ]
+   ],
+   "lower_bound_calls": 46,
+   "decremental_calls": 48,
+   "decremental_time_s": 2.018981299999993,
+   "decremental_radius_km": 1744.0995956493293,
+   "decremental_rel_err": 1.303673689337567e-16,
+   "decremental_max_excess_km": 0.0,
+   "decremental_ok": true,
+   "incremental_calls": 238,
+   "incremental_time_s": 0.08754170000000272,
+   "incremental_radius_km": 1744.0995956493293,
+   "incremental_rel_err": 1.303673689337567e-16,
+   "incremental_max_excess_km": 0.0,
+   "incremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.2,
+   "label": "legs since 2019-04-05",
+   "threshold": 1554472479.0
+  },
+  {
+   "seed": 3,
+   "n": 10000,
+   "n_consenting": 3514,
+   "consent_pct": 35.14,
+   "gt_radius_km": 1893.5452130956614,
+   "gt_center_km": [
+    313.4601038374625,
+    -364.86860012291334
+   ],
+   "gt_support_km": [
+    [
+     -942.3246870720587,
+     1052.3533419023377
+    ],
+    [
+     -1571.4789179371546,
+     -545.1970732735591
+    ],
+    [
+     1861.5502671325519,
+     -1455.2494144930474
+    ]
+   ],
+   "lower_bound_calls": 20,
+   "decremental_calls": 22,
+   "decremental_time_s": 1.126744500000001,
+   "decremental_radius_km": 1893.5452130956614,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 0.0,
+   "decremental_ok": true,
+   "incremental_calls": 90,
+   "incremental_time_s": 0.07262709999999117,
+   "incremental_radius_km": 1893.5452130956612,
+   "incremental_rel_err": 1.2007829222704977e-16,
+   "incremental_max_excess_km": 4.547473508864641e-13,
+   "incremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.35,
+   "label": "legs since 2018-09-27",
+   "threshold": 1538082433.0
+  },
+  {
+   "seed": 3,
+   "n": 10000,
+   "n_consenting": 5035,
+   "consent_pct": 50.35,
+   "gt_radius_km": 1925.5772565817977,
+   "gt_center_km": [
+    189.24436559169223,
+    -505.6579706749309
+   ],
+   "gt_support_km": [
+    [
+     1873.9706652755935,
+     -1438.1519739899497
+    ],
+    [
+     -942.3246870720587,
+     1052.3533419023377
+    ],
+    [
+     -1690.580244035602,
+     -922.9195290584865
+    ]
+   ],
+   "lower_bound_calls": 12,
+   "decremental_calls": 14,
+   "decremental_time_s": 0.7015440999999925,
+   "decremental_radius_km": 1925.5772565817977,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 0.0,
+   "decremental_ok": true,
+   "incremental_calls": 52,
+   "incremental_time_s": 0.05931739999999763,
+   "incremental_radius_km": 1925.5772565817974,
+   "incremental_rel_err": 1.18080785731161e-16,
+   "incremental_max_excess_km": 4.547473508864641e-13,
+   "incremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.5,
+   "label": "legs since 2018-04-14",
+   "threshold": 1523678734.0
+  },
+  {
+   "seed": 3,
+   "n": 10000,
+   "n_consenting": 6558,
+   "consent_pct": 65.58,
+   "gt_radius_km": 1925.5772565817974,
+   "gt_center_km": [
+    189.244365591692,
+    -505.6579706749309
+   ],
+   "gt_support_km": [
+    [
+     1873.9706652755935,
+     -1438.1519739899497
+    ],
+    [
+     -942.3246870720587,
+     1052.3533419023377
+    ],
+    [
+     -1690.580244035602,
+     -922.9195290584865
+    ]
+   ],
+   "lower_bound_calls": 12,
+   "decremental_calls": 13,
+   "decremental_time_s": 0.7486985000000033,
+   "decremental_radius_km": 1925.5772565817974,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 4.547473508864641e-13,
+   "decremental_ok": true,
+   "incremental_calls": 49,
+   "incremental_time_s": 0.07394709999999804,
+   "incremental_radius_km": 1925.5772565817974,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 4.547473508864641e-13,
+   "incremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.65,
+   "label": "legs since 2017-10-12",
+   "threshold": 1507812572.0
+  },
+  {
+   "seed": 3,
+   "n": 10000,
+   "n_consenting": 7958,
+   "consent_pct": 79.58,
+   "gt_radius_km": 1925.5772565817974,
+   "gt_center_km": [
+    189.244365591692,
+    -505.6579706749309
+   ],
+   "gt_support_km": [
+    [
+     1873.9706652755935,
+     -1438.1519739899497
+    ],
+    [
+     -942.3246870720587,
+     1052.3533419023377
+    ],
+    [
+     -1690.580244035602,
+     -922.9195290584865
+    ]
+   ],
+   "lower_bound_calls": 12,
+   "decremental_calls": 13,
+   "decremental_time_s": 0.8136642999999992,
+   "decremental_radius_km": 1925.5772565817974,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 4.547473508864641e-13,
+   "decremental_ok": true,
+   "incremental_calls": 49,
+   "incremental_time_s": 0.08157109999999079,
+   "incremental_radius_km": 1925.5772565817974,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 4.547473508864641e-13,
+   "incremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.8,
+   "label": "legs since 2017-04-21",
+   "threshold": 1492793617.0
+  },
+  {
+   "seed": 3,
+   "n": 10000,
+   "n_consenting": 8952,
+   "consent_pct": 89.52,
+   "gt_radius_km": 1925.5772565817974,
+   "gt_center_km": [
+    189.244365591692,
+    -505.6579706749309
+   ],
+   "gt_support_km": [
+    [
+     1873.9706652755935,
+     -1438.1519739899497
+    ],
+    [
+     -942.3246870720587,
+     1052.3533419023377
+    ],
+    [
+     -1690.580244035602,
+     -922.9195290584865
+    ]
+   ],
+   "lower_bound_calls": 12,
+   "decremental_calls": 13,
+   "decremental_time_s": 0.8018012999999939,
+   "decremental_radius_km": 1925.5772565817974,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 4.547473508864641e-13,
+   "decremental_ok": true,
+   "incremental_calls": 46,
+   "incremental_time_s": 0.09699559999999963,
+   "incremental_radius_km": 1925.5772565817974,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 4.547473508864641e-13,
+   "incremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.9,
+   "label": "legs since 2016-12-05",
+   "threshold": 1480937628.0
+  },
+  {
+   "seed": 3,
+   "n": 10000,
+   "n_consenting": 9457,
+   "consent_pct": 94.57,
+   "gt_radius_km": 1991.95607897231,
+   "gt_center_km": [
+    58.76907476077642,
+    -617.8275221130008
+   ],
+   "gt_support_km": [
+    [
+     1873.9706652755935,
+     -1438.1519739899497
+    ],
+    [
+     -266.62607560491966,
+     1347.3714542436494
+    ],
+    [
+     -1932.7974626108887,
+     -578.4352922170561
+    ]
+   ],
+   "lower_bound_calls": 4,
+   "decremental_calls": 4,
+   "decremental_time_s": 0.16542179999999007,
+   "decremental_radius_km": 1991.9560789723098,
+   "decremental_rel_err": 1.1414592813740085e-16,
+   "decremental_max_excess_km": 4.547473508864641e-13,
+   "decremental_ok": true,
+   "incremental_calls": 34,
+   "incremental_time_s": 0.10964610000000619,
+   "incremental_radius_km": 1991.95607897231,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 2.2737367544323206e-13,
+   "incremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.95,
+   "label": "legs since 2016-09-03",
+   "threshold": 1472892136.0
+  },
+  {
+   "seed": 3,
+   "n": 10000,
+   "n_consenting": 533,
+   "consent_pct": 5.33,
+   "gt_radius_km": 1478.8840364367327,
+   "gt_center_km": [
+    -81.01667883651231,
+    -196.39667865408782
+   ],
+   "gt_support_km": [
+    [
+     -1503.1369397987455,
+     -602.1946044596706
+    ],
+    [
+     1298.4546124726162,
+     -729.4604175083906
+    ],
+    [
+     -226.00140934847468,
+     1275.363295372172
+    ]
+   ],
+   "lower_bound_calls": 119,
+   "decremental_calls": 127,
+   "decremental_time_s": 5.0768197999999956,
+   "decremental_radius_km": 1478.8840364367327,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 0.0,
+   "decremental_ok": true,
+   "incremental_calls": 457,
+   "incremental_time_s": 0.07411790000000451,
+   "incremental_radius_km": 1478.8840364367327,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 0.0,
+   "incremental_ok": true,
+   "column": "leg_random",
+   "target_frac": 0.05,
+   "label": "random flight legs p=0.05",
+   "threshold": 0.05
+  },
+  {
+   "seed": 3,
+   "n": 10000,
+   "n_consenting": 1024,
+   "consent_pct": 10.24,
+   "gt_radius_km": 1795.7018609112924,
+   "gt_center_km": [
+    221.0342898741675,
+    -425.21123668582317
+   ],
+   "gt_support_km": [
+    [
+     -1054.729348960837,
+     838.5024615491637
+    ],
+    [
+     -1569.8930828215946,
+     -556.0711580113901
+    ],
+    [
+     1740.2230025068816,
+     -1382.6091835656123
+    ]
+   ],
+   "lower_bound_calls": 44,
+   "decremental_calls": 47,
+   "decremental_time_s": 1.3203711999999967,
+   "decremental_radius_km": 1795.7018609112927,
+   "decremental_rel_err": 1.2662106132019223e-16,
+   "decremental_max_excess_km": 0.0,
+   "decremental_ok": true,
+   "incremental_calls": 293,
+   "incremental_time_s": 0.10260549999999569,
+   "incremental_radius_km": 1795.7018609112927,
+   "incremental_rel_err": 1.2662106132019223e-16,
+   "incremental_max_excess_km": 0.0,
+   "incremental_ok": true,
+   "column": "leg_random",
+   "target_frac": 0.1,
+   "label": "random flight legs p=0.10",
+   "threshold": 0.1
+  },
+  {
+   "seed": 3,
+   "n": 10000,
+   "n_consenting": 1980,
+   "consent_pct": 19.8,
+   "gt_radius_km": 1975.6593979418988,
+   "gt_center_km": [
+    -78.91780864057729,
+    -694.8134660071072
+   ],
+   "gt_support_km": [
+    [
+     -2053.8275966608257,
+     -640.3948491746058
+    ],
+    [
+     1766.9463190462902,
+     -1399.0972715819237
+    ],
+    [
+     -226.00140934847468,
+     1275.363295372172
+    ]
+   ],
+   "lower_bound_calls": 17,
+   "decremental_calls": 17,
+   "decremental_time_s": 0.6510538999999937,
+   "decremental_radius_km": 1975.6593979418985,
+   "decremental_rel_err": 1.1508748708410659e-16,
+   "decremental_max_excess_km": 4.547473508864641e-13,
+   "decremental_ok": true,
+   "incremental_calls": 145,
+   "incremental_time_s": 0.05728560000000016,
+   "incremental_radius_km": 1975.6593979418988,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 0.0,
+   "incremental_ok": true,
+   "column": "leg_random",
+   "target_frac": 0.2,
+   "label": "random flight legs p=0.20",
+   "threshold": 0.2
+  },
+  {
+   "seed": 3,
+   "n": 10000,
+   "n_consenting": 3507,
+   "consent_pct": 35.07,
+   "gt_radius_km": 2017.2344103711314,
+   "gt_center_km": [
+    -38.72724648352066,
+    -733.1593095064975
+   ],
+   "gt_support_km": [
+    [
+     1842.7328416461453,
+     -1460.718656337033
+    ],
+    [
+     -226.00140934847468,
+     1275.363295372172
+    ],
+    [
+     -2053.8275966608257,
+     -640.3948491746058
+    ]
+   ],
+   "lower_bound_calls": 12,
+   "decremental_calls": 12,
+   "decremental_time_s": 0.39180689999999174,
+   "decremental_radius_km": 2017.2344103711312,
+   "decremental_rel_err": 1.12715544744946e-16,
+   "decremental_max_excess_km": 4.547473508864641e-13,
+   "decremental_ok": true,
+   "incremental_calls": 49,
+   "incremental_time_s": 0.02349710000000016,
+   "incremental_radius_km": 2017.2344103711314,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 0.0,
+   "incremental_ok": true,
+   "column": "leg_random",
+   "target_frac": 0.35,
+   "label": "random flight legs p=0.35",
+   "threshold": 0.35
+  },
+  {
+   "seed": 3,
+   "n": 10000,
+   "n_consenting": 4968,
+   "consent_pct": 49.68,
+   "gt_radius_km": 2023.2059372528756,
+   "gt_center_km": [
+    -31.46025578552883,
+    -698.6409056614517
+   ],
+   "gt_support_km": [
+    [
+     -246.95067151166154,
+     1313.0564237759233
+    ],
+    [
+     -2053.8275966608257,
+     -640.3948491746058
+    ],
+    [
+     1842.7328416461453,
+     -1460.718656337033
+    ]
+   ],
+   "lower_bound_calls": 9,
+   "decremental_calls": 9,
+   "decremental_time_s": 0.2873788999999931,
+   "decremental_radius_km": 2023.2059372528756,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 4.547473508864641e-13,
+   "decremental_ok": true,
+   "incremental_calls": 43,
+   "incremental_time_s": 0.03126720000000205,
+   "incremental_radius_km": 2023.2059372528756,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 4.547473508864641e-13,
+   "incremental_ok": true,
+   "column": "leg_random",
+   "target_frac": 0.5,
+   "label": "random flight legs p=0.50",
+   "threshold": 0.5
+  },
+  {
+   "seed": 3,
+   "n": 10000,
+   "n_consenting": 6531,
+   "consent_pct": 65.31,
+   "gt_radius_km": 2033.8328574730706,
+   "gt_center_km": [
+    -20.842945552361325,
+    -699.1272975695998
+   ],
+   "gt_support_km": [
+    [
+     1873.9706652755935,
+     -1438.1519739899497
+    ],
+    [
+     -80.61610440540174,
+     1333.8270210558348
+    ],
+    [
+     -2053.8275966608257,
+     -640.3948491746058
+    ]
+   ],
+   "lower_bound_calls": 4,
+   "decremental_calls": 4,
+   "decremental_time_s": 0.169386700000004,
+   "decremental_radius_km": 2033.8328574730706,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 2.2737367544323206e-13,
+   "decremental_ok": true,
+   "incremental_calls": 34,
+   "incremental_time_s": 0.04254530000000045,
+   "incremental_radius_km": 2033.8328574730706,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 2.2737367544323206e-13,
+   "incremental_ok": true,
+   "column": "leg_random",
+   "target_frac": 0.65,
+   "label": "random flight legs p=0.65",
+   "threshold": 0.65
+  },
+  {
+   "seed": 3,
+   "n": 10000,
+   "n_consenting": 7947,
+   "consent_pct": 79.47,
+   "gt_radius_km": 2038.1256333947372,
+   "gt_center_km": [
+    -16.000639248589298,
+    -675.285953265565
+   ],
+   "gt_support_km": [
+    [
+     1873.9706652755935,
+     -1438.1519739899497
+    ],
+    [
+     -266.62607560491966,
+     1347.3714542436494
+    ],
+    [
+     -2053.8275966608257,
+     -640.3948491746058
+    ]
+   ],
+   "lower_bound_calls": 3,
+   "decremental_calls": 3,
+   "decremental_time_s": 0.05525090000000432,
+   "decremental_radius_km": 2038.1256333947372,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 4.547473508864641e-13,
+   "decremental_ok": true,
+   "incremental_calls": 34,
+   "incremental_time_s": 0.06377859999999203,
+   "incremental_radius_km": 2038.1256333947372,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 2.2737367544323206e-13,
+   "incremental_ok": true,
+   "column": "leg_random",
+   "target_frac": 0.8,
+   "label": "random flight legs p=0.80",
+   "threshold": 0.8
+  },
+  {
+   "seed": 3,
+   "n": 10000,
+   "n_consenting": 9013,
+   "consent_pct": 90.13,
+   "gt_radius_km": 2038.1256333947372,
+   "gt_center_km": [
+    -16.000639248589298,
+    -675.285953265565
+   ],
+   "gt_support_km": [
+    [
+     1873.9706652755935,
+     -1438.1519739899497
+    ],
+    [
+     -266.62607560491966,
+     1347.3714542436494
+    ],
+    [
+     -2053.8275966608257,
+     -640.3948491746058
+    ]
+   ],
+   "lower_bound_calls": 3,
+   "decremental_calls": 3,
+   "decremental_time_s": 0.05042449999999121,
+   "decremental_radius_km": 2038.1256333947372,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 4.547473508864641e-13,
+   "decremental_ok": true,
+   "incremental_calls": 32,
+   "incremental_time_s": 0.06577209999998956,
+   "incremental_radius_km": 2038.1256333947372,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 2.2737367544323206e-13,
+   "incremental_ok": true,
+   "column": "leg_random",
+   "target_frac": 0.9,
+   "label": "random flight legs p=0.90",
+   "threshold": 0.9
+  },
+  {
+   "seed": 3,
+   "n": 10000,
+   "n_consenting": 9498,
+   "consent_pct": 94.98,
+   "gt_radius_km": 2038.1256333947372,
+   "gt_center_km": [
+    -16.000639248589298,
+    -675.285953265565
+   ],
+   "gt_support_km": [
+    [
+     1873.9706652755935,
+     -1438.1519739899497
+    ],
+    [
+     -266.62607560491966,
+     1347.3714542436494
+    ],
+    [
+     -2053.8275966608257,
+     -640.3948491746058
+    ]
+   ],
+   "lower_bound_calls": 3,
+   "decremental_calls": 3,
+   "decremental_time_s": 0.05254449999999622,
+   "decremental_radius_km": 2038.1256333947372,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 4.547473508864641e-13,
+   "decremental_ok": true,
+   "incremental_calls": 32,
+   "incremental_time_s": 0.06497699999999895,
+   "incremental_radius_km": 2038.1256333947372,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 2.2737367544323206e-13,
+   "incremental_ok": true,
+   "column": "leg_random",
+   "target_frac": 0.95,
+   "label": "random flight legs p=0.95",
+   "threshold": 0.95
+  },
+  {
+   "seed": 4,
+   "n": 10000,
+   "n_consenting": 519,
+   "consent_pct": 5.19,
+   "gt_radius_km": 1407.339032896915,
+   "gt_center_km": [
+    -221.87796270895018,
+    -34.79411129467236
+   ],
+   "gt_support_km": [
+    [
+     1120.5242464547425,
+     -457.35707979482436
+    ],
+    [
+     -98.24573158099633,
+     1367.1039680754177
+    ],
+    [
+     -1518.5661623076523,
+     -581.7885048095412
+    ]
+   ],
+   "lower_bound_calls": 113,
+   "incremental_calls": 458,
+   "incremental_time_s": 0.06843980000000727,
+   "incremental_radius_km": 1407.3390328969144,
+   "incremental_rel_err": 3.2312565789523837e-16,
+   "incremental_max_excess_km": 4.547473508864641e-13,
+   "incremental_ok": true,
+   "decremental_calls": 114,
+   "decremental_time_s": 4.415908799999997,
+   "decremental_radius_km": 1407.3390328969144,
+   "decremental_rel_err": 3.2312565789523837e-16,
+   "decremental_max_excess_km": 4.547473508864641e-13,
+   "decremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.05,
+   "label": "legs since 2019-09-28",
+   "threshold": 1569642321.0
+  },
+  {
+   "seed": 4,
+   "n": 10000,
+   "n_consenting": 1021,
+   "consent_pct": 10.21,
+   "gt_radius_km": 1421.2722224376648,
+   "gt_center_km": [
+    -240.23627795475647,
+    -47.05776772900583
+   ],
+   "gt_support_km": [
+    [
+     1120.5242464547425,
+     -457.35707979482436
+    ],
+    [
+     -98.24573158099633,
+     1367.1039680754177
+    ],
+    [
+     -1564.1281320485828,
+     -564.0926688110402
+    ]
+   ],
+   "lower_bound_calls": 82,
+   "incremental_calls": 296,
+   "incremental_time_s": 0.03568740000000048,
+   "incremental_radius_km": 1421.2722224376648,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 2.2737367544323206e-13,
+   "incremental_ok": true,
+   "decremental_calls": 85,
+   "decremental_time_s": 4.1174800999999945,
+   "decremental_radius_km": 1421.2722224376648,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 2.2737367544323206e-13,
+   "decremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.1,
+   "label": "legs since 2019-07-25",
+   "threshold": 1564095771.0
+  },
+  {
+   "seed": 4,
+   "n": 10000,
+   "n_consenting": 2093,
+   "consent_pct": 20.93,
+   "gt_radius_km": 1618.0961185556234,
+   "gt_center_km": [
+    -177.81258843419369,
+    -192.8342130812919
+   ],
+   "gt_support_km": [
+    [
+     1161.2301771836155,
+     -1101.2391452185977
+    ],
+    [
+     -227.2135179884014,
+     1424.5076175296508
+    ],
+    [
+     -1633.0915644453432,
+     -900.2224734197824
+    ]
+   ],
+   "lower_bound_calls": 32,
+   "incremental_calls": 209,
+   "incremental_time_s": 0.07712600000000691,
+   "incremental_radius_km": 1618.0961185556237,
+   "incremental_rel_err": 1.4051926386560695e-16,
+   "incremental_max_excess_km": 2.2737367544323206e-13,
+   "incremental_ok": true,
+   "decremental_calls": 32,
+   "decremental_time_s": 1.5035636000000068,
+   "decremental_radius_km": 1618.096118555624,
+   "decremental_rel_err": 2.810385277312139e-16,
+   "decremental_max_excess_km": 0.0,
+   "decremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.2,
+   "label": "legs since 2019-04-05",
+   "threshold": 1554472479.0
+  },
+  {
+   "seed": 4,
+   "n": 10000,
+   "n_consenting": 3575,
+   "consent_pct": 35.75,
+   "gt_radius_km": 1914.6367047906663,
+   "gt_center_km": [
+    224.4390011430999,
+    -436.0954334443687
+   ],
+   "gt_support_km": [
+    [
+     -1633.0915644453432,
+     -900.2224734197824
+    ],
+    [
+     1841.8295686295917,
+     -1460.7326685365667
+    ],
+    [
+     -227.2135179884014,
+     1424.5076175296508
+    ]
+   ],
+   "lower_bound_calls": 11,
+   "incremental_calls": 84,
+   "incremental_time_s": 0.08222760000001017,
+   "incremental_radius_km": 1914.6367047906663,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 2.2737367544323206e-13,
+   "incremental_ok": true,
+   "decremental_calls": 11,
+   "decremental_time_s": 0.614346900000001,
+   "decremental_radius_km": 1914.6367047906663,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 0.0,
+   "decremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.35,
+   "label": "legs since 2018-09-27",
+   "threshold": 1538082433.0
+  },
+  {
+   "seed": 4,
+   "n": 10000,
+   "n_consenting": 5054,
+   "consent_pct": 50.54,
+   "gt_radius_km": 1946.1885913365848,
+   "gt_center_km": [
+    159.09287008009443,
+    -482.955988305636
+   ],
+   "gt_support_km": [
+    [
+     -1722.2981881242167,
+     -980.9697623697105
+    ],
+    [
+     1841.8295686295917,
+     -1460.7326685365667
+    ],
+    [
+     -227.2135179884014,
+     1424.5076175296508
+    ]
+   ],
+   "lower_bound_calls": 9,
+   "incremental_calls": 66,
+   "incremental_time_s": 0.08714580000000183,
+   "incremental_radius_km": 1946.188591336585,
+   "incremental_rel_err": 1.1683023755014335e-16,
+   "incremental_max_excess_km": 2.2737367544323206e-13,
+   "incremental_ok": true,
+   "decremental_calls": 9,
+   "decremental_time_s": 0.5045728999999994,
+   "decremental_radius_km": 1946.188591336585,
+   "decremental_rel_err": 1.1683023755014335e-16,
+   "decremental_max_excess_km": 2.2737367544323206e-13,
+   "decremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.5,
+   "label": "legs since 2018-04-14",
+   "threshold": 1523678734.0
+  },
+  {
+   "seed": 4,
+   "n": 10000,
+   "n_consenting": 6572,
+   "consent_pct": 65.72,
+   "gt_radius_km": 1946.188591336585,
+   "gt_center_km": [
+    159.0928700800944,
+    -482.955988305636
+   ],
+   "gt_support_km": [
+    [
+     -1722.2981881242167,
+     -980.9697623697105
+    ],
+    [
+     1841.8295686295917,
+     -1460.7326685365667
+    ],
+    [
+     -227.2135179884014,
+     1424.5076175296508
+    ]
+   ],
+   "lower_bound_calls": 9,
+   "incremental_calls": 52,
+   "incremental_time_s": 0.11057409999999379,
+   "incremental_radius_km": 1946.188591336585,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 2.2737367544323206e-13,
+   "incremental_ok": true,
+   "decremental_calls": 9,
+   "decremental_time_s": 0.49543800000000715,
+   "decremental_radius_km": 1946.188591336585,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 2.2737367544323206e-13,
+   "decremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.65,
+   "label": "legs since 2017-10-12",
+   "threshold": 1507812572.0
+  },
+  {
+   "seed": 4,
+   "n": 10000,
+   "n_consenting": 8034,
+   "consent_pct": 80.34,
+   "gt_radius_km": 1946.188591336585,
+   "gt_center_km": [
+    159.0928700800944,
+    -482.955988305636
+   ],
+   "gt_support_km": [
+    [
+     -1722.2981881242167,
+     -980.9697623697105
+    ],
+    [
+     1841.8295686295917,
+     -1460.7326685365667
+    ],
+    [
+     -227.2135179884014,
+     1424.5076175296508
+    ]
+   ],
+   "lower_bound_calls": 9,
+   "incremental_calls": 51,
+   "incremental_time_s": 0.18645379999999534,
+   "incremental_radius_km": 1946.188591336585,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 2.2737367544323206e-13,
+   "incremental_ok": true,
+   "decremental_calls": 9,
+   "decremental_time_s": 0.48755799999999283,
+   "decremental_radius_km": 1946.188591336585,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 2.2737367544323206e-13,
+   "decremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.8,
+   "label": "legs since 2017-04-21",
+   "threshold": 1492793617.0
+  },
+  {
+   "seed": 4,
+   "n": 10000,
+   "n_consenting": 9043,
+   "consent_pct": 90.43,
+   "gt_radius_km": 1946.188591336585,
+   "gt_center_km": [
+    159.0928700800944,
+    -482.955988305636
+   ],
+   "gt_support_km": [
+    [
+     -1722.2981881242167,
+     -980.9697623697105
+    ],
+    [
+     1841.8295686295917,
+     -1460.7326685365667
+    ],
+    [
+     -227.2135179884014,
+     1424.5076175296508
+    ]
+   ],
+   "lower_bound_calls": 9,
+   "incremental_calls": 46,
+   "incremental_time_s": 0.16156229999999994,
+   "incremental_radius_km": 1946.188591336585,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 2.2737367544323206e-13,
+   "incremental_ok": true,
+   "decremental_calls": 9,
+   "decremental_time_s": 0.47837260000000015,
+   "decremental_radius_km": 1946.188591336585,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 2.2737367544323206e-13,
+   "decremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.9,
+   "label": "legs since 2016-12-05",
+   "threshold": 1480937628.0
+  },
+  {
+   "seed": 4,
+   "n": 10000,
+   "n_consenting": 9532,
+   "consent_pct": 95.32,
+   "gt_radius_km": 2035.3560242937863,
+   "gt_center_km": [
+    -1.7890993792974152,
+    -598.3265272097924
+   ],
+   "gt_support_km": [
+    [
+     -2036.9261222322905,
+     -628.1835840316317
+    ],
+    [
+     1841.8295686295917,
+     -1460.7326685365667
+    ],
+    [
+     -227.2135179884014,
+     1424.5076175296508
+    ]
+   ],
+   "lower_bound_calls": 4,
+   "incremental_calls": 39,
+   "incremental_time_s": 0.13325590000000886,
+   "incremental_radius_km": 2035.3560242937863,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 0.0,
+   "incremental_ok": true,
+   "decremental_calls": 4,
+   "decremental_time_s": 0.17266899999999907,
+   "decremental_radius_km": 2035.3560242937863,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": -2.2737367544323206e-13,
+   "decremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.95,
+   "label": "legs since 2016-09-03",
+   "threshold": 1472892136.0
+  },
+  {
+   "seed": 4,
+   "n": 10000,
+   "n_consenting": 516,
+   "consent_pct": 5.16,
+   "gt_radius_km": 1808.539954352499,
+   "gt_center_km": [
+    239.39801354616552,
+    -593.9404641786188
+   ],
+   "gt_support_km": [
+    [
+     -1072.9936737137075,
+     650.4247658485318
+    ],
+    [
+     -1568.3780218014372,
+     -541.3802842679376
+    ],
+    [
+     1840.0507159248991,
+     -1435.8001275768572
+    ]
+   ],
+   "lower_bound_calls": 91,
+   "incremental_calls": 281,
+   "incremental_time_s": 0.027868799999993144,
+   "incremental_radius_km": 1808.5399543524989,
+   "incremental_rel_err": 1.257222296339244e-16,
+   "incremental_max_excess_km": 2.2737367544323206e-13,
+   "incremental_ok": true,
+   "decremental_calls": 95,
+   "decremental_time_s": 5.441802200000012,
+   "decremental_radius_km": 1808.5399543524989,
+   "decremental_rel_err": 1.257222296339244e-16,
+   "decremental_max_excess_km": 2.2737367544323206e-13,
+   "decremental_ok": true,
+   "column": "leg_random",
+   "target_frac": 0.05,
+   "label": "random flight legs p=0.05",
+   "threshold": 0.05
+  },
+  {
+   "seed": 4,
+   "n": 10000,
+   "n_consenting": 1063,
+   "consent_pct": 10.63,
+   "gt_radius_km": 1847.9519183403431,
+   "gt_center_km": [
+    273.5856629229272,
+    -455.43614913758125
+   ],
+   "gt_support_km": [
+    [
+     -1068.3290129484787,
+     815.0721330781206
+    ],
+    [
+     -1571.8528262799884,
+     -551.7848650927751
+    ],
+    [
+     1840.0507159248991,
+     -1435.8001275768572
+    ]
+   ],
+   "lower_bound_calls": 33,
+   "incremental_calls": 212,
+   "incremental_time_s": 0.12296800000000019,
+   "incremental_radius_km": 1847.9519183403436,
+   "incremental_rel_err": 2.4608180893303517e-16,
+   "incremental_max_excess_km": 0.0,
+   "incremental_ok": true,
+   "decremental_calls": 36,
+   "decremental_time_s": 1.2005321000000038,
+   "decremental_radius_km": 1847.9519183403431,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 4.547473508864641e-13,
+   "decremental_ok": true,
+   "column": "leg_random",
+   "target_frac": 0.1,
+   "label": "random flight legs p=0.10",
+   "threshold": 0.1
+  },
+  {
+   "seed": 4,
+   "n": 10000,
+   "n_consenting": 1993,
+   "consent_pct": 19.93,
+   "gt_radius_km": 2018.3027337348371,
+   "gt_center_km": [
+    -45.86508484368012,
+    -716.8651392692032
+   ],
+   "gt_support_km": [
+    [
+     1840.0507159248991,
+     -1435.8001275768572
+    ],
+    [
+     -241.66529803409978,
+     1291.9176268645824
+    ],
+    [
+     -2059.7020860268603,
+     -582.6769964731557
+    ]
+   ],
+   "lower_bound_calls": 10,
+   "incremental_calls": 164,
+   "incremental_time_s": 0.13069670000000144,
+   "incremental_radius_km": 2018.3027337348376,
+   "incremental_rel_err": 2.253117648237841e-16,
+   "incremental_max_excess_km": -2.2737367544323206e-13,
+   "incremental_ok": true,
+   "decremental_calls": 10,
+   "decremental_time_s": 0.5581272000000013,
+   "decremental_radius_km": 2018.3027337348371,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 2.2737367544323206e-13,
+   "decremental_ok": true,
+   "column": "leg_random",
+   "target_frac": 0.2,
+   "label": "random flight legs p=0.20",
+   "threshold": 0.2
+  },
+  {
+   "seed": 4,
+   "n": 10000,
+   "n_consenting": 3593,
+   "consent_pct": 35.93,
+   "gt_radius_km": 2038.693147453067,
+   "gt_center_km": [
+    -21.117763961944867,
+    -603.7414523935576
+   ],
+   "gt_support_km": [
+    [
+     1840.0507159248991,
+     -1435.8001275768572
+    ],
+    [
+     -227.2135179884014,
+     1424.5076175296508
+    ],
+    [
+     -2059.7020860268603,
+     -582.6769964731557
+    ]
+   ],
+   "lower_bound_calls": 5,
+   "incremental_calls": 114,
+   "incremental_time_s": 0.08345549999999946,
+   "incremental_radius_km": 2038.693147453067,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 2.2737367544323206e-13,
+   "incremental_ok": true,
+   "decremental_calls": 5,
+   "decremental_time_s": 0.2068222999999989,
+   "decremental_radius_km": 2038.693147453067,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 2.2737367544323206e-13,
+   "decremental_ok": true,
+   "column": "leg_random",
+   "target_frac": 0.35,
+   "label": "random flight legs p=0.35",
+   "threshold": 0.35
+  },
+  {
+   "seed": 4,
+   "n": 10000,
+   "n_consenting": 5096,
+   "consent_pct": 50.96,
+   "gt_radius_km": 2039.6880560405286,
+   "gt_center_km": [
+    -20.132292714643814,
+    -604.6411527909261
+   ],
+   "gt_support_km": [
+    [
+     -227.2135179884014,
+     1424.5076175296508
+    ],
+    [
+     -2059.7020860268603,
+     -582.6769964731557
+    ],
+    [
+     1830.1840350677273,
+     -1462.9283151651232
+    ]
+   ],
+   "lower_bound_calls": 4,
+   "incremental_calls": 80,
+   "incremental_time_s": 0.0965328999999997,
+   "incremental_radius_km": 2039.6880560405286,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 0.0,
+   "incremental_ok": true,
+   "decremental_calls": 4,
+   "decremental_time_s": 0.1443371999999954,
+   "decremental_radius_km": 2039.6880560405286,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 0.0,
+   "decremental_ok": true,
+   "column": "leg_random",
+   "target_frac": 0.5,
+   "label": "random flight legs p=0.50",
+   "threshold": 0.5
+  },
+  {
+   "seed": 4,
+   "n": 10000,
+   "n_consenting": 6620,
+   "consent_pct": 66.2,
+   "gt_radius_km": 2043.9283896273341,
+   "gt_center_km": [
+    -15.936470660320001,
+    -608.4717899403105
+   ],
+   "gt_support_km": [
+    [
+     1841.8295686295917,
+     -1460.7326685365667
+    ],
+    [
+     -227.2135179884014,
+     1424.5076175296508
+    ],
+    [
+     -2059.7020860268603,
+     -582.6769964731557
+    ]
+   ],
+   "lower_bound_calls": 3,
+   "incremental_calls": 54,
+   "incremental_time_s": 0.12526719999999614,
+   "incremental_radius_km": 2043.9283896273346,
+   "incremental_rel_err": 2.2248692918707263e-16,
+   "incremental_max_excess_km": 0.0,
+   "incremental_ok": true,
+   "decremental_calls": 3,
+   "decremental_time_s": 0.07367449999999565,
+   "decremental_radius_km": 2043.9283896273341,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 2.2737367544323206e-13,
+   "decremental_ok": true,
+   "column": "leg_random",
+   "target_frac": 0.65,
+   "label": "random flight legs p=0.65",
+   "threshold": 0.65
+  },
+  {
+   "seed": 4,
+   "n": 10000,
+   "n_consenting": 8005,
+   "consent_pct": 80.05,
+   "gt_radius_km": 2043.9283896273341,
+   "gt_center_km": [
+    -15.936470660320001,
+    -608.4717899403105
+   ],
+   "gt_support_km": [
+    [
+     1841.8295686295917,
+     -1460.7326685365667
+    ],
+    [
+     -227.2135179884014,
+     1424.5076175296508
+    ],
+    [
+     -2059.7020860268603,
+     -582.6769964731557
+    ]
+   ],
+   "lower_bound_calls": 3,
+   "incremental_calls": 42,
+   "incremental_time_s": 0.1702370000000002,
+   "incremental_radius_km": 2043.9283896273346,
+   "incremental_rel_err": 2.2248692918707263e-16,
+   "incremental_max_excess_km": 0.0,
+   "incremental_ok": true,
+   "decremental_calls": 3,
+   "decremental_time_s": 0.08213509999998791,
+   "decremental_radius_km": 2043.9283896273341,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 2.2737367544323206e-13,
+   "decremental_ok": true,
+   "column": "leg_random",
+   "target_frac": 0.8,
+   "label": "random flight legs p=0.80",
+   "threshold": 0.8
+  },
+  {
+   "seed": 4,
+   "n": 10000,
+   "n_consenting": 8981,
+   "consent_pct": 89.81,
+   "gt_radius_km": 2043.9283896273341,
+   "gt_center_km": [
+    -15.936470660320001,
+    -608.4717899403105
+   ],
+   "gt_support_km": [
+    [
+     1841.8295686295917,
+     -1460.7326685365667
+    ],
+    [
+     -227.2135179884014,
+     1424.5076175296508
+    ],
+    [
+     -2059.7020860268603,
+     -582.6769964731557
+    ]
+   ],
+   "lower_bound_calls": 3,
+   "incremental_calls": 41,
+   "incremental_time_s": 0.18977780000000166,
+   "incremental_radius_km": 2043.9283896273346,
+   "incremental_rel_err": 2.2248692918707263e-16,
+   "incremental_max_excess_km": 0.0,
+   "incremental_ok": true,
+   "decremental_calls": 3,
+   "decremental_time_s": 0.07487900000000991,
+   "decremental_radius_km": 2043.9283896273341,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 2.2737367544323206e-13,
+   "decremental_ok": true,
+   "column": "leg_random",
+   "target_frac": 0.9,
+   "label": "random flight legs p=0.90",
+   "threshold": 0.9
+  },
+  {
+   "seed": 4,
+   "n": 10000,
+   "n_consenting": 9474,
+   "consent_pct": 94.74,
+   "gt_radius_km": 2043.9283896273341,
+   "gt_center_km": [
+    -15.936470660320001,
+    -608.4717899403105
+   ],
+   "gt_support_km": [
+    [
+     1841.8295686295917,
+     -1460.7326685365667
+    ],
+    [
+     -227.2135179884014,
+     1424.5076175296508
+    ],
+    [
+     -2059.7020860268603,
+     -582.6769964731557
+    ]
+   ],
+   "lower_bound_calls": 3,
+   "incremental_calls": 41,
+   "incremental_time_s": 0.1818552000000011,
+   "incremental_radius_km": 2043.9283896273346,
+   "incremental_rel_err": 2.2248692918707263e-16,
+   "incremental_max_excess_km": 0.0,
+   "incremental_ok": true,
+   "decremental_calls": 3,
+   "decremental_time_s": 0.07710420000000795,
+   "decremental_radius_km": 2043.9283896273341,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 2.2737367544323206e-13,
+   "decremental_ok": true,
+   "column": "leg_random",
+   "target_frac": 0.95,
+   "label": "random flight legs p=0.95",
+   "threshold": 0.95
+  },
+  {
+   "seed": 5,
+   "n": 10000,
+   "n_consenting": 500,
+   "consent_pct": 5.0,
+   "gt_radius_km": 1403.6275531359804,
+   "gt_center_km": [
+    -159.71982421232556,
+    -249.68255861482734
+   ],
+   "gt_support_km": [
+    [
+     -1102.2852316457172,
+     790.3851125645164
+    ],
+    [
+     -1537.7546278741618,
+     -516.4978277041042
+    ],
+    [
+     1208.9989533880173,
+     -560.7761390158408
+    ]
+   ],
+   "lower_bound_calls": 128,
+   "decremental_calls": 128,
+   "decremental_time_s": 4.128770799999998,
+   "decremental_radius_km": 1403.6275531359804,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 0.0,
+   "decremental_ok": true,
+   "incremental_calls": 578,
+   "incremental_time_s": 0.051529500000000894,
+   "incremental_radius_km": 1403.6275531359802,
+   "incremental_rel_err": 1.6199003427599758e-16,
+   "incremental_max_excess_km": 2.2737367544323206e-13,
+   "incremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.05,
+   "label": "legs since 2019-09-28",
+   "threshold": 1569642321.0
+  },
+  {
+   "seed": 5,
+   "n": 10000,
+   "n_consenting": 1031,
+   "consent_pct": 10.31,
+   "gt_radius_km": 1456.034100288773,
+   "gt_center_km": [
+    -178.72895656415213,
+    -120.04203647382062
+   ],
+   "gt_support_km": [
+    [
+     1208.9989533880173,
+     -560.7761390158408
+    ],
+    [
+     116.22320783908188,
+     1305.8045618380681
+    ],
+    [
+     -1568.250903335617,
+     -555.0869314492409
+    ]
+   ],
+   "lower_bound_calls": 69,
+   "decremental_calls": 78,
+   "decremental_time_s": 4.3407974,
+   "decremental_radius_km": 1456.0341002887728,
+   "decremental_rel_err": 1.5615958128874686e-16,
+   "decremental_max_excess_km": 2.2737367544323206e-13,
+   "decremental_ok": true,
+   "incremental_calls": 367,
+   "incremental_time_s": 0.05872309999999459,
+   "incremental_radius_km": 1456.0341002887726,
+   "incremental_rel_err": 3.123191625774937e-16,
+   "incremental_max_excess_km": 4.547473508864641e-13,
+   "incremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.1,
+   "label": "legs since 2019-07-25",
+   "threshold": 1564095771.0
+  },
+  {
+   "seed": 5,
+   "n": 10000,
+   "n_consenting": 2014,
+   "consent_pct": 20.14,
+   "gt_radius_km": 1706.7277847866897,
+   "gt_center_km": [
+    129.49251764009273,
+    -380.1955140023728
+   ],
+   "gt_support_km": [
+    [
+     -1568.250903335617,
+     -555.0869314492409
+    ],
+    [
+     1533.0453146363216,
+     -1351.2564170393266
+    ],
+    [
+     -1063.2522777513218,
+     840.5745644438404
+    ]
+   ],
+   "lower_bound_calls": 39,
+   "decremental_calls": 40,
+   "decremental_time_s": 1.807602100000011,
+   "decremental_radius_km": 1706.7277847866897,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 0.0,
+   "decremental_ok": true,
+   "incremental_calls": 124,
+   "incremental_time_s": 0.052580200000008404,
+   "incremental_radius_km": 1706.7277847866897,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 0.0,
+   "incremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.2,
+   "label": "legs since 2019-04-05",
+   "threshold": 1554472479.0
+  },
+  {
+   "seed": 5,
+   "n": 10000,
+   "n_consenting": 3505,
+   "consent_pct": 35.05,
+   "gt_radius_km": 1875.1603043706423,
+   "gt_center_km": [
+    263.75044806082013,
+    -472.8763312703158
+   ],
+   "gt_support_km": [
+    [
+     -1140.3282023817599,
+     770.0192035429455
+    ],
+    [
+     -1611.3794143870432,
+     -483.56118239964303
+    ],
+    [
+     1857.1549331098008,
+     -1461.4552679836127
+    ]
+   ],
+   "lower_bound_calls": 9,
+   "decremental_calls": 11,
+   "decremental_time_s": 0.35853360000000123,
+   "decremental_radius_km": 1875.1603043706423,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 0.0,
+   "decremental_ok": true,
+   "incremental_calls": 69,
+   "incremental_time_s": 0.04471930000001123,
+   "incremental_radius_km": 1875.1603043706423,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 2.2737367544323206e-13,
+   "incremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.35,
+   "label": "legs since 2018-09-27",
+   "threshold": 1538082433.0
+  },
+  {
+   "seed": 5,
+   "n": 10000,
+   "n_consenting": 4963,
+   "consent_pct": 49.63,
+   "gt_radius_km": 1904.0254065042923,
+   "gt_center_km": [
+    188.54295815005483,
+    -544.3692166041518
+   ],
+   "gt_support_km": [
+    [
+     -1677.051383020118,
+     -924.9877957718861
+    ],
+    [
+     1857.1549331098008,
+     -1461.4552679836127
+    ],
+    [
+     -240.99398837674113,
+     1310.5730359153902
+    ]
+   ],
+   "lower_bound_calls": 8,
+   "decremental_calls": 8,
+   "decremental_time_s": 0.2634383999999983,
+   "decremental_radius_km": 1904.025406504292,
+   "decremental_rel_err": 1.1941735371098867e-16,
+   "decremental_max_excess_km": 4.547473508864641e-13,
+   "decremental_ok": true,
+   "incremental_calls": 52,
+   "incremental_time_s": 0.05754420000000948,
+   "incremental_radius_km": 1904.0254065042918,
+   "incremental_rel_err": 2.3883470742197734e-16,
+   "incremental_max_excess_km": 6.821210263296962e-13,
+   "incremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.5,
+   "label": "legs since 2018-04-14",
+   "threshold": 1523678734.0
+  },
+  {
+   "seed": 5,
+   "n": 10000,
+   "n_consenting": 6493,
+   "consent_pct": 64.93,
+   "gt_radius_km": 1929.2959146047936,
+   "gt_center_km": [
+    199.05743386827757,
+    -475.1006618100754
+   ],
+   "gt_support_km": [
+    [
+     -1677.051383020118,
+     -924.9877957718861
+    ],
+    [
+     1857.1549331098008,
+     -1461.4552679836127
+    ],
+    [
+     -280.96928774163473,
+     1393.5237179546723
+    ]
+   ],
+   "lower_bound_calls": 6,
+   "decremental_calls": 6,
+   "decremental_time_s": 0.2792591999999985,
+   "decremental_radius_km": 1929.2959146047936,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 2.2737367544323206e-13,
+   "decremental_ok": true,
+   "incremental_calls": 40,
+   "incremental_time_s": 0.0722834999999975,
+   "incremental_radius_km": 1929.2959146047936,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 2.2737367544323206e-13,
+   "incremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.65,
+   "label": "legs since 2017-10-12",
+   "threshold": 1507812572.0
+  },
+  {
+   "seed": 5,
+   "n": 10000,
+   "n_consenting": 7951,
+   "consent_pct": 79.51,
+   "gt_radius_km": 1929.2959146047936,
+   "gt_center_km": [
+    199.05743386827757,
+    -475.1006618100754
+   ],
+   "gt_support_km": [
+    [
+     -1677.051383020118,
+     -924.9877957718861
+    ],
+    [
+     1857.1549331098008,
+     -1461.4552679836127
+    ],
+    [
+     -280.96928774163473,
+     1393.5237179546723
+    ]
+   ],
+   "lower_bound_calls": 6,
+   "decremental_calls": 6,
+   "decremental_time_s": 0.2936645999999996,
+   "decremental_radius_km": 1929.2959146047936,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 2.2737367544323206e-13,
+   "decremental_ok": true,
+   "incremental_calls": 36,
+   "incremental_time_s": 0.07540430000000242,
+   "incremental_radius_km": 1929.2959146047936,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 2.2737367544323206e-13,
+   "incremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.8,
+   "label": "legs since 2017-04-21",
+   "threshold": 1492793617.0
+  },
+  {
+   "seed": 5,
+   "n": 10000,
+   "n_consenting": 8983,
+   "consent_pct": 89.83,
+   "gt_radius_km": 1929.2959146047936,
+   "gt_center_km": [
+    199.05743386827757,
+    -475.1006618100754
+   ],
+   "gt_support_km": [
+    [
+     -1677.051383020118,
+     -924.9877957718861
+    ],
+    [
+     1857.1549331098008,
+     -1461.4552679836127
+    ],
+    [
+     -280.96928774163473,
+     1393.5237179546723
+    ]
+   ],
+   "lower_bound_calls": 6,
+   "decremental_calls": 6,
+   "decremental_time_s": 0.2666731999999996,
+   "decremental_radius_km": 1929.2959146047936,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 2.2737367544323206e-13,
+   "decremental_ok": true,
+   "incremental_calls": 35,
+   "incremental_time_s": 0.07350940000000605,
+   "incremental_radius_km": 1929.2959146047936,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 2.2737367544323206e-13,
+   "incremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.9,
+   "label": "legs since 2016-12-05",
+   "threshold": 1480937628.0
+  },
+  {
+   "seed": 5,
+   "n": 10000,
+   "n_consenting": 9508,
+   "consent_pct": 95.08,
+   "gt_radius_km": 1929.2959146047936,
+   "gt_center_km": [
+    199.05743386827757,
+    -475.1006618100754
+   ],
+   "gt_support_km": [
+    [
+     -1677.051383020118,
+     -924.9877957718861
+    ],
+    [
+     1857.1549331098008,
+     -1461.4552679836127
+    ],
+    [
+     -280.96928774163473,
+     1393.5237179546723
+    ]
+   ],
+   "lower_bound_calls": 6,
+   "decremental_calls": 6,
+   "decremental_time_s": 0.26415249999999446,
+   "decremental_radius_km": 1929.2959146047936,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 2.2737367544323206e-13,
+   "decremental_ok": true,
+   "incremental_calls": 34,
+   "incremental_time_s": 0.06831569999999942,
+   "incremental_radius_km": 1929.2959146047936,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 2.2737367544323206e-13,
+   "incremental_ok": true,
+   "column": "optin_date",
+   "target_frac": 0.95,
+   "label": "legs since 2016-09-03",
+   "threshold": 1472892136.0
+  },
+  {
+   "seed": 5,
+   "n": 10000,
+   "n_consenting": 523,
+   "consent_pct": 5.23,
+   "gt_radius_km": 1702.04113867569,
+   "gt_center_km": [
+    131.7674495934311,
+    -401.6882951852156
+   ],
+   "gt_support_km": [
+    [
+     -1135.7942824040833,
+     734.1951906177516
+    ],
+    [
+     -1562.0695302255892,
+     -568.6024154447675
+    ],
+    [
+     1603.2759512128491,
+     -1257.0284423817648
+    ]
+   ],
+   "lower_bound_calls": 65,
+   "decremental_calls": 65,
+   "decremental_time_s": 1.9948090999999835,
+   "decremental_radius_km": 1702.04113867569,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 2.2737367544323206e-13,
+   "decremental_ok": true,
+   "incremental_calls": 313,
+   "incremental_time_s": 0.03834399999999505,
+   "incremental_radius_km": 1702.04113867569,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 2.2737367544323206e-13,
+   "incremental_ok": true,
+   "column": "leg_random",
+   "target_frac": 0.05,
+   "label": "random flight legs p=0.05",
+   "threshold": 0.05
+  },
+  {
+   "seed": 5,
+   "n": 10000,
+   "n_consenting": 1019,
+   "consent_pct": 10.19,
+   "gt_radius_km": 1707.4875691729394,
+   "gt_center_km": [
+    133.6048931465703,
+    -387.7869454647928
+   ],
+   "gt_support_km": [
+    [
+     -1102.2852316457172,
+     790.3851125645164
+    ],
+    [
+     -1567.6327541313578,
+     -533.746756249725
+    ],
+    [
+     1603.2759512128491,
+     -1257.0284423817648
+    ]
+   ],
+   "lower_bound_calls": 44,
+   "decremental_calls": 45,
+   "decremental_time_s": 1.9900426000000095,
+   "decremental_radius_km": 1707.4875691729394,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 6.821210263296962e-13,
+   "decremental_ok": true,
+   "incremental_calls": 180,
+   "incremental_time_s": 0.06378330000001142,
+   "incremental_radius_km": 1707.4875691729394,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 6.821210263296962e-13,
+   "incremental_ok": true,
+   "column": "leg_random",
+   "target_frac": 0.1,
+   "label": "random flight legs p=0.10",
+   "threshold": 0.1
+  },
+  {
+   "seed": 5,
+   "n": 10000,
+   "n_consenting": 2040,
+   "consent_pct": 20.4,
+   "gt_radius_km": 1998.0426347684247,
+   "gt_center_km": [
+    14.205372866363225,
+    -689.6319146501784
+   ],
+   "gt_support_km": [
+    [
+     -1982.7544597639128,
+     -623.8611216368141
+    ],
+    [
+     1857.1549331098008,
+     -1461.4552679836127
+    ],
+    [
+     116.22320783908188,
+     1305.8045618380681
+    ]
+   ],
+   "lower_bound_calls": 7,
+   "decremental_calls": 7,
+   "decremental_time_s": 0.2278067999999962,
+   "decremental_radius_km": 1998.0426347684243,
+   "decremental_rel_err": 2.2759642010300235e-16,
+   "decremental_max_excess_km": 6.821210263296962e-13,
+   "decremental_ok": true,
+   "incremental_calls": 103,
+   "incremental_time_s": 0.06584060000000136,
+   "incremental_radius_km": 1998.0426347684243,
+   "incremental_rel_err": 2.2759642010300235e-16,
+   "incremental_max_excess_km": 4.547473508864641e-13,
+   "incremental_ok": true,
+   "column": "leg_random",
+   "target_frac": 0.2,
+   "label": "random flight legs p=0.20",
+   "threshold": 0.2
+  },
+  {
+   "seed": 5,
+   "n": 10000,
+   "n_consenting": 3576,
+   "consent_pct": 35.76,
+   "gt_radius_km": 1998.0426347684243,
+   "gt_center_km": [
+    14.20537286636292,
+    -689.6319146501779
+   ],
+   "gt_support_km": [
+    [
+     -1982.7544597639128,
+     -623.8611216368141
+    ],
+    [
+     1857.1549331098008,
+     -1461.4552679836127
+    ],
+    [
+     116.22320783908188,
+     1305.8045618380681
+    ]
+   ],
+   "lower_bound_calls": 7,
+   "decremental_calls": 7,
+   "decremental_time_s": 0.22437920000001554,
+   "decremental_radius_km": 1998.0426347684243,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 6.821210263296962e-13,
+   "decremental_ok": true,
+   "incremental_calls": 62,
+   "incremental_time_s": 0.043395200000020395,
+   "incremental_radius_km": 1998.0426347684243,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 4.547473508864641e-13,
+   "incremental_ok": true,
+   "column": "leg_random",
+   "target_frac": 0.35,
+   "label": "random flight legs p=0.35",
+   "threshold": 0.35
+  },
+  {
+   "seed": 5,
+   "n": 10000,
+   "n_consenting": 5036,
+   "consent_pct": 50.36,
+   "gt_radius_km": 2041.130896278802,
+   "gt_center_km": [
+    -6.539695383224242,
+    -629.0745453151012
+   ],
+   "gt_support_km": [
+    [
+     -2047.4423630507558,
+     -598.5518185125974
+    ],
+    [
+     1857.1549331098008,
+     -1461.4552679836127
+    ],
+    [
+     -280.96928774163473,
+     1393.5237179546723
+    ]
+   ],
+   "lower_bound_calls": 3,
+   "decremental_calls": 3,
+   "decremental_time_s": 0.07107979999997838,
+   "decremental_radius_km": 2041.130896278802,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 4.547473508864641e-13,
+   "decremental_ok": true,
+   "incremental_calls": 46,
+   "incremental_time_s": 0.03149999999999409,
+   "incremental_radius_km": 2041.130896278802,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 6.821210263296962e-13,
+   "incremental_ok": true,
+   "column": "leg_random",
+   "target_frac": 0.5,
+   "label": "random flight legs p=0.50",
+   "threshold": 0.5
+  },
+  {
+   "seed": 5,
+   "n": 10000,
+   "n_consenting": 6488,
+   "consent_pct": 64.88,
+   "gt_radius_km": 2041.130896278802,
+   "gt_center_km": [
+    -6.539695383224242,
+    -629.0745453151012
+   ],
+   "gt_support_km": [
+    [
+     1857.1549331098008,
+     -1461.4552679836127
+    ],
+    [
+     -280.96928774163473,
+     1393.5237179546723
+    ],
+    [
+     -2047.4423630507558,
+     -598.5518185125974
+    ]
+   ],
+   "lower_bound_calls": 3,
+   "decremental_calls": 3,
+   "decremental_time_s": 0.06957629999999426,
+   "decremental_radius_km": 2041.130896278802,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 4.547473508864641e-13,
+   "decremental_ok": true,
+   "incremental_calls": 32,
+   "incremental_time_s": 0.059294599999986985,
+   "incremental_radius_km": 2041.130896278802,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 6.821210263296962e-13,
+   "incremental_ok": true,
+   "column": "leg_random",
+   "target_frac": 0.65,
+   "label": "random flight legs p=0.65",
+   "threshold": 0.65
+  },
+  {
+   "seed": 5,
+   "n": 10000,
+   "n_consenting": 7942,
+   "consent_pct": 79.42,
+   "gt_radius_km": 2041.130896278802,
+   "gt_center_km": [
+    -6.539695383224242,
+    -629.0745453151012
+   ],
+   "gt_support_km": [
+    [
+     -2047.4423630507558,
+     -598.5518185125974
+    ],
+    [
+     1857.1549331098008,
+     -1461.4552679836127
+    ],
+    [
+     -280.96928774163473,
+     1393.5237179546723
+    ]
+   ],
+   "lower_bound_calls": 3,
+   "decremental_calls": 3,
+   "decremental_time_s": 0.07919380000001297,
+   "decremental_radius_km": 2041.130896278802,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 4.547473508864641e-13,
+   "decremental_ok": true,
+   "incremental_calls": 32,
+   "incremental_time_s": 0.06396620000001008,
+   "incremental_radius_km": 2041.130896278802,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 6.821210263296962e-13,
+   "incremental_ok": true,
+   "column": "leg_random",
+   "target_frac": 0.8,
+   "label": "random flight legs p=0.80",
+   "threshold": 0.8
+  },
+  {
+   "seed": 5,
+   "n": 10000,
+   "n_consenting": 8979,
+   "consent_pct": 89.79,
+   "gt_radius_km": 2041.130896278802,
+   "gt_center_km": [
+    -6.539695383224242,
+    -629.0745453151012
+   ],
+   "gt_support_km": [
+    [
+     -2047.4423630507558,
+     -598.5518185125974
+    ],
+    [
+     1857.1549331098008,
+     -1461.4552679836127
+    ],
+    [
+     -280.96928774163473,
+     1393.5237179546723
+    ]
+   ],
+   "lower_bound_calls": 3,
+   "decremental_calls": 3,
+   "decremental_time_s": 0.06965729999998871,
+   "decremental_radius_km": 2041.130896278802,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 4.547473508864641e-13,
+   "decremental_ok": true,
+   "incremental_calls": 31,
+   "incremental_time_s": 0.07834439999999177,
+   "incremental_radius_km": 2041.130896278802,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 6.821210263296962e-13,
+   "incremental_ok": true,
+   "column": "leg_random",
+   "target_frac": 0.9,
+   "label": "random flight legs p=0.90",
+   "threshold": 0.9
+  },
+  {
+   "seed": 5,
+   "n": 10000,
+   "n_consenting": 9495,
+   "consent_pct": 94.95,
+   "gt_radius_km": 2041.130896278802,
+   "gt_center_km": [
+    -6.539695383224242,
+    -629.0745453151012
+   ],
+   "gt_support_km": [
+    [
+     -2047.4423630507558,
+     -598.5518185125974
+    ],
+    [
+     1857.1549331098008,
+     -1461.4552679836127
+    ],
+    [
+     -280.96928774163473,
+     1393.5237179546723
+    ]
+   ],
+   "lower_bound_calls": 3,
+   "decremental_calls": 3,
+   "decremental_time_s": 0.072082800000004,
+   "decremental_radius_km": 2041.130896278802,
+   "decremental_rel_err": 0.0,
+   "decremental_max_excess_km": 4.547473508864641e-13,
+   "decremental_ok": true,
+   "incremental_calls": 30,
+   "incremental_time_s": 0.07958030000000349,
+   "incremental_radius_km": 2041.130896278802,
+   "incremental_rel_err": 0.0,
+   "incremental_max_excess_km": 6.821210263296962e-13,
+   "incremental_ok": true,
+   "column": "leg_random",
+   "target_frac": 0.95,
+   "label": "random flight legs p=0.95",
+   "threshold": 0.95
+  }
+ ]
+}

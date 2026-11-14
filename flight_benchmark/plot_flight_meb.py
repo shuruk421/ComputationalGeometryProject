@@ -87,7 +87,8 @@ def main():
     ax.legend(loc="upper left", fontsize=9, frameon=True, facecolor=P.SURFACE, edgecolor="none",
               labelcolor=P.INK2)
     ax.set_title(f"{label} - {args.algo}: {oracle.get_call_count():,} oracle calls", loc="left")
-    fig.text(0.99, 0.005, map_tiles.ATTRIBUTION, fontsize=7, color=P.MUTED, ha="right")
+    ax.text(0.995, 0.005, map_tiles.ATTRIBUTION, transform=ax.transAxes, fontsize=7,
+            color=P.INK2, ha="right", va="bottom")
     out = args.output or os.path.join(os.path.dirname(os.path.abspath(__file__)),
                                       f"flight_meb_{args.consent}_{args.algo}.png")
     fig.savefig(out, dpi=150, bbox_inches="tight")

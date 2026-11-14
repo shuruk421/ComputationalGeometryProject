@@ -25,7 +25,6 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt  # noqa: E402
 import numpy as np  # noqa: E402
 from matplotlib.lines import Line2D  # noqa: E402
-from matplotlib.patches import FancyBboxPatch  # noqa: E402
 from matplotlib.ticker import FuncFormatter, LogLocator, NullFormatter  # noqa: E402
 
 import flight_data as fd  # noqa: E402
@@ -58,7 +57,20 @@ COLUMN_TITLE = {
     "leg_random": "Random flight legs (each leg consents with probability p)",
 }
 COLUMN_SHORT = {"optin_date": "opt-in date", "leg_random": "random legs",
-                "point_random": "random points"}
+                "point_random": "random positions"}
+CANDIDATE_NAME = {
+    "optin_date": "opt-in date, per leg (TIME)",
+    "flightnum_top": "busiest flight numbers (CALLSIGN)",
+    "hour_of_day": "UTC time of day (TIME)",
+    "geo_above": "GEOALTITUDE above h",
+    "flightnum_random": "random flight numbers",
+    "velocity_above": "VELOCITY above v",
+    "leg_random": "random flight legs",
+    "squawk_below": "SQUAWK below s",
+    "baro_above": "BAROALTITUDE above h",
+    "point_random": "random positions",
+    "baro_below": "BAROALTITUDE below h",
+}
 
 
 def _style():
@@ -101,25 +113,20 @@ def _fmt_int(v):
 # Maps
 # --------------------------------------------------------------------------
 
-def _panel_label(ax, lines, calls):
-    """Label box (top-left): text in ink, identity from coloured dots."""
-    x0, y_top, dy = 0.03, 0.975, 0.047
-    h = dy * (len(lines) + len(calls)) + 0.012
-    ax.add_patch(FancyBboxPatch((0.012, y_top - h + 0.012), 0.5, h, transform=ax.transAxes,
-                                boxstyle="round,pad=0.0,rounding_size=0.012",
-                                fc=SURFACE, ec=(0, 0, 0, 0.10), lw=0.8, alpha=0.9, zorder=8))
-    y = y_top - 0.018
-    for i, txt in enumerate(lines):
-        ax.text(x0, y, txt, transform=ax.transAxes, ha="left", va="center", zorder=9,
-                fontsize=8.6 if i == 0 else 7.9, color=INK if i == 0 else INK2,
-                fontweight="semibold" if i == 0 else "normal")
-        y -= dy
+def _panel_header(ax, title, sub, calls):
+    """Header above a map panel (keeps the map itself unobstructed).
+    Text stays in ink; algorithm identity comes from the coloured dots."""
+    ax.text(0.0, 1.118, title, transform=ax.transAxes, ha="left", va="bottom", fontsize=10.5,
+            fontweight="semibold", color=INK)
+    ax.text(0.0, 1.066, sub, transform=ax.transAxes, ha="left", va="bottom", fontsize=9,
+            color=INK2)
+    x = 0.0
     for algo, n_calls in calls:
-        ax.plot([x0 + 0.01], [y], marker="o", ms=5.5, color=ALGO_COLOR[algo], mec=SURFACE, mew=1.0,
-                transform=ax.transAxes, zorder=9, clip_on=False)
-        ax.text(x0 + 0.032, y, f"{algo}: {_fmt_int(n_calls)} calls", transform=ax.transAxes,
-                ha="left", va="center", fontsize=7.9, color=INK2, zorder=9)
-        y -= dy
+        ax.plot([x + 0.01], [1.033], marker="o", ms=6, color=ALGO_COLOR[algo], mec=SURFACE,
+                mew=1.0, transform=ax.transAxes, clip_on=False)
+        ax.text(x + 0.032, 1.033, f"{algo}: {_fmt_int(n_calls)} oracle calls",
+                transform=ax.transAxes, ha="left", va="center", fontsize=9, color=INK2)
+        x += 0.5
 
 
 def plot_maps(fs, sweep, column, out_path, zoom=5):
@@ -154,8 +161,8 @@ def plot_maps(fs, sweep, column, out_path, zoom=5):
     nrows = int(np.ceil(len(runs) / ncols))
     aspect = (map_tiles.merc_y(lat_hi) - map_tiles.merc_y(lat_lo)) / (lon_hi - lon_lo)
     pw = 5.0
-    fig, axes = plt.subplots(nrows, ncols, figsize=(pw * ncols, pw * aspect * nrows + 1.6),
-                             gridspec_kw={"wspace": 0.03, "hspace": 0.05})
+    fig, axes = plt.subplots(nrows, ncols, figsize=(pw * ncols, (pw * aspect + 0.7) * nrows + 1.5),
+                             gridspec_kw={"wspace": 0.04, "hspace": 0.17})
     axes = np.atleast_1d(axes).ravel()
     for ax in axes[len(runs):]:
         ax.axis("off")
@@ -172,11 +179,13 @@ def plot_maps(fs, sweep, column, out_path, zoom=5):
         slat, slon = fs.proj.inverse(sup[:, 0], sup[:, 1])
         ax.scatter(slon, map_tiles.merc_y(slat), s=46, c=INK, edgecolors=SURFACE, linewidths=1.6,
                    zorder=7)
-        _panel_label(ax, [rec["label"].replace("legs since", "Legs since").replace(
-                          "random flight legs", "Random legs,"),
-                          f"{rec['consent_pct']:.1f}% consenting · r = {_fmt_int(r)} km"],
-                     [("incremental", rec["incremental_calls"]),
-                      ("decremental", rec["decremental_calls"])])
+        title = rec["label"].replace("legs since", "Legs since").replace(
+            "random flight legs", "Random legs,")
+        _panel_header(ax, title,
+                      f"{rec['consent_pct']:.1f}% of positions consenting · MEB radius "
+                      f"{_fmt_int(r)} km (all positions: {_fmt_int(r_all)} km)",
+                      [("incremental", rec["incremental_calls"]),
+                       ("decremental", rec["decremental_calls"])])
         ax.set_xlim(lon_lo, lon_hi)
         ax.set_ylim(map_tiles.merc_y(lat_lo), map_tiles.merc_y(lat_hi))
         ax.set_aspect("equal")
@@ -206,7 +215,7 @@ def plot_maps(fs, sweep, column, out_path, zoom=5):
              "each outline is that plane circle mapped back onto the Web-Mercator basemap, "
              "so it is not drawn as a perfect circle.", fontsize=9, color=INK2, ha="left", va="top",
              linespacing=1.5)
-    fig.subplots_adjust(left=0.01, right=0.99, top=0.935, bottom=0.045)
+    fig.subplots_adjust(left=0.01, right=0.99, top=0.905, bottom=0.045)
     fig.savefig(out_path, dpi=150)
     plt.close(fig)
     return out_path
@@ -373,11 +382,12 @@ def plot_candidates(cand, primary, contrast, out_path):
     for y, v in zip(ys, vals):
         ax1.text(v + 0.8, y, f"{v:.1f}%", va="center", fontsize=8.8, color=INK2)
     ax1.set_yticks(ys)
-    ax1.set_yticklabels([k for k in names])
+    ax1.set_yticklabels([CANDIDATE_NAME.get(k, k) for k in names])
     base = np.mean(list(cand["random_baseline"].values()))
     ax1.axvline(base, color=MUTED, lw=1.0, ls=(0, (1.5, 2.5)), zorder=2)
-    ax1.text(base + 0.5, len(names) - 0.4, "random-point\nbaseline", fontsize=8.5, color=INK2,
-             va="top")
+    ax1.set_ylim(-0.6, len(names) + 0.1)
+    ax1.text(base + 0.4, len(names) - 0.3, "random-position baseline (5 seeds)", fontsize=8.5,
+             color=INK2, va="center")
     ax1.grid(True, axis="x"); ax1.grid(False, axis="y")
     ax1.set_xlabel("MEB shift vs all positions, % of all-points radius\n(mean over 5–95% consenting)")
     ax1.set_title("Candidate consent columns", loc="left", fontsize=11)
@@ -401,7 +411,7 @@ def plot_candidates(cand, primary, contrast, out_path):
              color=INK2)
     fig.suptitle("How far does the consenting MEB move? (exact MEBs on ~800k cleaned positions)",
                  x=0.01, ha="left", fontsize=13, fontweight="semibold", color=INK)
-    fig.subplots_adjust(left=0.12, right=0.98, top=0.86, bottom=0.2, wspace=0.28)
+    fig.subplots_adjust(left=0.19, right=0.98, top=0.86, bottom=0.2, wspace=0.22)
     fig.savefig(out_path, dpi=150)
     plt.close(fig)
     return out_path
