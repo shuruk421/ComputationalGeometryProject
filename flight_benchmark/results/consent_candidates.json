@@ -1,0 +1,1449 @@
+{
+ "dataset": {
+  "rows_in_file": 50949852,
+  "sample_every_nth_row": 60,
+  "rows_sampled": 849165,
+  "points_after_cleaning": 796715,
+  "cleaning": {
+   "rows_sampled": 849165,
+   "missing_or_invalid_latlon": 0,
+   "missing_baroaltitude": 0,
+   "missing_geoaltitude": 0,
+   "implausible_baroaltitude": 161,
+   "implausible_velocity": 294,
+   "stale_position_rows": 50022,
+   "max_pos_age_s": 60.0,
+   "position_jump_outliers": 411,
+   "max_implied_speed_ms": 350.0,
+   "duplicate_latlon_rows": 1562,
+   "points_after_cleaning": 796715,
+   "flight_legs": 11955
+  },
+  "time_first_row": "2016-03-09 15:01 UTC",
+  "time_last_row": "2019-11-27 13:49 UTC",
+  "distinct_icao24": 1,
+  "distinct_callsigns": 2273,
+  "flight_legs": 11955,
+  "lat_range": [
+   31.89701843261719,
+   60.40342712402344
+  ],
+  "lon_range": [
+   -9.2528076171875,
+   35.15202026367188
+  ],
+  "projection": "azimuthal equidistant centred on (47.076N, 15.140E)",
+  "max_distance_from_centre_km": 2383.1094236492636,
+  "baroaltitude_m_range": [
+   -243.83999633789062,
+   12984.48046875
+  ]
+ },
+ "all_points_meb": {
+  "center_km": [
+   -4.751,
+   -542.594
+  ],
+  "radius_km": 2099.467,
+  "support_latlon": [
+   [
+    32.0705,
+    35.152
+   ],
+   [
+    54.683,
+    -6.5263
+   ],
+   [
+    38.4543,
+    -9.2528
+   ]
+  ]
+ },
+ "geometry": {
+  "radius_2d_km": 2099.467,
+  "radius_3d_true_scale_altitude_km": 2099.467,
+  "radius_3d_minus_2d_m": 0.0,
+  "center_3d_vs_2d_horizontal_shift_m": 0.0,
+  "altitude_range_km": [
+   -0.244,
+   12.984
+  ],
+  "spherical_cap_radius_great_circle_km": 2097.55,
+  "aeqd_vs_cap_radius_pct": 0.09,
+  "aeqd_center_vs_cap_center_km": 1.6
+ },
+ "fixed": {
+  "icao24": {
+   "story": "Per aircraft: ICAO24 471f63 consents (the file holds a single aircraft).",
+   "consent_pct": 100.0,
+   "n_consenting": 796715,
+   "center_km": [
+    -4.751,
+    -542.594
+   ],
+   "radius_km": 2099.467,
+   "center_shift_km": 0.0,
+   "radius_change_pct": 0.0,
+   "hausdorff_km": 0.0,
+   "hausdorff_pct_r0": 0.0
+  },
+  "airline_prefix": {
+   "story": "Per operator: CALLSIGN prefix WZZ (Wizz Air); all other prefixes are garbled callsigns of the same aircraft.",
+   "consent_pct": 99.473,
+   "n_consenting": 792519,
+   "center_km": [
+    -4.751,
+    -542.594
+   ],
+   "radius_km": 2099.467,
+   "center_shift_km": 0.0,
+   "radius_change_pct": 0.0,
+   "hausdorff_km": 0.0,
+   "hausdorff_pct_r0": 0.0
+  },
+  "onground": {
+   "story": "ONGROUND == 1.",
+   "consent_pct": 0.002,
+   "n_consenting": 17,
+   "center_km": [
+    -36.722,
+    140.34
+   ],
+   "radius_km": 1136.067,
+   "center_shift_km": 683.68,
+   "radius_change_pct": -45.89,
+   "hausdorff_km": 1647.08,
+   "hausdorff_pct_r0": 78.45
+  },
+  "alert": {
+   "story": "ALERT flag (previous attempt).",
+   "consent_pct": 0.203,
+   "n_consenting": 1618,
+   "center_km": [
+    297.212,
+    -425.031
+   ],
+   "radius_km": 1862.625,
+   "center_shift_km": 324.04,
+   "radius_change_pct": -11.28,
+   "hausdorff_km": 560.88,
+   "hausdorff_pct_r0": 26.72
+  },
+  "spi": {
+   "story": "SPI flag (previous attempt).",
+   "consent_pct": 0.067,
+   "n_consenting": 534,
+   "center_km": [
+    286.541,
+    -450.286
+   ],
+   "radius_km": 1857.801,
+   "center_shift_km": 305.57,
+   "radius_change_pct": -11.51,
+   "hausdorff_km": 547.23,
+   "hausdorff_pct_r0": 26.07
+  },
+  "alert_or_spi": {
+   "story": "ALERT or SPI (previous attempt).",
+   "consent_pct": 0.253,
+   "n_consenting": 2018,
+   "center_km": [
+    292.172,
+    -428.818
+   ],
+   "radius_km": 1864.752,
+   "center_shift_km": 317.97,
+   "radius_change_pct": -11.18,
+   "hausdorff_km": 552.69,
+   "hausdorff_pct_r0": 26.33
+  }
+ },
+ "sweep": {
+  "optin_date": {
+   "story": "Opt-in date: every flight leg flown on/after date T is shared (a leg consents as a unit); T swept by quantile.",
+   "rows": [
+    {
+     "target_frac": 0.05,
+     "label": "legs since 2019-09-28",
+     "threshold": 1569642321.0,
+     "consent_pct": 5.01,
+     "center_km": [
+      166.069,
+      -236.532
+     ],
+     "radius_km": 1764.751,
+     "center_shift_km": 350.5,
+     "radius_change_pct": -15.94,
+     "hausdorff_km": 685.22,
+     "hausdorff_pct_r0": 32.64
+    },
+    {
+     "target_frac": 0.1,
+     "label": "legs since 2019-07-25",
+     "threshold": 1564095771.0,
+     "consent_pct": 10.01,
+     "center_km": [
+      166.069,
+      -236.532
+     ],
+     "radius_km": 1764.751,
+     "center_shift_km": 350.5,
+     "radius_change_pct": -15.94,
+     "hausdorff_km": 685.22,
+     "hausdorff_pct_r0": 32.64
+    },
+    {
+     "target_frac": 0.25,
+     "label": "legs since 2019-02-01",
+     "threshold": 1549043944.0,
+     "consent_pct": 25.02,
+     "center_km": [
+      187.914,
+      -280.125
+     ],
+     "radius_km": 2051.37,
+     "center_shift_km": 325.59,
+     "radius_change_pct": -2.29,
+     "hausdorff_km": 373.69,
+     "hausdorff_pct_r0": 17.8
+    },
+    {
+     "target_frac": 0.5,
+     "label": "legs since 2018-04-14",
+     "threshold": 1523678734.0,
+     "consent_pct": 50.02,
+     "center_km": [
+      195.626,
+      -281.611
+     ],
+     "radius_km": 2058.217,
+     "center_shift_km": 329.03,
+     "radius_change_pct": -1.96,
+     "hausdorff_km": 370.28,
+     "hausdorff_pct_r0": 17.64
+    },
+    {
+     "target_frac": 0.75,
+     "label": "legs since 2017-06-27",
+     "threshold": 1498581075.0,
+     "consent_pct": 75.0,
+     "center_km": [
+      195.626,
+      -281.611
+     ],
+     "radius_km": 2058.217,
+     "center_shift_km": 329.03,
+     "radius_change_pct": -1.96,
+     "hausdorff_km": 370.28,
+     "hausdorff_pct_r0": 17.64
+    },
+    {
+     "target_frac": 0.9,
+     "label": "legs since 2016-12-05",
+     "threshold": 1480937628.0,
+     "consent_pct": 90.01,
+     "center_km": [
+      56.734,
+      -461.931
+     ],
+     "radius_km": 2080.95,
+     "center_shift_km": 101.42,
+     "radius_change_pct": -0.88,
+     "hausdorff_km": 119.94,
+     "hausdorff_pct_r0": 5.71
+    },
+    {
+     "target_frac": 0.95,
+     "label": "legs since 2016-09-03",
+     "threshold": 1472892136.0,
+     "consent_pct": 95.0,
+     "center_km": [
+      1.094,
+      -534.926
+     ],
+     "radius_km": 2097.502,
+     "center_shift_km": 9.64,
+     "radius_change_pct": -0.09,
+     "hausdorff_km": 11.61,
+     "hausdorff_pct_r0": 0.55
+    }
+   ],
+   "consent_pct_range": [
+    5.01,
+    95.0
+   ],
+   "mean_hausdorff_pct_r0": 17.8,
+   "mean_random_baseline_pct_r0": 0.84
+  },
+  "flightnum_top": {
+   "story": "Per flight number (CALLSIGN ~ route): the k busiest flight numbers have a data-sharing agreement.",
+   "rows": [
+    {
+     "target_frac": 0.05,
+     "label": "top 5 flight numbers",
+     "threshold": 5,
+     "consent_pct": 5.22,
+     "center_km": [
+      -345.849,
+      -348.746
+     ],
+     "radius_km": 1242.327,
+     "center_shift_km": 392.33,
+     "radius_change_pct": -40.83,
+     "hausdorff_km": 1249.47,
+     "hausdorff_pct_r0": 59.51
+    },
+    {
+     "target_frac": 0.1,
+     "label": "top 11 flight numbers",
+     "threshold": 11,
+     "consent_pct": 10.2,
+     "center_km": [
+      -356.037,
+      -371.208
+     ],
+     "radius_km": 1272.859,
+     "center_shift_km": 390.86,
+     "radius_change_pct": -39.37,
+     "hausdorff_km": 1217.47,
+     "hausdorff_pct_r0": 57.99
+    },
+    {
+     "target_frac": 0.25,
+     "label": "top 33 flight numbers",
+     "threshold": 33,
+     "consent_pct": 25.14,
+     "center_km": [
+      -444.467,
+      -382.638
+     ],
+     "radius_km": 1370.929,
+     "center_shift_km": 467.91,
+     "radius_change_pct": -34.7,
+     "hausdorff_km": 1196.44,
+     "hausdorff_pct_r0": 56.99
+    },
+    {
+     "target_frac": 0.5,
+     "label": "top 84 flight numbers",
+     "threshold": 84,
+     "consent_pct": 50.08,
+     "center_km": [
+      -425.141,
+      -55.649
+     ],
+     "radius_km": 1466.997,
+     "center_shift_km": 643.31,
+     "radius_change_pct": -30.13,
+     "hausdorff_km": 1275.78,
+     "hausdorff_pct_r0": 60.77
+    },
+    {
+     "target_frac": 0.75,
+     "label": "top 177 flight numbers",
+     "threshold": 177,
+     "consent_pct": 75.11,
+     "center_km": [
+      -15.218,
+      -653.313
+     ],
+     "radius_km": 2064.017,
+     "center_shift_km": 111.21,
+     "radius_change_pct": -1.69,
+     "hausdorff_km": 146.66,
+     "hausdorff_pct_r0": 6.99
+    },
+    {
+     "target_frac": 0.9,
+     "label": "top 299 flight numbers",
+     "threshold": 299,
+     "consent_pct": 90.01,
+     "center_km": [
+      13.137,
+      -519.127
+     ],
+     "radius_km": 2093.59,
+     "center_shift_km": 29.51,
+     "radius_change_pct": -0.28,
+     "hausdorff_km": 35.38,
+     "hausdorff_pct_r0": 1.69
+    },
+    {
+     "target_frac": 0.95,
+     "label": "top 380 flight numbers",
+     "threshold": 380,
+     "consent_pct": 95.03,
+     "center_km": [
+      1.094,
+      -534.926
+     ],
+     "radius_km": 2097.502,
+     "center_shift_km": 9.64,
+     "radius_change_pct": -0.09,
+     "hausdorff_km": 11.61,
+     "hausdorff_pct_r0": 0.55
+    }
+   ],
+   "consent_pct_range": [
+    5.22,
+    95.03
+   ],
+   "mean_hausdorff_pct_r0": 34.93,
+   "mean_random_baseline_pct_r0": 0.84
+  },
+  "baro_above": {
+   "story": "BAROALTITUDE >= h: only en-route/cruise positions are shareable; low-altitude fixes near airports are withheld.",
+   "rows": [
+    {
+     "target_frac": 0.05,
+     "label": "baro alt >= 11,278 m",
+     "threshold": 11277.599609375,
+     "consent_pct": 5.54,
+     "center_km": [
+      17.049,
+      -648.468
+     ],
+     "radius_km": 2020.28,
+     "center_shift_km": 108.09,
+     "radius_change_pct": -3.77,
+     "hausdorff_km": 187.28,
+     "hausdorff_pct_r0": 8.92
+    },
+    {
+     "target_frac": 0.1,
+     "label": "baro alt >= 10,980 m",
+     "threshold": 10980.419921875,
+     "consent_pct": 11.49,
+     "center_km": [
+      38.986,
+      -545.766
+     ],
+     "radius_km": 2043.795,
+     "center_shift_km": 43.85,
+     "radius_change_pct": -2.65,
+     "hausdorff_km": 99.52,
+     "hausdorff_pct_r0": 4.74
+    },
+    {
+     "target_frac": 0.25,
+     "label": "baro alt >= 10,683 m",
+     "threshold": 10683.240234375,
+     "consent_pct": 25.79,
+     "center_km": [
+      -10.771,
+      -581.119
+     ],
+     "radius_km": 2073.309,
+     "center_shift_km": 38.99,
+     "radius_change_pct": -1.25,
+     "hausdorff_km": 65.15,
+     "hausdorff_pct_r0": 3.1
+    },
+    {
+     "target_frac": 0.5,
+     "label": "baro alt >= 10,378 m",
+     "threshold": 10378.4404296875,
+     "consent_pct": 50.06,
+     "center_km": [
+      -10.771,
+      -581.119
+     ],
+     "radius_km": 2073.309,
+     "center_shift_km": 38.99,
+     "radius_change_pct": -1.25,
+     "hausdorff_km": 65.15,
+     "hausdorff_pct_r0": 3.1
+    },
+    {
+     "target_frac": 0.75,
+     "label": "baro alt >= 8,443 m",
+     "threshold": 8442.9599609375,
+     "consent_pct": 75.01,
+     "center_km": [
+      -9.744,
+      -582.032
+     ],
+     "radius_km": 2074.321,
+     "center_shift_km": 39.75,
+     "radius_change_pct": -1.2,
+     "hausdorff_km": 64.9,
+     "hausdorff_pct_r0": 3.09
+    },
+    {
+     "target_frac": 0.9,
+     "label": "baro alt >= 3,117 m",
+     "threshold": 3116.580078125,
+     "consent_pct": 90.01,
+     "center_km": [
+      -4.263,
+      -556.266
+     ],
+     "radius_km": 2080.394,
+     "center_shift_km": 13.68,
+     "radius_change_pct": -0.91,
+     "hausdorff_km": 32.75,
+     "hausdorff_pct_r0": 1.56
+    },
+    {
+     "target_frac": 0.95,
+     "label": "baro alt >= 1,486 m",
+     "threshold": 1485.9000244140625,
+     "consent_pct": 95.0,
+     "center_km": [
+      -9.991,
+      -540.493
+     ],
+     "radius_km": 2092.427,
+     "center_shift_km": 5.65,
+     "radius_change_pct": -0.34,
+     "hausdorff_km": 12.69,
+     "hausdorff_pct_r0": 0.6
+    }
+   ],
+   "consent_pct_range": [
+    5.54,
+    95.0
+   ],
+   "mean_hausdorff_pct_r0": 3.59,
+   "mean_random_baseline_pct_r0": 0.84
+  },
+  "baro_below": {
+   "story": "BAROALTITUDE < h: only terminal-area (low) positions are shareable.",
+   "rows": [
+    {
+     "target_frac": 0.05,
+     "label": "baro alt < 1,486 m",
+     "threshold": 1485.9000244140625,
+     "consent_pct": 5.0,
+     "center_km": [
+      -4.751,
+      -542.594
+     ],
+     "radius_km": 2099.467,
+     "center_shift_km": 0.0,
+     "radius_change_pct": 0.0,
+     "hausdorff_km": 0.0,
+     "hausdorff_pct_r0": 0.0
+    },
+    {
+     "target_frac": 0.1,
+     "label": "baro alt < 3,117 m",
+     "threshold": 3116.580078125,
+     "consent_pct": 9.99,
+     "center_km": [
+      -4.751,
+      -542.594
+     ],
+     "radius_km": 2099.467,
+     "center_shift_km": 0.0,
+     "radius_change_pct": 0.0,
+     "hausdorff_km": 0.0,
+     "hausdorff_pct_r0": 0.0
+    },
+    {
+     "target_frac": 0.25,
+     "label": "baro alt < 8,443 m",
+     "threshold": 8442.9599609375,
+     "consent_pct": 24.99,
+     "center_km": [
+      -4.751,
+      -542.594
+     ],
+     "radius_km": 2099.467,
+     "center_shift_km": 0.0,
+     "radius_change_pct": -0.0,
+     "hausdorff_km": 0.0,
+     "hausdorff_pct_r0": 0.0
+    },
+    {
+     "target_frac": 0.5,
+     "label": "baro alt < 10,378 m",
+     "threshold": 10378.4404296875,
+     "consent_pct": 49.94,
+     "center_km": [
+      -4.751,
+      -542.594
+     ],
+     "radius_km": 2099.467,
+     "center_shift_km": 0.0,
+     "radius_change_pct": 0.0,
+     "hausdorff_km": 0.0,
+     "hausdorff_pct_r0": 0.0
+    },
+    {
+     "target_frac": 0.75,
+     "label": "baro alt < 10,683 m",
+     "threshold": 10683.240234375,
+     "consent_pct": 74.21,
+     "center_km": [
+      -4.751,
+      -542.594
+     ],
+     "radius_km": 2099.467,
+     "center_shift_km": 0.0,
+     "radius_change_pct": 0.0,
+     "hausdorff_km": 0.0,
+     "hausdorff_pct_r0": 0.0
+    },
+    {
+     "target_frac": 0.9,
+     "label": "baro alt < 10,980 m",
+     "threshold": 10980.419921875,
+     "consent_pct": 88.51,
+     "center_km": [
+      -4.751,
+      -542.594
+     ],
+     "radius_km": 2099.467,
+     "center_shift_km": 0.0,
+     "radius_change_pct": 0.0,
+     "hausdorff_km": 0.0,
+     "hausdorff_pct_r0": 0.0
+    },
+    {
+     "target_frac": 0.95,
+     "label": "baro alt < 11,278 m",
+     "threshold": 11277.599609375,
+     "consent_pct": 94.46,
+     "center_km": [
+      -4.751,
+      -542.594
+     ],
+     "radius_km": 2099.467,
+     "center_shift_km": 0.0,
+     "radius_change_pct": 0.0,
+     "hausdorff_km": 0.0,
+     "hausdorff_pct_r0": 0.0
+    }
+   ],
+   "consent_pct_range": [
+    5.0,
+    94.46
+   ],
+   "mean_hausdorff_pct_r0": 0.0,
+   "mean_random_baseline_pct_r0": 0.84
+  },
+  "geo_above": {
+   "story": "GEOALTITUDE >= h (GNSS height).",
+   "rows": [
+    {
+     "target_frac": 0.05,
+     "label": "geo alt >= 11,430 m",
+     "threshold": 11430.0,
+     "consent_pct": 5.07,
+     "center_km": [
+      -73.108,
+      -884.226
+     ],
+     "radius_km": 2024.548,
+     "center_shift_km": 348.4,
+     "radius_change_pct": -3.57,
+     "hausdorff_km": 423.32,
+     "hausdorff_pct_r0": 20.16
+    },
+    {
+     "target_frac": 0.1,
+     "label": "geo alt >= 11,270 m",
+     "threshold": 11269.98046875,
+     "consent_pct": 10.29,
+     "center_km": [
+      -40.079,
+      -719.364
+     ],
+     "radius_km": 2045.053,
+     "center_shift_km": 180.27,
+     "radius_change_pct": -2.59,
+     "hausdorff_km": 234.68,
+     "hausdorff_pct_r0": 11.18
+    },
+    {
+     "target_frac": 0.25,
+     "label": "geo alt >= 10,973 m",
+     "threshold": 10972.7998046875,
+     "consent_pct": 25.32,
+     "center_km": [
+      -32.306,
+      -685.735
+     ],
+     "radius_km": 2051.939,
+     "center_shift_km": 145.77,
+     "radius_change_pct": -2.26,
+     "hausdorff_km": 193.3,
+     "hausdorff_pct_r0": 9.21
+    },
+    {
+     "target_frac": 0.5,
+     "label": "geo alt >= 10,561 m",
+     "threshold": 10561.3203125,
+     "consent_pct": 50.37,
+     "center_km": [
+      -20.593,
+      -628.538
+     ],
+     "radius_km": 2063.417,
+     "center_shift_km": 87.39,
+     "radius_change_pct": -1.72,
+     "hausdorff_km": 123.44,
+     "hausdorff_pct_r0": 5.88
+    },
+    {
+     "target_frac": 0.75,
+     "label": "geo alt >= 8,496 m",
+     "threshold": 8496.2998046875,
+     "consent_pct": 75.01,
+     "center_km": [
+      -16.354,
+      -607.837
+     ],
+     "radius_km": 2067.961,
+     "center_shift_km": 66.27,
+     "radius_change_pct": -1.5,
+     "hausdorff_km": 97.77,
+     "hausdorff_pct_r0": 4.66
+    },
+    {
+     "target_frac": 0.9,
+     "label": "geo alt >= 3,101 m",
+     "threshold": 3101.340087890625,
+     "consent_pct": 90.01,
+     "center_km": [
+      -4.341,
+      -549.176
+     ],
+     "radius_km": 2081.951,
+     "center_shift_km": 6.59,
+     "radius_change_pct": -0.83,
+     "hausdorff_km": 24.11,
+     "hausdorff_pct_r0": 1.15
+    },
+    {
+     "target_frac": 0.95,
+     "label": "geo alt >= 1,494 m",
+     "threshold": 1493.52001953125,
+     "consent_pct": 95.03,
+     "center_km": [
+      -8.571,
+      -543.466
+     ],
+     "radius_km": 2095.61,
+     "center_shift_km": 3.92,
+     "radius_change_pct": -0.18,
+     "hausdorff_km": 7.78,
+     "hausdorff_pct_r0": 0.37
+    }
+   ],
+   "consent_pct_range": [
+    5.07,
+    95.03
+   ],
+   "mean_hausdorff_pct_r0": 7.52,
+   "mean_random_baseline_pct_r0": 0.84
+  },
+  "velocity_above": {
+   "story": "VELOCITY >= v (ground speed).",
+   "rows": [
+    {
+     "target_frac": 0.05,
+     "label": "velocity >= 257 m/s",
+     "threshold": 256.7462158203125,
+     "consent_pct": 5.0,
+     "center_km": [
+      65.062,
+      -664.343
+     ],
+     "radius_km": 1970.595,
+     "center_shift_km": 140.34,
+     "radius_change_pct": -6.14,
+     "hausdorff_km": 269.22,
+     "hausdorff_pct_r0": 12.82
+    },
+    {
+     "target_frac": 0.1,
+     "label": "velocity >= 249 m/s",
+     "threshold": 249.09982299804688,
+     "consent_pct": 10.0,
+     "center_km": [
+      36.265,
+      -698.213
+     ],
+     "radius_km": 1983.766,
+     "center_shift_km": 160.93,
+     "radius_change_pct": -5.51,
+     "hausdorff_km": 276.63,
+     "hausdorff_pct_r0": 13.18
+    },
+    {
+     "target_frac": 0.25,
+     "label": "velocity >= 237 m/s",
+     "threshold": 236.6962432861328,
+     "consent_pct": 25.0,
+     "center_km": [
+      20.202,
+      -679.315
+     ],
+     "radius_km": 2005.875,
+     "center_shift_km": 138.98,
+     "radius_change_pct": -4.46,
+     "hausdorff_km": 232.57,
+     "hausdorff_pct_r0": 11.08
+    },
+    {
+     "target_frac": 0.5,
+     "label": "velocity >= 222 m/s",
+     "threshold": 222.23095703125,
+     "consent_pct": 50.0,
+     "center_km": [
+      28.867,
+      -561.659
+     ],
+     "radius_km": 2046.628,
+     "center_shift_km": 38.65,
+     "radius_change_pct": -2.52,
+     "hausdorff_km": 91.49,
+     "hausdorff_pct_r0": 4.36
+    },
+    {
+     "target_frac": 0.75,
+     "label": "velocity >= 201 m/s",
+     "threshold": 200.91326904296875,
+     "consent_pct": 75.0,
+     "center_km": [
+      10.27,
+      -566.558
+     ],
+     "radius_km": 2061.237,
+     "center_shift_km": 28.28,
+     "radius_change_pct": -1.82,
+     "hausdorff_km": 66.51,
+     "hausdorff_pct_r0": 3.17
+    },
+    {
+     "target_frac": 0.9,
+     "label": "velocity >= 151 m/s",
+     "threshold": 150.9741973876953,
+     "consent_pct": 90.0,
+     "center_km": [
+      -7.951,
+      -553.793
+     ],
+     "radius_km": 2083.191,
+     "center_shift_km": 11.65,
+     "radius_change_pct": -0.78,
+     "hausdorff_km": 27.92,
+     "hausdorff_pct_r0": 1.33
+    },
+    {
+     "target_frac": 0.95,
+     "label": "velocity >= 118 m/s",
+     "threshold": 117.50175476074219,
+     "consent_pct": 95.0,
+     "center_km": [
+      -9.073,
+      -547.098
+     ],
+     "radius_km": 2094.941,
+     "center_shift_km": 6.24,
+     "radius_change_pct": -0.22,
+     "hausdorff_km": 10.77,
+     "hausdorff_pct_r0": 0.51
+    }
+   ],
+   "consent_pct_range": [
+    5.0,
+    95.0
+   ],
+   "mean_hausdorff_pct_r0": 6.64,
+   "mean_random_baseline_pct_r0": 0.84
+  },
+  "hour_of_day": {
+   "story": "Positions recorded before a UTC time-of-day cut-off.",
+   "rows": [
+    {
+     "target_frac": 0.05,
+     "label": "before 04:27 UTC",
+     "threshold": 4.4625,
+     "consent_pct": 5.0,
+     "center_km": [
+      -81.176,
+      -324.258
+     ],
+     "radius_km": 1504.789,
+     "center_shift_km": 231.33,
+     "radius_change_pct": -28.33,
+     "hausdorff_km": 826.0,
+     "hausdorff_pct_r0": 39.34
+    },
+    {
+     "target_frac": 0.1,
+     "label": "before 05:18 UTC",
+     "threshold": 5.3025,
+     "consent_pct": 10.0,
+     "center_km": [
+      284.021,
+      -459.617
+     ],
+     "radius_km": 1855.773,
+     "center_shift_km": 300.46,
+     "radius_change_pct": -11.61,
+     "hausdorff_km": 544.15,
+     "hausdorff_pct_r0": 25.92
+    },
+    {
+     "target_frac": 0.25,
+     "label": "before 08:12 UTC",
+     "threshold": 8.20138888888889,
+     "consent_pct": 25.0,
+     "center_km": [
+      326.176,
+      -362.568
+     ],
+     "radius_km": 1904.67,
+     "center_shift_km": 376.73,
+     "radius_change_pct": -9.28,
+     "hausdorff_km": 571.52,
+     "hausdorff_pct_r0": 27.22
+    },
+    {
+     "target_frac": 0.5,
+     "label": "before 13:33 UTC",
+     "threshold": 13.563333333333333,
+     "consent_pct": 50.0,
+     "center_km": [
+      326.176,
+      -362.568
+     ],
+     "radius_km": 1904.67,
+     "center_shift_km": 376.73,
+     "radius_change_pct": -9.28,
+     "hausdorff_km": 571.52,
+     "hausdorff_pct_r0": 27.22
+    },
+    {
+     "target_frac": 0.75,
+     "label": "before 18:29 UTC",
+     "threshold": 18.491666666666667,
+     "consent_pct": 75.0,
+     "center_km": [
+      -14.58,
+      -591.499
+     ],
+     "radius_km": 2087.902,
+     "center_shift_km": 49.88,
+     "radius_change_pct": -0.55,
+     "hausdorff_km": 61.45,
+     "hausdorff_pct_r0": 2.93
+    },
+    {
+     "target_frac": 0.9,
+     "label": "before 21:33 UTC",
+     "threshold": 21.551111111111112,
+     "consent_pct": 90.0,
+     "center_km": [
+      -4.751,
+      -542.594
+     ],
+     "radius_km": 2099.467,
+     "center_shift_km": 0.0,
+     "radius_change_pct": 0.0,
+     "hausdorff_km": 0.0,
+     "hausdorff_pct_r0": 0.0
+    },
+    {
+     "target_frac": 0.95,
+     "label": "before 22:42 UTC",
+     "threshold": 22.711388888888887,
+     "consent_pct": 95.0,
+     "center_km": [
+      -4.751,
+      -542.594
+     ],
+     "radius_km": 2099.467,
+     "center_shift_km": 0.0,
+     "radius_change_pct": 0.0,
+     "hausdorff_km": 0.0,
+     "hausdorff_pct_r0": 0.0
+    }
+   ],
+   "consent_pct_range": [
+    5.0,
+    95.0
+   ],
+   "mean_hausdorff_pct_r0": 17.52,
+   "mean_random_baseline_pct_r0": 0.84
+  },
+  "squawk_below": {
+   "story": "SQUAWK < s (codes are allocated in blocks to ATC units).",
+   "rows": [
+    {
+     "target_frac": 0.05,
+     "label": "squawk < 0234",
+     "threshold": 234.0,
+     "consent_pct": 4.97,
+     "center_km": [
+      -114.541,
+      -521.858
+     ],
+     "radius_km": 1871.124,
+     "center_shift_km": 111.73,
+     "radius_change_pct": -10.88,
+     "hausdorff_km": 340.07,
+     "hausdorff_pct_r0": 16.2
+    },
+    {
+     "target_frac": 0.1,
+     "label": "squawk < 0434",
+     "threshold": 434.0,
+     "consent_pct": 9.95,
+     "center_km": [
+      -31.386,
+      -676.958
+     ],
+     "radius_km": 2045.949,
+     "center_shift_km": 136.98,
+     "radius_change_pct": -2.55,
+     "hausdorff_km": 190.5,
+     "hausdorff_pct_r0": 9.07
+    },
+    {
+     "target_frac": 0.25,
+     "label": "squawk < 1263",
+     "threshold": 1263.0,
+     "consent_pct": 24.97,
+     "center_km": [
+      -5.126,
+      -574.373
+     ],
+     "radius_km": 2071.784,
+     "center_shift_km": 31.78,
+     "radius_change_pct": -1.32,
+     "hausdorff_km": 59.46,
+     "hausdorff_pct_r0": 2.83
+    },
+    {
+     "target_frac": 0.5,
+     "label": "squawk < 4136",
+     "threshold": 4136.0,
+     "consent_pct": 49.99,
+     "center_km": [
+      -1.66,
+      -555.868
+     ],
+     "radius_km": 2076.623,
+     "center_shift_km": 13.63,
+     "radius_change_pct": -1.09,
+     "hausdorff_km": 36.47,
+     "hausdorff_pct_r0": 1.74
+    },
+    {
+     "target_frac": 0.75,
+     "label": "squawk < 5447",
+     "threshold": 5447.0,
+     "consent_pct": 74.99,
+     "center_km": [
+      13.869,
+      -518.166
+     ],
+     "radius_km": 2093.358,
+     "center_shift_km": 30.72,
+     "radius_change_pct": -0.29,
+     "hausdorff_km": 36.82,
+     "hausdorff_pct_r0": 1.75
+    },
+    {
+     "target_frac": 0.9,
+     "label": "squawk < 7471",
+     "threshold": 7471.0,
+     "consent_pct": 89.95,
+     "center_km": [
+      -4.751,
+      -542.594
+     ],
+     "radius_km": 2099.467,
+     "center_shift_km": 0.0,
+     "radius_change_pct": -0.0,
+     "hausdorff_km": 0.0,
+     "hausdorff_pct_r0": 0.0
+    },
+    {
+     "target_frac": 0.95,
+     "label": "squawk < 7570",
+     "threshold": 7570.0,
+     "consent_pct": 94.96,
+     "center_km": [
+      -4.751,
+      -542.594
+     ],
+     "radius_km": 2099.467,
+     "center_shift_km": 0.0,
+     "radius_change_pct": -0.0,
+     "hausdorff_km": 0.0,
+     "hausdorff_pct_r0": 0.0
+    }
+   ],
+   "consent_pct_range": [
+    4.97,
+    94.96
+   ],
+   "mean_hausdorff_pct_r0": 4.51,
+   "mean_random_baseline_pct_r0": 0.84
+  },
+  "flightnum_random": {
+   "story": "Per flight number, pseudo-random (hashed) decision with probability p.",
+   "rows": [
+    {
+     "target_frac": 0.05,
+     "label": "random flight numbers p=0.05",
+     "threshold": 0.05,
+     "consent_pct": 3.2,
+     "center_km": [
+      -138.012,
+      -550.663
+     ],
+     "radius_km": 1874.1,
+     "center_shift_km": 133.51,
+     "radius_change_pct": -10.73,
+     "hausdorff_km": 358.87,
+     "hausdorff_pct_r0": 17.09
+    },
+    {
+     "target_frac": 0.1,
+     "label": "random flight numbers p=0.10",
+     "threshold": 0.1,
+     "consent_pct": 6.38,
+     "center_km": [
+      -191.557,
+      -580.087
+     ],
+     "radius_km": 1911.314,
+     "center_shift_km": 190.53,
+     "radius_change_pct": -8.96,
+     "hausdorff_km": 378.68,
+     "hausdorff_pct_r0": 18.04
+    },
+    {
+     "target_frac": 0.25,
+     "label": "random flight numbers p=0.25",
+     "threshold": 0.25,
+     "consent_pct": 25.55,
+     "center_km": [
+      -164.865,
+      -493.21
+     ],
+     "radius_km": 1942.695,
+     "center_shift_km": 167.56,
+     "radius_change_pct": -7.47,
+     "hausdorff_km": 324.33,
+     "hausdorff_pct_r0": 15.45
+    },
+    {
+     "target_frac": 0.5,
+     "label": "random flight numbers p=0.50",
+     "threshold": 0.5,
+     "consent_pct": 52.98,
+     "center_km": [
+      -11.476,
+      -576.058
+     ],
+     "radius_km": 2091.432,
+     "center_shift_km": 34.13,
+     "radius_change_pct": -0.38,
+     "hausdorff_km": 42.17,
+     "hausdorff_pct_r0": 2.01
+    },
+    {
+     "target_frac": 0.75,
+     "label": "random flight numbers p=0.75",
+     "threshold": 0.75,
+     "consent_pct": 75.92,
+     "center_km": [
+      -4.751,
+      -542.594
+     ],
+     "radius_km": 2099.467,
+     "center_shift_km": 0.0,
+     "radius_change_pct": 0.0,
+     "hausdorff_km": 0.0,
+     "hausdorff_pct_r0": 0.0
+    },
+    {
+     "target_frac": 0.9,
+     "label": "random flight numbers p=0.90",
+     "threshold": 0.9,
+     "consent_pct": 89.18,
+     "center_km": [
+      -4.751,
+      -542.594
+     ],
+     "radius_km": 2099.467,
+     "center_shift_km": 0.0,
+     "radius_change_pct": 0.0,
+     "hausdorff_km": 0.0,
+     "hausdorff_pct_r0": 0.0
+    },
+    {
+     "target_frac": 0.95,
+     "label": "random flight numbers p=0.95",
+     "threshold": 0.95,
+     "consent_pct": 92.64,
+     "center_km": [
+      -4.751,
+      -542.594
+     ],
+     "radius_km": 2099.467,
+     "center_shift_km": 0.0,
+     "radius_change_pct": 0.0,
+     "hausdorff_km": 0.0,
+     "hausdorff_pct_r0": 0.0
+    }
+   ],
+   "consent_pct_range": [
+    3.2,
+    92.64
+   ],
+   "mean_hausdorff_pct_r0": 7.51,
+   "mean_random_baseline_pct_r0": 0.84
+  },
+  "leg_random": {
+   "story": "Per flight leg, pseudo-random (hashed) decision with probability p.",
+   "rows": [
+    {
+     "target_frac": 0.05,
+     "label": "random flight legs p=0.05",
+     "threshold": 0.05,
+     "consent_pct": 5.15,
+     "center_km": [
+      249.918,
+      -460.955
+     ],
+     "radius_km": 1913.384,
+     "center_shift_km": 267.43,
+     "radius_change_pct": -8.86,
+     "hausdorff_km": 453.52,
+     "hausdorff_pct_r0": 21.6
+    },
+    {
+     "target_frac": 0.1,
+     "label": "random flight legs p=0.10",
+     "threshold": 0.1,
+     "consent_pct": 10.12,
+     "center_km": [
+      164.681,
+      -525.458
+     ],
+     "radius_km": 1954.725,
+     "center_shift_km": 170.3,
+     "radius_change_pct": -6.89,
+     "hausdorff_km": 315.04,
+     "hausdorff_pct_r0": 15.01
+    },
+    {
+     "target_frac": 0.25,
+     "label": "random flight legs p=0.25",
+     "threshold": 0.25,
+     "consent_pct": 25.3,
+     "center_km": [
+      -26.248,
+      -641.371
+     ],
+     "radius_km": 2075.63,
+     "center_shift_km": 101.09,
+     "radius_change_pct": -1.14,
+     "hausdorff_km": 124.93,
+     "hausdorff_pct_r0": 5.95
+    },
+    {
+     "target_frac": 0.5,
+     "label": "random flight legs p=0.50",
+     "threshold": 0.5,
+     "consent_pct": 50.33,
+     "center_km": [
+      -5.671,
+      -542.199
+     ],
+     "radius_km": 2098.566,
+     "center_shift_km": 1.0,
+     "radius_change_pct": -0.04,
+     "hausdorff_km": 1.9,
+     "hausdorff_pct_r0": 0.09
+    },
+    {
+     "target_frac": 0.75,
+     "label": "random flight legs p=0.75",
+     "threshold": 0.75,
+     "consent_pct": 75.38,
+     "center_km": [
+      -4.751,
+      -542.594
+     ],
+     "radius_km": 2099.467,
+     "center_shift_km": 0.0,
+     "radius_change_pct": 0.0,
+     "hausdorff_km": 0.0,
+     "hausdorff_pct_r0": 0.0
+    },
+    {
+     "target_frac": 0.9,
+     "label": "random flight legs p=0.90",
+     "threshold": 0.9,
+     "consent_pct": 90.0,
+     "center_km": [
+      -4.751,
+      -542.594
+     ],
+     "radius_km": 2099.467,
+     "center_shift_km": 0.0,
+     "radius_change_pct": 0.0,
+     "hausdorff_km": 0.0,
+     "hausdorff_pct_r0": 0.0
+    },
+    {
+     "target_frac": 0.95,
+     "label": "random flight legs p=0.95",
+     "threshold": 0.95,
+     "consent_pct": 94.97,
+     "center_km": [
+      -4.751,
+      -542.594
+     ],
+     "radius_km": 2099.467,
+     "center_shift_km": 0.0,
+     "radius_change_pct": 0.0,
+     "hausdorff_km": 0.0,
+     "hausdorff_pct_r0": 0.0
+    }
+   ],
+   "consent_pct_range": [
+    5.15,
+    94.97
+   ],
+   "mean_hausdorff_pct_r0": 6.09,
+   "mean_random_baseline_pct_r0": 0.84
+  },
+  "point_random": {
+   "story": "Independent coin flip per position (baseline).",
+   "rows": [
+    {
+     "target_frac": 0.05,
+     "label": "random points p=0.05",
+     "threshold": 0.05,
+     "consent_pct": 4.98,
+     "center_km": [
+      -12.959,
+      -616.099
+     ],
+     "radius_km": 2074.244,
+     "center_shift_km": 73.96,
+     "radius_change_pct": -1.2,
+     "hausdorff_km": 99.18,
+     "hausdorff_pct_r0": 4.72
+    },
+    {
+     "target_frac": 0.1,
+     "label": "random points p=0.10",
+     "threshold": 0.1,
+     "consent_pct": 10.02,
+     "center_km": [
+      -6.692,
+      -568.389
+     ],
+     "radius_km": 2088.561,
+     "center_shift_km": 25.87,
+     "radius_change_pct": -0.52,
+     "hausdorff_km": 36.77,
+     "hausdorff_pct_r0": 1.75
+    },
+    {
+     "target_frac": 0.25,
+     "label": "random points p=0.25",
+     "threshold": 0.25,
+     "consent_pct": 24.99,
+     "center_km": [
+      -6.692,
+      -568.389
+     ],
+     "radius_km": 2088.561,
+     "center_shift_km": 25.87,
+     "radius_change_pct": -0.52,
+     "hausdorff_km": 36.77,
+     "hausdorff_pct_r0": 1.75
+    },
+    {
+     "target_frac": 0.5,
+     "label": "random points p=0.50",
+     "threshold": 0.5,
+     "consent_pct": 50.01,
+     "center_km": [
+      -5.93,
+      -544.609
+     ],
+     "radius_km": 2098.195,
+     "center_shift_km": 2.33,
+     "radius_change_pct": -0.06,
+     "hausdorff_km": 3.61,
+     "hausdorff_pct_r0": 0.17
+    },
+    {
+     "target_frac": 0.75,
+     "label": "random points p=0.75",
+     "threshold": 0.75,
+     "consent_pct": 74.97,
+     "center_km": [
+      -5.451,
+      -542.294
+     ],
+     "radius_km": 2098.781,
+     "center_shift_km": 0.76,
+     "radius_change_pct": -0.03,
+     "hausdorff_km": 1.45,
+     "hausdorff_pct_r0": 0.07
+    },
+    {
+     "target_frac": 0.9,
+     "label": "random points p=0.90",
+     "threshold": 0.9,
+     "consent_pct": 89.98,
+     "center_km": [
+      -4.751,
+      -542.594
+     ],
+     "radius_km": 2099.467,
+     "center_shift_km": 0.0,
+     "radius_change_pct": 0.0,
+     "hausdorff_km": 0.0,
+     "hausdorff_pct_r0": 0.0
+    },
+    {
+     "target_frac": 0.95,
+     "label": "random points p=0.95",
+     "threshold": 0.95,
+     "consent_pct": 94.97,
+     "center_km": [
+      -4.751,
+      -542.594
+     ],
+     "radius_km": 2099.467,
+     "center_shift_km": 0.0,
+     "radius_change_pct": 0.0,
+     "hausdorff_km": 0.0,
+     "hausdorff_pct_r0": 0.0
+    }
+   ],
+   "consent_pct_range": [
+    4.98,
+    94.97
+   ],
+   "mean_hausdorff_pct_r0": 1.21,
+   "mean_random_baseline_pct_r0": 0.84
+  }
+ },
+ "random_baseline": {
+  "0.05": 3.096,
+  "0.10": 1.46,
+  "0.25": 0.876,
+  "0.50": 0.274,
+  "0.75": 0.094,
+  "0.90": 0.052,
+  "0.95": 0.052
+ }
+}
