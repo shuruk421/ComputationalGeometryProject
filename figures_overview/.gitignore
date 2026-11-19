@@ -1,0 +1,2 @@
+# The overview page needs its images, so un-ignore PNGs here (the repo root ignores *.png)
+!*.png
