@@ -2,3 +2,11 @@
 *.csv
 *.csv.gz
 tile_cache/
+
+# Small benchmark result tables are committed: re-include results/ (ignored by the
+# root .gitignore) and the CSVs inside it (ignored by *.csv above).
+!results/
+!results/*.csv
+
+# Generated figures (PNGs are ignored repo-wide anyway)
+figures/
