@@ -1,0 +1,1203 @@
+{
+ "generated": "2026-11-14 21:07:09",
+ "git_commit": "5fb972d-dirty",
+ "python": "3.9.12",
+ "numpy": "1.26.2",
+ "data": {
+  "csv": "listings_amsterdam.csv",
+  "listings": 10480,
+  "snapshot_last_review": "2025-09-11",
+  "centroid_lat": 52.36667920224869,
+  "centroid_lng": 4.889447078032987,
+  "duplicate_coordinate_rows": 336,
+  "duplicate_coordinate_groups": 143,
+  "dup_jitter_m": 1.0
+ },
+ "geometry": "2D local equirectangular km: x = R*dlng*cos(lat0), y = R*dlat, R = 6371.0088 km",
+ "seeds": [
+  0,
+  1,
+  2,
+  3,
+  4
+ ],
+ "primary_column": "number_of_reviews",
+ "alternative_column": "availability_365",
+ "all_listings_disc": {
+  "center_x_km": 1.0304528498435275,
+  "center_y_km": -0.4839840266153024,
+  "radius_km": 10.107077351487641
+ },
+ "correctness": {
+  "runs": 380,
+  "mismatches": 0,
+  "uncertified_ground_truths": 0,
+  "radius_rel_tol": 1e-09,
+  "center_tol_km": 1e-06
+ },
+ "consent_columns": {
+  "number_of_reviews": {
+   "story": "Established hosts with a long public track record have a reputation to protect and are used to scrutiny, so they agree to share data.",
+   "achievable_frac": [
+    9.541984732824427e-05,
+    0.895324427480916
+   ],
+   "excess_displacement_km_5_50pct": -1.4421047692733229
+  },
+  "number_of_reviews_ltm": {
+   "story": "Hosts who are active right now are reachable and engaged with the platform.",
+   "achievable_frac": [
+    9.541984732824427e-05,
+    0.6401717557251908
+   ],
+   "excess_displacement_km_5_50pct": -1.116984044456364
+  },
+  "reviews_per_month": {
+   "story": "High-turnover hosts run the listing as a business and answer requests quickly.",
+   "achievable_frac": [
+    9.541984732824427e-05,
+    0.895324427480916
+   ],
+   "excess_displacement_km_5_50pct": -1.3223554617696531
+  },
+  "availability_365": {
+   "story": "Listings open most of the year are run professionally (B&Bs, hotel rooms, multi-listing operators) and already deal with the city's registration rules; occasional home-sharers under Amsterdam's 30-night whole-home cap are warier.",
+   "achievable_frac": [
+    0.004484732824427481,
+    0.6184160305343511
+   ],
+   "excess_displacement_km_5_50pct": -0.04981872468593737
+  },
+  "last_review_recency": {
+   "story": "A recent review means the host is currently operating and reachable.",
+   "achievable_frac": [
+    0.0005725190839694657,
+    0.895324427480916
+   ],
+   "excess_displacement_km_5_50pct": -0.7932062339594868
+  },
+  "calculated_host_listings_count": {
+   "story": "Multi-listing (commercial) hosts have staff and compliance processes.",
+   "achievable_frac": [
+    0.0033396946564885495,
+    0.17719465648854962
+   ],
+   "excess_displacement_km_5_50pct": -0.29210542582260574
+  },
+  "price": {
+   "story": "Premium listings are run professionally. Weak story, and 44% of rows have no price (treated as not consenting), so it cannot exceed ~56% consenting.",
+   "achievable_frac": [
+    0.00019083969465648855,
+    0.5604961832061068
+   ],
+   "excess_displacement_km_5_50pct": 0.6145326418866734
+  }
+ },
+ "threshold_sweep": [
+  {
+   "column": "availability_365",
+   "threshold": 3.0,
+   "rule": "available \u2265 3 d/yr",
+   "n": 10480,
+   "seeds": 5,
+   "consent_frac": 0.59847,
+   "gt_radius_km": 9.7861,
+   "noncons_outside_disc": 4.0,
+   "incremental": {
+    "calls_mean": 53.6,
+    "calls_std": 6.6558245169174945,
+    "calls_min": 46.0,
+    "calls_max": 64.0,
+    "wall_s_mean": 0.05966504000001578,
+    "wall_s_std": 0.013566451468898049,
+    "cpu_s_mean": 0.021875
+   },
+   "decremental": {
+    "calls_mean": 7.0,
+    "calls_std": 0.0,
+    "calls_min": 7.0,
+    "calls_max": 7.0,
+    "wall_s_mean": 0.21037225999999692,
+    "wall_s_std": 0.055979487675690234,
+    "cpu_s_mean": 0.171875
+   },
+   "incorrect_runs": 0
+  },
+  {
+   "column": "availability_365",
+   "threshold": 21.0,
+   "rule": "available \u2265 21 d/yr",
+   "n": 10480,
+   "seeds": 5,
+   "consent_frac": 0.49885,
+   "gt_radius_km": 9.7333,
+   "noncons_outside_disc": 5.0,
+   "incremental": {
+    "calls_mean": 60.6,
+    "calls_std": 9.09945053286186,
+    "calls_min": 53.0,
+    "calls_max": 74.0,
+    "wall_s_mean": 0.06353715999998713,
+    "wall_s_std": 0.015470983962654056,
+    "cpu_s_mean": 0.04375
+   },
+   "decremental": {
+    "calls_mean": 8.0,
+    "calls_std": 0.0,
+    "calls_min": 8.0,
+    "calls_max": 8.0,
+    "wall_s_mean": 0.31753032000000303,
+    "wall_s_std": 0.020069789105949164,
+    "cpu_s_mean": 0.265625
+   },
+   "incorrect_runs": 0
+  },
+  {
+   "column": "availability_365",
+   "threshold": 66.0,
+   "rule": "available \u2265 66 d/yr",
+   "n": 10480,
+   "seeds": 5,
+   "consent_frac": 0.39971,
+   "gt_radius_km": 9.7333,
+   "noncons_outside_disc": 5.0,
+   "incremental": {
+    "calls_mean": 67.2,
+    "calls_std": 9.093954035511725,
+    "calls_min": 55.0,
+    "calls_max": 80.0,
+    "wall_s_mean": 0.055665739999983546,
+    "wall_s_std": 0.012308584950890695,
+    "cpu_s_mean": 0.05
+   },
+   "decremental": {
+    "calls_mean": 8.0,
+    "calls_std": 0.0,
+    "calls_min": 8.0,
+    "calls_max": 8.0,
+    "wall_s_mean": 0.3011689199999864,
+    "wall_s_std": 0.016398577436824237,
+    "cpu_s_mean": 0.278125
+   },
+   "incorrect_runs": 0
+  },
+  {
+   "column": "availability_365",
+   "threshold": 131.0,
+   "rule": "available \u2265 131 d/yr",
+   "n": 10480,
+   "seeds": 5,
+   "consent_frac": 0.30029,
+   "gt_radius_km": 9.6518,
+   "noncons_outside_disc": 8.0,
+   "incremental": {
+    "calls_mean": 72.6,
+    "calls_std": 8.018728078691781,
+    "calls_min": 61.0,
+    "calls_max": 81.0,
+    "wall_s_mean": 0.04134089999998878,
+    "wall_s_std": 0.007939440692841984,
+    "cpu_s_mean": 0.028125
+   },
+   "decremental": {
+    "calls_mean": 11.0,
+    "calls_std": 0.0,
+    "calls_min": 11.0,
+    "calls_max": 11.0,
+    "wall_s_mean": 0.479118399999993,
+    "wall_s_std": 0.03010392468150487,
+    "cpu_s_mean": 0.378125
+   },
+   "incorrect_runs": 0
+  },
+  {
+   "column": "availability_365",
+   "threshold": 174.0,
+   "rule": "available \u2265 174 d/yr",
+   "n": 10480,
+   "seeds": 5,
+   "consent_frac": 0.24943,
+   "gt_radius_km": 9.3092,
+   "noncons_outside_disc": 9.0,
+   "incremental": {
+    "calls_mean": 75.2,
+    "calls_std": 9.5236547606473,
+    "calls_min": 60.0,
+    "calls_max": 84.0,
+    "wall_s_mean": 0.03816485999999486,
+    "wall_s_std": 0.007842244254247325,
+    "cpu_s_mean": 0.021875
+   },
+   "decremental": {
+    "calls_mean": 13.0,
+    "calls_std": 0.0,
+    "calls_min": 13.0,
+    "calls_max": 13.0,
+    "wall_s_mean": 0.4837586199999805,
+    "wall_s_std": 0.07869127032009984,
+    "cpu_s_mean": 0.35
+   },
+   "incorrect_runs": 0
+  },
+  {
+   "column": "availability_365",
+   "threshold": 238.0,
+   "rule": "available \u2265 238 d/yr",
+   "n": 10480,
+   "seeds": 5,
+   "consent_frac": 0.19981,
+   "gt_radius_km": 9.3092,
+   "noncons_outside_disc": 9.0,
+   "incremental": {
+    "calls_mean": 115.2,
+    "calls_std": 22.342784070030305,
+    "calls_min": 81.0,
+    "calls_max": 135.0,
+    "wall_s_mean": 0.04002397999998948,
+    "wall_s_std": 0.01117605792808539,
+    "cpu_s_mean": 0.0375
+   },
+   "decremental": {
+    "calls_mean": 13.0,
+    "calls_std": 0.0,
+    "calls_min": 13.0,
+    "calls_max": 13.0,
+    "wall_s_mean": 0.4768532999999934,
+    "wall_s_std": 0.07875955655815023,
+    "cpu_s_mean": 0.390625
+   },
+   "incorrect_runs": 0
+  },
+  {
+   "column": "availability_365",
+   "threshold": 269.0,
+   "rule": "available \u2265 269 d/yr",
+   "n": 10480,
+   "seeds": 5,
+   "consent_frac": 0.14933,
+   "gt_radius_km": 9.3092,
+   "noncons_outside_disc": 9.0,
+   "incremental": {
+    "calls_mean": 144.0,
+    "calls_std": 10.074720839804943,
+    "calls_min": 134.0,
+    "calls_max": 160.0,
+    "wall_s_mean": 0.03600384000001213,
+    "wall_s_std": 0.009456768598609212,
+    "cpu_s_mean": 0.03125
+   },
+   "decremental": {
+    "calls_mean": 13.0,
+    "calls_std": 0.0,
+    "calls_min": 13.0,
+    "calls_max": 13.0,
+    "wall_s_mean": 0.4659903199999803,
+    "wall_s_std": 0.08826020799526076,
+    "cpu_s_mean": 0.390625
+   },
+   "incorrect_runs": 0
+  },
+  {
+   "column": "availability_365",
+   "threshold": 314.0,
+   "rule": "available \u2265 314 d/yr",
+   "n": 10480,
+   "seeds": 5,
+   "consent_frac": 0.10105,
+   "gt_radius_km": 8.6796,
+   "noncons_outside_disc": 30.0,
+   "incremental": {
+    "calls_mean": 204.0,
+    "calls_std": 11.510864433221338,
+    "calls_min": 190.0,
+    "calls_max": 214.0,
+    "wall_s_mean": 0.033170719999986886,
+    "wall_s_std": 0.005881207732018115,
+    "cpu_s_mean": 0.025
+   },
+   "decremental": {
+    "calls_mean": 33.0,
+    "calls_std": 0.0,
+    "calls_min": 33.0,
+    "calls_max": 33.0,
+    "wall_s_mean": 1.4760723000000098,
+    "wall_s_std": 0.1463129796891279,
+    "cpu_s_mean": 1.228125
+   },
+   "incorrect_runs": 0
+  },
+  {
+   "column": "availability_365",
+   "threshold": 335.0,
+   "rule": "available \u2265 335 d/yr",
+   "n": 10480,
+   "seeds": 5,
+   "consent_frac": 0.07061,
+   "gt_radius_km": 8.6796,
+   "noncons_outside_disc": 30.0,
+   "incremental": {
+    "calls_mean": 234.0,
+    "calls_std": 22.271057451320086,
+    "calls_min": 213.0,
+    "calls_max": 271.0,
+    "wall_s_mean": 0.029477979999990113,
+    "wall_s_std": 0.006984572883268201,
+    "cpu_s_mean": 0.021875
+   },
+   "decremental": {
+    "calls_mean": 33.0,
+    "calls_std": 0.0,
+    "calls_min": 33.0,
+    "calls_max": 33.0,
+    "wall_s_mean": 1.4322237199999903,
+    "wall_s_std": 0.10114982800681499,
+    "cpu_s_mean": 1.2375
+   },
+   "incorrect_runs": 0
+  },
+  {
+   "column": "availability_365",
+   "threshold": 347.0,
+   "rule": "available \u2265 347 d/yr",
+   "n": 10480,
+   "seeds": 5,
+   "consent_frac": 0.05019,
+   "gt_radius_km": 8.6611,
+   "noncons_outside_disc": 29.0,
+   "incremental": {
+    "calls_mean": 292.2,
+    "calls_std": 55.37779338326872,
+    "calls_min": 231.0,
+    "calls_max": 352.0,
+    "wall_s_mean": 0.033461339999996655,
+    "wall_s_std": 0.011424595445936825,
+    "cpu_s_mean": 0.03125
+   },
+   "decremental": {
+    "calls_mean": 33.0,
+    "calls_std": 0.0,
+    "calls_min": 33.0,
+    "calls_max": 33.0,
+    "wall_s_mean": 1.1499845999999934,
+    "wall_s_std": 0.10398371936500592,
+    "cpu_s_mean": 1.0125
+   },
+   "incorrect_runs": 0
+  },
+  {
+   "column": "availability_365",
+   "threshold": 355.0,
+   "rule": "available \u2265 355 d/yr",
+   "n": 10480,
+   "seeds": 5,
+   "consent_frac": 0.03397,
+   "gt_radius_km": 8.6611,
+   "noncons_outside_disc": 29.0,
+   "incremental": {
+    "calls_mean": 448.0,
+    "calls_std": 90.63387887539626,
+    "calls_min": 316.0,
+    "calls_max": 538.0,
+    "wall_s_mean": 0.03514705999999705,
+    "wall_s_std": 0.013644661212275446,
+    "cpu_s_mean": 0.03125
+   },
+   "decremental": {
+    "calls_mean": 33.0,
+    "calls_std": 0.0,
+    "calls_min": 33.0,
+    "calls_max": 33.0,
+    "wall_s_mean": 1.192658400000005,
+    "wall_s_std": 0.12865514293190145,
+    "cpu_s_mean": 1.0625
+   },
+   "incorrect_runs": 0
+  },
+  {
+   "column": "availability_365",
+   "threshold": 360.0,
+   "rule": "available \u2265 360 d/yr",
+   "n": 10480,
+   "seeds": 5,
+   "consent_frac": 0.02071,
+   "gt_radius_km": 7.7529,
+   "noncons_outside_disc": 183.0,
+   "incremental": {
+    "calls_mean": 682.6,
+    "calls_std": 157.55411768659047,
+    "calls_min": 479.0,
+    "calls_max": 861.0,
+    "wall_s_mean": 0.05299447999999529,
+    "wall_s_std": 0.012249373412400337,
+    "cpu_s_mean": 0.040625
+   },
+   "decremental": {
+    "calls_mean": 189.0,
+    "calls_std": 0.0,
+    "calls_min": 189.0,
+    "calls_max": 189.0,
+    "wall_s_mean": 10.974740559999987,
+    "wall_s_std": 0.5837538506497671,
+    "cpu_s_mean": 8.390625
+   },
+   "incorrect_runs": 0
+  },
+  {
+   "column": "number_of_reviews",
+   "threshold": 1.0,
+   "rule": "reviews \u2265 1",
+   "n": 10480,
+   "seeds": 5,
+   "consent_frac": 0.89532,
+   "gt_radius_km": 10.1071,
+   "noncons_outside_disc": 0.0,
+   "incremental": {
+    "calls_mean": 34.6,
+    "calls_std": 6.8044103344816,
+    "calls_min": 26.0,
+    "calls_max": 42.0,
+    "wall_s_mean": 0.06874481999999774,
+    "wall_s_std": 0.032351570800304236,
+    "cpu_s_mean": 0.05625
+   },
+   "decremental": {
+    "calls_mean": 3.0,
+    "calls_std": 0.0,
+    "calls_min": 3.0,
+    "calls_max": 3.0,
+    "wall_s_mean": 0.07268854000000288,
+    "wall_s_std": 0.021856930275955595,
+    "cpu_s_mean": 0.06875
+   },
+   "incorrect_runs": 0
+  },
+  {
+   "column": "number_of_reviews",
+   "threshold": 3.0,
+   "rule": "reviews \u2265 3",
+   "n": 10480,
+   "seeds": 5,
+   "consent_frac": 0.77643,
+   "gt_radius_km": 10.1071,
+   "noncons_outside_disc": 0.0,
+   "incremental": {
+    "calls_mean": 37.0,
+    "calls_std": 10.14889156509222,
+    "calls_min": 26.0,
+    "calls_max": 52.0,
+    "wall_s_mean": 0.057937679999999145,
+    "wall_s_std": 0.024914371896097614,
+    "cpu_s_mean": 0.034375
+   },
+   "decremental": {
+    "calls_mean": 3.0,
+    "calls_std": 0.0,
+    "calls_min": 3.0,
+    "calls_max": 3.0,
+    "wall_s_mean": 0.08458593999999806,
+    "wall_s_std": 0.03281705136812247,
+    "cpu_s_mean": 0.053125
+   },
+   "incorrect_runs": 0
+  },
+  {
+   "column": "number_of_reviews",
+   "threshold": 5.0,
+   "rule": "reviews \u2265 5",
+   "n": 10480,
+   "seeds": 5,
+   "consent_frac": 0.67758,
+   "gt_radius_km": 10.079,
+   "noncons_outside_disc": 1.0,
+   "incremental": {
+    "calls_mean": 41.8,
+    "calls_std": 10.986355173577815,
+    "calls_min": 27.0,
+    "calls_max": 57.0,
+    "wall_s_mean": 0.05720902000000194,
+    "wall_s_std": 0.02648827684348264,
+    "cpu_s_mean": 0.040625
+   },
+   "decremental": {
+    "calls_mean": 4.0,
+    "calls_std": 0.0,
+    "calls_min": 4.0,
+    "calls_max": 4.0,
+    "wall_s_mean": 0.14119610000000193,
+    "wall_s_std": 0.05431171164118142,
+    "cpu_s_mean": 0.121875
+   },
+   "incorrect_runs": 0
+  },
+  {
+   "column": "number_of_reviews",
+   "threshold": 7.0,
+   "rule": "reviews \u2265 7",
+   "n": 10480,
+   "seeds": 5,
+   "consent_frac": 0.59714,
+   "gt_radius_km": 10.079,
+   "noncons_outside_disc": 1.0,
+   "incremental": {
+    "calls_mean": 48.6,
+    "calls_std": 7.536577472566709,
+    "calls_min": 41.0,
+    "calls_max": 61.0,
+    "wall_s_mean": 0.07787219999999877,
+    "wall_s_std": 0.040973751548461765,
+    "cpu_s_mean": 0.059375
+   },
+   "decremental": {
+    "calls_mean": 4.0,
+    "calls_std": 0.0,
+    "calls_min": 4.0,
+    "calls_max": 4.0,
+    "wall_s_mean": 0.17039580000000284,
+    "wall_s_std": 0.06411962218353992,
+    "cpu_s_mean": 0.115625
+   },
+   "incorrect_runs": 0
+  },
+  {
+   "column": "number_of_reviews",
+   "threshold": 10.0,
+   "rule": "reviews \u2265 10",
+   "n": 10480,
+   "seeds": 5,
+   "consent_frac": 0.5084,
+   "gt_radius_km": 10.079,
+   "noncons_outside_disc": 1.0,
+   "incremental": {
+    "calls_mean": 54.0,
+    "calls_std": 12.884098726725126,
+    "calls_min": 41.0,
+    "calls_max": 75.0,
+    "wall_s_mean": 0.11264762000000132,
+    "wall_s_std": 0.05250123229536749,
+    "cpu_s_mean": 0.084375
+   },
+   "decremental": {
+    "calls_mean": 4.0,
+    "calls_std": 0.0,
+    "calls_min": 4.0,
+    "calls_max": 4.0,
+    "wall_s_mean": 0.24346027999999933,
+    "wall_s_std": 0.08108661168331882,
+    "cpu_s_mean": 0.159375
+   },
+   "incorrect_runs": 0
+  },
+  {
+   "column": "number_of_reviews",
+   "threshold": 15.0,
+   "rule": "reviews \u2265 15",
+   "n": 10480,
+   "seeds": 5,
+   "consent_frac": 0.39971,
+   "gt_radius_km": 10.079,
+   "noncons_outside_disc": 1.0,
+   "incremental": {
+    "calls_mean": 61.4,
+    "calls_std": 15.67801007781281,
+    "calls_min": 46.0,
+    "calls_max": 87.0,
+    "wall_s_mean": 0.09276241999999968,
+    "wall_s_std": 0.04437336805682986,
+    "cpu_s_mean": 0.05
+   },
+   "decremental": {
+    "calls_mean": 4.0,
+    "calls_std": 0.0,
+    "calls_min": 4.0,
+    "calls_max": 4.0,
+    "wall_s_mean": 0.25158383999999784,
+    "wall_s_std": 0.12437992064960823,
+    "cpu_s_mean": 0.15625
+   },
+   "incorrect_runs": 0
+  },
+  {
+   "column": "number_of_reviews",
+   "threshold": 23.0,
+   "rule": "reviews \u2265 23",
+   "n": 10480,
+   "seeds": 5,
+   "consent_frac": 0.30181,
+   "gt_radius_km": 10.079,
+   "noncons_outside_disc": 1.0,
+   "incremental": {
+    "calls_mean": 78.6,
+    "calls_std": 29.652993103563762,
+    "calls_min": 53.0,
+    "calls_max": 128.0,
+    "wall_s_mean": 0.08180165999999929,
+    "wall_s_std": 0.04885613998755244,
+    "cpu_s_mean": 0.0625
+   },
+   "decremental": {
+    "calls_mean": 4.0,
+    "calls_std": 0.0,
+    "calls_min": 4.0,
+    "calls_max": 4.0,
+    "wall_s_mean": 0.18533886000000166,
+    "wall_s_std": 0.06188773554871143,
+    "cpu_s_mean": 0.121875
+   },
+   "incorrect_runs": 0
+  },
+  {
+   "column": "number_of_reviews",
+   "threshold": 31.0,
+   "rule": "reviews \u2265 31",
+   "n": 10480,
+   "seeds": 5,
+   "consent_frac": 0.24819,
+   "gt_radius_km": 10.079,
+   "noncons_outside_disc": 1.0,
+   "incremental": {
+    "calls_mean": 87.2,
+    "calls_std": 42.41697773297857,
+    "calls_min": 53.0,
+    "calls_max": 159.0,
+    "wall_s_mean": 0.0695310400000011,
+    "wall_s_std": 0.05567291001756054,
+    "cpu_s_mean": 0.05625
+   },
+   "decremental": {
+    "calls_mean": 4.0,
+    "calls_std": 0.0,
+    "calls_min": 4.0,
+    "calls_max": 4.0,
+    "wall_s_mean": 0.17362463999999989,
+    "wall_s_std": 0.07441161714237493,
+    "cpu_s_mean": 0.13125
+   },
+   "incorrect_runs": 0
+  },
+  {
+   "column": "number_of_reviews",
+   "threshold": 43.0,
+   "rule": "reviews \u2265 43",
+   "n": 10480,
+   "seeds": 5,
+   "consent_frac": 0.20153,
+   "gt_radius_km": 10.079,
+   "noncons_outside_disc": 1.0,
+   "incremental": {
+    "calls_mean": 96.2,
+    "calls_std": 38.635475925630836,
+    "calls_min": 67.0,
+    "calls_max": 159.0,
+    "wall_s_mean": 0.0722849599999961,
+    "wall_s_std": 0.05131612356738239,
+    "cpu_s_mean": 0.028125
+   },
+   "decremental": {
+    "calls_mean": 4.0,
+    "calls_std": 0.0,
+    "calls_min": 4.0,
+    "calls_max": 4.0,
+    "wall_s_mean": 0.14614217999999823,
+    "wall_s_std": 0.05404804979310036,
+    "cpu_s_mean": 0.13125
+   },
+   "incorrect_runs": 0
+  },
+  {
+   "column": "number_of_reviews",
+   "threshold": 65.0,
+   "rule": "reviews \u2265 65",
+   "n": 10480,
+   "seeds": 5,
+   "consent_frac": 0.14943,
+   "gt_radius_km": 10.079,
+   "noncons_outside_disc": 1.0,
+   "incremental": {
+    "calls_mean": 133.6,
+    "calls_std": 50.564809897793545,
+    "calls_min": 77.0,
+    "calls_max": 185.0,
+    "wall_s_mean": 0.054586499999999205,
+    "wall_s_std": 0.0318038737377217,
+    "cpu_s_mean": 0.053125
+   },
+   "decremental": {
+    "calls_mean": 4.0,
+    "calls_std": 0.0,
+    "calls_min": 4.0,
+    "calls_max": 4.0,
+    "wall_s_mean": 0.15613364000000446,
+    "wall_s_std": 0.05582458624041587,
+    "cpu_s_mean": 0.121875
+   },
+   "incorrect_runs": 0
+  },
+  {
+   "column": "number_of_reviews",
+   "threshold": 115.0,
+   "rule": "reviews \u2265 115",
+   "n": 10480,
+   "seeds": 5,
+   "consent_frac": 0.1001,
+   "gt_radius_km": 9.9688,
+   "noncons_outside_disc": 8.0,
+   "incremental": {
+    "calls_mean": 158.0,
+    "calls_std": 54.4426303552648,
+    "calls_min": 88.0,
+    "calls_max": 223.0,
+    "wall_s_mean": 0.039730480000000054,
+    "wall_s_std": 0.019642766017213167,
+    "cpu_s_mean": 0.034375
+   },
+   "decremental": {
+    "calls_mean": 11.0,
+    "calls_std": 0.0,
+    "calls_min": 11.0,
+    "calls_max": 11.0,
+    "wall_s_mean": 0.7667919000000041,
+    "wall_s_std": 0.053590616943315655,
+    "cpu_s_mean": 0.575
+   },
+   "incorrect_runs": 0
+  },
+  {
+   "column": "number_of_reviews",
+   "threshold": 184.0,
+   "rule": "reviews \u2265 184",
+   "n": 10480,
+   "seeds": 5,
+   "consent_frac": 0.07013,
+   "gt_radius_km": 9.0734,
+   "noncons_outside_disc": 16.0,
+   "incremental": {
+    "calls_mean": 235.8,
+    "calls_std": 80.97653981246667,
+    "calls_min": 115.0,
+    "calls_max": 309.0,
+    "wall_s_mean": 0.03540083999999695,
+    "wall_s_std": 0.010875792213124064,
+    "cpu_s_mean": 0.03125
+   },
+   "decremental": {
+    "calls_mean": 19.0,
+    "calls_std": 0.0,
+    "calls_min": 19.0,
+    "calls_max": 19.0,
+    "wall_s_mean": 0.8329847200000018,
+    "wall_s_std": 0.10049167000949503,
+    "cpu_s_mean": 0.59375
+   },
+   "incorrect_runs": 0
+  },
+  {
+   "column": "number_of_reviews",
+   "threshold": 265.0,
+   "rule": "reviews \u2265 265",
+   "n": 10480,
+   "seeds": 5,
+   "consent_frac": 0.0499,
+   "gt_radius_km": 9.06,
+   "noncons_outside_disc": 18.0,
+   "incremental": {
+    "calls_mean": 293.6,
+    "calls_std": 98.12899673389106,
+    "calls_min": 171.0,
+    "calls_max": 381.0,
+    "wall_s_mean": 0.02993479999999806,
+    "wall_s_std": 0.013727874234744171,
+    "cpu_s_mean": 0.009375
+   },
+   "decremental": {
+    "calls_mean": 21.0,
+    "calls_std": 0.0,
+    "calls_min": 21.0,
+    "calls_max": 21.0,
+    "wall_s_mean": 0.942926540000002,
+    "wall_s_std": 0.1015131945013913,
+    "cpu_s_mean": 0.76875
+   },
+   "incorrect_runs": 0
+  },
+  {
+   "column": "number_of_reviews",
+   "threshold": 351.0,
+   "rule": "reviews \u2265 351",
+   "n": 10480,
+   "seeds": 5,
+   "consent_frac": 0.03502,
+   "gt_radius_km": 8.3208,
+   "noncons_outside_disc": 46.0,
+   "incremental": {
+    "calls_mean": 394.2,
+    "calls_std": 193.35899255012683,
+    "calls_min": 204.0,
+    "calls_max": 663.0,
+    "wall_s_mean": 0.03556886000000077,
+    "wall_s_std": 0.01986236167209287,
+    "cpu_s_mean": 0.025
+   },
+   "decremental": {
+    "calls_mean": 52.0,
+    "calls_std": 0.0,
+    "calls_min": 52.0,
+    "calls_max": 52.0,
+    "wall_s_mean": 3.123038300000002,
+    "wall_s_std": 0.15220564060042513,
+    "cpu_s_mean": 2.325
+   },
+   "incorrect_runs": 0
+  },
+  {
+   "column": "number_of_reviews",
+   "threshold": 460.0,
+   "rule": "reviews \u2265 460",
+   "n": 10480,
+   "seeds": 5,
+   "consent_frac": 0.01994,
+   "gt_radius_km": 7.4412,
+   "noncons_outside_disc": 311.0,
+   "incremental": {
+    "calls_mean": 840.6,
+    "calls_std": 243.34810457449632,
+    "calls_min": 470.0,
+    "calls_max": 1099.0,
+    "wall_s_mean": 0.04285902000000306,
+    "wall_s_std": 0.018464683399054733,
+    "cpu_s_mean": 0.028125
+   },
+   "decremental": {
+    "calls_mean": 322.0,
+    "calls_std": 0.0,
+    "calls_min": 322.0,
+    "calls_max": 322.0,
+    "wall_s_mean": 17.099240580000004,
+    "wall_s_std": 0.6432691367325138,
+    "cpu_s_mean": 12.653125
+   },
+   "incorrect_runs": 0
+  },
+  {
+   "column": "number_of_reviews",
+   "threshold": 578.0,
+   "rule": "reviews \u2265 578",
+   "n": 10480,
+   "seeds": 5,
+   "consent_frac": 0.01002,
+   "gt_radius_km": 6.7926,
+   "noncons_outside_disc": 417.0,
+   "incremental": {
+    "calls_mean": 1184.4,
+    "calls_std": 343.9771794756158,
+    "calls_min": 759.0,
+    "calls_max": 1716.0,
+    "wall_s_mean": 0.030352259999989428,
+    "wall_s_std": 0.01310619922166529,
+    "cpu_s_mean": 0.021875
+   },
+   "decremental": {
+    "calls_mean": 467.0,
+    "calls_std": 0.0,
+    "calls_min": 467.0,
+    "calls_max": 467.0,
+    "wall_s_mean": 16.456228520000007,
+    "wall_s_std": 0.517778649085063,
+    "cpu_s_mean": 13.43125
+   },
+   "incorrect_runs": 0
+  }
+ ],
+ "size_sweep": [
+  {
+   "column": "number_of_reviews",
+   "threshold": 10.0,
+   "rule": "reviews \u2265 10",
+   "n": 1000,
+   "seeds": 5,
+   "consent_frac": 0.5058,
+   "gt_radius_km": 8.4227,
+   "noncons_outside_disc": 2.2,
+   "incremental": {
+    "calls_mean": 29.8,
+    "calls_std": 9.364827814754525,
+    "calls_min": 20.0,
+    "calls_max": 42.0,
+    "wall_s_mean": 0.010288539999987734,
+    "wall_s_std": 0.004652060782389048,
+    "cpu_s_mean": 0.00625
+   },
+   "decremental": {
+    "calls_mean": 5.2,
+    "calls_std": 3.03315017762062,
+    "calls_min": 3.0,
+    "calls_max": 9.0,
+    "wall_s_mean": 0.036611560000017106,
+    "wall_s_std": 0.03717945995025059,
+    "cpu_s_mean": 0.03125
+   },
+   "incorrect_runs": 0
+  },
+  {
+   "column": "number_of_reviews",
+   "threshold": 265.0,
+   "rule": "reviews \u2265 265",
+   "n": 1000,
+   "seeds": 5,
+   "consent_frac": 0.0506,
+   "gt_radius_km": 6.5214,
+   "noncons_outside_disc": 66.6,
+   "incremental": {
+    "calls_mean": 270.4,
+    "calls_std": 101.88130348596842,
+    "calls_min": 171.0,
+    "calls_max": 413.0,
+    "wall_s_mean": 0.006336479999993117,
+    "wall_s_std": 0.0019010690405637431,
+    "cpu_s_mean": 0.009375
+   },
+   "decremental": {
+    "calls_mean": 72.8,
+    "calls_std": 69.48165225439016,
+    "calls_min": 9.0,
+    "calls_max": 187.0,
+    "wall_s_mean": 0.6290189800000008,
+    "wall_s_std": 0.5734062829659659,
+    "cpu_s_mean": 0.490625
+   },
+   "incorrect_runs": 0
+  },
+  {
+   "column": "number_of_reviews",
+   "threshold": 10.0,
+   "rule": "reviews \u2265 10",
+   "n": 2000,
+   "seeds": 5,
+   "consent_frac": 0.5085,
+   "gt_radius_km": 9.1597,
+   "noncons_outside_disc": 1.8,
+   "incremental": {
+    "calls_mean": 37.8,
+    "calls_std": 6.572670690061993,
+    "calls_min": 31.0,
+    "calls_max": 48.0,
+    "wall_s_mean": 0.016975460000003294,
+    "wall_s_std": 0.005404077025549746,
+    "cpu_s_mean": 0.009375
+   },
+   "decremental": {
+    "calls_mean": 4.8,
+    "calls_std": 1.6431676725154984,
+    "calls_min": 3.0,
+    "calls_max": 7.0,
+    "wall_s_mean": 0.0463800200000037,
+    "wall_s_std": 0.018977221728481514,
+    "cpu_s_mean": 0.021875
+   },
+   "incorrect_runs": 0
+  },
+  {
+   "column": "number_of_reviews",
+   "threshold": 265.0,
+   "rule": "reviews \u2265 265",
+   "n": 2000,
+   "seeds": 5,
+   "consent_frac": 0.0559,
+   "gt_radius_km": 7.8895,
+   "noncons_outside_disc": 42.4,
+   "incremental": {
+    "calls_mean": 274.0,
+    "calls_std": 99.35793878699377,
+    "calls_min": 167.0,
+    "calls_max": 420.0,
+    "wall_s_mean": 0.012500360000001366,
+    "wall_s_std": 0.0060162397290914995,
+    "cpu_s_mean": 0.0125
+   },
+   "decremental": {
+    "calls_mean": 47.4,
+    "calls_std": 17.544229820656135,
+    "calls_min": 17.0,
+    "calls_max": 62.0,
+    "wall_s_mean": 0.7945931600000108,
+    "wall_s_std": 0.343107798292371,
+    "cpu_s_mean": 0.575
+   },
+   "incorrect_runs": 0
+  },
+  {
+   "column": "number_of_reviews",
+   "threshold": 10.0,
+   "rule": "reviews \u2265 10",
+   "n": 4000,
+   "seeds": 5,
+   "consent_frac": 0.50925,
+   "gt_radius_km": 9.6417,
+   "noncons_outside_disc": 1.2,
+   "incremental": {
+    "calls_mean": 58.4,
+    "calls_std": 14.205632685663812,
+    "calls_min": 44.0,
+    "calls_max": 77.0,
+    "wall_s_mean": 0.04264538000001039,
+    "wall_s_std": 0.020105055664977445,
+    "cpu_s_mean": 0.021875
+   },
+   "decremental": {
+    "calls_mean": 4.2,
+    "calls_std": 0.8366600265340756,
+    "calls_min": 3.0,
+    "calls_max": 5.0,
+    "wall_s_mean": 0.07654174000000466,
+    "wall_s_std": 0.020383413890295392,
+    "cpu_s_mean": 0.05625
+   },
+   "incorrect_runs": 0
+  },
+  {
+   "column": "number_of_reviews",
+   "threshold": 265.0,
+   "rule": "reviews \u2265 265",
+   "n": 4000,
+   "seeds": 5,
+   "consent_frac": 0.0481,
+   "gt_radius_km": 7.954,
+   "noncons_outside_disc": 64.4,
+   "incremental": {
+    "calls_mean": 330.2,
+    "calls_std": 42.990696668000155,
+    "calls_min": 282.0,
+    "calls_max": 375.0,
+    "wall_s_mean": 0.014602600000011989,
+    "wall_s_std": 0.0023297554131249927,
+    "cpu_s_mean": 0.009375
+   },
+   "decremental": {
+    "calls_mean": 68.0,
+    "calls_std": 21.89748844045819,
+    "calls_min": 42.0,
+    "calls_max": 94.0,
+    "wall_s_mean": 1.7303229800000053,
+    "wall_s_std": 0.5497692649062841,
+    "cpu_s_mean": 1.309375
+   },
+   "incorrect_runs": 0
+  },
+  {
+   "column": "number_of_reviews",
+   "threshold": 10.0,
+   "rule": "reviews \u2265 10",
+   "n": 7000,
+   "seeds": 5,
+   "consent_frac": 0.50963,
+   "gt_radius_km": 9.9259,
+   "noncons_outside_disc": 1.8,
+   "incremental": {
+    "calls_mean": 52.2,
+    "calls_std": 13.899640283115243,
+    "calls_min": 40.0,
+    "calls_max": 75.0,
+    "wall_s_mean": 0.06322389999996858,
+    "wall_s_std": 0.03694776168912438,
+    "cpu_s_mean": 0.04375
+   },
+   "decremental": {
+    "calls_mean": 4.8,
+    "calls_std": 0.8366600265340756,
+    "calls_min": 4.0,
+    "calls_max": 6.0,
+    "wall_s_mean": 0.17044787999999472,
+    "wall_s_std": 0.0844857059374845,
+    "cpu_s_mean": 0.13125
+   },
+   "incorrect_runs": 0
+  },
+  {
+   "column": "number_of_reviews",
+   "threshold": 265.0,
+   "rule": "reviews \u2265 265",
+   "n": 7000,
+   "seeds": 5,
+   "consent_frac": 0.04869,
+   "gt_radius_km": 9.0366,
+   "noncons_outside_disc": 24.4,
+   "incremental": {
+    "calls_mean": 309.0,
+    "calls_std": 32.977264895682296,
+    "calls_min": 267.0,
+    "calls_max": 349.0,
+    "wall_s_mean": 0.03334933999999521,
+    "wall_s_std": 0.01166880833216727,
+    "cpu_s_mean": 0.028125
+   },
+   "decremental": {
+    "calls_mean": 27.4,
+    "calls_std": 29.988331063932183,
+    "calls_min": 12.0,
+    "calls_max": 81.0,
+    "wall_s_mean": 1.1889071000000058,
+    "wall_s_std": 1.5720718970489223,
+    "cpu_s_mean": 0.96875
+   },
+   "incorrect_runs": 0
+  },
+  {
+   "column": "number_of_reviews",
+   "threshold": 10.0,
+   "rule": "reviews \u2265 10",
+   "n": 10480,
+   "seeds": 5,
+   "consent_frac": 0.5084,
+   "gt_radius_km": 10.079,
+   "noncons_outside_disc": 1.0,
+   "incremental": {
+    "calls_mean": 54.0,
+    "calls_std": 12.884098726725126,
+    "calls_min": 41.0,
+    "calls_max": 75.0,
+    "wall_s_mean": 0.057258159999992134,
+    "wall_s_std": 0.024192743613266066,
+    "cpu_s_mean": 0.046875
+   },
+   "decremental": {
+    "calls_mean": 4.0,
+    "calls_std": 0.0,
+    "calls_min": 4.0,
+    "calls_max": 4.0,
+    "wall_s_mean": 0.15192847999999232,
+    "wall_s_std": 0.06349578005571002,
+    "cpu_s_mean": 0.1125
+   },
+   "incorrect_runs": 0
+  },
+  {
+   "column": "number_of_reviews",
+   "threshold": 265.0,
+   "rule": "reviews \u2265 265",
+   "n": 10480,
+   "seeds": 5,
+   "consent_frac": 0.0499,
+   "gt_radius_km": 9.06,
+   "noncons_outside_disc": 18.0,
+   "incremental": {
+    "calls_mean": 293.6,
+    "calls_std": 98.12899673389106,
+    "calls_min": 171.0,
+    "calls_max": 381.0,
+    "wall_s_mean": 0.028570360000014717,
+    "wall_s_std": 0.012019758300310724,
+    "cpu_s_mean": 0.01875
+   },
+   "decremental": {
+    "calls_mean": 21.0,
+    "calls_std": 0.0,
+    "calls_min": 21.0,
+    "calls_max": 21.0,
+    "wall_s_mean": 0.9721978400000012,
+    "wall_s_std": 0.13632738476258568,
+    "cpu_s_mean": 0.746875
+   },
+   "incorrect_runs": 0
+  }
+ ],
+ "runtime_s": 404.4
+}

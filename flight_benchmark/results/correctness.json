@@ -1,0 +1,48 @@
+{
+ "rule": "|r - r_gt| / r_gt <= 1e-09 and every consenting point inside the returned ball (excess <= 1e-09 * r_gt); r_gt = exact MEB of the consenting points only",
+ "benchmark_runs": {
+  "incremental": {
+   "runs_checked": 180,
+   "mismatches": 0,
+   "max_rel_radius_err": 3.2312565789523837e-16,
+   "max_excess_km": 9.094947017729282e-13,
+   "mismatch_examples": []
+  },
+  "decremental": {
+   "runs_checked": 174,
+   "mismatches": 0,
+   "max_rel_radius_err": 3.545091000915172e-16,
+   "max_excess_km": 9.094947017729282e-13,
+   "mismatch_examples": []
+  }
+ },
+ "km_units_check": {
+  "n": 5000,
+  "seeds": 3,
+  "summary": {
+   "incremental": {
+    "runs": 54,
+    "mismatches": 0,
+    "max_rel_radius_err": 3.4182320806040794e-16,
+    "max_excess_km": 6.821210263296962e-13,
+    "example": null
+   },
+   "decremental": {
+    "runs": 54,
+    "mismatches": 40,
+    "max_rel_radius_err": 0.5127685465564918,
+    "max_excess_km": 6.821210263296962e-13,
+    "example": {
+     "column": "optin_date",
+     "label": "legs since 2019-09-28",
+     "seed": 0,
+     "n": 5000,
+     "gt_radius_km": 1329.647503112759,
+     "decremental_radius_km": 1729.2627771991076,
+     "decremental_calls": 21,
+     "lower_bound_calls": 70
+    }
+   }
+  }
+ }
+}
